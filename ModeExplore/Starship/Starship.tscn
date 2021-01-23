@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ModeExplore/PlayerShip.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/Starship/Starship.gd" type="Script" id=1]
 [ext_resource path="res://AssettsImage/Ships/Default.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9.86858, 6.54472 )
 
-[node name="PlayerShip" type="RigidBody2D"]
+[node name="Starship" type="RigidBody2D"]
 position = Vector2( 959.851, 554.04 )
 script = ExtResource( 1 )
 

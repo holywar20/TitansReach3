@@ -9,25 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
+"base": "TitansResource",
+"class": "AnomolyResource",
+"language": "GDScript",
+"path": "res://Resources/Anoms/Anom.gd"
+}, {
+"base": "TitansResource",
 "class": "PlanetResource",
 "language": "GDScript",
 "path": "res://Resources/Planets/PlanetResource.gd"
 }, {
-"base": "Resource",
+"base": "TitansResource",
 "class": "SectorResource",
 "language": "GDScript",
 "path": "res://Resources/Sector/SectorResource.gd"
 }, {
-"base": "Resource",
+"base": "TitansResource",
 "class": "StarResource",
 "language": "GDScript",
 "path": "res://Resources/Stars/StarResource.gd"
+}, {
+"base": "Resource",
+"class": "SystemResource",
+"language": "GDScript",
+"path": "res://Resources/System/SystemResource.gd"
+}, {
+"base": "Resource",
+"class": "TitansResource",
+"language": "GDScript",
+"path": "res://Resources/TitansResource.gd"
 } ]
 _global_script_class_icons={
+"AnomolyResource": "",
 "PlanetResource": "",
 "SectorResource": "",
-"StarResource": ""
+"StarResource": "",
+"SystemResource": "",
+"TitansResource": ""
 }
 
 [application]
@@ -40,6 +58,10 @@ config/icon="res://icon.png"
 
 window/size/width=1920
 window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray( "godot-sqlite" )
 
 [input]
 

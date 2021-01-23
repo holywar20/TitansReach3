@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Game/DebugMenu.gd" type="Script" id=1]
+
+[node name="DebugMenu" type="Control"]
+anchor_right = 0.161
+anchor_bottom = 0.148
+margin_right = 0.879974
+margin_bottom = 0.160004
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_right = 310.0
+margin_bottom = 136.0
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 310.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Debug Menu"
+align = 1
+
+[node name="Start Battle" type="Button" parent="Menu"]
+margin_top = 18.0
+margin_right = 310.0
+margin_bottom = 38.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Start Battle"
+
+[node name="Explore Solar System" type="Button" parent="Menu"]
+margin_top = 42.0
+margin_right = 310.0
+margin_bottom = 62.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Explore System"
+
+[node name="Roll World" type="Button" parent="Menu"]
+margin_top = 66.0
+margin_right = 310.0
+margin_bottom = 86.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Roll System ( Not Implimented )"
+
+[node name="Button" type="Button" parent="Menu"]
+margin_top = 90.0
+margin_right = 310.0
+margin_bottom = 110.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Supercheat ( Not Implimented )"
+
+[node name="Toggle" type="Button" parent="."]
+margin_left = 282.0
+margin_right = 310.0
+margin_bottom = 31.0
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+enabled_focus_mode = 0
+text = " X "
+[connection signal="pressed" from="Menu/Start Battle" to="." method="_onStartBattlePressed"]
+[connection signal="pressed" from="Menu/Explore Solar System" to="." method="_onStartBattlePressed"]
+[connection signal="pressed" from="Menu/Explore Solar System" to="." method="_onExploreSystemPressed"]
+[connection signal="toggled" from="Toggle" to="." method="_onMenuButtonToggled"]

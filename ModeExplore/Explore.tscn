@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/PlayerShip.tscn" type="PackedScene" id=2]
+
+[node name="Explore" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Generator" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_ignore_camera_zoom = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer/ParallaxBackground"]
+position = Vector2( 25.4558, 19.799 )
+amount = 500
+emission_shape = 2
+emission_rect_extents = Vector2( 2000, 2000 )
+gravity = Vector2( 0, 0 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stars" type="Node2D" parent="."]
+position = Vector2( 959.851, 554.04 )
+
+[node name="Planets" type="Node2D" parent="."]
+position = Vector2( 959.851, 554.04 )
+
+[node name="Anomolies" type="Node2D" parent="."]
+position = Vector2( 959.851, 554.04 )
+
+[node name="PlayerShip" parent="." instance=ExtResource( 2 )]
+position = Vector2( 966.451, 540.841 )
+gravity_scale = 0.0

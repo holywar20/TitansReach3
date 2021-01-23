@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "BaseTarget",
+"language": "GDScript",
+"path": "res://Resources/Planets/BasePlanet.gd"
+} ]
 _global_script_class_icons={
-
+"BaseTarget": ""
 }
 
 [application]

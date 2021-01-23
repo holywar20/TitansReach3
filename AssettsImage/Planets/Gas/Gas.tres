@@ -1,0 +1,6 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://TextureBank/Planets/Gas/Gas Giant-EQUIRECTANGULAR-2-1024x512.png" type="Texture" id=1]
+
+[resource]
+albedo_texture = ExtResource( 1 )

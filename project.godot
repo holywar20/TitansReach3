@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Stars/StarResource.gd"
 }, {
-"base": "Resource",
+"base": "TitansResource",
 "class": "SystemResource",
 "language": "GDScript",
 "path": "res://Resources/System/SystemResource.gd"

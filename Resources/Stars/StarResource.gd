@@ -21,12 +21,17 @@ const STAR_WEIGHT = {
 }
 
 export(int) var mySeed = 10000000
+
+
+# Properties which are generally populated from data
 export(STAR_CLASS) var starClass = STAR_CLASS.T
-
 var starClassName : String = "Brown Dwarf" 
-
 var boilLine : int = 0
 var freezeLine : int = 1
+var temp : int = 3000
+var mass : float = 0.01
+var codex : String = "Brown Dwarf"
+
 var textureScale :float = 0.25
 var texturePath : String = "res://AssettsImage/Stars/celestial_blank.png"
 var textureIconPath : String = "res://AssettsImage/Stars/celestial_blank_icon.png"
@@ -74,20 +79,42 @@ func _generateProps() -> void:
 	var starFile = File.new()
 	starFile.open( starFilePath , File.READ)
 	var starTable = parse_json( starFile.get_as_text() )
+	starFile.close()
 
-	var totalWeight : int = 0
+	# Calculate the total 'rollWeight' of all stars
+	var totalWeight : int = 1
 	for star in starTable:
 		totalWeight += star.rollWeight 
 
-	var random = randi() % totalWeight + 1
+	var random = randi() % totalWeight + 1.0
 	var weightCount = 0
 	
-	for star in starTable:
-		
-		weightCount += star.rollWeight
+	# Find out which star we are creating
+	for x in range( 0, starTable.size() ):
+		weightCount += starTable[x].rollWeight
 		if( weightCount >= random ):
-			starClass = star.starClass
+			starClass = x
 			break
 
-	print(starClass)
-	starFile.close()
+	# Now populate all the properties
+	var starData : Dictionary = starTable[starClass]
+	flushAndFillProperties( starData, self )
+	
+	#starClassName = starData.starClassName
+	#boilLine = starData.boilLine
+	#freezeLine = starData.freezeLine
+	#textureScale = starData.textureScale
+	#texturePath = starData.texturePath
+	#textureIconPath =  starData.textureIconPath
+	#textureSmallPath = starData.textureSmallPath
+	#isExotic = starData.isExotic
+	#isHabitable = starData.isHabitable
+	#anomChance = starData.anomChance
+	#codex = starData.codex
+
+	#tempature = randDiffValues( starData.tempLo , starData.tempHi )
+
+
+
+	
+	

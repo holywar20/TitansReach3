@@ -8,6 +8,13 @@ export(String) var systemName = null
 var stars : Array = []
 var anoms : Array = []
 
+# Overrides
+func get_class() -> String: 
+	return "SystemResource"
+
+func is_class( name : String ) -> bool: 
+	return name == "SystemResource"
+
 func _init( aSeed: int = 0):
 	if( mySeed != 0):
 		seed(aSeed)
@@ -21,8 +28,6 @@ func generateStars():
 	for _x in range(0, starsToGenerate):
 		var star : StarResource = StarResource.new(mySeed)
 		stars.append(star)
-	
-	print(stars)
 
 func generateAnoms():
 	pass

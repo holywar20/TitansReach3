@@ -21,7 +21,6 @@ scale = Vector2( 3.84616, 5.76923 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="."]
-rotation = 1.5708
 scale = Vector2( 1.5625, 2.34375 )
 current = true
 smoothing_enabled = true

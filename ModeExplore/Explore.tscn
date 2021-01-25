@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://AssettsImage/Backgrounds/Space001.png" type="Texture" id=3]
 [ext_resource path="res://Generators/SystemGenerator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ModeExplore/Celestials/Star.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 0.0392157, 0.839216, 0.133333, 1, 0.905882, 0.215686, 0.0431373, 1, 0.0196078, 0.207843, 0.890196, 1 )
 
 [node name="Explore" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,38 +24,78 @@ scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 3 )
 centered = false
 
-[node name="StarfieldClose" type="ParallaxBackground" parent="Background"]
-layer = -50
-scroll_ignore_camera_zoom = true
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/StarfieldClose"]
-position = Vector2( 25.4558, 19.799 )
-amount = 500
-emission_shape = 2
-emission_rect_extents = Vector2( 1920, 1080 )
-gravity = Vector2( 0, 0 )
-orbit_velocity = 20.0
-hue_variation = -0.45
-hue_variation_random = 0.2
-
-[node name="UI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="ViewportContainer" type="ViewportContainer" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stars" type="Node2D" parent="."]
-position = Vector2( 959.851, 554.04 )
+[node name="Viewport" type="Viewport" parent="Background/ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
 
-[node name="Planets" type="Node2D" parent="."]
-position = Vector2( 959.851, 554.04 )
+[node name="Camera" type="Camera" parent="Background/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 6.01817, 0 )
+doppler_tracking = 2
+fov = 38.0
+
+[node name="Stars" type="Spatial" parent="Background/ViewportContainer/Viewport"]
+
+[node name="Star" parent="Background/ViewportContainer/Viewport/Stars" instance=ExtResource( 5 )]
+
+[node name="Planets" type="Spatial" parent="Background/ViewportContainer/Viewport"]
+
+[node name="StarfieldClose" type="ParallaxBackground" parent="Background"]
+layer = -50
+scroll_base_scale = Vector2( 0.75, 0.74 )
+scroll_ignore_camera_zoom = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/StarfieldClose"]
+position = Vector2( 960, 540 )
+rotation = -3.14159
+amount = 750
+lifetime = 200.0
+preprocess = 50.0
+speed_scale = 10.0
+draw_order = 1
+emission_shape = 2
+emission_rect_extents = Vector2( 1920, 1080 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 5.0
+scale_amount = 1.5
+color_ramp = SubResource( 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 1920, 1080 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
 
 [node name="Anoms" type="Node2D" parent="."]
 position = Vector2( 959.851, 554.04 )
 
 [node name="PlayerShip" parent="." instance=ExtResource( 2 )]
 position = Vector2( 966.451, 540.841 )
+rotation = -3.14159
 gravity_scale = 0.0
 isPlayer = true
 velocityMaxForward = 1000
+[connection signal="PLAYER_MOVING" from="PlayerShip" to="." method="_on_PlayerShip_PLAYER_MOVING"]

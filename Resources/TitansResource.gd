@@ -7,7 +7,8 @@ const SEED_SIZE = 100000000
 var fillableProps = []
 var percentDiffProps = []
 var hiLoDiffProps = []
-
+var percentChangeProps = []
+var randomAssignmentProps = []
 
 # Finds a random difference between two values. Used in procedural generation of values like mass, tempature, etc
 func randDiffValues( low, hi ):
@@ -46,10 +47,16 @@ func flushAndFillProperties( props : Dictionary, object ):
 	for key in percentDiffProps:
 		object[key] = randDiffPercents( props[key]['hi'] , props[key]['lo'] )
 	
-	object = localFlushAndFillProperties( props , object )
+	for key in percentChangeProps:
+		pass
+	
+	for key in randomAssignmentProps:
+		pass
+	
+	object = calculateSpecialProperties( props , object )
 
 	return object
 
 # plugin meant for override
-func localFlushAndFillProperties( props: Dictionary , object ):
+func calculateSpecialProperties( props: Dictionary , object ):
 	return object

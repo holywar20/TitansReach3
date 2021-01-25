@@ -26,7 +26,7 @@ func _init( aSeed: int = 0):
 
 func generateStars():
 	for _x in range(0, starsToGenerate):
-		var star : StarResource = StarResource.new(mySeed)
+		var star : StarResource = StarResource.new(mySeed , self)
 		stars.append(star)
 
 func generateAnoms():

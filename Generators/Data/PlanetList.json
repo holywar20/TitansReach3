@@ -1,0 +1,272 @@
+{
+	"L" : {
+		"planetClassName" : "Lava",
+		"codex" : "Lava Planet",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"M" : {
+		"planetClassName" : "Mesoplanet",
+		"codex" : "Mesoplanets are extremely small planets",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"G" : {
+		"planetClassName" : "Gas Giant",
+		"codex" : "Gas Giants are planets made up mostly of hyrogen & Helium",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"IG" : {
+		"planetClassName" : "Ice Giants",
+		"codex" : "Smaller than true Gas Giants, ice Giants are often extremely cold worlds with large amounts of complex hydrocarbons, methanes and water and ice crystals in their atmospheres",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"T" : {
+		"planetClassName" : "Terran",
+		"codex" : "Terran planets are classified as such because they are possible to live on the surface for at least a short while without any special protection. They are most likely to have pre-colonization biospheres, though most will eventually require some terraforming to become truely habitable.",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"B" : {
+		"planetClassName" : "Barren",
+		"codex" : "Barren Planets are completely airless worlds. They are best utilized for mining operations, as the lack of air makes it easy to land & launch payload bearing shuttles.",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"I" : {
+		"planetClassName" : "Ice",
+		"codex" : "Icy Planets are essentially extremely cold versions of Terran worlds. Breathing the air is sometimes possible without special equipment but the incredibly low tempatures make it nearly impossible to survive without special equipment.",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"S" : {
+		"planetClassName" : "Storm",
+		"codex" : "Storm worlds are hothouse worlds that also possess incredibly thick atmospheres. They very difficult to land on, and survival on the surface requires special pressure suits even more rigous than those required to survive in vacuum",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	},
+	"H" : {
+		"planetClassName" : "Hydrocarbon",
+		"codex" : "Extremely cold worlds with a unique quirk - their hydrosphere is almost entirely based upon Hydrocarbons like Methane. This makes them common places for refueling operations for interplanetary thrusters, and systems will often build infurstructure around these worlds to manage interplanetary traffic",
+		"mass" : {
+			"hi" : 1.4 , 
+			"lo" : 0.6
+		},
+		"temp" : {
+			"hi" : 800 ,
+			"lo" : 170 
+		},
+		"biosphereChance" : 5,
+		"mineralNum" : {
+			"lo" : 1, 
+			"hi" : 6
+		},
+		"mineralChance" : {
+			"Uranium" : 10,
+			"Gold" : 10,
+			"Mercury" : 10
+		},
+		"atmosphere" : {
+			"SulfurDioxide" : 20,
+			"TraceGases" : 10,
+			"None" : 10
+		},
+		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
+		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
+		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png"
+	}
+}

@@ -17,7 +17,7 @@ var stopping = false
 var vectorDirection = Vector2(0,0)
 var speed = 0
 
-#signal PLAYER_MOVING
+signal PLAYER_MOVING # Emitted when ever a player moves in any direction or rotates.
 
 onready var myCamera = $Camera
 onready var area2D = $ShipArea # I need this for collision detection of areas for some reason. Rigid2D Bodies can't poll for areas, only for bodies, and i'm using mostly areas.
@@ -29,7 +29,8 @@ var starship = null
 func _ready():
 	set_position( Vector2( 0 ,100 ) )
 
-#func _onAreaEntered( area : Area2D ):
+# put collision handling on the objects themselves.
+# func _onAreaEntered( area : Area2D ):
 	#pass 
 	# var objects = area2D.get_overlapping_areas()
 
@@ -58,6 +59,8 @@ func _ready():
 	#		myCamera.set_zoom( Vector2(myZoom.x + ZOOM_STEP  , myZoom.y + ZOOM_STEP  ) )
 
 func _physics_process( delta : float ) -> void:
+	var angularVelocity = get_angular_velocity()
+	var linearVelocity  = get_linear_velocity()
 	
 	if( !stopping ):
 		if( Input.is_action_just_pressed("STOP") ):
@@ -74,9 +77,6 @@ func _physics_process( delta : float ) -> void:
 		else:
 			decelerate( delta )
 
-		var angularVelocity = get_angular_velocity()
-		var linearVelocity  = get_linear_velocity()
-
 		if( abs(linearVelocity.x) <= ROTATION_SPEED_THRESHOLD ):
 			linearVelocity.x = 0
 		if( abs(linearVelocity.y) <= ROTATION_SPEED_THRESHOLD ):
@@ -90,15 +90,10 @@ func _physics_process( delta : float ) -> void:
 			goRotation(0, delta*10)
 			decelerate(delta*10)
 
-	# Send a Signal that can letter be picked up.
-	#if( isPlayer ):
+	if( isPlayer ):
+		#print(angularVelocity)
 		#if( linearVelocity.x != 0 || linearVelocity.y != 0 || angularVelocity != 0 ):
-			#var position = myCamera.get_global_position()
-			#var viewPortCamPos = viewPortCamera.get_translation()
-
-			#var translatedVector3 = Common.translate2dPositionTo3d( position , viewPortCamPos.y )
-			#viewPortCamera.set_translation( translatedVector3 )
-			#TODO - Update time
+		emit_signal("PLAYER_MOVING", myCamera.get_global_position() , linearVelocity, angularVelocity, rotation)
 
 func goRotation( direction, delta ):
 	var newRotationSpeed = get_angular_velocity() + ( rotationSpeed * delta * direction )

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://AssettsImage/Backgrounds/Space001.png" type="Texture" id=3]
 [ext_resource path="res://Generators/SystemGenerator.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ModeExplore/Celestials/Star.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ModeExplore/Celestials/Star/Star.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ModeExplore/Celestials/Planet/Planet.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.5, 1 )
@@ -45,8 +46,12 @@ fov = 38.0
 [node name="Stars" type="Spatial" parent="Background/ViewportContainer/Viewport"]
 
 [node name="Star" parent="Background/ViewportContainer/Viewport/Stars" instance=ExtResource( 5 )]
+skeleton = NodePath("")
 
 [node name="Planets" type="Spatial" parent="Background/ViewportContainer/Viewport"]
+visible = false
+
+[node name="Spatial" parent="Background/ViewportContainer/Viewport/Planets" instance=ExtResource( 6 )]
 
 [node name="StarfieldClose" type="ParallaxBackground" parent="Background"]
 layer = -50

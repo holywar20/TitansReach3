@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ModeExplore/Celestials/Star/Star.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/Celestials/Star/StarMaterial.tres" type="Material" id=2]
+
+[sub_resource type="SphereMesh" id=1]
+
+[node name="Star" type="MeshInstance"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+script = ExtResource( 1 )

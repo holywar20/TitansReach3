@@ -5,7 +5,14 @@
 
 [sub_resource type="SphereMesh" id=1]
 
-[node name="Spatial" type="MeshInstance"]
+[node name="Spatial" type="Spatial"]
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( -0.0095292, 0, -0.999955, 0, 1, 0, 0.999955, 0, -0.0095292, -7.46928, 1.19209e-07, 0.0527196 )
+spot_range = 11.6013
+spot_angle = 27.791
+
+[node name="Spatial" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00929046, 1.19209e-07, -0.00527644 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )

@@ -75,7 +75,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "godot-sqlite" )
 
 [input]
 
@@ -114,4 +114,6 @@ STOP={
 
 [rendering]
 
+quality/filters/use_nearest_mipmap_filter=true
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

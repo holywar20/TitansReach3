@@ -1,17 +1,15 @@
-[gd_resource type="ShaderMaterial" load_steps=15 format=2]
+[gd_resource type="ShaderMaterial" load_steps=14 format=2]
 
 [ext_resource path="res://ModeExplore/Celestials/Star/GClassGradiantTexture.tres" type="Gradient" id=1]
 [ext_resource path="res://ModeExplore/Celestials/Star/StarNoise.gd" type="Script" id=2]
 
-[sub_resource type="VisualShaderNodeCustom" id=11]
+[sub_resource type="VisualShaderNodeCustom" id=1]
 script = ExtResource( 2 )
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=12]
+[sub_resource type="VisualShaderNodeScalarConstant" id=2]
 constant = 20.0
 
-[sub_resource type="VisualShaderNodeColorConstant" id=13]
-
-[sub_resource type="VisualShaderNodeInput" id=2]
+[sub_resource type="VisualShaderNodeInput" id=3]
 input_name = "camera"
 
 [sub_resource type="VisualShaderNodeInput" id=4]
@@ -33,7 +31,7 @@ gradient = ExtResource( 1 )
 texture = SubResource( 9 )
 texture_type = 1
 
-[sub_resource type="VisualShader" id=1]
+[sub_resource type="VisualShader" id=11]
 code = "shader_type spatial;
 render_mode specular_schlick_ggx, shadows_disabled;
 
@@ -170,13 +168,9 @@ void fragment() {
 	vec3 n_out9p0 = tex_frg_9_read.rgb;
 	float n_out9p1 = tex_frg_9_read.a;
 
-// Color:12
-	vec3 n_out12p0 = vec3(1.000000, 1.000000, 1.000000);
-	float n_out12p1 = 1.000000;
-
 // Output:0
 	ALBEDO = n_out9p0;
-	EMISSION = n_out12p0;
+	EMISSION = n_out9p0;
 
 }
 
@@ -185,30 +179,28 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 477.239, -219.802 )
+graph_offset = Vector2( -25.3333, -266 )
 flags/shadows_disabled = true
-nodes/fragment/0/position = Vector2( 1400, -140 )
-nodes/fragment/2/node = SubResource( 2 )
-nodes/fragment/2/position = Vector2( 20, 20 )
+nodes/fragment/0/position = Vector2( 1600, -320 )
+nodes/fragment/2/node = SubResource( 3 )
+nodes/fragment/2/position = Vector2( 20, -40 )
 nodes/fragment/4/node = SubResource( 4 )
 nodes/fragment/4/position = Vector2( 0, 100 )
 nodes/fragment/5/node = SubResource( 5 )
 nodes/fragment/5/position = Vector2( 200, -20 )
 nodes/fragment/6/node = SubResource( 6 )
-nodes/fragment/6/position = Vector2( 20, -140 )
+nodes/fragment/6/position = Vector2( 20, -180 )
 nodes/fragment/7/node = SubResource( 7 )
-nodes/fragment/7/position = Vector2( 460, -140 )
+nodes/fragment/7/position = Vector2( 460, -160 )
 nodes/fragment/8/node = SubResource( 8 )
 nodes/fragment/8/position = Vector2( 200, -140 )
 nodes/fragment/9/node = SubResource( 10 )
-nodes/fragment/9/position = Vector2( 1100, -100 )
-nodes/fragment/10/node = SubResource( 11 )
-nodes/fragment/10/position = Vector2( 780, -20 )
-nodes/fragment/11/node = SubResource( 12 )
+nodes/fragment/9/position = Vector2( 1240, -320 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( 820, -140 )
+nodes/fragment/11/node = SubResource( 2 )
 nodes/fragment/11/position = Vector2( 500, 0 )
-nodes/fragment/12/node = SubResource( 13 )
-nodes/fragment/12/position = Vector2( 1080, 120 )
-nodes/fragment/connections = PoolIntArray( 2, 0, 5, 0, 4, 0, 5, 1, 6, 0, 8, 0, 8, 0, 7, 0, 5, 0, 7, 1, 7, 0, 10, 0, 11, 0, 10, 1, 10, 0, 9, 0, 9, 0, 0, 0, 12, 0, 0, 5 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 5, 0, 4, 0, 5, 1, 6, 0, 8, 0, 8, 0, 7, 0, 5, 0, 7, 1, 7, 0, 10, 0, 11, 0, 10, 1, 10, 0, 9, 0, 9, 0, 0, 0, 9, 0, 0, 5 )
 
 [resource]
-shader = SubResource( 1 )
+shader = SubResource( 11 )

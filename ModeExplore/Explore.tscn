@@ -7,13 +7,13 @@
 [ext_resource path="res://ModeExplore/Celestials/Star/Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ModeExplore/Celestials/Planet/Planet.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Environment" id=1]
-background_energy = 0.0
-ambient_light_energy = 0.0
-
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.5, 1 )
 colors = PoolColorArray( 0.0392157, 0.839216, 0.133333, 1, 0.905882, 0.215686, 0.0431373, 1, 0.0196078, 0.207843, 0.890196, 1 )
+
+[sub_resource type="Environment" id=2]
+background_energy = 0.0
+ambient_light_energy = 0.0
 
 [node name="Explore" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,6 +28,30 @@ position = Vector2( 1.67981, 0 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 3 )
 centered = false
+
+[node name="StarfieldUnder" type="ParallaxBackground" parent="Background"]
+layer = -50
+scroll_base_scale = Vector2( 0.2, 0.2 )
+scroll_ignore_camera_zoom = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/StarfieldUnder"]
+position = Vector2( 960, 540 )
+rotation = -3.14159
+amount = 400
+lifetime = 200.0
+preprocess = 50.0
+speed_scale = 10.0
+draw_order = 1
+emission_shape = 2
+emission_rect_extents = Vector2( 1920, 1080 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 5.0
+scale_amount = 1.5
+color_ramp = SubResource( 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Background"]
 anchor_right = 1.0
@@ -45,19 +69,42 @@ render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="Background/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 6.01817, 0 )
-environment = SubResource( 1 )
+environment = SubResource( 2 )
 doppler_tracking = 2
 fov = 38.0
 
 [node name="Stars" type="Spatial" parent="Background/ViewportContainer/Viewport"]
 
 [node name="Star" parent="Background/ViewportContainer/Viewport/Stars" instance=ExtResource( 5 )]
-skeleton = NodePath("")
 
 [node name="Planets" type="Spatial" parent="Background/ViewportContainer/Viewport"]
 
 [node name="Planet" parent="Background/ViewportContainer/Viewport/Planets" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.14265, 1.19209e-07, -0.00527644 )
+
+[node name="StarfieldMid" type="ParallaxBackground" parent="Background"]
+layer = -50
+scroll_base_scale = Vector2( 0.5, 0.5 )
+scroll_ignore_camera_zoom = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/StarfieldMid"]
+position = Vector2( 960, 540 )
+rotation = -3.14159
+amount = 500
+lifetime = 200.0
+preprocess = 50.0
+speed_scale = 10.0
+draw_order = 1
+emission_shape = 2
+emission_rect_extents = Vector2( 1920, 1080 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 5.0
+scale_amount = 1.5
+color_ramp = SubResource( 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
 
 [node name="StarfieldClose" type="ParallaxBackground" parent="Background"]
 layer = -50
@@ -79,7 +126,7 @@ spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 5.0
 scale_amount = 1.5
-color_ramp = SubResource( 2 )
+color_ramp = SubResource( 1 )
 hue_variation = 1.0
 hue_variation_random = 1.0
 

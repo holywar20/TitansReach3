@@ -1,14 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ModeExplore/Celestials/Star/Star.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Celestials/Star/StarMaterial.tres" type="Material" id=2]
+[ext_resource path="res://ModeExplore/Celestials/Star/Particles.gd" type="Script" id=3]
+[ext_resource path="res://ModeExplore/Celestials/Star/RayMesh.tres" type="CylinderMesh" id=4]
 
-[sub_resource type="SphereMesh" id=1]
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 0.01
+flag_align_y = true
+flag_rotate_y = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.1
+angle_random = 1.0
+
+[sub_resource type="SphereMesh" id=2]
 
 [node name="Spatial" type="Spatial"]
 
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( -1, 3.25841e-07, 0, 1.4243e-14, 4.37114e-08, 1, 3.25841e-07, 1, -4.37114e-08, 0, 0.288167, -0.159798 )
+cast_shadow = 0
+amount = 400
+lifetime = 60.0
+preprocess = 60.0
+visibility_aabb = AABB( -14.7597, -15.4371, -6.46418, 29.5195, 28.7716, 12.9284 )
+process_material = SubResource( 1 )
+draw_pass_1 = ExtResource( 4 )
+script = ExtResource( 3 )
+
 [node name="Star" type="MeshInstance" parent="."]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
-mesh = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
 material/0 = ExtResource( 2 )
 script = ExtResource( 1 )
+
+[node name="OmniLight" type="OmniLight" parent="Star"]
+transform = Transform( 0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, 0, -0.0234318, 0 )
+light_cull_mask = 4294967294

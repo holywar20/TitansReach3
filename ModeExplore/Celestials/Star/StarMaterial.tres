@@ -171,6 +171,8 @@ void fragment() {
 // Output:0
 	ALBEDO = n_out9p0;
 	EMISSION = n_out9p0;
+	NORMALMAP = n_out9p0;
+	NORMALMAP_DEPTH = dot(n_out9p0, vec3(0.333333, 0.333333, 0.333333));
 
 }
 
@@ -179,9 +181,9 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -25.3333, -266 )
+graph_offset = Vector2( 0, -225 )
 flags/shadows_disabled = true
-nodes/fragment/0/position = Vector2( 1600, -320 )
+nodes/fragment/0/position = Vector2( 1660, -180 )
 nodes/fragment/2/node = SubResource( 3 )
 nodes/fragment/2/position = Vector2( 20, -40 )
 nodes/fragment/4/node = SubResource( 4 )
@@ -195,12 +197,12 @@ nodes/fragment/7/position = Vector2( 460, -160 )
 nodes/fragment/8/node = SubResource( 8 )
 nodes/fragment/8/position = Vector2( 200, -140 )
 nodes/fragment/9/node = SubResource( 10 )
-nodes/fragment/9/position = Vector2( 1240, -320 )
+nodes/fragment/9/position = Vector2( 1180, -180 )
 nodes/fragment/10/node = SubResource( 1 )
 nodes/fragment/10/position = Vector2( 820, -140 )
 nodes/fragment/11/node = SubResource( 2 )
 nodes/fragment/11/position = Vector2( 500, 0 )
-nodes/fragment/connections = PoolIntArray( 2, 0, 5, 0, 4, 0, 5, 1, 6, 0, 8, 0, 8, 0, 7, 0, 5, 0, 7, 1, 7, 0, 10, 0, 11, 0, 10, 1, 10, 0, 9, 0, 9, 0, 0, 0, 9, 0, 0, 5 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 5, 0, 4, 0, 5, 1, 6, 0, 8, 0, 8, 0, 7, 0, 5, 0, 7, 1, 7, 0, 10, 0, 11, 0, 10, 1, 10, 0, 9, 0, 9, 0, 0, 0, 9, 0, 0, 5, 9, 0, 0, 8, 9, 0, 0, 9 )
 
 [resource]
 shader = SubResource( 11 )

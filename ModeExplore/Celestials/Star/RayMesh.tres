@@ -1,0 +1,28 @@
+[gd_resource type="CylinderMesh" load_steps=5 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="AnimatedTexture" id=4]
+flags = 7
+frame_0/texture = SubResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+albedo_color = Color( 1, 0.811765, 0.0156863, 0.054902 )
+emission_enabled = true
+emission = Color( 0.909804, 1, 0, 1 )
+emission_energy = 0.25
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 4 )
+
+[resource]
+material = SubResource( 1 )
+bottom_radius = 0.25
+height = 10.0
+radial_segments = 16
+rings = 2

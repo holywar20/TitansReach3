@@ -8,7 +8,9 @@ onready var planets : Node2D = $Planets
 onready var anoms : Node2D = $Anoms
 
 onready var viewPortCamera : Camera = $Background/ViewportContainer/Viewport/Camera
-onready var streamingParticles : CPUParticles2D = $Background/StarfieldClose/CPUParticles2D
+onready var closeParticles : CPUParticles2D = $Background/StarfieldClose/CPUParticles2D
+onready var midParticles : CPUParticles2D = $Background/StarfieldMid/CPUParticles2D
+onready var farParticles : CPUParticles2D = $Background/StarfieldUnder/CPUParticles2D
 
 # Various fudge factors for managing the relationship between 2d & 3d elements
 const SCALE_2DTO3D_FACTOR = 1000
@@ -33,8 +35,14 @@ func _moveParticles( velocity : Vector2 , shipRotation:float ):
 	var tVector : Vector2 = velocity.abs()
 	var potentialSpeed = PARTICLE_SPEED_FACTOR * max(tVector.x , tVector.y)
 
-	streamingParticles.set_speed_scale( max( potentialSpeed , BASE_PARTICLE_SPEED ) )
-	streamingParticles.set_rotation( shipRotation )
+	closeParticles.set_speed_scale( max( potentialSpeed , BASE_PARTICLE_SPEED ) )
+	closeParticles.set_rotation( shipRotation )
+	
+	midParticles.set_speed_scale( max( potentialSpeed , BASE_PARTICLE_SPEED * .75) )
+	midParticles.set_rotation( shipRotation )
+	
+	farParticles.set_speed_scale( max( potentialSpeed , BASE_PARTICLE_SPEED * .20  ) )
+	farParticles.set_rotation( shipRotation )
 
 # Moves the 3D Camera to match the 2D Camera.
 func _move3dCamera( position : Vector2 ):

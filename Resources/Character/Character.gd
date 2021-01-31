@@ -24,7 +24,7 @@ var cpSpent = 0
 
 # Status flags
 var isDead = false
-var isPlayer = true
+var isPlayer = false
 
 # Other State
 var station = null
@@ -35,9 +35,7 @@ var gear = {
 
 # store off all this users abilities
 var actions = []
-var passives = []
 var stances = []
-var triggered = []
 var instants = []
 
 var temporaryPassives = {}
@@ -94,6 +92,15 @@ func get_class():
 
 func is_class( name : String ): 
 	return name == "CharacterResource"
+
+func addAction( action : AbilityResource ):
+	actions.append( action ) 
+
+func addStance( stance : AbilityResource ):
+	stances.append( stance )
+
+func addInstant( instant : AbilityResource ):
+	instants.append( instant )
 
 func calculateSelf( newCharacter = false ):
 
@@ -248,5 +255,5 @@ func getFightableStatus():
 	return isFightable
 
 func rollInit():
-	var init = randi()%20 + traits.PER.total
+	var init = traits.PER.total
 	return init

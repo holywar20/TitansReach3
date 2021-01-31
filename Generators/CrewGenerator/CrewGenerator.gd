@@ -39,24 +39,44 @@ func createDummyCrewman():
 func getDummyCrewman():
 	return dummyCrewman
 
-func generateManyCrew( cp : int  , numOfCrew : int  ):
+func generateManyCrew( cp : int  , numOfCrew : int , isPlayer : bool = false ):
 	var crewArray = []
 
 	for x in range(0 , numOfCrew ):
-		crewArray.append( generateNewCrew( cp ) )
+		crewArray.append( generateNewCrew( cp , isPlayer ) )
 
 	return crewArray
 
-func generateNewCrew( cp = 30 ):
+func generateNewCrew( cp = 30 , isPlayer : bool = false ):
 	var crewman = CharacterResource.new()
 
+	if( isPlayer ):
+		crewman.isPlayer = true
+
+	crewman.id = crewman.genRandomKey()
 	crewman = _rollTraits( crewman , cp )
 	crewman = _rollCosmetics( crewman )
-	# crewman = _rollTalents( crewman )
+	crewman = _rollTalents( crewman )
 	
 	crewman.calculateSelf( true )
 
 	return crewman
+
+# TODO add special abilities
+func _rollTalents( myCrewman : CharacterResource ):
+	
+	var reposition = AbilityResource.new( "REPOSITION" , "res://Generators/Data/Abilities/default.json")
+	myCrewman.addAction( reposition )
+	
+	var defend = AbilityResource.new("DEFEND" , "res://Generators/Data/Abilities/default.json")
+	myCrewman.addAction( defend )
+
+	var attack = AbilityResource.new("TERRAN_PISTOL_ATTACK", "res://Generators/Data/Abilities/default.json")
+	myCrewman.addAction( attack )
+
+	
+
+	return myCrewman
 
 func _rollTraits( myCrewman : CharacterResource , cp = 30):
 	var statTotal = 0

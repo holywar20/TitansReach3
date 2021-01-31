@@ -6,7 +6,6 @@ onready var debugMenu = $GameUI/DebugMenu
 onready var mainMenu = $GameUI/MainMenu
 onready var currentScene = $CurrentScene
 
-
 var gameSeed = 100000000
 
 func _ready():

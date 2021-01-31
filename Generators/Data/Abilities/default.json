@@ -1,0 +1,44 @@
+{
+	"REPOSITION" : {
+		"fullName" : "Reposition",
+		"shortName" : "Reposition",
+		"abilityType" : "ACTION",
+		"validTargets" : [0,1,2],
+		"validFrom" : [0,1,2],
+		"alwaysHits": true,
+		"iconPath" : "",
+		"targeting" : {
+			"ALLY_FLOOR" : [{
+				"test" : "test"
+			}]
+		}
+	},
+	"DEFEND" : {
+		"fullName" : "Defend",
+		"shortName" : "Defend",
+		"abilityType" : "ACTION",
+		"validTargets" : [0,1,2],
+		"validFrom" : [0,1,2],
+		"alwaysHits": true,
+		"iconPath" : "",
+		"targeting" : {
+			"SELF" : [{
+				"test" : "test"
+			}]
+		}
+	},
+	"TERRAN_PISTOL_ATTACK" : {
+		"fullName" : "Terran Pistol",
+		"shortName" : "Pistol",
+		"abilityType" : "ACTION",
+		"validTargets" : [0, 1],
+		"validFrom" : [0 ,1, 2],
+		"alwaysHits" : false,
+		"iconPath" : "",
+		"targeting" : {
+			"ENEMY_UNIT" : [{
+				"test" : "test"
+			}]
+		}
+	}
+}

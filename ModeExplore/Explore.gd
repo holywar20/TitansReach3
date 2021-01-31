@@ -3,6 +3,8 @@ extends Node2D
 export(int) var mySeed = 1000000
 
 onready var systemGenerator : Node = $SystemGenerator
+onready var crewGenerator : Node = $CrewGenerator
+
 onready var stars : Node2D = $Stars
 onready var planets : Node2D = $Planets
 onready var anoms : Node2D = $Anoms
@@ -18,6 +20,7 @@ const PARTICLE_SPEED_FACTOR = .1
 const BASE_PARTICLE_SPEED = 5
 
 var thisSystem : SystemResource = null
+var myCrew : Array = [] # An array of Character Resources
 
 func _ready() -> void:
 	setupScene( mySeed )
@@ -25,6 +28,7 @@ func _ready() -> void:
 func setupScene( aSeed : int ) -> void:
 	mySeed = aSeed
 	thisSystem = systemGenerator.generateEntireSystem( mySeed )
+	myCrew = crewGenerator.generateManyCrew(30 , 10)
 
 func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , angularVelocity : float , shipRotation : float):
 	_move3dCamera( newPosition )

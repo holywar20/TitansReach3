@@ -64,7 +64,6 @@ func _physics_process( delta : float ) -> void:
 	
 	if( !stopping ):
 		if( Input.is_action_just_pressed("STOP") ):
-			print("Stopping!")
 			stopping = true
 
 		var rotationInput : float = Input.get_action_strength("TURN_RIGHT") - Input.get_action_strength("TURN_LEFT")
@@ -91,7 +90,6 @@ func _physics_process( delta : float ) -> void:
 			decelerate(delta*10)
 
 	if( isPlayer ):
-		#print(angularVelocity)
 		#if( linearVelocity.x != 0 || linearVelocity.y != 0 || angularVelocity != 0 ):
 		emit_signal("PLAYER_MOVING", myCamera.get_global_position() , linearVelocity, angularVelocity, rotation)
 

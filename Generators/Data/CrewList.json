@@ -1,0 +1,8 @@
+{
+	"maleFirstNames" : ["John", "Mike", "Cletus", "Vor", "Zanatos" ,  "Kalin" , "Oric", "Vanus", "Valor", "Talagrius" ], 
+	"femaleFirstNames" : ["Sarah" , "Leanne" , "Gloria" , "Moria" , "Deanna", "Hella" , "Stephanie" , "Kryta" , "Oriso" , "Dania", "Daria"],
+	"codeNames" : ["D.Va" , "Lazarus" , "Corinth" , 
+	"Claptrap", "Chaos", "Mobster" , "Destiny" , "Archangel", "Holywar" ,"Ironjaw" , "Rhino", "Hawkeye" , "Darkwave" , 
+	"Teuton" , "Livewire" , "Lighting", "Oasis" ,"Walker" , "Slade" , "Bane" , "Monolith", "Icon", "Persues" ],
+	"lastNames" : ["Jones", "Conner", "Sevarin" , "Corolis" , "Mcqueen" , "King" , "Banks", "Jenkins" , "Caldo" ]
+}

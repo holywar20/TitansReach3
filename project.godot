@@ -15,6 +15,16 @@ _global_script_classes=[ {
 "path": "res://Resources/Anoms/Anom.gd"
 }, {
 "base": "TitansResource",
+"class": "CharacterResource",
+"language": "GDScript",
+"path": "res://Resources/Character/Character.gd"
+}, {
+"base": "TitansResource",
+"class": "FormationResource",
+"language": "GDScript",
+"path": "res://Resources/Formation/Formation.gd"
+}, {
+"base": "TitansResource",
 "class": "PlanetResource",
 "language": "GDScript",
 "path": "res://Resources/Planets/PlanetResource.gd"
@@ -51,6 +61,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AnomolyResource": "",
+"CharacterResource": "",
+"FormationResource": "",
 "PlanetResource": "",
 "PlanetVisualShaderNodePerlinNoise3D": "",
 "SectorResource": "",

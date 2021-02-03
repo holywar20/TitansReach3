@@ -74,8 +74,6 @@ func _rollTalents( myCrewman : CharacterResource ):
 	var attack = AbilityResource.new("TERRAN_PISTOL_ATTACK", "res://Generators/Data/Abilities/default.json")
 	myCrewman.addAction( attack )
 
-	
-
 	return myCrewman
 
 func _rollTraits( myCrewman : CharacterResource , cp = 30):

@@ -6,7 +6,7 @@
 		"validTargets" : [0,1,2],
 		"validFrom" : [0,1,2],
 		"alwaysHits": true,
-		"iconPath" : "",
+		"iconPath" : "res://AssettsImage/AbilityIcons/move.png",
 		"targeting" : {
 			"ALLY_FLOOR" : [{
 				"test" : "test"
@@ -20,7 +20,7 @@
 		"validTargets" : [0,1,2],
 		"validFrom" : [0,1,2],
 		"alwaysHits": true,
-		"iconPath" : "",
+		"iconPath" : "res://AssettsImage/AbilityIcons/defend.png",
 		"targeting" : {
 			"SELF" : [{
 				"test" : "test"
@@ -34,7 +34,7 @@
 		"validTargets" : [0, 1],
 		"validFrom" : [0 ,1, 2],
 		"alwaysHits" : false,
-		"iconPath" : "",
+		"iconPath" : "res://AssettsImage/AbilityIcons/pistol.png",
 		"targeting" : {
 			"ENEMY_UNIT" : [{
 				"test" : "test"

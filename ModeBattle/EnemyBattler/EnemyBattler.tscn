@@ -3,13 +3,14 @@
 [ext_resource path="res://AssettsImage/Tilemaps/isoblank.png" type="Texture" id=1]
 [ext_resource path="res://ModeBattle/PlayerBattler/PlayerBattler.gd" type="Script" id=2]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "BASIC_ATTACK"
 step = 0.0333333
 
-[node name="Battler" type="Node2D"]
+[node name="Battler" type="Node2D" groups=[
+"BATTLER",
+"FOCUS_CHILD",
+]]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

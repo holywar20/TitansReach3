@@ -6,11 +6,19 @@ onready var crewGenerator : Node = $CrewGenerator
 onready var playerBase : YSort = $Players
 onready var enemyBase : YSort = $Enemy
 
+# UI Nodes
 onready var turnOrder : PanelContainer = $CanvasLayer/Turnorder
+onready var targetUI : PanelContainer = $CanvasLayer/Target
+onready var playerUI : PanelContainer = $CanvasLayer/Player
+onready var abilityUI : PanelContainer = $CanvasLayer/AbilityList
+onready var instantUI : PanelContainer = $CanvasLayer/Instants
+
+onready var enemyActionTimer : Timer = $EnemyActionTimer
 
 var playerBattlerScene = preload("res://ModeBattle/PlayerBattler/PlayerBattler.tscn")
 var enemyBattlerScene = preload("res://ModeBattle/EnemyBattler/EnemyBattler.tscn")
 
+const NODE_GROUP_BATTLER = "BATTLER"
 
 const TILE_SIZE : Vector2 = Vector2(128, 64)
 const TILE_OFFSET : Vector2 = Vector2(32, 64)
@@ -32,15 +40,33 @@ var crew : Array = []
 var enemy : Array = []
 
 # State variables
-var currentBattler : Node2D
+enum STATE {
+	PAGE_LOADING,
+	PLAYER_SELECTING_ABILITY,
+	PLAYER_SELECTING_TARGETS,
+	PLAYER_EXECUTING_ABILITY,
+	ENEMY_SELECTING_ABILITY,
+	ENEMY_EXECUTING_ABILITY
+}
+
+var currentFocusUI = null
+var currentState = STATE.PAGE_LOADING
+var currentCharacter : CharacterResource
 
 func _ready():
 	setupScene()
 
-func setupScene( _crew : Array = []):
-	crew = crewGenerator.generateManyCrew(30 , 6)
-	playerTiles = FormationResource.new( crew )
+func _input(event):
+	match currentState:
+		STATE.PLAYER_SELECTING_ABILITY:
+			playerSelectingAbilityInputs( event )
+		STATE.ENEMY_SELECTING_ABILITY:
+			enemySelectingAbilityInputs( event )
 
+func setupScene( _crew : Array = []):
+	crew = crewGenerator.generateManyCrew(30 , 6, true)
+	playerTiles = FormationResource.new( crew )
+	
 	for x in range(0, playerTiles.positions.size() ):
 		for y in range( 0, playerTiles.positions[x].size() ):
 			if playerTiles.positions[x][y]:
@@ -61,23 +87,57 @@ func setupScene( _crew : Array = []):
 				battler.setupScene(enemyTiles.positions[x][y])
 
 	turnOrder.rollAllTurns(crew, enemy)
-	_runBattleLoop()
+	_runNextTurn()
 
+func _runNextTurn():
+	currentCharacter = turnOrder.nextTurn()
 
-func _runBattleLoop():
-	var crewman : CharacterResource = turnOrder.nextTurn()
+	print(currentCharacter.isPlayer)
 
-	if( crewman.isPlayer ):
-		print("player!")
+	for node in get_tree().get_nodes_in_group(NODE_GROUP_BATTLER):
+		node.setFocusState( node.CURRENT.NOT_FOCUS ) # All battler nodes have a CharacterRefrence resource
+
+		if( currentCharacter == node.currentCharacter ):
+			node.setSelectionState( node.CURRENT.FOCUS )
+
+	if( currentCharacter.isPlayer ):
+		setState(STATE.PLAYER_SELECTING_ABILITY)
 	else:
-		print("not Player!")
+		setState(STATE.ENEMY_SELECTING_ABILITY)
+	
+	if( _testBattleEnd() ):
+		pass
 
+func setState(newState):
+	currentState = newState
+	
+	print(currentState)
 
-func _resolveTargeting():
+	match currentState:
+		STATE.PLAYER_SELECTING_ABILITY:
+			playerSelectingAbility()
+		STATE.ENEMY_SELECTING_ABILITY:
+			enemySelectingAbility()
+
+func playerSelectingAbility():
+	playerUI.updateUI( currentCharacter )
+	abilityUI.updateUI( currentCharacter )
+	
+	currentFocusUI = abilityUI
+
+func playerSelectingAbilityInputs( ev : InputEvent ):
 	pass
 
-func _resolveAbility():
+func enemySelectingAbility():
+	targetUI.updateUI( currentCharacter )
+	enemyActionTimer.start()
+
+func enemySelectingAbilityInputs( ev : InputEvent ):
 	pass
 
 func _testBattleEnd():
 	pass
+
+# Signals
+func _on_EnemyActionTimer_timeout():
+	_runNextTurn()

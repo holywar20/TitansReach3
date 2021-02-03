@@ -1,10 +1,10 @@
 extends EffectResource
-class_name StatusEffect
+class_name PassiveEffectResource
 
 func get_class(): 
-	return "PassiveEffect"
+	return "PassiveEffectResource"
 
 func is_class( name : String ): 
-    return name == "PassiveEffect"
+    return name == "PassiveEffectResource"
     
 var duration = 0 # If 99 , duration is permanent

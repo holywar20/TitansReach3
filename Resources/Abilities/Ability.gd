@@ -62,8 +62,6 @@ func calculateSpecialProperties( props: Dictionary , object ):
 	for targetKey in props.targeting:
 		tempEffects[targetKey] = props.targeting[targetKey]
 
-	print(tempEffects)
-
 
 func getTargetArea():
 	# Utilzing Valid from & valid to as filters

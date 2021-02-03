@@ -7,7 +7,10 @@
 resource_name = "BASIC_ATTACK"
 step = 0.0333333
 
-[node name="Battler" type="Node2D"]
+[node name="Battler" type="Node2D" groups=[
+"BATTLER",
+"FOCUS_CHILD",
+]]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -92,13 +92,11 @@ func setupScene( _crew : Array = []):
 func _runNextTurn():
 	currentCharacter = turnOrder.nextTurn()
 
-	print(currentCharacter.isPlayer)
-
 	for node in get_tree().get_nodes_in_group(NODE_GROUP_BATTLER):
-		node.setFocusState( node.CURRENT.NOT_FOCUS ) # All battler nodes have a CharacterRefrence resource
+		node.setSelectionState( node.SELECTION.NONE ) # All battler nodes have a CharacterRefrence resource
 
 		if( currentCharacter == node.currentCharacter ):
-			node.setSelectionState( node.CURRENT.FOCUS )
+			node.setFocusState( node.CURRENT.FOCUS )
 
 	if( currentCharacter.isPlayer ):
 		setState(STATE.PLAYER_SELECTING_ABILITY)
@@ -111,8 +109,6 @@ func _runNextTurn():
 func setState(newState):
 	currentState = newState
 	
-	print(currentState)
-
 	match currentState:
 		STATE.PLAYER_SELECTING_ABILITY:
 			playerSelectingAbility()
@@ -124,6 +120,7 @@ func playerSelectingAbility():
 	abilityUI.updateUI( currentCharacter )
 	
 	currentFocusUI = abilityUI
+	abilityUI.setState( abilityUI.STATE.FOCUS )
 
 func playerSelectingAbilityInputs( ev : InputEvent ):
 	pass
@@ -141,3 +138,6 @@ func _testBattleEnd():
 # Signals
 func _on_EnemyActionTimer_timeout():
 	_runNextTurn()
+
+func _on_AbilityList_ability_selected( ability : AbilityResource , character : CharacterResource ):
+	pass # Replace with function body.

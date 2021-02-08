@@ -1,24 +1,20 @@
 extends Panel
 
-onready var abilityIcon : TextureRect = $AbilityIcon
+onready var abilityIcon : Button = $Button
 
 var ability : AbilityResource
-var selectionState : int
-
-enum STATE {
-	SELECTED , UNSELECTED
-}
+var character : CharacterResource
 
 func setupScene( newAbility : AbilityResource ):
 	ability = newAbility
 	
-	abilityIcon.set_texture( load(ability.iconPath))
+	abilityIcon.set_button_icon( load(ability.iconPath) )
 
-func setSelectionState( state : int):
-	selectionState = state
-	
-	match selectionState:
-		STATE.SELECTED:
-			set_self_modulate(Color(0, 0, 40 , 50))
-		STATE.UNSELECTED:
-			set_self_modulate(Color(255, 255, 255 , 255))
+func setFocused():
+	abilityIcon.grab_focus()
+
+func allowFocus():
+	abilityIcon.set_focus_mode(FOCUS_ALL)
+
+func disallowFocus():
+	abilityIcon.set_focus_mode(FOCUS_NONE)

@@ -5,6 +5,7 @@
 [node name="AbilityList" type="PanelContainer"]
 margin_right = 380.0
 margin_bottom = 274.0
+focus_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -15,3 +16,6 @@ margin_left = 7.0
 margin_top = 7.0
 margin_right = 373.0
 margin_bottom = 267.0
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 5

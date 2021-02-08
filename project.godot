@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "TitansResource",
 "class": "FormationResource",
 "language": "GDScript",
-"path": "res://Resources/Formation/Formation.gd"
+"path": "res://Resources/Formation/formation.gd"
 }, {
 "base": "EffectResource",
 "class": "HealEffect",

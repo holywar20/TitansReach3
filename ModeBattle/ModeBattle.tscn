@@ -52,7 +52,8 @@ rect_clip_content = true
 [node name="AbilityList" parent="CanvasLayer" instance=ExtResource( 7 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -274.0
+margin_top = -286.0
+margin_right = 404.0
 margin_bottom = 0.0
 
 [node name="Player" parent="CanvasLayer" instance=ExtResource( 6 )]

@@ -84,10 +84,37 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -393206, 0, 0, -393203, 0, 0, -393200, 0, 0, -393197, 0, 0, -393194, 0, 0, -196598, 0, 0, -196595, 0, 0, -196592, 0, 0, -196589, 0, 0, -196586, 0, 0, 10, 0, 0, 13, 0, 0, 16, 0, 0, 19, 0, 0, 22, 0, 0, 196618, 0, 0, 196621, 0, 0, 196624, 0, 0, 196627, 0, 0, 196630, 0, 0, 393226, 0, 0, 393229, 0, 0, 393232, 0, 0, 393235, 0, 0, 393238, 0, 0, 589834, 0, 0, 589837, 0, 0, 589840, 0, 0, 589843, 0, 0, 589846, 0, 0 )
 
+[node name="Selection" type="TileMap" parent="."]
+modulate = Color( 0.0666667, 0.168627, 0.898039, 0.439216 )
+position = Vector2( 32, 0 )
+mode = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 64 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="AreaOfEffect" type="TileMap" parent="."]
+visible = false
+modulate = Color( 0.658824, 0.231373, 0.231373, 0.345098 )
+position = Vector2( 32, 0 )
+mode = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 64 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -393206, 0, 0, -393203, 0, 0, -393200, 0, 0, -393197, 0, 0, -393194, 0, 0, -196598, 0, 0, -196595, 0, 0, -196592, 0, 0, -196589, 0, 0, -196586, 0, 0, 10, 0, 0, 13, 0, 0, 16, 0, 0, 19, 0, 0, 22, 0, 0, 196618, 0, 0, 196621, 0, 0, 196624, 0, 0, 196627, 0, 0, 196630, 0, 0, 393226, 0, 0, 393229, 0, 0, 393232, 0, 0, 393235, 0, 0, 393238, 0, 0, 589834, 0, 0, 589837, 0, 0, 589840, 0, 0, 589843, 0, 0, 589846, 0, 0 )
+
 [node name="Enemy" type="YSort" parent="."]
 
 [node name="Players" type="YSort" parent="."]
 
 [node name="EnemyActionTimer" type="Timer" parent="."]
 one_shot = true
+[connection signal="abilityActivated" from="CanvasLayer/AbilityList" to="." method="_on_AbilityList_abilityActivated"]
 [connection signal="timeout" from="EnemyActionTimer" to="." method="_on_EnemyActionTimer_timeout"]

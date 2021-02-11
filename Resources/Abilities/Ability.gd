@@ -1,6 +1,33 @@
 extends TitansResource
 class_name AbilityResource
 
+var masterEffectData = {
+	"DEFEND" : { # Passive abilities will mirror the character and be swapped in as a mod, 1 for 1.
+		"type" : "PASSIVE",
+		"mods" : {
+			"damageReduction" : {
+				"THERMAL" : 20 ,
+				"KINETIC" : 20 ,
+				"TOXIC"  : 20 ,
+				"EM" : 20
+			}
+		},
+	},
+	"MOVE_ANYWHERE" : {
+		"type" : "MOVEMENT",
+		"allowedDirection" : "ANY",
+		"allowedRange" : 5
+	},
+	"KINETIC_ATTACK_EFFECT" : {
+		"type" : "DAMAGE",
+		"animation" : "unset",
+		"dmgType" : "KINETIC",
+		"dmgHi" : 3,
+		"dmgLo" : 5
+	}
+}
+
+
 const TARGET_TYPE = {
 	"ALLY_FLOOR" : "ALLY_FLOOR" , "ALLY_UNIT" : "ALLY_UNIT", "ENEMY_UNT" : "ENEMY_UNIT", "ENEMY_FLOOR" : "ENEMY_FLOOR", "SELF" : "SELF"
 }
@@ -21,13 +48,12 @@ var powerLoBase = 0
 var toHitBase = 80
 var alwaysHits = false
 
-var effects = {
-	"ALLY_UNIT" : null, 
-	"ALLY_FLOOR" : null,
-	"ENEMY_UNIT" : null,
-	"ENEMY_FLOOR" : null,
-	"SELF" : null
-}
+var effectGroups : Array = [] # An array of EffectGroup
+
+class EffectGroup:	
+	var targetType : String = TARGET_TYPE.SELF
+	var targetArea : String = EffectResource.TARGET_AREA.SINGLE
+	var effects : Array = []
 
 func get_class(): 
 	return "AbilityResource"
@@ -55,18 +81,36 @@ func _init( newKey : String , jsonFileName : String ):
 	abilityFile.close()
 
 	flushAndFillProperties(abilityTable[key] , self)
+	_makeEffects( abilityTable[key]['effectGroups'] )
+
+func _makeEffects( newEffectGroups : Array ):
+	for effectGroupData in newEffectGroups:
+		var newEffectGroup = EffectGroup.new()
+		newEffectGroup.targetType = effectGroupData['targetType']
+
+		for effectKey in effectGroupData['effectKeys']:
+			var myEffectData = masterEffectData[effectKey] 
+			var newEffect = null
+
+			print( myEffectData )
+
+			match myEffectData['type']:
+				"DAMAGE":
+					newEffect = DamageEffectResource.new( myEffectData , effectKey )
+				"MOVEMENT":
+					newEffect = MoveEffectResource.new( myEffectData , effectKey )
+				"PASSIVE" :
+					newEffect = PassiveEffectResource.new( myEffectData , effectKey )
+		
+			newEffectGroup.effects.append(newEffect)
+		effectGroups.append(newEffectGroup)
 
 func calculateSpecialProperties( props: Dictionary , object ):
-	var tempEffects = effects.duplicate()
-	
-	for targetKey in props.targeting:
-		tempEffects[targetKey] = props.targeting[targetKey]
-
-
-func getTargetArea():
-	# Utilzing Valid from & valid to as filters
-	# Return a 9 x 9 targeting grid based on targeting type
 	pass
+
+# Ability API. IE these methods are meant to be consumed by other things
+func getEffectGroups():
+	return effectGroups.duplicate()
 
 func rollAbility():
 	# Loop through each effect and apply a roll

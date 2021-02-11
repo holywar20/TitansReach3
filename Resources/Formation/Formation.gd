@@ -5,6 +5,8 @@ class_name FormationResource
 const WIDTH = 5
 const DEPTH = 3
 
+
+
 var positions = [
 	[false, false, false, false, false] ,
 	[false, false, false, false, false] ,
@@ -19,9 +21,9 @@ func is_class( name : String ):
 	return name == "FormationResource"
 
 func _init( manyCrew : Array ):
-
-	for crewman in manyCrew:
-		fillEmpty( crewman )
+	if( manyCrew ):
+		for crewman in manyCrew:
+			fillEmpty( crewman )
 
 func fillEmpty( crewman : CharacterResource ):
 	var isFilled = false

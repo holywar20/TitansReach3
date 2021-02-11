@@ -25,7 +25,7 @@ _global_script_classes=[ {
 "path": "res://Resources/Character/Character.gd"
 }, {
 "base": "EffectResource",
-"class": "DamageEffect",
+"class": "DamageEffectResource",
 "language": "GDScript",
 "path": "res://Resources/Abilities/DamageEffect.gd"
 }, {
@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "TitansResource",
 "class": "FormationResource",
 "language": "GDScript",
-"path": "res://Resources/Formation/formation.gd"
+"path": "res://Resources/Formation/Formation.gd"
 }, {
 "base": "EffectResource",
 "class": "HealEffect",
@@ -45,7 +45,7 @@ _global_script_classes=[ {
 "path": "res://Resources/Abilities/HealEffect.gd"
 }, {
 "base": "EffectResource",
-"class": "MoveResource",
+"class": "MoveEffectResource",
 "language": "GDScript",
 "path": "res://Resources/Abilities/MoveEffect.gd"
 }, {
@@ -98,11 +98,11 @@ _global_script_class_icons={
 "AbilityResource": "",
 "AnomolyResource": "",
 "CharacterResource": "",
-"DamageEffect": "",
+"DamageEffectResource": "",
 "EffectResource": "",
 "FormationResource": "",
 "HealEffect": "",
-"MoveResource": "",
+"MoveEffectResource": "",
 "PassiveEffectResource": "",
 "PlanetResource": "",
 "PlanetVisualShaderNodePerlinNoise3D": "",

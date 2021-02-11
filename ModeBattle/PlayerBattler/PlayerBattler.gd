@@ -9,7 +9,7 @@ onready var pointer : Sprite = $Pointer
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
 enum SELECTION {
-	NONE, VIEW_TARGET, ATTACK_TARGET
+	NONE, VIEW_TARGET, ASSIST_TARGET, ATTACK_TARGET
 }
 
 var shaderParams = {
@@ -17,10 +17,13 @@ var shaderParams = {
 		"width" : 1 , "outline_color" : Color(0,0,0,255)
 	} ,
 	SELECTION.VIEW_TARGET : {
-		"width" : 1 , "outline_color" : Color(0,200,0,255)
+		"width" : 3 , "outline_color" : Color(0,200,0,255)
+	} ,
+	SELECTION.ASSIST_TARGET : {
+		"width" : 3 , "outline_color" : Color(0,0,200,255)
 	} ,
 	SELECTION.ATTACK_TARGET : {
-		"width" : 1 , "outline_color" : Color(200,0,0,255)
+		"width" : 3 , "outline_color" : Color(200,0,0,255)
 	} 
 }
 
@@ -29,6 +32,7 @@ enum CURRENT {
 	NOT_FOCUS
 }
 
+var currentFormationLocation = Vector2(0,0)
 var selectionState = SELECTION.NONE
 var focusState = CURRENT.NOT_FOCUS
 
@@ -37,8 +41,10 @@ func _updateShader( currentState ):
 	mat.set_shader_param("width" , shaderParams[currentState].width )
 	mat.set_shader_param("outline_color" , shaderParams[currentState].outline_color )
 
-func setupScene( newCharacter : CharacterResource ):
+func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 	currentCharacter = newCharacter
+	currentFormationLocation = newLocation
+
 	nameLabel.set_text( currentCharacter.getNickName() )
 	
 	# Set up outline shader. Shaders must be instanced in code.
@@ -56,13 +62,12 @@ func setSelectionState( state : int ):
 	match selectionState:
 		SELECTION.NONE:
 			pass 
-			#characterSprite.set_modulate( Color(255, 255, 255 , 255) )
 		SELECTION.VIEW_TARGET:
 			pass
-			#characterSprite.set_modulate( Color(50, 200, 50 , 255) )
+		SELECTION.ASSIST_TARGET:
+			pass 
 		SELECTION.ATTACK_TARGET:
 			pass
-			#characterSprite.set_modulate( Color(200, 50, 50 , 255) )
 
 func setFocusState( state : int ):
 	var focusState = state

@@ -1,8 +1,11 @@
 extends EffectResource
-class_name MoveResource
+class_name MoveEffectResource
+
+func _init( moveEffectData : Dictionary , newKey : String ):
+	key = newKey
 
 func get_class(): 
-	return "EffectResource"
+	return "MoveEffectResource"
 
 func is_class( name : String ): 
-	return name == "EffectResource"
+	return name == "MoveEffectResource"

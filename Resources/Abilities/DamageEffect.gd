@@ -1,8 +1,12 @@
 extends EffectResource
-class_name DamageEffect
+class_name DamageEffectResource
+
+func _init( damageEffectData : Dictionary , newKey : String):
+	#print( damageEffectData )
+	pass
 
 func get_class(): 
-	return "EffectResource"
+	return "DamageEffectResource"
 
 func is_class( name : String ): 
-	return name == "EffectResource"
+	return name == "DamageEffectResource"

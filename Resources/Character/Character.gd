@@ -55,10 +55,11 @@ var traits = {
 var carryWeight = { "value": 0, "total" : 0 , "mod" : 0 , 'current' : 0 }
 var hp = { "value": 18, "total" : 18 , "mod" : 0 , 'current' : 0 }
 var morale = { "value": 18, "total" : 18 , "mod" : 0  , 'current': 0}
+
 var damageReduction = { 
-	'kinetic': 	{ "value" : 0, "total" : 0 , "mod" : 0 },
-	'thermal': 	{ "value" : 0, "total" : 0 , "mod" : 0 }, 
-	'toxic': 	{ "value" : 0, "total" : 0 , "mod" : 0 }, 
+	'KINETIC': 	{ "value" : 0, "total" : 0 , "mod" : 0 },
+	'THERMAL': 	{ "value" : 0, "total" : 0 , "mod" : 0 }, 
+	'TOXIC': 	{ "value" : 0, "total" : 0 , "mod" : 0 }, 
 	'EM':		{ "value" : 0, "total" : 0 , "mod" : 0 }, 
 }
 

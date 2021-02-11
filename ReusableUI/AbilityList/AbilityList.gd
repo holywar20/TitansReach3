@@ -5,11 +5,11 @@ onready var abilityGrid : GridContainer = $GridContainer # All children of this 
 var abilityIconScene = preload("res://ReusableUI/AbilityIcon/AbilityIcon.tscn")
 var currentState : int = STATE.FOCUS
 
-signal ability_selected
-
 enum STATE {
 	FOCUS , NOT_FOCUS
 }
+
+signal abilityActivated( ability )
 
 var currentBattler : CharacterResource
 
@@ -24,7 +24,7 @@ func updateUI( newBattler : CharacterResource ):
 		abilityGrid.add_child( abilityInstance )
 		abilityInstance.setupScene( action )
 		
-		abilityInstance.get_node("Button").connect("pressed" , self , "_on_abilityButtonPressed")
+		abilityInstance.get_node("Button").connect("pressed" , self , "_on_abilityButtonPressed" , [abilityInstance.ability])
 
 func setState( state : int ):
 	currentState = state
@@ -40,5 +40,8 @@ func setState( state : int ):
 			for icon in abilityGrid.get_children():
 				icon.disallowFocus()
 
-func _on_abilityButtonPressed():
-	print('Ability button pressed')
+func _on_abilityButtonPressed( ability : AbilityResource ):
+	emit_signal("abilityActivated" , ability)
+	print( ability.key + " is activated" )
+	setState(STATE.NOT_FOCUS)
+

@@ -7,11 +7,11 @@
 		"validFrom" : [0,1,2],
 		"alwaysHits": true,
 		"iconPath" : "res://AssettsImage/AbilityIcons/move.png",
-		"targeting" : {
-			"ALLY_FLOOR" : [{
-				"test" : "test"
-			}]
-		}
+		"effectGroups" : [{
+			"targetType" : "ALLY_FLOOR",
+			"targetArea" : "SINGLE",
+			"effectKeys" : ["MOVE_ANYWHERE"]
+		}]
 	},
 	"DEFEND" : {
 		"fullName" : "Defend",
@@ -21,11 +21,11 @@
 		"validFrom" : [0,1,2],
 		"alwaysHits": true,
 		"iconPath" : "res://AssettsImage/AbilityIcons/defend.png",
-		"targeting" : {
-			"SELF" : [{
-				"test" : "test"
-			}]
-		}
+		"effectGroups" : [{
+			"targetType" : "SELF",
+			"targetArea" : "SINGLE",
+			"effectKeys" : ["DEFEND"]
+		}]
 	},
 	"TERRAN_PISTOL_ATTACK" : {
 		"fullName" : "Terran Pistol",
@@ -35,10 +35,10 @@
 		"validFrom" : [0 ,1, 2],
 		"alwaysHits" : false,
 		"iconPath" : "res://AssettsImage/AbilityIcons/pistol.png",
-		"targeting" : {
-			"ENEMY_UNIT" : [{
-				"test" : "test"
-			}]
-		}
+		"effectGroups" : [{
+			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "SINGLE",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
 	}
 }

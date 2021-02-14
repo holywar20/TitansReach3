@@ -1,4 +1,5 @@
 extends Node2D
+class_name Battler
 
 var currentCharacter : CharacterResource
 
@@ -9,14 +10,14 @@ onready var pointer : Sprite = $Pointer
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
 enum SELECTION {
-	NONE, VIEW_TARGET, ASSIST_TARGET, ATTACK_TARGET
+	NONE, FOCUS_TARGET, ASSIST_TARGET, ATTACK_TARGET
 }
 
 var shaderParams = {
 	SELECTION.NONE : {
 		"width" : 1 , "outline_color" : Color(0,0,0,255)
 	} ,
-	SELECTION.VIEW_TARGET : {
+	SELECTION.FOCUS_TARGET : {
 		"width" : 3 , "outline_color" : Color(0,200,0,255)
 	} ,
 	SELECTION.ASSIST_TARGET : {
@@ -24,17 +25,17 @@ var shaderParams = {
 	} ,
 	SELECTION.ATTACK_TARGET : {
 		"width" : 3 , "outline_color" : Color(200,0,0,255)
-	} 
+	}
 }
 
-enum CURRENT {
+enum STATE {
 	FOCUS,
 	NOT_FOCUS
 }
 
 var currentFormationLocation = Vector2(0,0)
 var selectionState = SELECTION.NONE
-var focusState = CURRENT.NOT_FOCUS
+var focusState = STATE.NOT_FOCUS
 
 func _updateShader( currentState ):
 	var mat = characterSprite.get_material()
@@ -56,24 +57,29 @@ func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 
 # TODO probally need to redo this. Maybe add different independent sprites / particles to show state
 func setSelectionState( state : int ):
-	var selectionState = state
-	_updateShader(selectionState)
+	selectionState = state
 	
+	print( selectionState )
+
+
 	match selectionState:
 		SELECTION.NONE:
-			pass 
-		SELECTION.VIEW_TARGET:
+			if( focusState == STATE.FOCUS ):
+				selectionState = SELECTION.FOCUS_TARGET
+		SELECTION.FOCUS_TARGET:
 			pass
 		SELECTION.ASSIST_TARGET:
-			pass 
+			pass
 		SELECTION.ATTACK_TARGET:
 			pass
 
+	_updateShader(selectionState)
+
 func setFocusState( state : int ):
-	var focusState = state
+	focusState = state
 	
 	match focusState:
-		CURRENT.FOCUS:
+		STATE.FOCUS:
 			pointer.set_visible(true)
-		CURRENT.NOT_FOCUS:
+		STATE.NOT_FOCUS:
 			pointer.set_visible(false)

@@ -5,7 +5,11 @@ class_name FormationResource
 const WIDTH = 5
 const DEPTH = 3
 
-
+const DEFAULT_FILTER = [
+	[true, true, true, true, true] ,
+	[true, true, true, true, true] ,
+	[true, true, true, true, true]
+] 
 
 var positions = [
 	[false, false, false, false, false] ,
@@ -38,3 +42,17 @@ func fillEmpty( crewman : CharacterResource ):
 			positions[x][y] = crewman
 			isFilled = true
 			break
+
+# Returns all valid battlers in a single array
+func getFilteredCharacterList( filterArray = null ) -> Array:
+	if(!filterArray):
+		filterArray = DEFAULT_FILTER
+	
+	var validBattlers = []
+	
+	for x in range(0 , filterArray.size() ):
+		for y in range( 0, filterArray[x].size() ):
+			if( filterArray[x][y] && positions[x][y] ):
+				validBattlers.append( positions[x][y] )
+		
+	return validBattlers

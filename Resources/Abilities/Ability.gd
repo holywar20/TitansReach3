@@ -26,13 +26,22 @@ var masterEffectData = {
 		"dmgLo" : 5
 	}
 }
-
-
+const TARGET_AREA = {
+	"SINGLE" : "SINGLE" ,"COLUMN" : "COLUMN", "ROW" : "ROW" , "CROSS" : "CROSS", "ALL" :  "ALL"
+}
 const TARGET_TYPE = {
-	"ALLY_FLOOR" : "ALLY_FLOOR" , "ALLY_UNIT" : "ALLY_UNIT", "ENEMY_UNT" : "ENEMY_UNIT", "ENEMY_FLOOR" : "ENEMY_FLOOR", "SELF" : "SELF"
+	"ALLY_FLOOR" : "ALLY_FLOOR" , "ALLY_UNIT" : "ALLY_UNIT", "ENEMY_UNIT" : "ENEMY_UNIT", "ENEMY_FLOOR" : "ENEMY_FLOOR", "SELF" : "SELF"
 }
 const ABILITY_TYPE = {
 	"ACTION" : "ACTION" , "STANCE" : "STANCE" , "INSTANT" : "INSTANT"
+}
+
+const TARGET_MATRIX = {
+	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 0 , 0] , [0 ,0 ,0]],
+	TARGET_AREA.COLUMN : [[0 , 1 , 0] , [0 , 1 , 0] , [0 ,1 ,0]],
+	TARGET_AREA.ROW    : [[0 , 1 , 0] , [0 , 1,  0 ] , [0 , 1 , 0]],
+	TARGET_AREA.CROSS  : [[0 , 1 , 0] , [1 , 1 , 1 ] , [0 , 1 , 0]],
+	TARGET_AREA.ALL    : [[1 , 1 , 1] , [1 , 1 , 1] , [1 , 1 , 1]]
 }
 
 var key : String
@@ -52,7 +61,8 @@ var effectGroups : Array = [] # An array of EffectGroup
 
 class EffectGroup:	
 	var targetType : String = TARGET_TYPE.SELF
-	var targetArea : String = EffectResource.TARGET_AREA.SINGLE
+	var targetArea : String = TARGET_AREA.SINGLE
+	var selected = null # This is meant to be a FormationResource.
 	var effects : Array = []
 
 func get_class(): 
@@ -91,8 +101,6 @@ func _makeEffects( newEffectGroups : Array ):
 		for effectKey in effectGroupData['effectKeys']:
 			var myEffectData = masterEffectData[effectKey] 
 			var newEffect = null
-
-			print( myEffectData )
 
 			match myEffectData['type']:
 				"DAMAGE":

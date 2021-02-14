@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ModeBattle/ModeBattle.gd" type="Script" id=1]
 [ext_resource path="res://ModeBattle/BlankTileset.tres" type="TileSet" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Helpers/Sorting.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ReusableUI/AbilityList/AbilityList.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ModeBattle/Selection.gd" type="Script" id=8]
+[ext_resource path="res://ModeBattle/BattleMap.gd" type="Script" id=9]
 
 [node name="ModeBattle" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,6 +16,7 @@ script = ExtResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Instants" type="PanelContainer" parent="CanvasLayer"]
+visible = false
 margin_left = 1586.76
 margin_top = 0.757629
 margin_right = 1916.76
@@ -50,6 +53,7 @@ rect_clip_content = true
 [node name="Sorting" parent="CanvasLayer/Turnorder" instance=ExtResource( 5 )]
 
 [node name="AbilityList" parent="CanvasLayer" instance=ExtResource( 7 )]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -286.0
@@ -57,10 +61,12 @@ margin_right = 404.0
 margin_bottom = 0.0
 
 [node name="Player" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
 margin_top = 66.0
 margin_bottom = 339.999
 
-[node name="Target" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="Enemy" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -72,7 +78,13 @@ margin_bottom = 0.0
 
 [node name="CrewGenerator" parent="." instance=ExtResource( 4 )]
 
-[node name="Ground" type="TileMap" parent="."]
+[node name="BattleMap" type="Control" parent="."]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GroundMap" type="TileMap" parent="BattleMap"]
 position = Vector2( 32, 0 )
 mode = 1
 tile_set = ExtResource( 2 )
@@ -84,8 +96,8 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -393206, 0, 0, -393203, 0, 0, -393200, 0, 0, -393197, 0, 0, -393194, 0, 0, -196598, 0, 0, -196595, 0, 0, -196592, 0, 0, -196589, 0, 0, -196586, 0, 0, 10, 0, 0, 13, 0, 0, 16, 0, 0, 19, 0, 0, 22, 0, 0, 196618, 0, 0, 196621, 0, 0, 196624, 0, 0, 196627, 0, 0, 196630, 0, 0, 393226, 0, 0, 393229, 0, 0, 393232, 0, 0, 393235, 0, 0, 393238, 0, 0, 589834, 0, 0, 589837, 0, 0, 589840, 0, 0, 589843, 0, 0, 589846, 0, 0 )
 
-[node name="Selection" type="TileMap" parent="."]
-modulate = Color( 0.0666667, 0.168627, 0.898039, 0.439216 )
+[node name="SelectionMap" type="TileMap" parent="BattleMap"]
+visible = false
 position = Vector2( 32, 0 )
 mode = 1
 tile_set = ExtResource( 2 )
@@ -95,8 +107,9 @@ cell_y_sort = true
 collision_layer = 0
 collision_mask = 0
 format = 1
+script = ExtResource( 8 )
 
-[node name="AreaOfEffect" type="TileMap" parent="."]
+[node name="AreaOfEffect" type="TileMap" parent="BattleMap"]
 visible = false
 modulate = Color( 0.658824, 0.231373, 0.231373, 0.345098 )
 position = Vector2( 32, 0 )
@@ -108,13 +121,16 @@ cell_y_sort = true
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -393206, 0, 0, -393203, 0, 0, -393200, 0, 0, -393197, 0, 0, -393194, 0, 0, -196598, 0, 0, -196595, 0, 0, -196592, 0, 0, -196589, 0, 0, -196586, 0, 0, 10, 0, 0, 13, 0, 0, 16, 0, 0, 19, 0, 0, 22, 0, 0, 196618, 0, 0, 196621, 0, 0, 196624, 0, 0, 196627, 0, 0, 196630, 0, 0, 393226, 0, 0, 393229, 0, 0, 393232, 0, 0, 393235, 0, 0, 393238, 0, 0, 589834, 0, 0, 589837, 0, 0, 589840, 0, 0, 589843, 0, 0, 589846, 0, 0 )
 
-[node name="Enemy" type="YSort" parent="."]
+[node name="Enemy" type="YSort" parent="BattleMap"]
 
-[node name="Players" type="YSort" parent="."]
+[node name="Players" type="YSort" parent="BattleMap"]
 
 [node name="EnemyActionTimer" type="Timer" parent="."]
+wait_time = 4.0
 one_shot = true
 [connection signal="abilityActivated" from="CanvasLayer/AbilityList" to="." method="_on_AbilityList_abilityActivated"]
+[connection signal="abilityExecuteFinished" from="BattleMap" to="." method="_on_BattleMap_abilityExecuteFinished"]
+[connection signal="abilitySelectCanceled" from="BattleMap" to="." method="_on_BattleMap_abilitySelectCanceled"]
+[connection signal="abilitySelectFinished" from="BattleMap" to="." method="_on_BattleMap_abilitySelectFinished"]
 [connection signal="timeout" from="EnemyActionTimer" to="." method="_on_EnemyActionTimer_timeout"]

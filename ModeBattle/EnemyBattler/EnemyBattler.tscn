@@ -37,5 +37,4 @@ __meta__ = {
 
 [node name="Pointer" parent="." instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 0, -200 )
-rotation = 1.5708
+position = Vector2( 0, -250 )

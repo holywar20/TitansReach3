@@ -2,7 +2,6 @@ extends EffectResource
 class_name DamageEffectResource
 
 func _init( damageEffectData : Dictionary , newKey : String):
-	#print( damageEffectData )
 	pass
 
 func get_class(): 

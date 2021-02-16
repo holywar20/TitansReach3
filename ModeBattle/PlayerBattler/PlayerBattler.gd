@@ -59,9 +59,6 @@ func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 func setSelectionState( state : int ):
 	selectionState = state
 	
-	print( selectionState )
-
-
 	match selectionState:
 		SELECTION.NONE:
 			if( focusState == STATE.FOCUS ):

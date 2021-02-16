@@ -46,6 +46,8 @@ enum EFFECT_GROUP_STATE {
 var currentState : int = STATE.FOCUS
 var currentAbility : AbilityResource
 var currentBattler : Node2D
+var currentSelectionList : Array # List of nodes used when targeting players
+var currentFloorSelectionList : Array # List of Vector2 used when targeting areas
 
 var effectGroupState : int = EFFECT_GROUP_STATE.IDLE
 var effectGroupQue : Array
@@ -56,7 +58,6 @@ signal abilityExecuteFinished
 signal abilitySelectCanceled
 
 func setupScene( newCrew : Array , newEnemy : Array ):
-	
 	playerTiles = FormationResource.new( newCrew )
 	for x in range(0, playerTiles.positions.size() ):
 		for y in range( 0, playerTiles.positions[x].size() ):
@@ -113,7 +114,8 @@ func _nextEffect():
 	if( myEffect ):
 		effectGroupSelected.append( myEffect )
 		setEffectStateFromEffectGroup( myEffect.targetType )
-	else: 
+	else:
+		currentBattler.setFocusState(STATE.NOT_FOCUS)
 		emit_signal( "abilitySelectFinished" )
 
 func _prevEffect():
@@ -125,6 +127,7 @@ func _prevEffect():
 	if( prevEffect ):
 		setEffectStateFromEffectGroup( prevEffect.targetType )
 	else:
+		currentBattler.setFocusState(STATE.NOT_FOCUS)
 		emit_signal( "abilitySelectCanceled" )
 
 func setState(newState: int , ability , character ):
@@ -187,9 +190,10 @@ func setEffectStateFromEffectGroup( targetingState : String ):
 
 func targetingSelf():
 	currentBattler.setFocusState( currentBattler.STATE.FOCUS )
-	currentBattler.setSelectionState( currentBattler.SELECTION.ASSIST_TARGET )
+	currentBattler.setSelectionState( currentBattler.SELECTION.FOCUS_TARGET )
 
 func inputTargetingSelf( _ev : InputEvent ):
+	# No action other than cancel is utilized here
 	pass
 
 func targetingAllyFloor():
@@ -203,6 +207,8 @@ func inputTargetingAllyFloor( _ev: InputEvent ):
 
 func targetingEnemyUnit():
 	print("enemy unit")
+	# Apply Filters
+	currentSelectionList = getBattlerList()
 
 func inputTargetingEnemyUnit( _ev: InputEvent ):
 	print("handling an input in enemy unit mode")
@@ -236,6 +242,11 @@ func applyEffectToBattlers( effect: AbilityResource.EffectGroup , isPlayer, form
 			pass
 			# applyAnimationsToBattler
 			# applyDamageToCharacter
+
+func getBattlerList( isPlayer , filterArray = null) -> Array:
+	var myFormation : FormationResource =  playerTiles if ( isPlayer ) else enemyTiles
+	return myFormation.getFilteredCharacterList( filterArray )
+
 
 func findBattlerFromCharacter( character : CharacterResource ):
 	for battlerNode in get_tree().get_nodes_in_group( NODE_GROUP_BATTLER ):

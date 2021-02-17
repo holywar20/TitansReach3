@@ -37,9 +37,9 @@ const ABILITY_TYPE = {
 }
 
 const TARGET_MATRIX = {
-	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 0 , 0] , [0 ,0 ,0]],
+	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 1 , 0] , [0 ,0 ,0]],
 	TARGET_AREA.COLUMN : [[0 , 1 , 0] , [0 , 1 , 0] , [0 ,1 ,0]],
-	TARGET_AREA.ROW    : [[0 , 1 , 0] , [0 , 1,  0 ] , [0 , 1 , 0]],
+	TARGET_AREA.ROW    : [[0 , 0 , 0] , [1 , 1,  1 ] , [0 , 0 , 0]],
 	TARGET_AREA.CROSS  : [[0 , 1 , 0] , [1 , 1 , 1 ] , [0 , 1 , 0]],
 	TARGET_AREA.ALL    : [[1 , 1 , 1] , [1 , 1 , 1] , [1 , 1 , 1]]
 }
@@ -51,6 +51,8 @@ var abilityType : String
 var validTargets : Array = []
 var validFrom : Array = []
 var iconPath : String
+var description : String
+var targetAreaShown : String = TARGET_AREA.SINGLE
 
 var powerHiBase = 0
 var powerLoBase = 0
@@ -82,8 +84,10 @@ func _init( newKey : String , jsonFileName : String ):
 		"powerHiBase",
 		"powerLoBase",
 		"toHitBase",
-		"alwaysHits"
-		]
+		"alwaysHits",
+		"description",
+		"targetAreaShown"	
+	]
 	
 	var abilityFile = File.new()
 	abilityFile.open( jsonFileName , File.READ)
@@ -116,9 +120,13 @@ func _makeEffects( newEffectGroups : Array ):
 func calculateSpecialProperties( props: Dictionary , object ):
 	pass
 
+
 # Ability API. IE these methods are meant to be consumed by other things
 func getEffectGroups():
 	return effectGroups.duplicate()
+
+func getTargetAreaAsMatrix():
+	return TARGET_MATRIX[targetAreaShown]
 
 func rollAbility():
 	# Loop through each effect and apply a roll

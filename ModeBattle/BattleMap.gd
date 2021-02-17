@@ -90,7 +90,6 @@ func handleParentInput( event : InputEvent ):
 	if( event.is_action_pressed("ui_accept") ):
 		_nextEffect()
 
-
 	# return when done
 	match effectGroupState:
 		EFFECT_GROUP_STATE.IDLE:
@@ -208,12 +207,13 @@ func inputTargetingAllyFloor( _ev: InputEvent ):
 func targetingEnemyUnit():
 	print("enemy unit")
 	# Apply Filters
-	currentSelectionList = getBattlerList()
+	# currentSelectionList = getBattlerList()
 
 func inputTargetingEnemyUnit( _ev: InputEvent ):
 	print("handling an input in enemy unit mode")
 
 func inputExecutingEffects( _ev: InputEvent ):
+	
 	# Add handling for instants here
 	pass
 

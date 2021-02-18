@@ -1,7 +1,5 @@
 extends Control
 
-
-
 onready var groundMap = $GroundMap
 onready var selectionMap = $SelectionMap
 onready var areaOfEffect = $AreaOfEffect
@@ -33,23 +31,10 @@ enum STATE{
 	FOCUS , NOT_FOCUS , EXECUTING
 }
 
-enum EFFECT_GROUP_STATE {
-	IDLE,
-	LIST,
-	ALLY_FLOOR , 
-	ALLY_UNIT , 
-	ENEMY_FLOOR,
-	ENEMY_UNIT,
-	SELF
-}
-
 var currentState : int = STATE.FOCUS
 var currentAbility : AbilityResource
 var currentBattler : Node2D
-var currentSelectionList : Array # List of nodes used when targeting players
-var currentFloorSelectionList : Array # List of Vector2 used when targeting areas
 
-var effectGroupState : int = EFFECT_GROUP_STATE.IDLE
 var effectGroupQue : Array
 var effectGroupSelected : Array
 
@@ -84,153 +69,65 @@ func handleParentInput( event : InputEvent ):
 	if( currentState == STATE.NOT_FOCUS ):
 		return null
 	
-	if( event.is_action_pressed("ui_cancel") ):
+	if( Input.is_action_just_pressed("ui_cancel") ):
 		_prevEffect()
+		return null
 
-	if( event.is_action_pressed("ui_accept") ):
+	if( Input.is_action_just_pressed("ui_accept") ):
 		_nextEffect()
+		return null
 
-	# return when done
-	match effectGroupState:
-		EFFECT_GROUP_STATE.IDLE:
+	match currentState:
+		STATE.FOCUS:
+			if( selectionMap.currentState != selectionMap.STATE.NONE ):
+				selectionMap.handleInput(event)			
+		STATE.NOT_FOCUS:
 			pass
-		EFFECT_GROUP_STATE.LIST:
+		STATE.EXECUTING:
+			# Allow for instants
 			pass
-		EFFECT_GROUP_STATE.SELF:
-			inputTargetingSelf( event )
-		EFFECT_GROUP_STATE.ALLY_UNIT:
-			pass
-		EFFECT_GROUP_STATE.ALLY_FLOOR:
-			inputTargetingAllyFloor( event )
-		EFFECT_GROUP_STATE.ENEMY_UNIT:
-			inputTargetingEnemyUnit( event )
-		EFFECT_GROUP_STATE.ENEMY_FLOOR:
-			pass
-
-func _nextEffect():
-	var myEffect = effectGroupQue.pop_front()
-
-	if( myEffect ):
-		effectGroupSelected.append( myEffect )
-		setEffectStateFromEffectGroup( myEffect.targetType )
-	else:
-		currentBattler.setFocusState(STATE.NOT_FOCUS)
-		emit_signal( "abilitySelectFinished" )
-
-func _prevEffect():
-	var currentEffect = effectGroupSelected.pop_front()
-	effectGroupQue.append( currentEffect )
-
-	var prevEffect = effectGroupSelected.back()
-
-	if( prevEffect ):
-		setEffectStateFromEffectGroup( prevEffect.targetType )
-	else:
-		currentBattler.setFocusState(STATE.NOT_FOCUS)
-		emit_signal( "abilitySelectCanceled" )
 
 func setState(newState: int , ability , character ):
 	currentAbility = ability
 	currentState = newState
 	currentBattler = findBattlerFromCharacter( character )
+	currentBattler.setTurnState( Battler.STATE.TURN )
 
 	match currentState:
 		STATE.FOCUS: # When focused we start ability Que, so we can loop through actions.
 			effectGroupQue = ability.getEffectGroups()
-			_nextEffect()
-	
+		
 		STATE.EXECUTING: # When executing, start ability que again to loop through execution of actions
 			effectGroupQue = ability.getEffectGroups()
+			yield(get_tree().create_timer(1), "timeout")
 			_executeAllEffects()
 
 		STATE.NOT_FOCUS: # Set the effect group to be cleared, because ability is unselected
-			setEffectGroupState( EFFECT_GROUP_STATE.IDLE )
 			effectGroupQue = []
 			effectGroupSelected = []
-	
-	currentBattler.setSelectionState( Battler.SELECTION.FOCUS_TARGET )
 
-func setEffectGroupState( newState : int ):
-	effectGroupState = newState
-
-	match effectGroupState:
-		EFFECT_GROUP_STATE.IDLE:
-			pass 
-		EFFECT_GROUP_STATE.LIST:
-			pass
-		EFFECT_GROUP_STATE.ALLY_FLOOR:
-			targetingAllyFloor() 
-		EFFECT_GROUP_STATE.ALLY_UNIT:
-			pass 
-		EFFECT_GROUP_STATE.ENEMY_FLOOR:
-			pass
-		EFFECT_GROUP_STATE.ENEMY_UNIT:
-			targetingEnemyUnit()
-		EFFECT_GROUP_STATE.SELF:
-			targetingSelf()
 
 func _resetAllBattlers():
-	updateBattlerSelectionState( Battler.SELECTION.NONE , true )
-	updateBattlerSelectionState( Battler.SELECTION.NONE , false )
-
-# Converts targeting state from Ability.TARGET_TYPE into a state appropriote to this object
-func setEffectStateFromEffectGroup( targetingState : String ):	
-	match targetingState:
-		AbilityResource.TARGET_TYPE.SELF:
-			setEffectGroupState( EFFECT_GROUP_STATE.SELF )
-		AbilityResource.TARGET_TYPE.ALLY_FLOOR:
-			setEffectGroupState( EFFECT_GROUP_STATE.ALLY_FLOOR )
-		AbilityResource.TARGET_TYPE.ALLY_UNIT:
-			setEffectGroupState( EFFECT_GROUP_STATE.ALLY_UNIT )
-		AbilityResource.TARGET_TYPE.ENEMY_UNIT:
-			setEffectGroupState( EFFECT_GROUP_STATE.ENEMY_UNIT )
-		AbilityResource.TARGET_TYPE.ENEMY_FLOOR:
-			setEffectGroupState( EFFECT_GROUP_STATE.ENEMY_FLOOR )
-
-func targetingSelf():
-	currentBattler.setFocusState( currentBattler.STATE.FOCUS )
-	currentBattler.setSelectionState( currentBattler.SELECTION.FOCUS_TARGET )
-
-func inputTargetingSelf( _ev : InputEvent ):
-	# No action other than cancel is utilized here
-	pass
-
-func targetingAllyFloor():
-	print("selecting player floor")
-	#Pass
-	#selectionMap.setState( selectionMap.STATE.FOCUS )
-
-func inputTargetingAllyFloor( _ev: InputEvent ):
-	print("handling an input in player floor")
-	#selectionMap.handleInput( _ev ) # Most input logic is handled by the selectionMap
-
-func targetingEnemyUnit():
-	print("enemy unit")
-	# Apply Filters
-	# currentSelectionList = getBattlerList()
-
-func inputTargetingEnemyUnit( _ev: InputEvent ):
-	print("handling an input in enemy unit mode")
-
-func inputExecutingEffects( _ev: InputEvent ):
-	
-	# Add handling for instants here
-	pass
+	updateBattlerHighlightState( Battler.HIGHLIGHT.NONE , true )
+	updateBattlerHighlightState( Battler.HIGHLIGHT.NONE , false )
 
 func _executeAllEffects():
+	print("executed effects for battler: " + currentBattler.currentCharacter.getNickName())
 	_resetAllBattlers()
+	currentBattler.setTurnState( Battler.STATE.NOT_TURN )
 	emit_signal("abilityExecuteFinished")
 
 
 # Methods for updating battlers
-func updateBattlerSelectionState( state : int , isPlayer , formationArray = null):
+func updateBattlerHighlightState( state : int , isPlayer , formationArray = null):
 	var myFormation : FormationResource =  playerTiles if ( isPlayer ) else enemyTiles
 	var characterList = myFormation.getFilteredCharacterList( formationArray )
 
+	# Make this an array of arrays instead, perfect mirror
 	for character in characterList:
 		var battler = findBattlerFromCharacter( character )
 		if( battler ):
-			battler.setSelectionState( state )
+			battler.setHighlightState( state )
 
 func applyEffectToBattlers( effect: AbilityResource.EffectGroup , isPlayer, formationArray = null ):
 	var myFormation : FormationResource =  playerTiles if ( isPlayer ) else enemyTiles
@@ -254,3 +151,30 @@ func findBattlerFromCharacter( character : CharacterResource ):
 			return battlerNode
 
 	return null
+
+func _nextEffect():
+	var myEffect = effectGroupQue.pop_front()
+
+	if( myEffect ):
+		effectGroupSelected.append( myEffect )
+		# Make the valid targets formation
+		selectionMap.setState( effectGroupSelected.back() , null , currentBattler.currentCharacter.isPlayer )
+	else:
+		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
+		# Ability is finished, so clear the map.
+		selectionMap.setState()
+		emit_signal( "abilitySelectFinished" )
+
+func _prevEffect():
+	var currentEffect = effectGroupSelected.pop_front()
+	effectGroupQue.append( currentEffect )
+
+	var prevEffect = effectGroupSelected.back()
+
+	if( prevEffect ):
+		pass
+	else:
+		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
+		# ability use was cancelled. Clean up any UI that isn't already clean
+		selectionMap.setState()
+		emit_signal( "abilitySelectCanceled" )

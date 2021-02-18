@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Assetts/Interface/clipart1734672.png" type="Texture" id=1]
-
-[node name="Pointer" type="Sprite"]
-texture = ExtResource( 1 )

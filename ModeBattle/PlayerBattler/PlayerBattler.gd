@@ -5,42 +5,48 @@ var currentCharacter : CharacterResource
 
 onready var nameLabel : Label = $Name
 onready var characterSprite : Sprite = $Sprite
-onready var pointer : Sprite = $Pointer
 
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
 enum SELECTION {
-	NONE, FOCUS_TARGET, ASSIST_TARGET, ATTACK_TARGET
+	NONE, TURN_TARGET, ASSIST_TARGET, ATTACK_TARGET
 }
 
-var shaderParams = {
-	SELECTION.NONE : {
-		"width" : 1 , "outline_color" : Color(0,0,0,255)
+var highlightShaderParams = {
+	HIGHLIGHT.SELECTED_ALLY : {
+		"width" : 5 , "outline_color" : Color(0,0,200,255)
 	} ,
-	SELECTION.FOCUS_TARGET : {
-		"width" : 3 , "outline_color" : Color(0,200,0,255)
-	} ,
-	SELECTION.ASSIST_TARGET : {
-		"width" : 3 , "outline_color" : Color(0,0,200,255)
-	} ,
-	SELECTION.ATTACK_TARGET : {
-		"width" : 3 , "outline_color" : Color(200,0,0,255)
+	HIGHLIGHT.SELECTED_ENEMY : {
+		"width" : 5 , "outline_color" : Color(200,0,0,255)
+	},
+	HIGHLIGHT.NEAR_ALLY : {
+		"width" : 3 , "outline_color" : Color(0,0,100,255)
+	},
+	HIGHLIGHT.NEAR_ENEMY : {
+		"width" : 3 , "outline_color" : Color(100,0,0,255)
 	}
 }
 
+var turnShaderParams = {
+	STATE.NOT_TURN : {
+		"width" : 1 , "outline_color" : Color(0,0,0,255)
+	},
+	STATE.TURN : {
+		"width" : 1 , "outline_color" : Color(0,200,0,255)
+	}
+}
+
+enum HIGHLIGHT {
+	SELECTED_ALLY , SELECTED_ENEMY, NEAR_ALLY , NEAR_ENEMY, NONE
+}
+
 enum STATE {
-	FOCUS,
-	NOT_FOCUS
+	TURN, NOT_TURN
 }
 
 var currentFormationLocation = Vector2(0,0)
-var selectionState = SELECTION.NONE
-var focusState = STATE.NOT_FOCUS
-
-func _updateShader( currentState ):
-	var mat = characterSprite.get_material()
-	mat.set_shader_param("width" , shaderParams[currentState].width )
-	mat.set_shader_param("outline_color" , shaderParams[currentState].outline_color )
+var highlightState = HIGHLIGHT.NONE
+var turnState = STATE.NOT_TURN
 
 func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 	currentCharacter = newCharacter
@@ -51,32 +57,46 @@ func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 	# Set up outline shader. Shaders must be instanced in code.
 	var mat = ShaderMaterial.new()
 	mat.set_shader(OUTLINE_SHADER)
-	mat.set_shader_param("width" , shaderParams[SELECTION.NONE].width )
-	mat.set_shader_param("outline_color" , shaderParams[SELECTION.NONE].outline_color )
+	mat.set_shader_param("width" , turnShaderParams[STATE.NOT_TURN].width )
+	mat.set_shader_param("outline_color" , turnShaderParams[STATE.NOT_TURN].outline_color )
 	characterSprite.set_material(mat)
 
-# TODO probally need to redo this. Maybe add different independent sprites / particles to show state
-func setSelectionState( state : int ):
-	selectionState = state
+func _updateShader( params : Dictionary ):
+	var mat = characterSprite.get_material()
+	mat.set_shader_param("width" , params.width )
+	mat.set_shader_param("outline_color" , params.outline_color )
+
+func setHighlightState( state : int ):
+	highlightState = state
 	
-	match selectionState:
-		SELECTION.NONE:
-			if( focusState == STATE.FOCUS ):
-				selectionState = SELECTION.FOCUS_TARGET
-		SELECTION.FOCUS_TARGET:
+	var useTurnShaders = false
+
+	match highlightState:
+		HIGHLIGHT.NONE:
 			pass
-		SELECTION.ASSIST_TARGET:
+			useTurnShaders = true
+		HIGHLIGHT.SELECTED_ALLY:
 			pass
-		SELECTION.ATTACK_TARGET:
+		HIGHLIGHT.SELECTED_ENEMY:
+			pass
+		HIGHLIGHT.NEAR_ALLY:
+			pass
+		HIGHLIGHT.NEAR_ENEMY:
 			pass
 
-	_updateShader(selectionState)
+	if( useTurnShaders ):
+		_updateShader( turnShaderParams[turnState] )
+	else:
+		_updateShader( highlightShaderParams[highlightState] )
 
-func setFocusState( state : int ):
-	focusState = state
+func setTurnState( state : int ):
+	turnState = state
 	
-	match focusState:
-		STATE.FOCUS:
-			pointer.set_visible(true)
-		STATE.NOT_FOCUS:
-			pointer.set_visible(false)
+	match turnState:
+		STATE.TURN:
+			pass
+		STATE.NOT_TURN:
+			pass
+
+	# Set highlight state to the same highlightState to change any shaders or effects that we might care about.
+	setHighlightState( highlightState )

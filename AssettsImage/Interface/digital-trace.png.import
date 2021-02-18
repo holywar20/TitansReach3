@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stripedArrow.png-9d5a49b316df3403bf584b8476355906.stex"
+path="res://.import/digital-trace.png-dab5e01e6e9288b47894bbb1a77c0a25.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModeBattle/stripedArrow.png"
-dest_files=[ "res://.import/stripedArrow.png-9d5a49b316df3403bf584b8476355906.stex" ]
+source_file="res://AssettsImage/Interface/digital-trace.png"
+dest_files=[ "res://.import/digital-trace.png-dab5e01e6e9288b47894bbb1a77c0a25.stex" ]
 
 [params]
 

@@ -10,7 +10,6 @@ func setupScene( newAbility : AbilityResource ):
 	abilityIcon.set_button_icon( load(ability.iconPath) )
 
 func setFocused():
-	print("setting focus")
 	abilityIcon.grab_focus()
 
 func allowFocus():

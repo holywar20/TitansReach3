@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clipart1734672.png-319ee7834a81e6a2d899e8e5d3bbd14c.stex"
+path="res://.import/walking-boot.png-3a2c3c7496c7cf4d4cac70bc506a87cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assetts/Interface/clipart1734672.png"
-dest_files=[ "res://.import/clipart1734672.png-319ee7834a81e6a2d899e8e5d3bbd14c.stex" ]
+source_file="res://AssettsImage/Interface/walking-boot.png"
+dest_files=[ "res://.import/walking-boot.png-3a2c3c7496c7cf4d4cac70bc506a87cf.stex" ]
 
 [params]
 

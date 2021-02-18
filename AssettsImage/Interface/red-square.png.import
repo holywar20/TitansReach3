@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/path.png-928231b0bc8213e873b94cda7c430782.stex"
+path="res://.import/red-square.png-7d3a7561c7798e340e61d02490a458e2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assetts/Interface/path.png"
-dest_files=[ "res://.import/path.png-928231b0bc8213e873b94cda7c430782.stex" ]
+source_file="res://AssettsImage/Interface/red-square.png"
+dest_files=[ "res://.import/red-square.png-7d3a7561c7798e340e61d02490a458e2.stex" ]
 
 [params]
 

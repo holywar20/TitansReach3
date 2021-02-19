@@ -76,3 +76,10 @@ func flushAndFillProperties( props : Dictionary, object ):
 func calculateSpecialProperties( props: Dictionary , object ):
 	return object
 
+func makeArrayIntegers( anArray : Array ) -> Array:
+	var newArray = []
+	
+	for elem in anArray:
+		newArray.append( int(elem) )
+
+	return anArray

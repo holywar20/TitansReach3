@@ -64,8 +64,28 @@ var effectGroups : Array = [] # An array of EffectGroup
 class EffectGroup:	
 	var targetType : String = TARGET_TYPE.SELF
 	var targetArea : String = TARGET_AREA.SINGLE
-	var selected = null # This is meant to be a FormationResource.
 	var effects : Array = []
+	
+	func enemyOrAlly( isPlayerUsing : bool ):
+		var targetsPlayer : bool
+
+		match targetType:
+			TARGET_TYPE.SELF:
+				targetsPlayer = true
+			TARGET_TYPE.ALLY_FLOOR:
+				targetsPlayer = true
+			TARGET_TYPE.ALLY_UNIT:
+				targetsPlayer = true
+			TARGET_TYPE.ENEMY_FLOOR:
+				targetsPlayer = false
+			TARGET_TYPE.ENEMY_UNIT:
+				targetsPlayer = false
+		
+		if( !isPlayerUsing ):
+			targetsPlayer = !targetsPlayer
+		
+		return targetsPlayer
+	
 
 func get_class(): 
 	return "AbilityResource"
@@ -96,6 +116,10 @@ func _init( newKey : String , jsonFileName : String ):
 
 	flushAndFillProperties(abilityTable[key] , self)
 	_makeEffects( abilityTable[key]['effectGroups'] )
+
+	# Do any type casting to fix json, which comes in as strings
+	validTargets = makeArrayIntegers( validTargets )
+	validFrom = makeArrayIntegers( validFrom )
 
 func _makeEffects( newEffectGroups : Array ):
 	for effectGroupData in newEffectGroups:

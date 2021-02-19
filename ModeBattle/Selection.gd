@@ -6,12 +6,11 @@ const PLAYER_TILE_MAP = [
 	[Vector2(10,3), Vector2(13,3), Vector2(16,3) , Vector2(19,3) , Vector2(22,3)],
 ]
 const ENEMY_TILE_MAP = [
-	[Vector2(22,-6), Vector2(19,-6), Vector2(16,-6) , Vector2(13,-6) , Vector2(10,-6)],
+	[Vector2(22,0), Vector2(19,0), Vector2(16,0) , Vector2(13,0) , Vector2(10,0)],
 	[Vector2(22,-3), Vector2(19,-3), Vector2(16,-3) , Vector2(13,-3) , Vector2(10,-3)],
-	[Vector2(22,0), Vector2(19,0), Vector2(16,0) , Vector2(13,0) , Vector2(10,0)]
+	[Vector2(22,-6), Vector2(19,-6), Vector2(16,-6) , Vector2(13,-6) , Vector2(10,-6)]	
 ]
 const HIGHLIGHT_CELL_INDEX = 0
-
 
 enum STATE {
 	NONE, ALLY_FLOOR , ALLY_UNIT , ENEMY_FLOOR, ENEMY_UNIT
@@ -32,25 +31,35 @@ var highlightParams = {
 var currentState : int  =  STATE.NONE
 var currentTilemap : Array = PLAYER_TILE_MAP
 var currentFormation : FormationResource # This formation will be a subset of the total map
-var currentTargetArea = AbilityResource.TARGET_AREA.SINGLE
+var currentBattler : Battler
+var currentAbility : AbilityResource
 var currentEffectGroup : AbilityResource.EffectGroup
+
 
 var cursorLocation : Vector2 = Vector2( 0 , 2)
 
 # Bit unnusual here, but state is deteremined by effectGroup. If null, clear all data
-func setState( effectGroup = null , _formation = null , isPlayer = null):
+func setState( effectGroup = null , formation = null , ability = null , battler = null ):
 	currentEffectGroup = effectGroup
-	cursorLocation = Vector2( 0 , 2 )
-
-	if(isPlayer):
-		currentTilemap = PLAYER_TILE_MAP	
-	else:
-		currentTilemap = ENEMY_TILE_MAP
+	currentFormation = formation
+	currentAbility = ability
+	currentBattler = battler
+	
+	cursorLocation = Vector2( 0 , 3 )
 	
 	if( effectGroup ):
 		currentState = convertTargetingToEffectGroup(effectGroup.targetType)
+		if(formation.isPlayer):
+			currentTilemap = PLAYER_TILE_MAP
+			_moveCursor( cursorLocation )	
+		else:
+			currentTilemap = ENEMY_TILE_MAP
+			_moveCursor( cursorLocation )
 	else:
 		currentState = STATE.NONE
+
+	if( currentFormation ):
+		currentFormation.resetFilters()
 
 	match currentState:
 		STATE.NONE:
@@ -60,9 +69,9 @@ func setState( effectGroup = null , _formation = null , isPlayer = null):
 		STATE.ALLY_UNIT:
 			stateAllyUnit()
 		STATE.ENEMY_UNIT:
-			stateEnemyFloor()
-		STATE.ENEMY_FLOOR:
 			stateEnemyUnit()
+		STATE.ENEMY_FLOOR:
+			stateEnemyFloor()
 
 	# Set initial cursor
 	if currentState != STATE.NONE:
@@ -74,16 +83,19 @@ func stateNone():
 	_clearAllSelections()
 
 func stateAllyFloor():
-	pass
+	if( currentEffectGroup.targetType == AbilityResource.TARGET_TYPE.SELF ):
+		currentFormation.filterAllButSelf( currentBattler.currentCharacter )
+	_seekRow( -1 )
 
 func stateAllyUnit():
-	pass
+	_seekRow( -1 )
 
 func stateEnemyFloor():
-	pass
+	_seekRow( -1 )
 
 func stateEnemyUnit():
-	pass
+	currentFormation.filterValidTargetRow( currentAbility.validTargets )
+	_seekRow( -1 )
 
 func _clearAllSelections():
 	for x in range(0, currentTilemap.size() ):
@@ -127,40 +139,83 @@ func handleInput( _ev : InputEvent ):
 	
 func allyCursorInput(_ev : InputEvent):
 	if( _ev.is_action_pressed("ui_left")):
-		_moveCursor( Vector2(0, -1) )
+		_seekRow( -1 )
 	elif( _ev.is_action_pressed("ui_right")):
-		_moveCursor( Vector2(0, 1) )
+		_seekRow( 1 )
 	elif( _ev.is_action_pressed("ui_up")):
-		_moveCursor( Vector2(1, 0) )
+		_seekColumn( 1 )
 	elif ( _ev.is_action_pressed("ui_down")):
-		_moveCursor( Vector2(-1, 0) )
+		_seekColumn( -1 )
 
 func enemyCursorInput(_ev : InputEvent):
 	if( _ev.is_action_pressed("ui_left")):
-		_moveCursor( Vector2(0, -1) )
+		_seekRow( 1 )
 	elif( _ev.is_action_pressed("ui_right")):
-		_moveCursor( Vector2(0, 1) )
+		_seekRow( -1 )
 	elif( _ev.is_action_pressed("ui_up")):
-		_moveCursor( Vector2(1, 0) )
+		_seekColumn( -1 )
 	elif ( _ev.is_action_pressed("ui_down")):
-		_moveCursor( Vector2(-1, 0) )
+		_seekColumn( 1 )
 		
-func _moveCursor( direction : Vector2 ):
+func _seekColumn( direction : int ):
+	var seek : Vector2 = Vector2( direction + cursorLocation.x , cursorLocation.y )
+	
+	var colCount = 5
+	var rowCount = 3
+	var isValid = false
+
+	while !isValid:
+		if( seek == cursorLocation ): # If these locations are the same, there is no valid target and this ability can't be used.
+			print("Dev Error: Ability has no valid targets. Ability shouldn't be allowed.")
+			break
+
+		# Contain up - down movement by left & right
+		if( posmod( int(seek.x) , rowCount ) != seek.x ):
+			seek.x = posmod( int(seek.x) , rowCount )
+			seek.y = posmod( int(seek.y) + 1 , colCount )
+			
+		var locTest = testLocation( int(seek.x) , int(seek.y) )
+		if( locTest ):
+			_moveCursor( seek )
+			isValid = true
+		else:
+			seek = Vector2( direction + seek.x , seek.y )
+
+func _seekRow( direction : int ):
+	var seek : Vector2 = Vector2( cursorLocation.x , cursorLocation.y + direction )
+	
+	var colCount = 5
+	var rowCount = 3
+	var isValid = false
+
+	while !isValid:
+		if( seek == cursorLocation ): # If these locations are the same, there is no valid target and this ability can't be used.
+			print("Dev Error: Ability has no valid targets. Ability shouldn't be allowed.")
+			break
+
+		# Contain & wrap up - down movement
+		if( posmod( int(seek.y) , colCount ) != seek.y ):
+			seek.x = posmod( int(seek.x) + 1 , rowCount )
+			seek.y = posmod( int(seek.y) , colCount )
+			
+		var locTest = testLocation( int(seek.x) , int(seek.y) )
+		if( locTest ):
+			_moveCursor( seek )
+			isValid = true
+		else:
+			seek = Vector2( seek.x , seek.y + direction )
+
+func testLocation( x : int , y: int):
+	if( currentFormation.filteredPos[x][y] ):
+		return true
+	else:
+		return false
+		
+func _moveCursor( newLocation : Vector2 ):
 	# Clear all my current tiles
 	_clearAllSelections()
 
-	# Figure out new position in the valid tiles array.
-	cursorLocation = cursorLocation + direction
-	if( cursorLocation.x >= 3):
-		cursorLocation.x = 0
-	elif ( cursorLocation.x <= -1 ):
-		cursorLocation.x = 2
-
-	if( cursorLocation.y >= 5):
-		cursorLocation.y = 0
-	elif ( cursorLocation.y <= -1 ):
-		cursorLocation.y = 4 
-
+	cursorLocation = newLocation
 	var newTile = currentTilemap[int(cursorLocation.x)][int(cursorLocation.y)]
 	set_cell( int(newTile.x) , int(newTile.y) , HIGHLIGHT_CELL_INDEX)
 

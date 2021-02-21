@@ -28,6 +28,8 @@ func clear():
 	deactivateLabel( LABELS.TARGET )
 			
 func activateLabel( labelIdx : int , labelText ):
+	print("Activating label : " + str(labelIdx),  "labelText" , labelText )
+	
 	labelNodes[labelIdx].panel.show()
 	labelNodes[labelIdx].label.set_text( labelText )
 

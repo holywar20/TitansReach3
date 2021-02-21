@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://ModeExplore/Celestials/Star/Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ModeExplore/Celestials/Planet/Planet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://AssettsImage/Interface/SmallConverganceTarget.png" type="Texture" id=8]
+[ext_resource path="res://ModeExplore/Menus/Assignments/Assignments.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.5, 1 )
@@ -50,7 +52,7 @@ emission_rect_extents = Vector2( 1920, 1080 )
 direction = Vector2( -1, 0 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 5.0
+initial_velocity = 1.0
 scale_amount = 1.5
 color_ramp = SubResource( 1 )
 hue_variation = 1.0
@@ -103,7 +105,7 @@ emission_rect_extents = Vector2( 1920, 1080 )
 direction = Vector2( -1, 0 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 5.0
+initial_velocity = 3.0
 scale_amount = 1.5
 color_ramp = SubResource( 1 )
 hue_variation = 1.0
@@ -144,6 +146,134 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBox" type="VBoxContainer" parent="UI/Minimap"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 430.0
+margin_bottom = 445.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Minimap/VBox"]
+margin_right = 423.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="UI/Minimap/VBox/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 395.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "{ STAR_SYSTEM } : { STAR_SECTOR } : { SLEVEL }"
+
+[node name="TextureRect" type="TextureRect" parent="UI/Minimap/VBox/HBoxContainer2"]
+margin_left = 399.0
+margin_right = 423.0
+margin_bottom = 24.0
+texture = ExtResource( 8 )
+
+[node name="Map" type="Panel" parent="UI/Minimap/VBox"]
+margin_top = 28.0
+margin_right = 423.0
+margin_bottom = 348.0
+rect_min_size = Vector2( 0, 320 )
+
+[node name="VBox" type="VBoxContainer" parent="UI/Minimap/VBox"]
+margin_top = 352.0
+margin_right = 423.0
+margin_bottom = 438.0
+
+[node name="Data" type="HBoxContainer" parent="UI/Minimap/VBox/VBox"]
+margin_right = 423.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="UI/Minimap/VBox/VBox/Data"]
+margin_right = 209.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Date"
+
+[node name="Label2" type="Label" parent="UI/Minimap/VBox/VBox/Data"]
+margin_left = 213.0
+margin_right = 423.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "5773,11,01 : 20:00"
+align = 2
+
+[node name="Fuel" type="HBoxContainer" parent="UI/Minimap/VBox/VBox"]
+margin_top = 18.0
+margin_right = 423.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="UI/Minimap/VBox/VBox/Fuel"]
+margin_right = 209.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Fuel"
+
+[node name="Label2" type="Label" parent="UI/Minimap/VBox/VBox/Fuel"]
+margin_left = 213.0
+margin_right = 423.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "19.7 Tons"
+align = 2
+
+[node name="Food" type="HBoxContainer" parent="UI/Minimap/VBox/VBox"]
+margin_top = 36.0
+margin_right = 423.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="UI/Minimap/VBox/VBox/Food"]
+margin_right = 209.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Food"
+
+[node name="Label2" type="Label" parent="UI/Minimap/VBox/VBox/Food"]
+margin_left = 213.0
+margin_right = 423.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "122 Days"
+align = 2
+
+[node name="Ink" type="HBoxContainer" parent="UI/Minimap/VBox/VBox"]
+margin_top = 54.0
+margin_right = 423.0
+margin_bottom = 68.0
+
+[node name="Label" type="Label" parent="UI/Minimap/VBox/VBox/Ink"]
+margin_right = 209.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Ink"
+
+[node name="Label2" type="Label" parent="UI/Minimap/VBox/VBox/Ink"]
+margin_left = 213.0
+margin_right = 423.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "11.002.123"
+align = 2
+
+[node name="Morale" type="HBoxContainer" parent="UI/Minimap/VBox/VBox"]
+margin_top = 72.0
+margin_right = 423.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="UI/Minimap/VBox/VBox/Morale"]
+margin_right = 209.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Morale"
+
+[node name="Label2" type="Label" parent="UI/Minimap/VBox/VBox/Morale"]
+margin_left = 213.0
+margin_right = 423.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Good"
+align = 2
+
 [node name="ButtonPanel" type="PanelContainer" parent="UI"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -163,13 +293,109 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBox" type="HBoxContainer" parent="UI/TopPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1477.0
+margin_bottom = 65.0
+alignment = 1
+
+[node name="Button" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 93.0
+margin_right = 273.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "Crew Assignment"
+
+[node name="Button6" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 277.0
+margin_right = 457.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "Crew Management"
+
+[node name="Button2" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 461.0
+margin_right = 641.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "Starship"
+
+[node name="Button3" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 645.0
+margin_right = 825.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "Cargo"
+
+[node name="Button4" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 829.0
+margin_right = 1009.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "Starmap"
+
+[node name="Button7" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 1013.0
+margin_right = 1193.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "System"
+
+[node name="Button5" type="Button" parent="UI/TopPanel/HBox"]
+margin_left = 1197.0
+margin_right = 1377.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 180, 0 )
+text = "Trade"
+
+[node name="Dropdown" type="Panel" parent="UI"]
+visible = false
+modulate = Color( 1, 1, 1, 0.784314 )
+margin_left = 3.0
+margin_top = 77.0
+margin_right = 1277.0
+margin_bottom = 877.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="VBoxContainer" parent="UI/Dropdown"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleRow" type="HBoxContainer" parent="UI/Dropdown/Main"]
+margin_right = 1274.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Dropdown/Main/TitleRow"]
+margin_right = 1246.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+text = "{ TITLE }"
+align = 1
+valign = 1
+
+[node name="TextureButton" type="TextureButton" parent="UI/Dropdown/Main/TitleRow"]
+margin_left = 1250.0
+margin_right = 1274.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 8 )
+
+[node name="Assignments" parent="UI/Dropdown/Main" instance=ExtResource( 9 )]
+margin_top = 44.0
+margin_bottom = 800.0
+
 [node name="Anoms" type="Node2D" parent="."]
 position = Vector2( 959.851, 554.04 )
 
 [node name="PlayerShip" parent="." instance=ExtResource( 2 )]
-position = Vector2( 966.451, 540.841 )
-rotation = -3.14159
+position = Vector2( 990, 540 )
 gravity_scale = 0.0
-isPlayer = true
 velocityMaxForward = 1000
 [connection signal="PLAYER_MOVING" from="PlayerShip" to="." method="_on_PlayerShip_PLAYER_MOVING"]

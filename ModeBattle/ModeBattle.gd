@@ -22,6 +22,7 @@ var enemy : Array = []
 # State variables
 enum STATE {
 	PAGE_LOADING,
+	PLAYER_FREE_ROAM,
 	PLAYER_SELECTING_ABILITY,
 	PLAYER_SELECTING_TARGETS,
 	PLAYER_EXECUTING_ABILITY,
@@ -57,7 +58,6 @@ func _runNextTurn():
 		#return null
 
 	currentCharacter = turnOrder.nextTurn()
-	activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
 
 	if( currentCharacter.isPlayer ):
 		setState(STATE.PLAYER_SELECTING_ABILITY)
@@ -69,6 +69,8 @@ func _runNextTurn():
 # Input cascades firing off bazillions of events
 func _input( event : InputEvent ):
 	match currentState:
+		STATE.PLAYER_FREE_ROAM:
+			pass
 		STATE.PLAYER_SELECTING_ABILITY:
 			playerSelectingAbilityInputs( event )
 		STATE.PLAYER_SELECTING_TARGETS:
@@ -82,6 +84,8 @@ func setState(newState):
 	currentState = newState
 	
 	match currentState:
+		STATE.PLAYER_FREE_ROAM:
+			pass 
 		STATE.PLAYER_SELECTING_ABILITY:
 			playerSelectingAbility()
 		STATE.PLAYER_SELECTING_TARGETS:
@@ -97,11 +101,15 @@ func setState(newState):
 
 func playerSelectingAbility():
 	# Some kind of show ability name panel and update here
+	print("player selecting ability")
 	playerUI.updateUI( currentCharacter )
 	
 	playerUI.setState( playerUI.STATE.SHOW )
 	abilityUI.setState( abilityUI.STATE.FOCUS , currentCharacter )
 	battleMap.setState( battleMap.STATE.NOT_FOCUS , currentAbility, currentCharacter )
+
+	activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
+	
 
 func playerSelectingAbilityInputs( ev : InputEvent ):
 	# Handle B for cancel, to allow for 'free roam of page'
@@ -118,7 +126,6 @@ func playerSelectingTargetInputs( ev: InputEvent ):
 
 func playerExecutingAbility():
 	battleMap.setState( battleMap.STATE.EXECUTING , currentAbility, currentCharacter )
-	pass
 
 func playerExecutingAbilityInputs( ev : InputEvent ):
 	# Allow opportunity for certain kinds of instants.
@@ -153,6 +160,7 @@ func _on_AbilityList_abilityActivated( ability : AbilityResource ):
 	setState( STATE.PLAYER_SELECTING_TARGETS )
 
 func _on_AbilityList_abilityChanged(ability : AbilityResource):
+	print("ability changed")
 	activeDisplay.activateLabel( activeDisplay.LABELS.ABILITY , ability.shortName )
 
 func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
@@ -172,9 +180,6 @@ func _on_BattleMap_abilityExecuteFinished():
 
 func _on_BattleMap_abilitySelectCanceled():
 	setState( STATE.PLAYER_SELECTING_ABILITY )
-	activeDisplay.clear()
-	activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
-	pass # Replace with function body.
 
 func _on_BattleMap_playerSelected( character : CharacterResource ):
 	enemyUI.updateUI( null )

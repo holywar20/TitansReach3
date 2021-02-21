@@ -18,11 +18,12 @@ var currentBattler : CharacterResource
 func setState( state : int , newBattler ):
 	currentState = state
 	currentBattler = newBattler
+	var currentAction = null
 
 	for child in abilityGrid.get_children():
 		child.queue_free()
 
-	if( currentBattler):
+	if( currentBattler ):
 		var isAbilityFocused = false
 
 		for action in currentBattler.actions:
@@ -36,7 +37,7 @@ func setState( state : int , newBattler ):
 				abilityInstance.setFocused()
 				isAbilityFocused = true
 				# fire this signal manually to trigger UI updates.
-				_on_AbilityButton_focus_entered( action ) 
+				_on_AbilityButton_focus_entered( action )
 
 			abilityInstance.get_node("Button").connect("pressed" , self , "_on_abilityButtonPressed" , [abilityInstance.ability])
 			abilityInstance.get_node("Button").connect("focus_entered" , self , "_on_AbilityButton_focus_entered" ,[abilityInstance.ability])
@@ -49,7 +50,6 @@ func setState( state : int , newBattler ):
 
 		STATE.FOCUS:
 			show()
-			var aIcon = abilityGrid.get_child( 0 )
 	
 		STATE.NOT_FOCUS:
 			for icon in abilityGrid.get_children():

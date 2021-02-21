@@ -5,6 +5,7 @@ extends Node2D
 onready var turnOrder : PanelContainer = $CanvasLayer/Turnorder
 onready var enemyUI : PanelContainer = $CanvasLayer/Enemy
 onready var playerUI : PanelContainer = $CanvasLayer/Player
+onready var activeDisplay : Control = $ActiveDisplay
 
 # Powers & Abilities
 onready var abilityUI : PanelContainer = $CanvasLayer/AbilityList
@@ -56,6 +57,7 @@ func _runNextTurn():
 		#return null
 
 	currentCharacter = turnOrder.nextTurn()
+	activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
 
 	if( currentCharacter.isPlayer ):
 		setState(STATE.PLAYER_SELECTING_ABILITY)
@@ -88,9 +90,12 @@ func setState(newState):
 			playerExecutingAbility()
 		STATE.ENEMY_SELECTING_ABILITY:
 			enemySelectingAbility()
+		STATE.ENEMY_SELECTING_TARGETS:
+			enemySelectingTargets()
+		STATE.ENEMY_EXECUTING_ABILITY:
+			enemyExecutingTargets()
 
 func playerSelectingAbility():
-	print("selecting")
 	# Some kind of show ability name panel and update here
 	playerUI.updateUI( currentCharacter )
 	
@@ -129,6 +134,11 @@ func enemySelectingAbilityInputs( ev : InputEvent ):
 	# Also allow for viewing enemy stats
 	pass
 
+func enemySelectingTargets():
+	pass
+
+func enemyExecutingTargets():
+	pass
 	
 func _testBattleEnd():
 	return false
@@ -142,8 +152,18 @@ func _on_AbilityList_abilityActivated( ability : AbilityResource ):
 	currentAbility = ability
 	setState( STATE.PLAYER_SELECTING_TARGETS )
 
+func _on_AbilityList_abilityChanged(ability : AbilityResource):
+	activeDisplay.activateLabel( activeDisplay.LABELS.ABILITY , ability.shortName )
+
+func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
+	activeDisplay.activateLabel( activeDisplay.LABELS.TARGET , targetString )
+
 func _on_BattleMap_abilitySelectFinished():
 	print("Main : abilitySelectFinished")
+	activeDisplay.clear()
+	playerUI.setState( playerUI.STATE.HIDE )
+	enemyUI.setState( enemyUI.STATE.HIDE )
+
 	setState( STATE.PLAYER_EXECUTING_ABILITY )
 
 func _on_BattleMap_abilityExecuteFinished():
@@ -151,8 +171,9 @@ func _on_BattleMap_abilityExecuteFinished():
 	_runNextTurn()
 
 func _on_BattleMap_abilitySelectCanceled():
-	print("Main : abilitySelectCanceled")
 	setState( STATE.PLAYER_SELECTING_ABILITY )
+	activeDisplay.clear()
+	activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
 	pass # Replace with function body.
 
 func _on_BattleMap_playerSelected( character : CharacterResource ):
@@ -168,7 +189,3 @@ func _on_Battlemap_enemySelected( character: CharacterResource ):
 
 	enemyUI.updateUI( character )
 	enemyUI.setState( enemyUI.STATE.SHOW )
-	
-
-
-

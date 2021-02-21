@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ModeBattle/BattleActiveDisplay/ActiveDisplay.gd" type="Script" id=1]
+
+[node name="ActiveDisplay" type="Control"]
+margin_left = 701.0
+margin_top = 74.0
+margin_right = 741.0
+margin_bottom = 114.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attacker" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 180.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 200, 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Attacker"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -67.0001
+margin_bottom = -15.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "{ATTACKER_NAME}"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ability" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 138.604
+margin_top = 46.0
+margin_right = 338.604
+margin_bottom = 91.0
+rect_min_size = Vector2( 200, 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Ability"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.1228
+margin_top = -0.0684052
+margin_right = -65.8773
+margin_bottom = -15.0684
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "{ABILITY_NAME}"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Target" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 299.0
+margin_top = 93.0
+margin_right = 499.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 200, 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Target"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.529053
+margin_top = 2.11661
+margin_right = -66.471
+margin_bottom = -12.8834
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "{TARGET_NAME}"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

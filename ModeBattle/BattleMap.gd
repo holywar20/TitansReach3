@@ -65,8 +65,6 @@ func setupScene( newCrew : Array , newEnemy : Array ):
 				enemyBase.add_child( battler )
 				battler.setupScene(enemyTiles.positions[x][y], Vector2( x, y ))
 
-	_resetAllBattlers()
-
 func handleParentInput( event : InputEvent ):
 	# TODO add handling for hover
 	# TODO add handling for controller exploration
@@ -109,16 +107,6 @@ func setState(newState: int , ability , character ):
 			effectGroupQue = []
 			effectGroupSelected = []
 
-func _resetAllBattlers():
-	playerTiles.setHighlightStateOnBattlers( Battler.HIGHLIGHT.NONE )
-	enemyTiles.setHighlightStateOnBattlers( Battler.HIGHLIGHT.NONE )
-
-func getFilteredBattlerList( isPlayer ) -> Array:
-	var myFormation : FormationResource =  playerTiles if ( isPlayer ) else enemyTiles
-	var formArray = myFormation.clonePositions()
-	
-	return formArray
-
 func findBattlerFromCharacter( character : CharacterResource ):
 	for battlerNode in get_tree().get_nodes_in_group( NODE_GROUP_BATTLER ):
 		if( battlerNode.currentCharacter == character ):
@@ -129,7 +117,6 @@ func findBattlerFromCharacter( character : CharacterResource ):
 # Utility Methods
 func _executeAllEffects():
 	print("executed effects for battler: " + currentBattler.currentCharacter.getNickName())
-	_resetAllBattlers()
 	currentBattler.setTurnState( Battler.STATE.NOT_TURN )
 	emit_signal("abilityExecuteFinished")
 
@@ -146,7 +133,9 @@ func _nextEffect():
 		selectionMap.setState( myEffectGroup , formation , currentAbility , currentBattler )
 	else:
 		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
+		
 		selectionMap.setState()
+		
 		emit_signal( "abilitySelectFinished" )
 
 func _prevEffect():
@@ -159,5 +148,7 @@ func _prevEffect():
 		pass
 	else:
 		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
+		
 		selectionMap.setState()
+		
 		emit_signal( "abilitySelectCanceled" )

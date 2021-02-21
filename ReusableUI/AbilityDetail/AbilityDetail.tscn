@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.gd" type="Script" id=1]
 [ext_resource path="res://AssettsImage/AbilityIcons/defend.png" type="Texture" id=2]
-[ext_resource path="res://AssettsImage/Interface/SmallConverganceTarget.png" type="Texture" id=3]
+[ext_resource path="res://AssettsImage/Interface/red-square.png" type="Texture" id=3]
 [ext_resource path="res://AssettsImage/Interface/square.png" type="Texture" id=4]
 [ext_resource path="res://AssettsImage/Interface/black-square.png" type="Texture" id=5]
 
@@ -18,12 +18,12 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 262.0
-margin_bottom = 167.0
+margin_bottom = 171.0
 
 [node name="TitleRow" type="Control" parent="VBox"]
 margin_right = 255.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -31,7 +31,7 @@ __meta__ = {
 [node name="AbilityIcon" type="TextureRect" parent="VBox/TitleRow"]
 margin_right = 64.0
 margin_bottom = 64.0
-rect_scale = Vector2( 0.5, 0.5 )
+rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
 stretch_mode = 3
 __meta__ = {
@@ -39,9 +39,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBox/TitleRow"]
-margin_left = 39.0
-margin_right = 247.0
-margin_bottom = 38.0
+margin_left = 51.0
+margin_right = 190.0
+margin_bottom = 29.0
+rect_scale = Vector2( 1.5, 1.5 )
 size_flags_horizontal = 3
 text = "{ABILITY_TITLE}"
 align = 1
@@ -51,9 +52,9 @@ __meta__ = {
 }
 
 [node name="ValidRow" type="HBoxContainer" parent="VBox"]
-margin_top = 44.0
+margin_top = 54.0
 margin_right = 255.0
-margin_bottom = 76.0
+margin_bottom = 86.0
 
 [node name="PlayerBack" type="TextureRect" parent="VBox/ValidRow"]
 margin_right = 32.0
@@ -110,14 +111,14 @@ texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="TextRow" type="HBoxContainer" parent="VBox"]
-margin_top = 80.0
+margin_top = 90.0
 margin_right = 255.0
-margin_bottom = 160.0
+margin_bottom = 164.0
 size_flags_vertical = 3
 
 [node name="RTLabel" type="RichTextLabel" parent="VBox/TextRow"]
 margin_right = 195.0
-margin_bottom = 80.0
+margin_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "{ BUNCH OF TEXT }"
@@ -125,17 +126,17 @@ text = "{ BUNCH OF TEXT }"
 [node name="VBox" type="VBoxContainer" parent="VBox/TextRow"]
 margin_left = 199.0
 margin_right = 255.0
-margin_bottom = 80.0
+margin_bottom = 74.0
 
 [node name="TSpacer" type="Control" parent="VBox/TextRow/VBox"]
 margin_right = 56.0
-margin_bottom = 8.0
+margin_bottom = 5.0
 size_flags_vertical = 3
 
 [node name="AreaGrid" type="GridContainer" parent="VBox/TextRow/VBox"]
-margin_top = 12.0
+margin_top = 9.0
 margin_right = 56.0
-margin_bottom = 68.0
+margin_bottom = 65.0
 columns = 3
 
 [node name="0_0" type="TextureRect" parent="VBox/TextRow/VBox/AreaGrid"]
@@ -205,7 +206,7 @@ rect_min_size = Vector2( 16, 16 )
 texture = ExtResource( 5 )
 
 [node name="BSpacer" type="Control" parent="VBox/TextRow/VBox"]
-margin_top = 72.0
+margin_top = 69.0
 margin_right = 56.0
-margin_bottom = 80.0
+margin_bottom = 74.0
 size_flags_vertical = 3

@@ -2,9 +2,8 @@ extends Node2D
 class_name Battler
 
 var currentCharacter : CharacterResource
-
-onready var nameLabel : Label = $Name
 onready var characterSprite : Sprite = $Sprite
+onready var dataBlock : Control = $Data
 
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
@@ -48,11 +47,16 @@ var currentFormationLocation = Vector2(0,0)
 var highlightState = HIGHLIGHT.NONE
 var turnState = STATE.NOT_TURN
 
+# Overrides
+func get_class(): 
+	return "Battler"
+
+func is_class( name : String ): 
+	return name == "Battler"
+
 func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 	currentCharacter = newCharacter
 	currentFormationLocation = newLocation
-
-	nameLabel.set_text( currentCharacter.getNickName() )
 	
 	# Set up outline shader. Shaders must be instanced in code.
 	var mat = ShaderMaterial.new()
@@ -61,10 +65,15 @@ func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 	mat.set_shader_param("outline_color" , turnShaderParams[STATE.NOT_TURN].outline_color )
 	characterSprite.set_material(mat)
 
+	_updateCharacterData()
+
 func _updateShader( params : Dictionary ):
 	var mat = characterSprite.get_material()
 	mat.set_shader_param("width" , params.width )
 	mat.set_shader_param("outline_color" , params.outline_color )
+
+func _updateCharacterData():
+	dataBlock.updateData( currentCharacter )
 
 func setHighlightState( state : int ):
 	highlightState = state

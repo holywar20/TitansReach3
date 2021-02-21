@@ -2,7 +2,10 @@ extends PanelContainer
 
 var noArea = preload("res://AssettsImage/Interface/black-square.png")
 var goArea = preload("res://AssettsImage/Interface/square.png")
+
+var noAttackMove = preload("res://AssettsImage/Interface/red-square.png")
 var goAttack = preload("res://AssettsImage/Interface/SmallCrossHair.png")
+var goMove = preload("res://AssettsImage/Interface/walking-boot.png")
 
 var currentAbility : AbilityResource
 
@@ -51,13 +54,13 @@ func setupScene( ability : AbilityResource ):
 			if x in currentAbility.validTargets:
 				validTargets[x].set_texture(goAttack)
 			else:
-				validTargets[x].set_texture(noArea)
+				validTargets[x].set_texture(noAttackMove)
 
 		for x in range(0, validFrom.size() ):
 			if x in currentAbility.validFrom:
-				validFrom[x].set_texture(goAttack)
+				validFrom[x].set_texture(goMove)
 			else:
-				validFrom[x].set_texture(noArea)
+				validFrom[x].set_texture(noAttackMove)
 
 		# Set the target area now
 		var myTargetArea = currentAbility.getTargetAreaAsMatrix()

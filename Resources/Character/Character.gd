@@ -53,8 +53,9 @@ var traits = {
 }
 
 var carryWeight = { "value": 0, "total" : 0 , "mod" : 0 , 'current' : 0 }
-var hp = { "value": 18, "total" : 18 , "mod" : 0 , 'current' : 0 }
-var morale = { "value": 18, "total" : 18 , "mod" : 0  , 'current': 0}
+var hp = { "value": 18, "total" : 18 , "mod" : 0 , 'current' : 18 }
+var morale = { "value": 18, "total" : 18 , "mod" : 0  , 'current': 18}
+var charge = { "value" : 5 , "total" : 5 , "mod" : 0 , 'current' : 0}
 
 var damageReduction = { 
 	'KINETIC': 	{ "value" : 0, "total" : 0 , "mod" : 0 },
@@ -206,6 +207,12 @@ func getMoraleStatBlock():
 
 func getMoraleString():
 	return str(morale.current) + " / " + str(morale.total)
+
+func getChargeStatBlock():
+	return charge
+
+func getChargeString():
+	return str(charge.current) + " / " + str(charge.total)
 
 func getWeightStatBlock():
 	return carryWeight

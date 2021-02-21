@@ -11,6 +11,7 @@ enum STATE {
 }
 
 signal abilityActivated( ability )
+signal abilityChanged( ability )
 
 var currentBattler : CharacterResource
 		
@@ -34,6 +35,8 @@ func setState( state : int , newBattler ):
 			if(!isAbilityFocused):
 				abilityInstance.setFocused()
 				isAbilityFocused = true
+				# fire this signal manually to trigger UI updates.
+				_on_AbilityButton_focus_entered( action ) 
 
 			abilityInstance.get_node("Button").connect("pressed" , self , "_on_abilityButtonPressed" , [abilityInstance.ability])
 			abilityInstance.get_node("Button").connect("focus_entered" , self , "_on_AbilityButton_focus_entered" ,[abilityInstance.ability])
@@ -46,6 +49,7 @@ func setState( state : int , newBattler ):
 
 		STATE.FOCUS:
 			show()
+			var aIcon = abilityGrid.get_child( 0 )
 	
 		STATE.NOT_FOCUS:
 			for icon in abilityGrid.get_children():
@@ -63,6 +67,7 @@ func _on_abilityButtonPressed( ability : AbilityResource ):
 	setState(STATE.NOT_FOCUS , null )
 
 func _on_AbilityButton_focus_entered( ability: AbilityResource ):
+	emit_signal("abilityChanged" , ability )
 	abilityDetail.setupScene( ability )
 	#
 func _on_AbilityButton_focus_exited( ability : AbilityResource ):

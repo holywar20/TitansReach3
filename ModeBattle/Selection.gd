@@ -13,7 +13,7 @@ const ENEMY_TILE_MAP = [
 const HIGHLIGHT_CELL_INDEX = 0
 
 enum STATE {
-	NONE, ALLY_FLOOR , ALLY_UNIT , ENEMY_FLOOR, ENEMY_UNIT
+	NONE, SELF,  ALLY_FLOOR , ALLY_UNIT , ENEMY_FLOOR, ENEMY_UNIT
 }
 
 enum HIGHLIGHT {
@@ -37,6 +37,8 @@ var currentEffectGroup : AbilityResource.EffectGroup
 
 
 var cursorLocation : Vector2 = Vector2( 0 , 2)
+
+signal selection_change
 
 # Bit unnusual here, but state is deteremined by effectGroup. If null, clear all data
 func setState( effectGroup = null , formation = null , ability = null , battler = null ):
@@ -64,6 +66,8 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 	match currentState:
 		STATE.NONE:
 			stateNone()
+		STATE.SELF:
+			stateSelf()
 		STATE.ALLY_FLOOR:
 			stateAllyFloor()
 		STATE.ALLY_UNIT:
@@ -82,19 +86,28 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 func stateNone():
 	_clearAllSelections()
 
-func stateAllyFloor():
+func stateSelf():
 	if( currentEffectGroup.targetType == AbilityResource.TARGET_TYPE.SELF ):
 		currentFormation.filterAllButSelf( currentBattler.currentCharacter )
+	_seekRow(-1)
+
+func stateAllyFloor():
 	_seekRow( -1 )
 
 func stateAllyUnit():
+	currentFormation.filterIsABattler()
 	_seekRow( -1 )
 
 func stateEnemyFloor():
+	currentFormation.filterValidTargetRow( currentAbility.validTargets )
 	_seekRow( -1 )
 
 func stateEnemyUnit():
 	currentFormation.filterValidTargetRow( currentAbility.validTargets )
+	print( currentFormation.filteredPos )
+	currentFormation.filterIsABattler()
+	print( currentFormation.filteredPos )
+	# currentFormation.filterIsABattler()
 	_seekRow( -1 )
 
 func _clearAllSelections():
@@ -110,7 +123,7 @@ func convertTargetingToEffectGroup( targetingState : String ):
 
 	match targetingState:
 		AbilityResource.TARGET_TYPE.SELF:
-			newState = STATE.ALLY_FLOOR
+			newState = STATE.SELF
 		AbilityResource.TARGET_TYPE.ALLY_UNIT:
 			newState = STATE.ALLY_UNIT
 		AbilityResource.TARGET_TYPE.ALLY_FLOOR:
@@ -128,6 +141,8 @@ func handleInput( _ev : InputEvent ):
 		return null
 	
 	match currentState:
+		STATE.SELF:
+			pass
 		STATE.ALLY_FLOOR:
 			allyCursorInput(_ev)
 		STATE.ALLY_UNIT:
@@ -166,7 +181,6 @@ func _seekColumn( direction : int ):
 
 	while !isValid:
 		if( seek == cursorLocation ): # If these locations are the same, there is no valid target and this ability can't be used.
-			print("Dev Error: Ability has no valid targets. Ability shouldn't be allowed.")
 			break
 
 		# Contain up - down movement by left & right
@@ -190,7 +204,6 @@ func _seekRow( direction : int ):
 
 	while !isValid:
 		if( seek == cursorLocation ): # If these locations are the same, there is no valid target and this ability can't be used.
-			print("Dev Error: Ability has no valid targets. Ability shouldn't be allowed.")
 			break
 
 		# Contain & wrap up - down movement
@@ -218,6 +231,9 @@ func _moveCursor( newLocation : Vector2 ):
 	cursorLocation = newLocation
 	var newTile = currentTilemap[int(cursorLocation.x)][int(cursorLocation.y)]
 	set_cell( int(newTile.x) , int(newTile.y) , HIGHLIGHT_CELL_INDEX)
+
+	var targetString = currentFormation.getStringAtLocation( cursorLocation )
+	emit_signal("selection_change", cursorLocation , targetString )
 
 	# Based on newTile location :
 	#	Get the area

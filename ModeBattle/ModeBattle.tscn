@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ModeBattle/ModeBattle.gd" type="Script" id=1]
 [ext_resource path="res://ModeBattle/BlankTileset.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ModeBattle/Selection.gd" type="Script" id=8]
 [ext_resource path="res://ModeBattle/BattleMap.gd" type="Script" id=9]
 [ext_resource path="res://ModeBattle/Tilesets/SelectionTileSet.tres" type="TileSet" id=10]
+[ext_resource path="res://ModeBattle/BattleActiveDisplay/ActiveDisplay.tscn" type="PackedScene" id=11]
 
 [node name="ModeBattle" type="Node2D"]
 script = ExtResource( 1 )
@@ -120,11 +121,17 @@ script = ExtResource( 8 )
 
 [node name="Players" type="YSort" parent="BattleMap"]
 
+[node name="ActiveDisplay" parent="." instance=ExtResource( 11 )]
+margin_top = 76.0
+margin_bottom = 116.0
+
 [node name="EnemyActionTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
 [connection signal="abilityActivated" from="CanvasLayer/AbilityList" to="." method="_on_AbilityList_abilityActivated"]
+[connection signal="abilityChanged" from="CanvasLayer/AbilityList" to="." method="_on_AbilityList_abilityChanged"]
 [connection signal="abilityExecuteFinished" from="BattleMap" to="." method="_on_BattleMap_abilityExecuteFinished"]
 [connection signal="abilitySelectCanceled" from="BattleMap" to="." method="_on_BattleMap_abilitySelectCanceled"]
 [connection signal="abilitySelectFinished" from="BattleMap" to="." method="_on_BattleMap_abilitySelectFinished"]
+[connection signal="selection_change" from="BattleMap/SelectionMap" to="." method="_on_SelectionMap_selection_change"]
 [connection signal="timeout" from="EnemyActionTimer" to="." method="_on_EnemyActionTimer_timeout"]

@@ -43,27 +43,7 @@ func _init( manyCrew = null , player : bool = true ):
 		for crewman in manyCrew:
 			fillEmpty( crewman )
 
-func getBattlers( filtered : bool = false ) -> Array:
-	var battlerList = []
-	var pos = filteredPos if filtered else positions
-
-	for x in range( 0 , pos.size() ):
-		for y in range( 0 , pos[x].size() ):
-			if( typeof(pos[x][y]) == TYPE_OBJECT ):
-				if ( pos[x][y].get_class() == "Battler"):
-					battlerList.append( pos[x][y] )
-			
-	return battlerList
-
-func setHighlightStateOnBattlers( state : int , filtered : bool = false ) -> void:
-	var battlerList : Array = getBattlers( filtered )
-
-	for battler in battlerList:
-		battler.setHighlightState( state )
-
-func applyStatusEffectToBattlers():
-	pass
-
+# Management
 func resetFilters():
 	filteredPos = DEFAULT_POSITIONS_ARRAY.duplicate()
 
@@ -86,6 +66,23 @@ func fillEmpty( crewman : CharacterResource ):
 				isFilled = true
 				break
 
+# Data retrevial
+func getStringAtLocation( loc : Vector2 ) -> String:
+	var myString = ""
+	var variableObject = positions[loc.x][loc.y]
+
+	match typeof(variableObject):
+		TYPE_BOOL:
+			myString = "Ground : " + str(loc.x) + " - "  +  str(loc.y)
+		TYPE_OBJECT:
+			match variableObject.get_class():
+				"CharacterResource":
+					myString = variableObject.getNickName()
+
+	return myString
+
+
+# Formation Filters. Use these methods to modify filteredPos
 # Filters out any target that isn't in the valid row
 func filterValidTargetRow( validTargets : Array ):
 	for x in range(0, filteredPos.size() ):
@@ -93,6 +90,30 @@ func filterValidTargetRow( validTargets : Array ):
 			continue
 		else:
 			for y in range( 0, filteredPos[x].size()):
+				filteredPos[x][y] = false
+
+# Returns a filtered array that has only battlers in it.
+func filterIsABattler():
+	for x in range(0 , filteredPos.size() ):
+		for y in range(0 , filteredPos[x].size() ):
+			if( typeof(filteredPos[x][y]) == TYPE_OBJECT):
+				if( filteredPos[x][y].is_class("CharacterResource") ):
+					continue
+				else:
+					filteredPos[x][y] = false # Object, but not battler
+			else:
+				filteredPos[x][y] = false # Not an object, so can't be battler.
+
+# Filters out all but the current battler
+func filterAllButSelf( battler : CharacterResource ):
+	for x in range(0, filteredPos.size() ):
+		for y in range( 0, filteredPos[x].size() ):
+			if( typeof(filteredPos[x][y]) == TYPE_OBJECT ):
+				if( battler == filteredPos[x][y]):
+					continue
+				else:
+					filteredPos[x][y] = false
+			else:
 				filteredPos[x][y] = false
 
 func inverseValidTargets( validTargets : Array ) -> Array:
@@ -108,16 +129,4 @@ func inverseValidTargets( validTargets : Array ) -> Array:
 				inverseValidTargets.append(0)
 	return inverseValidTargets
 
-# Filters out all but the current battler
-func filterAllButSelf( battler : CharacterResource ):
-	for x in range(0, filteredPos.size() ):
-		for y in range( 0, filteredPos[x].size() ):
-			if( typeof(filteredPos[x][y]) == TYPE_OBJECT ):
-				print(battler)
-				print(filteredPos[x][y])
-				if( battler == filteredPos[x][y]):
-					continue
-				else:
-					filteredPos[x][y] = false
-			else:
-				filteredPos[x][y] = false
+

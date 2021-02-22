@@ -100,8 +100,6 @@ func setState(newState):
 			enemyExecutingTargets()
 
 func playerSelectingAbility():
-	# Some kind of show ability name panel and update here
-	print("player selecting ability")
 	playerUI.updateUI( currentCharacter )
 	
 	playerUI.setState( playerUI.STATE.SHOW )
@@ -155,15 +153,15 @@ func _on_EnemyActionTimer_timeout():
 	_runNextTurn()
 
 # Fired when a player has selected an ability.
-func _on_AbilityList_abilityActivated( ability : AbilityResource ):
+func _on_AbilityList_abilityActivated( ability ):
 	currentAbility = ability
 	setState( STATE.PLAYER_SELECTING_TARGETS )
 
-func _on_AbilityList_abilityChanged(ability : AbilityResource):
-	print("ability changed")
+func _on_AbilityList_abilityChanged(ability ):
 	activeDisplay.activateLabel( activeDisplay.LABELS.ABILITY , ability.shortName )
 
 func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
+	# TODO - update battler highlights based proximity to targetString
 	activeDisplay.activateLabel( activeDisplay.LABELS.TARGET , targetString )
 
 func _on_BattleMap_abilitySelectFinished():
@@ -179,7 +177,10 @@ func _on_BattleMap_abilityExecuteFinished():
 	_runNextTurn()
 
 func _on_BattleMap_abilitySelectCanceled():
+	print("cancelled!")
 	setState( STATE.PLAYER_SELECTING_ABILITY )
+	# TODO - will likely need to be a clear all at some point, so we can permit free roam, controlled by ModeBattle.
+	activeDisplay.deactivateLabel( activeDisplay.LABELS.TARGET )
 
 func _on_BattleMap_playerSelected( character : CharacterResource ):
 	enemyUI.updateUI( null )

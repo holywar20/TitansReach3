@@ -3,8 +3,15 @@ class_name PassiveEffectResource
 
 var mods : Dictionary
 
-func _init( newEffectData : Dictionary , newKey : String ):
+func _init( newEffectData : Dictionary , newKey : String , ability ):
+	type = EffectResource.TYPES.PASSIVE
+	key = newKey
+	parentAbility = ability
+
 	mods = newEffectData['mods'].duplicate()
+
+class Result:
+	var toHitTotal : int = 0
 
 func get_class(): 
 	return "PassiveEffectResource"
@@ -12,3 +19,7 @@ func get_class():
 func is_class( name : String ): 
 	return name == "PassiveEffectResource"
 	
+func rollEffect():
+	var result = Result.new()
+
+	return result

@@ -1,0 +1,151 @@
+[gd_scene load_steps=19 format=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "BASIC_ATTACK"
+length = 0.333333
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.25, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 30, -120 ), Vector2( 33, -140 ), Vector2( 25, -100 ), Vector2( 45, -130 ), Vector2( 25, -115 ), Vector2( 30, -120 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "IDLE"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -75 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "MOVE_TO_ATTACK"
+length = 0.25
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 0.420448 ),
+"update": 0,
+"values": [ Vector2( 0, -75 ), Vector2( 30, -120 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "MOVE_TO_IDLE"
+length = 0.25
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 0.4 ),
+"update": 0,
+"values": [ Vector2( 30, -120 ), Vector2( 0, -75 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "READY_TO_ATTACK"
+length = 0.5
+loop = true
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.0196078, 0.0196078, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "BASIC_ATTACK"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "MOVE_TO_ATTACK"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "MOVE_TO_IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "READY_TO_ATTACK"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/BASIC_ATTACK/node = SubResource( 6 )
+states/BASIC_ATTACK/position = Vector2( 508.333, 108.333 )
+states/IDLE/node = SubResource( 7 )
+states/IDLE/position = Vector2( 517.444, 365 )
+states/MOVE_TO_ATTACK/node = SubResource( 8 )
+states/MOVE_TO_ATTACK/position = Vector2( 517.617, 276.333 )
+states/MOVE_TO_IDLE/node = SubResource( 9 )
+states/MOVE_TO_IDLE/position = Vector2( 837.667, 196.597 )
+states/READY_TO_ATTACK/node = SubResource( 10 )
+states/READY_TO_ATTACK/position = Vector2( 515.963, 196.556 )
+transitions = [ "IDLE", "MOVE_TO_ATTACK", SubResource( 11 ), "MOVE_TO_ATTACK", "READY_TO_ATTACK", SubResource( 12 ), "READY_TO_ATTACK", "MOVE_TO_IDLE", SubResource( 13 ), "READY_TO_ATTACK", "BASIC_ATTACK", SubResource( 14 ), "BASIC_ATTACK", "MOVE_TO_IDLE", SubResource( 15 ), "MOVE_TO_IDLE", "IDLE", SubResource( 16 ) ]
+start_node = "IDLE"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[node name="SpritePlayer" type="AnimationPlayer"]
+anims/BASIC_ATTACK = SubResource( 1 )
+anims/IDLE = SubResource( 2 )
+anims/MOVE_TO_ATTACK = SubResource( 3 )
+anims/MOVE_TO_IDLE = SubResource( 4 )
+anims/READY_TO_ATTACK = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 17 )
+anim_player = NodePath("..")
+active = true
+parameters/playback = SubResource( 18 )

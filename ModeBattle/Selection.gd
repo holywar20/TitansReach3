@@ -34,14 +34,15 @@ var currentFormation : FormationResource # This formation will be a subset of th
 var currentBattler : Battler
 var currentAbility : AbilityResource
 var currentEffectGroup : AbilityResource.EffectGroup
-
-
 var cursorLocation : Vector2 = Vector2( 0 , 2)
 
 signal selection_change
 
 # Bit unnusual here, but state is deteremined by effectGroup. If null, clear all data
 func setState( effectGroup = null , formation = null , ability = null , battler = null ):
+	if( currentFormation ):
+		currentFormation.resetFilters()
+	
 	currentEffectGroup = effectGroup
 	currentFormation = formation
 	currentAbility = ability
@@ -59,9 +60,6 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 			_moveCursor( cursorLocation )
 	else:
 		currentState = STATE.NONE
-
-	if( currentFormation ):
-		currentFormation.resetFilters()
 
 	match currentState:
 		STATE.NONE:
@@ -87,8 +85,7 @@ func stateNone():
 	_clearAllSelections()
 
 func stateSelf():
-	if( currentEffectGroup.targetType == AbilityResource.TARGET_TYPE.SELF ):
-		currentFormation.filterAllButSelf( currentBattler.currentCharacter )
+	currentFormation.filterAllButSelf( currentBattler.currentCharacter )
 	_seekRow(-1)
 
 func stateAllyFloor():
@@ -104,10 +101,7 @@ func stateEnemyFloor():
 
 func stateEnemyUnit():
 	currentFormation.filterValidTargetRow( currentAbility.validTargets )
-	print( currentFormation.filteredPos )
 	currentFormation.filterIsABattler()
-	print( currentFormation.filteredPos )
-	# currentFormation.filterIsABattler()
 	_seekRow( -1 )
 
 func _clearAllSelections():
@@ -168,9 +162,9 @@ func enemyCursorInput(_ev : InputEvent):
 	elif( _ev.is_action_pressed("ui_right")):
 		_seekRow( -1 )
 	elif( _ev.is_action_pressed("ui_up")):
-		_seekColumn( -1 )
-	elif ( _ev.is_action_pressed("ui_down")):
 		_seekColumn( 1 )
+	elif ( _ev.is_action_pressed("ui_down")):
+		_seekColumn( -1 )
 		
 func _seekColumn( direction : int ):
 	var seek : Vector2 = Vector2( direction + cursorLocation.x , cursorLocation.y )
@@ -225,22 +219,34 @@ func testLocation( x : int , y: int):
 		return false
 		
 func _moveCursor( newLocation : Vector2 ):
-	# Clear all my current tiles
 	_clearAllSelections()
 
 	cursorLocation = newLocation
 	var newTile = currentTilemap[int(cursorLocation.x)][int(cursorLocation.y)]
 	set_cell( int(newTile.x) , int(newTile.y) , HIGHLIGHT_CELL_INDEX)
 
+	var areaMatrix = AbilityResource.TARGET_MATRIX[currentEffectGroup.targetArea]
+	var highlightTargets = []
+
+	for x in range(0 , areaMatrix.size()):
+		for y in range(0, areaMatrix[x].size()):
+			if( x == 1 && y == 1): # Center box already highlighted.
+				continue
+			
+			if( areaMatrix[x][y] == 1 ):
+				var newHighlight = cursorLocation + Vector2( x - 1 , y - 1 ) # Offset the array index to make it a true vector from the center square
+				
+				# Any 'highlights' that fall of the map should be dropped so we don't get array out of bounds.
+				if( newHighlight.x < 3 && newHighlight.x >= 0 && newHighlight.y < 5 && newHighlight.y >= 0):
+					highlightTargets.append( newHighlight )
+	
+	for target in highlightTargets:
+		var tile = currentTilemap[int(target.x)][int(target.y)]
+		set_cell( int(tile.x) , int(tile.y) , HIGHLIGHT_CELL_INDEX)
+
+	currentEffectGroup.selectedTarget = cursorLocation
 	var targetString = currentFormation.getStringAtLocation( cursorLocation )
 	emit_signal("selection_change", cursorLocation , targetString )
-
-	# Based on newTile location :
-	#	Get the area
-	# 	Highlight all areas as well
-
-	
-
 
 
 

@@ -1,31 +1,20 @@
 extends TitansResource
 class_name EffectResource
 
+const TYPES = {
+	"MOVEMENT" : "MOVEMENT" , "DAMAGE" : "DAMAGE" , "HEALING" : "HEALING" , "PASSIVE" : "PASSIVE"
+}
+
 var key : String
+var parentAbility = null
+var type : String = ""
+var animation = null
 
-const TARGET_AREA = {
-	"SINGLE" : "SINGLE" ,"COLUMN" : "COLUMN", "ROW" : "ROW" , "CROSS" : "CROSS", "ALL" :  "ALL"
-}
 
-const TARGET_MATRIX = {
-	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 0 , 0] , [0 ,0 ,0]],
-	TARGET_AREA.COLUMN : [[0 , 1 , 0] , [0 , 1 , 0] , [0 ,1 ,0]],
-	TARGET_AREA.ROW    : [[0 , 1 , 0] , [0 , 1,  0 ] , [0 , 1 , 0]],
-	TARGET_AREA.CROSS  : [[0 , 1 , 0] , [1 , 1 , 1 ] , [0 , 1 , 0]],
-	TARGET_AREA.ALL    : [[1 , 1 , 1] , [1 , 1 , 1] , [1 , 1 , 1]]
-}
-
-# Effect State
-var effectRolls 
-
-# Effect Params
-var targetArea = TARGET_AREA.SINGLE
-var strengthPercent = 100 # Percentage effect is effective
-var toHitPercent = 100
-var alwaysHits = false
-
-var casterAnimation = "BASIC_ATTACK"
-var targetAnimation = "BASIC_DAMAGE"
+# Each subclass has it's own result inner-class that handles it's unique properties and stores data about resolved rolls.
+# Rolls are made indepenent of the target, and then compared to targets defensive values to determine amount of success.
+# A roll is only made once for each target, but it is reused inside the battlemap
+var result = null
 
 func get_class(): 
 	return "EffectResource"
@@ -33,5 +22,5 @@ func get_class():
 func is_class( name : String ): 
 	return name == "EffectResource"
 
-func getTargetMatrix():
-	return TARGET_MATRIX[targetArea]
+func rollEffect():
+	print("Ability of ", key , " is under construction!")

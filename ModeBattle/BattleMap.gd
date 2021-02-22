@@ -100,7 +100,7 @@ func setState(newState: int , ability , character ):
 		
 		STATE.EXECUTING: # When executing, start ability que again to loop through execution of actions
 			effectGroupQue = ability.getEffectGroups()
-			yield(get_tree().create_timer(1), "timeout")
+			yield(get_tree().create_timer(.25), "timeout")
 			_executeAllEffects()
 
 		STATE.NOT_FOCUS: # Set the effect group to be cleared, because ability is unselected
@@ -116,8 +116,44 @@ func findBattlerFromCharacter( character : CharacterResource ):
 
 # Utility Methods
 func _executeAllEffects():
-	print("executed effects for battler: " + currentBattler.currentCharacter.getNickName())
-	currentBattler.setTurnState( Battler.STATE.NOT_TURN )
+	effectGroupQue = currentAbility.getEffectGroups()
+	currentBattler.setTurnState( Battler.STATE.NOT_TURN , currentBattler.ANIMATION.BASIC_ATTACK )
+
+	yield(get_tree().create_timer(.25), "timeout")
+	for group in effectGroupQue:
+
+		# figure out which formation I'm targeting now.
+		var isTargetingPlayer = group.enemyOrAlly( currentBattler.currentCharacter.isPlayer )
+		var formation = playerTiles if isTargetingPlayer else enemyTiles
+
+		formation.resetFilters()
+		formation.filterByTargetArea( group.targetArea , group.selectedTarget )
+		
+		# TODO add more sophisticated filters so we can have animations target areas as well.
+		formation.filterIsABattler()
+
+		var characters = formation.getFilteredCharacters()
+		
+		for effectGroup in effectGroupQue:
+			for effect in effectGroup.effects:
+				for chr in characters:
+					var battler = findBattlerFromCharacter( chr )
+					effect.rollEffect()
+					if( battler ):
+						if effect.animation:
+							battler.executeEffectAnimation( effect.animation )
+						match effect.type:
+							"DAMAGE":
+								battler.applyDamage( effect )
+							"HEALING":
+								battler.applyHealing( effect )
+							"PASSIVE":
+								battler.applyPassive( effect )
+							"MOVEMENT":
+								battler.applyMovement( effect )
+				
+
+	yield(get_tree().create_timer(1), "timeout") # No effect should take longer than a second for now. Need to do this a better way.
 	emit_signal("abilityExecuteFinished")
 
 func _nextEffect():
@@ -130,12 +166,12 @@ func _nextEffect():
 		var isTargetingPlayer = myEffectGroup.enemyOrAlly( currentBattler.currentCharacter.isPlayer )
 		var formation = playerTiles if isTargetingPlayer else enemyTiles
 
+		print(isTargetingPlayer)
+
 		selectionMap.setState( myEffectGroup , formation , currentAbility , currentBattler )
 	else:
 		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
-		
 		selectionMap.setState()
-		
 		emit_signal( "abilitySelectFinished" )
 
 func _prevEffect():
@@ -148,7 +184,5 @@ func _prevEffect():
 		pass
 	else:
 		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
-		
 		selectionMap.setState()
-		
 		emit_signal( "abilitySelectCanceled" )

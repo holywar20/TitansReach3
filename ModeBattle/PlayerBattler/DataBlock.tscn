@@ -20,18 +20,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DamageNumber" type="Label" parent="."]
-anchor_top = 1.875
-anchor_bottom = 1.875
-margin_left = -37.6666
-margin_top = -212.333
-margin_right = -20.6666
-margin_bottom = -198.333
-text = "99"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Name" type="Label" parent="."]
 anchor_top = 1.875
 anchor_bottom = 1.875

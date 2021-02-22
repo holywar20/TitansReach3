@@ -1,9 +1,11 @@
 extends TitansResource
 class_name AbilityResource
 
+# TODO Need to put this into JSON or a database
 var masterEffectData = {
 	"DEFEND" : { # Passive abilities will mirror the character and be swapped in as a mod, 1 for 1.
 		"type" : "PASSIVE",
+		"animation": "KINETIC_HIT",
 		"mods" : {
 			"damageReduction" : {
 				"THERMAL" : 20 ,
@@ -15,15 +17,22 @@ var masterEffectData = {
 	},
 	"MOVE_ANYWHERE" : {
 		"type" : "MOVEMENT",
-		"allowedDirection" : "ANY",
-		"allowedRange" : 5
+		"animation" : "KINETIC_HIT",
+		"movementSubtype" : "ANY",
+		"movementAmount" : 5
 	},
 	"KINETIC_ATTACK_EFFECT" : {
 		"type" : "DAMAGE",
-		"animation" : "unset",
+		"animation" : "KINETIC_HIT",
 		"dmgType" : "KINETIC",
 		"dmgHi" : 3,
 		"dmgLo" : 5
+	},
+	"HEAL_EFFECT" :{
+		"type" : "HEALING",
+		"animation" : "KINETIC_HIT",	
+		"healLo" : 4,
+		"healHi" : 8
 	}
 }
 const TARGET_AREA = {
@@ -36,13 +45,23 @@ const ABILITY_TYPE = {
 	"ACTION" : "ACTION" , "STANCE" : "STANCE" , "INSTANT" : "INSTANT"
 }
 
+enum PATH {
+	DEFAULT
+}
+
+const FILES = {
+	PATH.DEFAULT : "res://Generators/Data/Abilities/default.json"
+}
+
 const TARGET_MATRIX = {
 	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 1 , 0] , [0 ,0 ,0]],
 	TARGET_AREA.COLUMN : [[0 , 1 , 0] , [0 , 1 , 0] , [0 ,1 ,0]],
-	TARGET_AREA.ROW    : [[0 , 0 , 0] , [1 , 1,  1 ] , [0 , 0 , 0]],
+	TARGET_AREA.ROW    : [[0 , 0 , 0] , [1 , 1,  1] , [0 , 0 , 0]],
 	TARGET_AREA.CROSS  : [[0 , 1 , 0] , [1 , 1 , 1 ] , [0 , 1 , 0]],
 	TARGET_AREA.ALL    : [[1 , 1 , 1] , [1 , 1 , 1] , [1 , 1 , 1]]
 }
+
+var parentCharacter
 
 var key : String
 var fullName : String
@@ -66,6 +85,8 @@ class EffectGroup:
 	var targetArea : String = TARGET_AREA.SINGLE
 	var effects : Array = []
 	
+	var selectedTarget : Vector2 = Vector2.ZERO # This is populated dynamically
+
 	func enemyOrAlly( isPlayerUsing : bool ):
 		var targetsPlayer : bool
 
@@ -86,14 +107,14 @@ class EffectGroup:
 		
 		return targetsPlayer
 	
-
 func get_class(): 
 	return "AbilityResource"
 
 func is_class( name : String ): 
 	return name == "AbilityResource"
 
-func _init( newKey : String , jsonFileName : String ):
+func _init( newKey : String , filePath : int , character ):
+	parentCharacter = character
 	key = newKey
 	fillableProps = [
 		"fullName" , 
@@ -110,7 +131,7 @@ func _init( newKey : String , jsonFileName : String ):
 	]
 	
 	var abilityFile = File.new()
-	abilityFile.open( jsonFileName , File.READ)
+	abilityFile.open( FILES[filePath] , File.READ)
 	var abilityTable = parse_json( abilityFile.get_as_text() )
 	abilityFile.close()
 
@@ -124,6 +145,8 @@ func _init( newKey : String , jsonFileName : String ):
 func _makeEffects( newEffectGroups : Array ):
 	for effectGroupData in newEffectGroups:
 		var newEffectGroup = EffectGroup.new()
+		
+		newEffectGroup.targetArea = effectGroupData['targetArea']
 		newEffectGroup.targetType = effectGroupData['targetType']
 
 		for effectKey in effectGroupData['effectKeys']:
@@ -132,11 +155,13 @@ func _makeEffects( newEffectGroups : Array ):
 
 			match myEffectData['type']:
 				"DAMAGE":
-					newEffect = DamageEffectResource.new( myEffectData , effectKey )
+					newEffect = DamageEffectResource.new( myEffectData , effectKey , self )
 				"MOVEMENT":
-					newEffect = MoveEffectResource.new( myEffectData , effectKey )
+					newEffect = MoveEffectResource.new( myEffectData , effectKey , self )
 				"PASSIVE" :
-					newEffect = PassiveEffectResource.new( myEffectData , effectKey )
+					newEffect = PassiveEffectResource.new( myEffectData , effectKey , self )
+				"HEALING":
+					newEffect = HealEffectResource.new( myEffectData, effectKey , self )
 		
 			newEffectGroup.effects.append(newEffect)
 		effectGroups.append(newEffectGroup)

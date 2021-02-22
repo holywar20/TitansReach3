@@ -45,7 +45,7 @@ _global_script_classes=[ {
 "path": "res://Resources/Formation/Formation.gd"
 }, {
 "base": "EffectResource",
-"class": "HealEffect",
+"class": "HealEffectResource",
 "language": "GDScript",
 "path": "res://Resources/Abilities/HealEffect.gd"
 }, {
@@ -107,7 +107,7 @@ _global_script_class_icons={
 "DamageEffectResource": "",
 "EffectResource": "",
 "FormationResource": "",
-"HealEffect": "",
+"HealEffectResource": "",
 "MoveEffectResource": "",
 "PassiveEffectResource": "",
 "PlanetResource": "",

@@ -39,11 +39,123 @@
 		"validFrom" : [0 ,1, 2],
 		"alwaysHits" : false,
 		"iconPath" : "res://AssettsImage/AbilityIcons/pistol.png",
+		"targetAreaShown": "SINGLE",
+		"description" : "A common 12mm Pistol, with armor peircing rounds.",
+		"effectGroups" : [{
+			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "SINGLE",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
+	},
+	"TERRAN_HAMMER_ATTACK" : {
+		"fullName" : "Terran Hammer",
+		"shortName" : "Hammer",
+		"abilityType" : "ACTION",
+		"validTargets" : [0],
+		"validFrom" : [0],
+		"alwaysHits" : false,
+		"iconPath" : "res://AssettsImage/AbilityIcons/hammer.png",
+		"targetAreaShown": "ROW",
+		"description" : "A huge hammer wreathed in an energy field that destablizes matter it comes into contact with.",
+		"effectGroups" : [{
+			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "ROW",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
+	},
+	"TERRAN_SHOTGUN_ATTACK" : {
+		"fullName" : "Terran Shotgun",
+		"shortName" : "Pistol",
+		"abilityType" : "ACTION",
+		"validTargets" : [0],
+		"validFrom" : [0, 1],
+		"alwaysHits" : false,
+		"iconPath" : "res://AssettsImage/AbilityIcons/shotgun.png",
+		"targetAreaShown": "COLUMN",
+		"description" : "Combat shotgun that utilizes heavy depleted Uranium penatrating slugs. Effective against cover.",
+		"effectGroups" : [{
+			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "COLUMN",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
+	},
+	"TERRAN_SWORD_ATTACK" : {
+		"fullName" : "Terran Sword Attack",
+		"shortName" : "Pistol",
+		"abilityType" : "ACTION",
+		"validTargets" : [0],
+		"validFrom" : [0],
+		"alwaysHits" : false,
+		"iconPath" : "res://AssettsImage/AbilityIcons/sword.png",
+		"targetAreaShown": "SINGLE",
+		"description" : "A mono-molecular edged calvery saber style blade, used by officers in most major navies.",
+		"effectGroups" : [{
+			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "SINGLE",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
+	},
+	"TERRAN_RIFLE_ATTACK" : {
+		"fullName" : "Terran Rifle Attack",
+		"shortName" : "Rifle",
+		"abilityType" : "ACTION",
+		"validTargets" : [1, 2],
+		"validFrom" : [1, 2],
+		"alwaysHits" : false,
+		"iconPath" : "res://AssettsImage/AbilityIcons/rifle.png",
+		"targetAreaShown": "SINGLE",
+		"description" : "A heavy ballistic assault rifle that fires armor peircing bullets.",
+		"effectGroups" : [{
+			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "SINGLE",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
+	},
+	"TERRAN_MINIGUN_ATTACK" : {
+		"fullName" : "Terran Minigun",
+		"shortName" : "Frag",
+		"abilityType" : "ACTION",
+		"validTargets" : [0],
+		"validFrom" : [0, 1],
+		"alwaysHits" : false,
+		"iconPath" : "res://AssettsImage/AbilityIcons/minigun.png",
 		"targetAreaShown": "ROW",
 		"description" : "A common 9mm Pistol, with armor peircing rounds.",
 		"effectGroups" : [{
 			"targetType" : "ENEMY_UNIT",
+			"targetArea" : "ROW",
+			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
+		}]
+	},
+	"HEALTHKIT_ATTACK" : {
+		"fullName" : "Medical Kit",
+		"shortName" : "Medkit",
+		"abilityType" : "ACTION",
+		"validTargets" : [],
+		"validFrom" : [0, 1, 2],
+		"alwaysHits" : true,
+		"iconPath" : "res://AssettsImage/AbilityIcons/healthkit.png",
+		"targetAreaShown": "SINGLE",
+		"description" : "A Consumable medical kit which provides a small amount of healing",
+		"effectGroups" : [{
+			"targetType" : "ALLY_UNIT",
 			"targetArea" : "SINGLE",
+			"effectKeys" : ["HEAL_EFFECT"]	
+		}]
+	},
+	"TERRAN_FRAG_GRENADE_ATTACK" : {
+		"fullName" : "Terran Frag Grenade",
+		"shortName" : "Frag",
+		"abilityType" : "ACTION",
+		"validTargets" : [0, 1, 2],
+		"validFrom" : [0, 1, 2],
+		"alwaysHits" : false,
+		"iconPath" : "res://AssettsImage/AbilityIcons/frag.png",
+		"targetAreaShown": "CROSS",
+		"description" : "An old-fashioned A fragmentation grenade, designed for breeching cover.",
+		"effectGroups" : [{
+			"targetType" : "ENEMY_FLOOR",
+			"targetArea" : "CROSS",
 			"effectKeys" : ["KINETIC_ATTACK_EFFECT"]	
 		}]
 	}

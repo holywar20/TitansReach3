@@ -65,14 +65,35 @@ func generateNewCrew( cp = 30 , isPlayer : bool = false ):
 # TODO add special abilities
 func _rollTalents( myCrewman : CharacterResource ):
 	
-	var reposition = AbilityResource.new( "REPOSITION" , "res://Generators/Data/Abilities/default.json")
+	var reposition = AbilityResource.new( "REPOSITION" , AbilityResource.PATH.DEFAULT, myCrewman )
 	myCrewman.addAction( reposition )
 	
-	var defend = AbilityResource.new("DEFEND" , "res://Generators/Data/Abilities/default.json")
+	var defend = AbilityResource.new("DEFEND" , AbilityResource.PATH.DEFAULT, myCrewman )
 	myCrewman.addAction( defend )
 
-	var attack = AbilityResource.new("TERRAN_PISTOL_ATTACK", "res://Generators/Data/Abilities/default.json")
+	var attack = AbilityResource.new("TERRAN_PISTOL_ATTACK", AbilityResource.PATH.DEFAULT, myCrewman)
 	myCrewman.addAction( attack )
+
+	var hammer = AbilityResource.new("TERRAN_HAMMER_ATTACK" , AbilityResource.PATH.DEFAULT , myCrewman)
+	myCrewman.addAction( hammer )
+	
+	var shotgun = AbilityResource.new("TERRAN_SHOTGUN_ATTACK" , AbilityResource.PATH.DEFAULT, myCrewman)
+	myCrewman.addAction( shotgun )
+	
+	var sword = AbilityResource.new("TERRAN_SWORD_ATTACK" , AbilityResource.PATH.DEFAULT , myCrewman)
+	myCrewman.addAction( sword )
+	
+	var rifle = AbilityResource.new("TERRAN_RIFLE_ATTACK" , AbilityResource.PATH.DEFAULT, myCrewman)
+	myCrewman.addAction( rifle )
+
+	var minigun = AbilityResource.new("TERRAN_MINIGUN_ATTACK" , AbilityResource.PATH.DEFAULT, myCrewman)
+	myCrewman.addAction( minigun )
+	
+	var health = AbilityResource.new("HEALTHKIT_ATTACK" , AbilityResource.PATH.DEFAULT , myCrewman)
+	myCrewman.addAction( health )
+	
+	var frag = AbilityResource.new("TERRAN_FRAG_GRENADE_ATTACK" , AbilityResource.PATH.DEFAULT, myCrewman)
+	myCrewman.addAction( frag )
 
 	return myCrewman
 

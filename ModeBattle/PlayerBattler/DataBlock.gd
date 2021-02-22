@@ -16,8 +16,6 @@ const CHARGE_BAR_POSITION = {
 	"ENEMY"  : Vector2(0, -100)
 }
 
-onready var damageNumber : Label = $DamageNumber
-
 func updateData( character : CharacterResource ):
 	nameLabel.set_text( character.getNickName() )
 

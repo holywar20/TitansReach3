@@ -81,6 +81,15 @@ func getStringAtLocation( loc : Vector2 ) -> String:
 
 	return myString
 
+func isCharacterResource( loc : Vector2 ) -> bool:
+	var isValid = false
+	
+	if typeof(positions[loc.x][loc.y]) == TYPE_OBJECT:
+		if positions[loc.x][loc.y].is_class("CharacterResource"):
+			isValid = true
+
+	return isValid
+	
 
 # Formation Filters. Use these methods to modify filteredPos
 # Filters out any target that isn't in the valid row
@@ -96,26 +105,63 @@ func filterValidTargetRow( validTargets : Array ):
 func filterIsABattler():
 	for x in range(0 , filteredPos.size() ):
 		for y in range(0 , filteredPos[x].size() ):
-			if( typeof(filteredPos[x][y]) == TYPE_OBJECT):
-				if( filteredPos[x][y].is_class("CharacterResource") ):
-					continue
-				else:
-					filteredPos[x][y] = false # Object, but not battler
+			if isCharacterResource( Vector2(x , y) ):
+				continue # We are a character, so accept what is there.
 			else:
-				filteredPos[x][y] = false # Not an object, so can't be battler.
+				filteredPos[x][y] = false
+
+func filterByTargetArea( targetArea : String , targetLoc : Vector2 ):	
+	var targetMatrix = AbilityResource.TARGET_MATRIX[targetArea]
+	
+	# First, build a list of space actually under the target area. 
+	var validSquares : Array = []
+	for x in range(0 , targetMatrix.size()):
+		for y in range(0, targetMatrix[x].size()):
+			if( !targetMatrix[x][y]):
+				continue # This is not included in the targeting solution. So discard. 
+
+			# Get a clamped values to prevent out of bounds areas. Calculate where in target we are going.
+			var realTarget = targetLoc + Vector2(-1, -1) + Vector2( x , y)
+			if( realTarget.x >= 3 || realTarget.y >= 5 || realTarget.x < 0 || realTarget.y < 0):
+				continue
+			else:
+				validSquares.append( realTarget )
+
+	for x in range(0 , filteredPos.size() ):
+		for y in range(0 , filteredPos[x].size() ):
+			if validSquares.has( Vector2( x , y ) ) && isCharacterResource( Vector2(x, y) ):
+				continue # We are in the targeting Array AND we are a character. Accept as valid.
+			else:
+				filteredPos[x][y] = false
+				
+
+
 
 # Filters out all but the current battler
 func filterAllButSelf( battler : CharacterResource ):
 	for x in range(0, filteredPos.size() ):
 		for y in range( 0, filteredPos[x].size() ):
 			if( typeof(filteredPos[x][y]) == TYPE_OBJECT ):
-				if( battler == filteredPos[x][y]):
+				print(x , " ",  y)
+				if(battler == filteredPos[x][y]):
 					continue
 				else:
 					filteredPos[x][y] = false
 			else:
 				filteredPos[x][y] = false
 
+func getFilteredCharacters() -> Array:
+	var characters = []
+	
+	for x in range(0 , filteredPos.size() ):
+		for y in range(0, filteredPos[x].size() ):
+			if( isCharacterResource( Vector2( x, y ) ) ):
+				characters.append( filteredPos[x][y] )
+
+	return characters
+
+
+# Utility
 func inverseValidTargets( validTargets : Array ) -> Array:
 	# Need to invert if not a playerFormation because of how rows are counted
 	var inverseValidTargets = []
@@ -128,5 +174,4 @@ func inverseValidTargets( validTargets : Array ) -> Array:
 			2 :
 				inverseValidTargets.append(0)
 	return inverseValidTargets
-
 

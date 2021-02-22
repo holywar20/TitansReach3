@@ -3,7 +3,22 @@ class_name Battler
 
 var currentCharacter : CharacterResource
 onready var characterSprite : Sprite = $Sprite
+
 onready var dataBlock : Control = $Data
+onready var effectBase : Node2D = $Effects 
+
+onready var animationTree = $SpritePlayer/AnimationTree
+onready var animationState = animationTree.get("parameters/playback")
+
+const EFFECTS = {
+	"KINETIC_HIT" : "KINETIC_HIT" 
+}
+
+var effectData = {
+	EFFECTS.KINETIC_HIT : { 
+		"scene" : "res://Effects/KineticHit/KineticHit.tscn"
+	} 
+}
 
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
@@ -43,6 +58,11 @@ enum STATE {
 	TURN, NOT_TURN
 }
 
+# Maps to states in the Animation Tree of player & enemy battler
+const ANIMATION = {
+	"BASIC_ATTACK" : "BASIC_ATTACK" , "IDLE" : "IDLE" #TODO need a take damage animation
+}
+
 var currentFormationLocation = Vector2(0,0)
 var highlightState = HIGHLIGHT.NONE
 var turnState = STATE.NOT_TURN
@@ -53,6 +73,11 @@ func get_class():
 
 func is_class( name : String ): 
 	return name == "Battler"
+
+
+func _ready():
+	animationTree.active = true
+	animationState.start("IDLE")
 
 func setupScene( newCharacter : CharacterResource , newLocation : Vector2 ):
 	currentCharacter = newCharacter
@@ -98,14 +123,34 @@ func setHighlightState( state : int ):
 	else:
 		_updateShader( highlightShaderParams[highlightState] )
 
-func setTurnState( state : int ):
+func setTurnState( state : int , turnEndAnimation : String = ANIMATION.IDLE ):
 	turnState = state
 	
 	match turnState:
 		STATE.TURN:
-			pass
+			animationState.travel("READY_TO_ATTACK")
 		STATE.NOT_TURN:
-			pass
+			# Most of the time when a turn ends, user is doing something interesting. Do that animation here.
+			animationState.travel(turnEndAnimation)
 
 	# Set highlight state to the same highlightState to change any shaders or effects that we might care about.
 	setHighlightState( highlightState )
+
+func executeEffectAnimation( effectKey : String ):
+	var myEffectData = effectData[effectKey]
+	var effectScene = load(myEffectData.scene)
+
+	var effectInstance = effectScene.instance()
+	effectBase.add_child(effectInstance)
+
+func applyDamage( result : DamageEffectResource.Result ):
+	print("applying damage")
+
+func applyHealing( result : HealEffectResource.Result ):
+	print("applying healing")
+
+func applyPassive( result : PassiveEffectResource.Result ):
+	print("applying mods")
+
+func applyMovement( result : MoveEffectResource.Result ):
+	print("applying movement")

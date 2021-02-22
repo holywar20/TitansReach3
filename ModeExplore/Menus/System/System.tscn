@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ModeExplore/Menus/Assignments/Assignments.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/Menus/System/System.gd" type="Script" id=1]
 
-[node name="Assignments" type="Panel" groups=[
+[node name="System" type="Panel" groups=[
 "MAIN_MENU",
 ]]
 margin_right = 1274.0
@@ -21,10 +21,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tripane"]
-margin_right = 83.0
 margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="Tripane/VBoxContainer"]
-margin_right = 83.0
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
 margin_bottom = 14.0
-text = "Assignments"
+text = "SYSTEM"

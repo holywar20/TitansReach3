@@ -14,6 +14,49 @@ onready var closeParticles : CPUParticles2D = $Background/StarfieldClose/CPUPart
 onready var midParticles : CPUParticles2D = $Background/StarfieldMid/CPUParticles2D
 onready var farParticles : CPUParticles2D = $Background/StarfieldUnder/CPUParticles2D
 
+# Menu Management 
+onready var startFocusButton : Button = $UI/TopPanel/ButtonBar/CrewButton
+onready var mainContainer : VBoxContainer = $UI/Dropdown/Main
+onready var dropdown : Panel = $UI/Dropdown
+onready var title : Label = $UI/Dropdown/Main/TitleRow/Label
+
+const NODE_GROUP_MAIN_MENU = "MAIN_MENU"
+
+enum MENU_BUTTONS {
+	CREW, CREW_ASSIGNMENT, STARSHIP, CARGO , STARMAP, SYSTEM, TRADE 
+}
+
+const MENUS = {
+	MENU_BUTTONS.CREW : { 
+		"scene" : "res://ModeExplore/Menus/Crew/Crew.tscn",
+		"title" : "Medical"
+	},
+	MENU_BUTTONS.CREW_ASSIGNMENT : {
+		"scene" : "res://ModeExplore/Menus/Assignments/Assignments.tscn",
+		"title" : "Postings"
+	},
+	MENU_BUTTONS.STARSHIP : {
+		"scene" : "res://ModeExplore/Menus/Starship/Starship.tscn",
+		"title" : "Engineering"
+	},
+	MENU_BUTTONS.CARGO : {
+		"scene" : "res://ModeExplore/Menus/Cargo/Cargo.tscn",
+		"title" : "Cargohold"
+	},
+	MENU_BUTTONS.STARMAP : {
+		"scene" : "res://ModeExplore/Menus/Starmap/Starmap.tscn",
+		"title" : "Starmap"
+	},
+	MENU_BUTTONS.SYSTEM : {
+		"scene" : "res://ModeExplore/Menus/System/System.tscn",
+		"title" : "Sensors"
+	},
+	MENU_BUTTONS.TRADE : {
+		"scene" : "res://ModeExplore/Menus/Trade/Trade.tscn",
+		"title" : "Markets"
+	}	
+}
+
 # Various fudge factors for managing the relationship between 2d & 3d elements
 const SCALE_2DTO3D_FACTOR = 1000
 const PARTICLE_SPEED_FACTOR = .1
@@ -29,6 +72,8 @@ func setupScene( aSeed : int ) -> void:
 	mySeed = aSeed
 	thisSystem = systemGenerator.generateEntireSystem( mySeed )
 	myCrew = crewGenerator.generateManyCrew(30 , 10)
+
+	startFocusButton.grab_focus()
 
 func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , angularVelocity : float , shipRotation : float):
 	_move3dCamera( newPosition )
@@ -57,3 +102,47 @@ func _move3dCamera( position : Vector2 ):
 	var translatedVector3 = Vector3(x , viewPortCamPos.y  ,y)
 	
 	viewPortCamera.set_translation( translatedVector3 )
+
+
+# Top Menu Buttons
+func loadMenuButton( buttonIdx : int ):
+	
+	
+	for child in get_tree().get_nodes_in_group( NODE_GROUP_MAIN_MENU ):
+		child.queue_free()
+	
+	var menuScene = load( MENUS[buttonIdx].scene )
+	var sceneInstance : Panel = menuScene.instance()
+	sceneInstance.setupScene()
+	mainContainer.add_child( sceneInstance )
+
+	title.set_text( MENUS[buttonIdx].title )
+	dropdown.show()
+	
+
+func _on_CrewButton_pressed():
+	loadMenuButton( MENU_BUTTONS.CREW  )
+
+func _on_CrewAssignment_pressed():
+	loadMenuButton( MENU_BUTTONS.CREW_ASSIGNMENT)
+
+func _on_Starship_pressed():	
+	loadMenuButton( MENU_BUTTONS.STARSHIP)
+
+func _on_Cargo_pressed():	
+	loadMenuButton( MENU_BUTTONS.CARGO )
+
+func _on_Starmap_pressed():	
+	loadMenuButton( MENU_BUTTONS.STARMAP )
+
+func _on_System_pressed():
+	loadMenuButton( MENU_BUTTONS.SYSTEM )
+
+func _on_Trade_pressed():
+	loadMenuButton( MENU_BUTTONS.TRADE )
+
+func _on_closeButton_pressed():
+	dropdown.hide()
+	
+	for child in get_tree().get_nodes_in_group( NODE_GROUP_MAIN_MENU ):
+		child.queue_free()

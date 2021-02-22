@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://ModeExplore/Celestials/Planet/Planet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://AssettsImage/Interface/SmallConverganceTarget.png" type="Texture" id=8]
-[ext_resource path="res://ModeExplore/Menus/Assignments/Assignments.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ModeExplore/UI.gd" type="Script" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.5, 1 )
@@ -17,6 +17,11 @@ colors = PoolColorArray( 0.0392157, 0.839216, 0.133333, 1, 0.905882, 0.215686, 0
 [sub_resource type="Environment" id=2]
 background_energy = 0.0
 ambient_light_energy = 0.0
+
+[sub_resource type="InputEventJoypadButton" id=3]
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
 
 [node name="Explore" type="Node2D"]
 script = ExtResource( 1 )
@@ -136,6 +141,7 @@ hue_variation = 1.0
 hue_variation_random = 1.0
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
 
 [node name="Minimap" type="PanelContainer" parent="UI"]
 anchor_left = 1.0
@@ -150,35 +156,44 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 430.0
-margin_bottom = 445.0
+margin_bottom = 435.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/Minimap/VBox"]
 margin_right = 423.0
-margin_bottom = 24.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [node name="Label" type="Label" parent="UI/Minimap/VBox/HBoxContainer2"]
-margin_top = 5.0
-margin_right = 395.0
-margin_bottom = 19.0
+margin_right = 290.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
+size_flags_vertical = 7
 text = "{ STAR_SYSTEM } : { STAR_SECTOR } : { SLEVEL }"
+align = 1
+valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="UI/Minimap/VBox/HBoxContainer2"]
-margin_left = 399.0
+[node name="TextureRect" type="TextureButton" parent="UI/Minimap/VBox/HBoxContainer2"]
+margin_left = 294.0
 margin_right = 423.0
-margin_bottom = 24.0
-texture = ExtResource( 8 )
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 3
 
 [node name="Map" type="Panel" parent="UI/Minimap/VBox"]
-margin_top = 28.0
+margin_top = 18.0
 margin_right = 423.0
-margin_bottom = 348.0
+margin_bottom = 338.0
 rect_min_size = Vector2( 0, 320 )
 
 [node name="VBox" type="VBoxContainer" parent="UI/Minimap/VBox"]
-margin_top = 352.0
+margin_top = 342.0
 margin_right = 423.0
-margin_bottom = 438.0
+margin_bottom = 428.0
 
 [node name="Data" type="HBoxContainer" parent="UI/Minimap/VBox/VBox"]
 margin_right = 423.0
@@ -293,56 +308,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBox" type="HBoxContainer" parent="UI/TopPanel"]
+[node name="ButtonBar" type="HBoxContainer" parent="UI/TopPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1477.0
 margin_bottom = 65.0
 alignment = 1
 
-[node name="Button" type="Button" parent="UI/TopPanel/HBox"]
+[node name="CrewButton" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 93.0
 margin_right = 273.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 180, 0 )
 text = "Crew Assignment"
 
-[node name="Button6" type="Button" parent="UI/TopPanel/HBox"]
+[node name="CrewAssignment" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 277.0
 margin_right = 457.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 180, 0 )
 text = "Crew Management"
 
-[node name="Button2" type="Button" parent="UI/TopPanel/HBox"]
+[node name="Starship" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 461.0
 margin_right = 641.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 180, 0 )
 text = "Starship"
 
-[node name="Button3" type="Button" parent="UI/TopPanel/HBox"]
+[node name="Cargo" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 645.0
 margin_right = 825.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 180, 0 )
 text = "Cargo"
 
-[node name="Button4" type="Button" parent="UI/TopPanel/HBox"]
+[node name="Starmap" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 829.0
 margin_right = 1009.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 180, 0 )
 text = "Starmap"
 
-[node name="Button7" type="Button" parent="UI/TopPanel/HBox"]
+[node name="System" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 1013.0
 margin_right = 1193.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 180, 0 )
 text = "System"
 
-[node name="Button5" type="Button" parent="UI/TopPanel/HBox"]
+[node name="Trade" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 1197.0
 margin_right = 1377.0
 margin_bottom = 58.0
@@ -373,7 +388,7 @@ margin_bottom = 40.0
 alignment = 1
 
 [node name="Label" type="Label" parent="UI/Dropdown/Main/TitleRow"]
-margin_right = 1246.0
+margin_right = 1154.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
@@ -382,14 +397,15 @@ align = 1
 valign = 1
 
 [node name="TextureButton" type="TextureButton" parent="UI/Dropdown/Main/TitleRow"]
-margin_left = 1250.0
+margin_left = 1158.0
 margin_right = 1274.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+shortcut = SubResource( 4 )
 texture_normal = ExtResource( 8 )
-
-[node name="Assignments" parent="UI/Dropdown/Main" instance=ExtResource( 9 )]
-margin_top = 44.0
-margin_bottom = 800.0
+expand = true
+stretch_mode = 3
 
 [node name="Anoms" type="Node2D" parent="."]
 position = Vector2( 959.851, 554.04 )
@@ -398,4 +414,13 @@ position = Vector2( 959.851, 554.04 )
 position = Vector2( 990, 540 )
 gravity_scale = 0.0
 velocityMaxForward = 1000
+[connection signal="userClosedMenu" from="UI" to="." method="_on_closeButton_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/CrewButton" to="." method="_on_CrewButton_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/CrewAssignment" to="." method="_on_CrewAssignment_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/Starship" to="." method="_on_Starship_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/Cargo" to="." method="_on_Cargo_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/Starmap" to="." method="_on_Starmap_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/System" to="." method="_on_System_pressed"]
+[connection signal="pressed" from="UI/TopPanel/ButtonBar/Trade" to="." method="_on_Trade_pressed"]
+[connection signal="pressed" from="UI/Dropdown/Main/TitleRow/TextureButton" to="." method="_on_closeButton_pressed"]
 [connection signal="PLAYER_MOVING" from="PlayerShip" to="." method="_on_PlayerShip_PLAYER_MOVING"]

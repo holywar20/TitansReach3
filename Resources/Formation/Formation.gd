@@ -142,7 +142,6 @@ func filterAllButSelf( battler : CharacterResource ):
 	for x in range(0, filteredPos.size() ):
 		for y in range( 0, filteredPos[x].size() ):
 			if( typeof(filteredPos[x][y]) == TYPE_OBJECT ):
-				print(x , " ",  y)
 				if(battler == filteredPos[x][y]):
 					continue
 				else:

@@ -40,9 +40,12 @@ signal selection_change
 
 # Bit unnusual here, but state is deteremined by effectGroup. If null, clear all data
 func setState( effectGroup = null , formation = null , ability = null , battler = null ):
-	if( currentFormation ):
-		currentFormation.resetFilters()
+	# Reset my filters as each time it's passed a formation, formation should be filtered fresh.
+	if( formation ):
+		formation.resetFilters()
 	
+	print("Formation is " , currentFormation )
+
 	currentEffectGroup = effectGroup
 	currentFormation = formation
 	currentAbility = ability
@@ -50,6 +53,8 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 	
 	cursorLocation = Vector2( 0 , 3 )
 	
+	print("effectGroup is " , effectGroup )
+
 	if( effectGroup ):
 		currentState = convertTargetingToEffectGroup(effectGroup.targetType)
 		if(formation.isPlayer):

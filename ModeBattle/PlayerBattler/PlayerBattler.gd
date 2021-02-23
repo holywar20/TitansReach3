@@ -7,6 +7,10 @@ onready var characterSprite : Sprite = $Sprite
 onready var dataBlock : Control = $Data
 onready var effectBase : Node2D = $Sprite/Effects 
 
+onready var dataPlayer = $DataPlayer
+onready var damageNumber = $DamageNumber
+
+
 onready var animationTree = $SpritePlayer/AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 
@@ -134,13 +138,13 @@ func setTurnState( state : int , turnEndAnimation : String = ANIMATION.IDLE ):
 	setHighlightState( highlightState )
 
 func executeEffectAnimation( effectKey : String ):
-	print(effectKey)
 	if( effectKey != "NONE" ):
 		var effectInstance : AnimatedSprite = effectProvider.getEffect( effectKey )
 		effectBase.add_child( effectInstance )
 
 func applyDamage( result : DamageEffectResource.Result ):
-	print("applying damage")
+	damageNumber.set_text(str(10))
+	dataPlayer.play("TAKING_DAMAGE")
 
 func applyHealing( result : HealEffectResource.Result ):
 	print("applying healing")

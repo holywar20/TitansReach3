@@ -19,6 +19,12 @@ func _init( damageEffectData : Dictionary , newKey : String , ability ):
 	key = newKey
 	parentAbility = ability
 
+	if( "effectMod" in damageEffectData ):
+		toEffectMod = damageEffectData.effectMod
+	
+	if( "toHitMod" in damageEffectData ):
+		toHitMod = damageEffectData.effectMod
+
 	if damageEffectData.effectAnimation:
 		effectAnimation = damageEffectData.effectAnimation
 	else:

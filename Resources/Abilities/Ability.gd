@@ -45,6 +45,13 @@ const ABILITY_TYPE = {
 	"ACTION" : "ACTION" , "STANCE" : "STANCE" , "INSTANT" : "INSTANT"
 }
 
+const TO_HIT_TRAIT = {
+	"ALWAYS" : "ALWAYS" , "DEX" : "DEX" , "STR" : "STR" , "PER" : "PER" , "INT" : "INT" , "CHA" : "CHA"
+}
+const TO_EFFECT_TRAIT = {
+	"NONE" : "NONE" , "DEX" : "DEX" , "STR" : "STR" , "PER" : "PER" , "INT" : "INT" , "CHA" : "CHA"
+}
+
 enum PATH {
 	DEFAULT
 }
@@ -102,6 +109,7 @@ class EffectGroup:
 			TARGET_TYPE.ENEMY_UNIT:
 				targetsPlayer = false
 		
+		# If the ability user isn't a player, flip the logic
 		if( !isPlayerUsing ):
 			targetsPlayer = !targetsPlayer
 		

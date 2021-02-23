@@ -1,23 +1,24 @@
 extends EffectResource
 class_name HealEffectResource
 
-var healLo = 0
-var healHi = 0
-
 func _init( healEffectData : Dictionary , newKey : String , ability ):
 	# From Effect Resource 
 	type = EffectResource.TYPES.HEALING
 	key = newKey
+	
 	parentAbility = ability 
+
+	if( "toEffectMod" in healEffectData ):
+		toEffectMod = healEffectData.toEffectMod
+	
+	if( "toHitMod" in healEffectData ):
+		toHitMod = healEffectData.toHitMod
 
 	if healEffectData.effectAnimation:
 		effectAnimation = healEffectData.effectAnimation
 	else:
 		effectAnimation = EffectResource.NO_ANIMATION
-	
-	healLo = healEffectData.healLo
-	healHi = healEffectData.healHi
-	
+
 class Result:
 	var toHitTotal : int = 0
 	var dmgRoll : int = 0
@@ -30,3 +31,4 @@ func is_class( name : String ):
 
 func rollEffect():
 	var result = Result.new()
+	# var baseDmg = randDiffValues(healLo, healHi)

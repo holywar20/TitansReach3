@@ -10,7 +10,8 @@ var key : String
 var parentAbility = null
 var type : String = ""
 var effectAnimation : String = NO_ANIMATION
-
+var toEffectMod = 1
+var toHitMod = 1
 
 # Each subclass has it's own result inner-class that handles it's unique properties and stores data about resolved rolls.
 # Rolls are made indepenent of the target, and then compared to targets defensive values to determine amount of success.

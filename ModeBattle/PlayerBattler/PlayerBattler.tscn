@@ -1,12 +1,55 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://AssettsImage/Tilemaps/isoblank.png" type="Texture" id=1]
 [ext_resource path="res://ModeBattle/PlayerBattler/PlayerBattler.gd" type="Script" id=2]
 [ext_resource path="res://ModeBattle/PlayerBattler/DataBlock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ModeBattle/PlayerBattler/AnimationBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Generators/EffectProvider/EffectProvider.gd" type="Script" id=5]
+[ext_resource path="res://ModeBattle/PlayerBattler/DataPlayer.tscn" type="PackedScene" id=6]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "TAKING_DAMAGE"
+length = 2.5
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("DamageNumber:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DamageNumber:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 1.5, 2.5 ),
+"transitions": PoolRealArray( 0.0824693, 5.46416, 0.554785 ),
+"update": 0,
+"values": [ Vector2( 16, -200 ), Vector2( 30, -250 ), Vector2( 32, -150 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DamageNumber:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.75, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.675702 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
 [node name="Battler" type="Node2D" groups=[
 "BATTLER",
@@ -17,12 +60,13 @@ script = ExtResource( 2 )
 [node name="EffectProvider" type="Node" parent="."]
 script = ExtResource( 5 )
 
-[node name="DataPlayer" type="AnimationPlayer" parent="."]
+[node name="DataPlayer" parent="." instance=ExtResource( 6 )]
 
 [node name="SpritePlayer" parent="." instance=ExtResource( 4 )]
+anims/TAKING_DAMAGE = SubResource( 1 )
 
 [node name="AnimationTree" parent="SpritePlayer" index="0"]
-parameters/playback = SubResource( 1 )
+parameters/playback = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 0.998761, 0.998761, 1 )
@@ -36,10 +80,11 @@ position = Vector2( 0, 75 )
 
 [node name="DamageNumber" type="Label" parent="."]
 visible = false
-margin_left = 16.0
-margin_top = -200.0
-margin_right = 42.0
-margin_bottom = -186.0
+self_modulate = Color( 1, 1, 1, 0.675702 )
+margin_left = 32.0
+margin_top = -150.0
+margin_right = 58.0001
+margin_bottom = -136.0
 rect_scale = Vector2( 2, 2 )
 custom_colors/font_color = Color( 0.956863, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

@@ -2,10 +2,12 @@
 	"REPOSITION" : {
 		"fullName" : "Reposition",
 		"shortName" : "Reposition",
-		"abilityType" : "ACTION",
+		"abilityType" : "MOVEMENT",
 		"validTargets" : [],
 		"validFrom" : [0,1,2],
-		"alwaysHits": true,
+		
+		"toHitTrait" : "ALWAYS",
+
 		"iconPath" : "res://AssettsImage/AbilityIcons/move.png",
 		"targetAreaShown": "SINGLE",
 		"description" : "Move anywhere on the map that isn't blocked.",
@@ -18,10 +20,12 @@
 	"DEFEND" : {
 		"fullName" : "Defend",
 		"shortName" : "Defend",
-		"abilityType" : "ACTION",
+		"abilityType" : "STANCE",
 		"validTargets" : [],
 		"validFrom" : [0,1,2],
-		"alwaysHits": true,
+		
+		"toHitTrait" : "ALWAYS",
+		
 		"iconPath" : "res://AssettsImage/AbilityIcons/defend.png",
 		"targetAreaShown": "SINGLE",
 		"description" : "Reduces incoming damage from all damage types by 35%",
@@ -37,10 +41,16 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [0, 1],
 		"validFrom" : [0 ,1, 2],
-		"alwaysHits" : false,
+		
+		"toHitTrait" : "DEX",
+		"toHitBase" : 80,
+		"toPowerTrait" : "PER",
+		"powerBaseHi" : 3,
+		"powerBaseLo" : 6,
+
 		"iconPath" : "res://AssettsImage/AbilityIcons/pistol.png",
 		"targetAreaShown": "SINGLE",
-		"description" : "A common 12mm Pistol, with armor peircing rounds.",
+		"description" : "A common 15mm Pistol, loaded with up to 6 explosives rounds.",
 		"effectGroups" : [{
 			"targetType" : "ENEMY_UNIT",
 			"targetArea" : "SINGLE",
@@ -53,7 +63,13 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [0],
 		"validFrom" : [0],
-		"alwaysHits" : false,
+
+		"toHitTrait" : "STR",
+		"toHitBase" : 70,
+		"toPowerTrait" : "STR",
+		"powerBaseHi" : 5,
+		"powerBaseLo" : 7,
+
 		"iconPath" : "res://AssettsImage/AbilityIcons/hammer.png",
 		"targetAreaShown": "ROW",
 		"description" : "A huge hammer wreathed in an energy field that destablizes matter it comes into contact with.",
@@ -69,10 +85,16 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [0],
 		"validFrom" : [0, 1],
-		"alwaysHits" : false,
+		
+		"toHitTrait" : "STR",
+		"toHitBase" : 80,
+		"toPowerTrait" : "PER",
+		"powerBaseHi" : 6,
+		"powerBaseLo" : 9,
+		
 		"iconPath" : "res://AssettsImage/AbilityIcons/shotgun.png",
 		"targetAreaShown": "COLUMN",
-		"description" : "Combat shotgun that utilizes heavy depleted Uranium penatrating slugs. Effective against cover.",
+		"description" : "Combat shotgun that utilizes heavy depleted Uranium penatrating slugs that deform and bloom on impact. Effective against cover.",
 		"effectGroups" : [{
 			"targetType" : "ENEMY_UNIT",
 			"targetArea" : "COLUMN",
@@ -85,7 +107,13 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [0],
 		"validFrom" : [0],
-		"alwaysHits" : false,
+
+		"toHitTrait" : "DEX",
+		"toHitBase" : 80,
+		"toPowerTrait" : "STR",
+		"powerBaseHi" : 6,
+		"powerBaseLo" : 9,
+
 		"iconPath" : "res://AssettsImage/AbilityIcons/sword.png",
 		"targetAreaShown": "SINGLE",
 		"description" : "A mono-molecular edged calvery saber style blade, used by officers in most major navies.",
@@ -101,7 +129,13 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [1, 2],
 		"validFrom" : [1, 2],
-		"alwaysHits" : false,
+		
+		"toHitTrait" : "DEX",
+		"toHitBase" : 80,
+		"toPowerTrait" : "PER",
+		"powerBaseHi" : 4,
+		"powerBaseLo" : 9,
+		
 		"iconPath" : "res://AssettsImage/AbilityIcons/rifle.png",
 		"targetAreaShown": "SINGLE",
 		"description" : "A heavy ballistic assault rifle that fires armor peircing bullets.",
@@ -117,10 +151,16 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [0],
 		"validFrom" : [0, 1],
-		"alwaysHits" : false,
+		
+		"toHitTrait" : "DEX",
+		"toHitBase" : 80,
+		"toPowerTrait" : "PER",
+		"powerBaseHi" : 3,
+		"powerBaseLo" : 5,
+
 		"iconPath" : "res://AssettsImage/AbilityIcons/minigun.png",
 		"targetAreaShown": "ROW",
-		"description" : "A common 9mm Pistol, with armor peircing rounds.",
+		"description" : "A rotating barrel mini-gun. It fires dozens of rounds in extremely short, violent bursts.",
 		"effectGroups" : [{
 			"targetType" : "ENEMY_UNIT",
 			"targetArea" : "ROW",
@@ -133,7 +173,13 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [],
 		"validFrom" : [0, 1, 2],
-		"alwaysHits" : true,
+		
+		"toHitTrait" : "ALWAYS",
+		"toHitBase" : 80,
+		"toPowerTrait" : "PER",
+		"powerBaseHi" : 3,
+		"powerBaseLo" : 6,
+		
 		"iconPath" : "res://AssettsImage/AbilityIcons/healthkit.png",
 		"targetAreaShown": "SINGLE",
 		"description" : "A Consumable medical kit which provides a small amount of healing",
@@ -149,10 +195,16 @@
 		"abilityType" : "ACTION",
 		"validTargets" : [0, 1, 2],
 		"validFrom" : [0, 1, 2],
-		"alwaysHits" : false,
+		
+		"toHitTrait" : "STR",
+		"toHitBase" : 80,
+		"toPowerTrait" : "PER",
+		"powerBaseHi" : 1,
+		"powerBaseLo" : 7,
+		
 		"iconPath" : "res://AssettsImage/AbilityIcons/frag.png",
 		"targetAreaShown": "CROSS",
-		"description" : "An old-fashioned A fragmentation grenade, designed for breeching cover.",
+		"description" : "An old-fashioned fragmentation grenade, designed for getting behind cover and disrupting movement.",
 		"effectGroups" : [{
 			"targetType" : "ENEMY_FLOOR",
 			"targetArea" : "CROSS",

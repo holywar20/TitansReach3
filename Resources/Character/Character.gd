@@ -262,6 +262,13 @@ func getFightableStatus():
 
 	return isFightable
 
+# Rolls
 func rollInit():
 	var init = traits.PER.total
 	return init
+
+func getCurrentTrait( traitKey : String):
+	if( traitKey ):
+		return traits[traitKey].total
+	else:
+		return 0

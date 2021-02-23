@@ -8,6 +8,11 @@ func _init( newEffectData : Dictionary , newKey : String , ability ):
 	key = newKey
 	parentAbility = ability
 
+	if newEffectData.effectAnimation:
+		effectAnimation = newEffectData.effectAnimation
+	else:
+		effectAnimation = EffectResource.NO_ANIMATION
+
 	mods = newEffectData['mods'].duplicate()
 
 class Result:

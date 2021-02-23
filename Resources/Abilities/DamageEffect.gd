@@ -18,8 +18,11 @@ func _init( damageEffectData : Dictionary , newKey : String , ability ):
 	type = EffectResource.TYPES.DAMAGE
 	key = newKey
 	parentAbility = ability
-	if damageEffectData.animation:
-		animation = damageEffectData.animation
+
+	if damageEffectData.effectAnimation:
+		effectAnimation = damageEffectData.effectAnimation
+	else:
+		effectAnimation = EffectResource.NO_ANIMATION
 	
 	dmgType = damageEffectData.dmgType
 	dmgHi = damageEffectData.dmgHi

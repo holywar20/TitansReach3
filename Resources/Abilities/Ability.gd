@@ -5,7 +5,7 @@ class_name AbilityResource
 var masterEffectData = {
 	"DEFEND" : { # Passive abilities will mirror the character and be swapped in as a mod, 1 for 1.
 		"type" : "PASSIVE",
-		"animation": "KINETIC_HIT",
+		"effectAnimation": "DEFENSIVE",
 		"mods" : {
 			"damageReduction" : {
 				"THERMAL" : 20 ,
@@ -17,20 +17,20 @@ var masterEffectData = {
 	},
 	"MOVE_ANYWHERE" : {
 		"type" : "MOVEMENT",
-		"animation" : "KINETIC_HIT",
+		"effectAnimation" : "NONE",
 		"movementSubtype" : "ANY",
 		"movementAmount" : 5
 	},
 	"KINETIC_ATTACK_EFFECT" : {
 		"type" : "DAMAGE",
-		"animation" : "KINETIC_HIT",
+		"effectAnimation" : "KINETIC_HIT",
 		"dmgType" : "KINETIC",
 		"dmgHi" : 3,
 		"dmgLo" : 5
 	},
 	"HEAL_EFFECT" :{
 		"type" : "HEALING",
-		"animation" : "KINETIC_HIT",	
+		"effectAnimation" : "MEDKIT",	
 		"healLo" : 4,
 		"healHi" : 8
 	}

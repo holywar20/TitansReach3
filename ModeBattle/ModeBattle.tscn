@@ -122,8 +122,10 @@ script = ExtResource( 8 )
 [node name="Players" type="YSort" parent="BattleMap"]
 
 [node name="ActiveDisplay" parent="." instance=ExtResource( 11 )]
-margin_top = 76.0
-margin_bottom = 116.0
+margin_left = 30.933
+margin_top = 87.0372
+margin_right = 70.933
+margin_bottom = 127.037
 
 [node name="EnemyActionTimer" type="Timer" parent="."]
 wait_time = 4.0

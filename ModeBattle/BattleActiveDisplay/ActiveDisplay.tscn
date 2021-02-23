@@ -3,23 +3,19 @@
 [ext_resource path="res://ModeBattle/BattleActiveDisplay/ActiveDisplay.gd" type="Script" id=1]
 
 [node name="ActiveDisplay" type="Control"]
-margin_left = 701.0
-margin_top = 74.0
-margin_right = 741.0
-margin_bottom = 114.0
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Attacker" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -20.0
-margin_right = 180.0
+margin_right = 200.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 200, 45 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -40,12 +36,13 @@ __meta__ = {
 [node name="Ability" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 138.604
-margin_top = 46.0
-margin_right = 338.604
-margin_bottom = 91.0
+margin_left = 44.0
+margin_top = 56.0
+margin_right = 244.0
+margin_bottom = 101.0
 rect_min_size = Vector2( 200, 45 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -68,12 +65,13 @@ __meta__ = {
 [node name="Target" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 299.0
-margin_top = 93.0
-margin_right = 499.0
-margin_bottom = 138.0
+margin_left = 100.0
+margin_top = 112.0
+margin_right = 300.0
+margin_bottom = 157.0
 rect_min_size = Vector2( 200, 45 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 

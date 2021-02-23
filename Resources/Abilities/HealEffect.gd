@@ -10,8 +10,10 @@ func _init( healEffectData : Dictionary , newKey : String , ability ):
 	key = newKey
 	parentAbility = ability 
 
-	if healEffectData.animation:
-		animation = healEffectData.animation
+	if healEffectData.effectAnimation:
+		effectAnimation = healEffectData.effectAnimation
+	else:
+		effectAnimation = EffectResource.NO_ANIMATION
 	
 	healLo = healEffectData.healLo
 	healHi = healEffectData.healHi

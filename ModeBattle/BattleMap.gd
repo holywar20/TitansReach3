@@ -2,7 +2,6 @@ extends Control
 
 onready var groundMap = $GroundMap
 onready var selectionMap = $SelectionMap
-onready var areaOfEffect = $AreaOfEffect
 onready var enemyBase = $Enemy
 onready var playerBase = $Players
 
@@ -140,8 +139,8 @@ func _executeAllEffects():
 					var battler = findBattlerFromCharacter( chr )
 					effect.rollEffect()
 					if( battler ):
-						if effect.animation:
-							battler.executeEffectAnimation( effect.animation )
+						battler.executeEffectAnimation( effect.effectAnimation )
+
 						match effect.type:
 							"DAMAGE":
 								battler.applyDamage( effect )

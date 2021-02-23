@@ -16,8 +16,11 @@ func _init( moveEffectData : Dictionary , newKey : String , ability ):
 	type = EffectResource.TYPES.MOVEMENT
 	parentAbility = ability
 
-	if moveEffectData.animation:
-		animation = moveEffectData.animation
+	if moveEffectData.effectAnimation:
+		effectAnimation = moveEffectData.effectAnimation
+	else:
+		effectAnimation = EffectResource.NO_ANIMATION
+
 
 	movementSubtype = moveEffectData.movementSubtype
 	movementAmount = moveEffectData.movementAmount

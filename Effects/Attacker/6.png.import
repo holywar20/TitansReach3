@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion 4.png-c546971884d4abb63a3f511219ee65c9.stex"
+path="res://.import/6.png-186a42796b25fe608f1d5b2d36467fb3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Effects/KineticHit/explosion 4.png"
-dest_files=[ "res://.import/explosion 4.png-c546971884d4abb63a3f511219ee65c9.stex" ]
+source_file="res://Effects/Attacker/6.png"
+dest_files=[ "res://.import/6.png-186a42796b25fe608f1d5b2d36467fb3.stex" ]
 
 [params]
 

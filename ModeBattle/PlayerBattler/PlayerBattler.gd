@@ -5,20 +5,12 @@ var currentCharacter : CharacterResource
 onready var characterSprite : Sprite = $Sprite
 
 onready var dataBlock : Control = $Data
-onready var effectBase : Node2D = $Effects 
+onready var effectBase : Node2D = $Sprite/Effects 
 
 onready var animationTree = $SpritePlayer/AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 
-const EFFECTS = {
-	"KINETIC_HIT" : "KINETIC_HIT" 
-}
-
-var effectData = {
-	EFFECTS.KINETIC_HIT : { 
-		"scene" : "res://Effects/KineticHit/KineticHit.tscn"
-	} 
-}
+onready var effectProvider = $EffectProvider
 
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
@@ -60,7 +52,8 @@ enum STATE {
 
 # Maps to states in the Animation Tree of player & enemy battler
 const ANIMATION = {
-	"BASIC_ATTACK" : "BASIC_ATTACK" , "IDLE" : "IDLE" #TODO need a take damage animation
+	# TODO need a take damage animation
+	"BASIC_ATTACK" : "BASIC_ATTACK" , "READY_TO_ATTACK" : "READY_TO_ATTACK","IDLE" : "IDLE" ,
 }
 
 var currentFormationLocation = Vector2(0,0)
@@ -73,7 +66,6 @@ func get_class():
 
 func is_class( name : String ): 
 	return name == "Battler"
-
 
 func _ready():
 	animationTree.active = true
@@ -129,6 +121,11 @@ func setTurnState( state : int , turnEndAnimation : String = ANIMATION.IDLE ):
 	match turnState:
 		STATE.TURN:
 			animationState.travel("READY_TO_ATTACK")
+			
+			for oneEffect in effectBase.get_children():
+				if "duration" in oneEffect:
+					oneEffect.checkDuration()
+			
 		STATE.NOT_TURN:
 			# Most of the time when a turn ends, user is doing something interesting. Do that animation here.
 			animationState.travel(turnEndAnimation)
@@ -137,11 +134,10 @@ func setTurnState( state : int , turnEndAnimation : String = ANIMATION.IDLE ):
 	setHighlightState( highlightState )
 
 func executeEffectAnimation( effectKey : String ):
-	var myEffectData = effectData[effectKey]
-	var effectScene = load(myEffectData.scene)
-
-	var effectInstance = effectScene.instance()
-	effectBase.add_child(effectInstance)
+	print(effectKey)
+	if( effectKey != "NONE" ):
+		var effectInstance : AnimatedSprite = effectProvider.getEffect( effectKey )
+		effectBase.add_child( effectInstance )
 
 func applyDamage( result : DamageEffectResource.Result ):
 	print("applying damage")

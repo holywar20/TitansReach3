@@ -2,6 +2,7 @@ extends TitansResource
 class_name AbilityResource
 
 # TODO Need to put this into JSON or a database
+# TODO Add Hook for a sound player
 var masterEffectData = {
 	"DEFEND" : { # Passive abilities will mirror the character and be swapped in as a mod, 1 for 1.
 		"type" : "PASSIVE",
@@ -25,14 +26,10 @@ var masterEffectData = {
 		"type" : "DAMAGE",
 		"effectAnimation" : "KINETIC_HIT",
 		"dmgType" : "KINETIC",
-		"dmgHi" : 3,
-		"dmgLo" : 5
 	},
 	"HEAL_EFFECT" :{
 		"type" : "HEALING",
 		"effectAnimation" : "MEDKIT",	
-		"healLo" : 4,
-		"healHi" : 8
 	}
 }
 const TARGET_AREA = {
@@ -48,7 +45,7 @@ const ABILITY_TYPE = {
 const TO_HIT_TRAIT = {
 	"ALWAYS" : "ALWAYS" , "DEX" : "DEX" , "STR" : "STR" , "PER" : "PER" , "INT" : "INT" , "CHA" : "CHA"
 }
-const TO_EFFECT_TRAIT = {
+const TO_POWER_TRAIT = {
 	"NONE" : "NONE" , "DEX" : "DEX" , "STR" : "STR" , "PER" : "PER" , "INT" : "INT" , "CHA" : "CHA"
 }
 
@@ -63,9 +60,9 @@ const FILES = {
 const TARGET_MATRIX = {
 	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 1 , 0] , [0 ,0 ,0]],
 	TARGET_AREA.COLUMN : [[0 , 1 , 0] , [0 , 1 , 0] , [0 ,1 ,0]],
-	TARGET_AREA.ROW    : [[0 , 0 , 0] , [1 , 1,  1] , [0 , 0 , 0]],
-	TARGET_AREA.CROSS  : [[0 , 1 , 0] , [1 , 1 , 1 ] , [0 , 1 , 0]],
-	TARGET_AREA.ALL    : [[1 , 1 , 1] , [1 , 1 , 1] , [1 , 1 , 1]]
+	TARGET_AREA.ROW    : [[0 , 0 , 0] , [1 , 1,  1] , [0 ,0 ,0]],
+	TARGET_AREA.CROSS  : [[0 , 1 , 0] , [1 , 1 , 1] , [0 ,1 ,0]],
+	TARGET_AREA.ALL    : [[1 , 1 , 1] , [1 , 1 , 1] , [1 ,1 ,1]]
 }
 
 var parentCharacter
@@ -80,10 +77,12 @@ var iconPath : String
 var description : String
 var targetAreaShown : String = TARGET_AREA.SINGLE
 
+var toHitTrait : String = TO_HIT_TRAIT.ALWAYS
+var toPowerTrait : String = TO_POWER_TRAIT.NONE
+var toHitBase = 80
 var powerHiBase = 0
 var powerLoBase = 0
-var toHitBase = 80
-var alwaysHits = false
+
 
 var effectGroups : Array = [] # An array of EffectGroup
 
@@ -130,10 +129,11 @@ func _init( newKey : String , filePath : int , character ):
 		"validTargets" , 
 		"validFrom" , 
 		"iconPath",
+		"toHitTrait",
+		"toHitBase",
+		"toPowerTrait",
 		"powerHiBase",
 		"powerLoBase",
-		"toHitBase",
-		"alwaysHits",
 		"description",
 		"targetAreaShown"	
 	]
@@ -146,9 +146,14 @@ func _init( newKey : String , filePath : int , character ):
 	flushAndFillProperties(abilityTable[key] , self)
 	_makeEffects( abilityTable[key]['effectGroups'] )
 
+	print("powerLoBase")
+
 	# Do any type casting to fix json, which comes in as strings
-	validTargets = makeArrayIntegers( validTargets )
-	validFrom = makeArrayIntegers( validFrom )
+	#validTargets = makeArrayIntegers( validTargets )
+	#validFrom = makeArrayIntegers( validFrom )
+
+	# Now make stuff into integers
+	#toHitBase = 
 
 func _makeEffects( newEffectGroups : Array ):
 	for effectGroupData in newEffectGroups:

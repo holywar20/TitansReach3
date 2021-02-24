@@ -4,13 +4,15 @@ class_name EffectResource
 const TYPES = {
 	"MOVEMENT" : "MOVEMENT" , "DAMAGE" : "DAMAGE" , "HEALING" : "HEALING" , "PASSIVE" : "PASSIVE"
 }
+
 const NO_ANIMATION = "NONE"
+const TO_HIT_TRAIT_MULTIPLE = 5
 
 var key : String
 var parentAbility = null
 var type : String = ""
 var effectAnimation : String = NO_ANIMATION
-var toEffectMod = 1
+var toPowerMod = 1
 var toHitMod = 1
 
 # Each subclass has it's own result inner-class that handles it's unique properties and stores data about resolved rolls.

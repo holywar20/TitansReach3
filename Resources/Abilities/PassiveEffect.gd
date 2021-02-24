@@ -9,8 +9,8 @@ func _init( passiveEffectData : Dictionary , newKey : String , ability ):
 	key = newKey
 	parentAbility = ability
 
-	if( "toEffectMod" in passiveEffectData ):
-		toEffectMod = passiveEffectData.toEffectMod
+	if( "toPowerMod" in passiveEffectData ):
+		toPowerMod = passiveEffectData.toPowerMod
 	
 	if( "toHitMod" in passiveEffectData ):
 		toHitMod = passiveEffectData.toHitMod

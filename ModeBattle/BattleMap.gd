@@ -137,19 +137,16 @@ func _executeAllEffects():
 			for effect in effectGroup.effects:
 				for chr in characters:
 					var battler = findBattlerFromCharacter( chr )
-					effect.rollEffect()
 					if( battler ):
-						battler.executeEffectAnimation( effect.effectAnimation )
-
 						match effect.type:
 							"DAMAGE":
-								battler.applyDamage( effect )
+								battler.applyDamage( effect.rollEffect() , effect.effectAnimation )
 							"HEALING":
-								battler.applyHealing( effect )
+								battler.applyHealing( effect.rollEffect() , effect.effectAnimation )
 							"PASSIVE":
-								battler.applyPassive( effect )
+								battler.applyPassive( effect.rollEffect() , effect.effectAnimation )
 							"MOVEMENT":
-								battler.applyMovement( effect )
+								battler.applyMovement( effect.rollEffect() , effect.effectAnimation )
 				
 
 	yield(get_tree().create_timer(1), "timeout") # No effect should take longer than a second for now. Need to do this a better way.
@@ -164,8 +161,6 @@ func _nextEffect():
 		# Figure out which formation the selectionMap should be using
 		var isTargetingPlayer = myEffectGroup.enemyOrAlly( currentBattler.currentCharacter.isPlayer )
 		var formation = playerTiles if isTargetingPlayer else enemyTiles
-
-		print(isTargetingPlayer)
 
 		selectionMap.setState( myEffectGroup , formation , currentAbility , currentBattler )
 	else:

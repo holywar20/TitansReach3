@@ -7,14 +7,15 @@ const RAND_KEY_SIZE = 10
 const RAND_KEY_POSSIBLE_VALUES = 35
 const RAND_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345689" 
 
-var fillableProps = []
+var fillableProps = [] # Filled directly without modification
+var isIntegers = [] # Any fillable prop that is also expected to be an integer. This forces a casting to that type
 var percentDiffProps = []
 var hiLoDiffProps = []
 var percentChangeProps = []
 var randomAssignmentProps = []
 
 # Finds a random difference between two values. Used in procedural generation of values like mass, tempature, etc
-func randDiffValues( low, hi ):
+func randDiffValues( low : int, hi : int ):
 	hi 	= int( round( hi  * ROUND_PRECISION ) ) # To deal with fractions and modulo  Also this caps precision at 4 decimals
 	low = int( round( low * ROUND_PRECISION ) )
 
@@ -24,11 +25,22 @@ func randDiffValues( low, hi ):
 	if( diff == 0 ):
 		random = hi
 	else:
-		random = ( randi() % diff + low ) / ROUND_PRECISION
-	
+		random = ( ( randi() % diff ) + low ) / ROUND_PRECISION
+
 	return random
 
-func randDiffPercents( low , high ):
+func randDiffIntegers( lo : int , hi : int ):
+	var diff = hi - lo
+	var random = null
+
+	if( diff == 0):
+		random = hi
+	else:
+		random = int( randi() % diff ) + lo
+
+	return random
+
+func randDiffPercents( low : int, high : int ):
 	var random = randi()%100 + 1.0
 	var diff = ( high - low ) * ( random / 100 )
 	var newValue = diff + low
@@ -62,6 +74,18 @@ func flushAndFillProperties( props : Dictionary, object ):
 		if(props.has(key)):
 			object[key] = randDiffPercents( props[key]['hi'] , props[key]['lo'] )
 	
+	# Need to do integer casting because JSON typing handled dumbly
+	for key in isIntegers:
+		if( typeof(object[key]) == TYPE_ARRAY ):
+			var integerArray : Array = []
+			for elem in object[key]:
+				integerArray.append( int( elem ) )
+				
+			object[key] = integerArray
+		else:
+			object[key] = int(object[key])
+
+
 	for key in percentChangeProps:
 		pass
 	

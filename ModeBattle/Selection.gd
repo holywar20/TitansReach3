@@ -44,8 +44,6 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 	if( formation ):
 		formation.resetFilters()
 	
-	print("Formation is " , currentFormation )
-
 	currentEffectGroup = effectGroup
 	currentFormation = formation
 	currentAbility = ability
@@ -53,8 +51,6 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 	
 	cursorLocation = Vector2( 0 , 3 )
 	
-	print("effectGroup is " , effectGroup )
-
 	if( effectGroup ):
 		currentState = convertTargetingToEffectGroup(effectGroup.targetType)
 		if(formation.isPlayer):

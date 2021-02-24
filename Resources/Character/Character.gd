@@ -95,13 +95,16 @@ func get_class():
 func is_class( name : String ): 
 	return name == "CharacterResource"
 
-func addAction( action : AbilityResource ):
+# Accepts an AbilityResource
+func addAction( action ):
 	actions.append( action ) 
 
-func addStance( stance : AbilityResource ):
+# Accepts an AbilityResource
+func addStance( stance ):
 	stances.append( stance )
 
-func addInstant( instant : AbilityResource ):
+# Accepts an AbilityResource
+func addInstant( instant ):
 	instants.append( instant )
 
 func calculateSelf( newCharacter = false ):
@@ -272,3 +275,19 @@ func getCurrentTrait( traitKey : String):
 		return traits[traitKey].total
 	else:
 		return 0
+
+# Mutates the character on the basis of data
+func calculateDamage( result ):
+	# Test if to hit is good enough.
+	# Check damage type and reduce damage accordingly.
+	# Also allows any kind of weird data mutations we want. Could get super creative with triggered abilities
+	return result
+
+func calculateHealing( result ):
+	return result
+
+func calculateStatusEffect( result ):
+	return result
+
+func calculatePassive( result ):
+	return result

@@ -16,11 +16,11 @@ func _init( moveEffectData : Dictionary , newKey : String , ability ):
 	type = EffectResource.TYPES.MOVEMENT
 	parentAbility = ability
 
-	if( "toEffectMod" in moveEffectData ):
-		toEffectMod = moveEffectData.effectMod
+	if( "toPowerMod" in moveEffectData ):
+		toPowerMod = moveEffectData.toPowerMod
 	
 	if( "toHitMod" in moveEffectData ):
-		toHitMod = moveEffectData.effectMod
+		toHitMod = moveEffectData.toHitMod
 
 	if moveEffectData.effectAnimation:
 		effectAnimation = moveEffectData.effectAnimation

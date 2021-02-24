@@ -1,9 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "TAKING_DAMAGE"
 length = 2.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("DamageNumber:visible")
 tracks/0/interp = 1
@@ -41,5 +40,87 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0.675702 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "TAKING_HEALING"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("HealingNumber:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HealingNumber:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 1.5, 2.4 ),
+"transitions": PoolRealArray( 0.0824693, 5.46416, 0.554785 ),
+"update": 0,
+"values": [ Vector2( 16, -200 ), Vector2( 30, -250 ), Vector2( 32, -150 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HealingNumber:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.7, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.675702 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "TAKING_MISS"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Message:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 1.5, 2.4 ),
+"transitions": PoolRealArray( 0.0824693, 5.46416, 0.554785 ),
+"update": 0,
+"values": [ Vector2( 16, -200 ), Vector2( 30, -250 ), Vector2( 32, -150 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Message:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.7, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.675702 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="DataPlayer" type="AnimationPlayer"]
-anims/TAKING_DAMAGE = SubResource( 3 )
+anims/TAKING_DAMAGE = SubResource( 1 )
+anims/TAKING_HEALING = SubResource( 2 )
+anims/TAKING_MISS = SubResource( 3 )

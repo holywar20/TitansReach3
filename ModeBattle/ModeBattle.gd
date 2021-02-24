@@ -165,7 +165,7 @@ func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
 	activeDisplay.activateLabel( activeDisplay.LABELS.TARGET , targetString )
 
 func _on_BattleMap_abilitySelectFinished():
-	print("Main : abilitySelectFinished")
+	print("ModeBattle : _on_BattleMap_abilitySelectFinished")
 	activeDisplay.clear()
 	playerUI.setState( playerUI.STATE.HIDE )
 	enemyUI.setState( enemyUI.STATE.HIDE )
@@ -173,11 +173,11 @@ func _on_BattleMap_abilitySelectFinished():
 	setState( STATE.PLAYER_EXECUTING_ABILITY )
 
 func _on_BattleMap_abilityExecuteFinished():
-	print("Main : abilityExecuteFinished")
+	print("ModeBattle : _on_BattleMap_abilityExecuteFinished")
 	_runNextTurn()
 
 func _on_BattleMap_abilitySelectCanceled():
-	print("cancelled!")
+	print("ModeBattle : _on_BattleMap_abilitySelectCanceled!")
 	setState( STATE.PLAYER_SELECTING_ABILITY )
 	# TODO - will likely need to be a clear all at some point, so we can permit free roam, controlled by ModeBattle.
 	activeDisplay.deactivateLabel( activeDisplay.LABELS.TARGET )

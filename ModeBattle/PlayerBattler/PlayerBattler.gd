@@ -8,8 +8,10 @@ onready var dataBlock : Control = $Data
 onready var effectBase : Node2D = $Sprite/Effects 
 
 onready var dataPlayer = $DataPlayer
-onready var damageNumber = $DamageNumber
 
+onready var damageNumber = $DamageNumber
+onready var healingNumber = $HealingNumber
+onready var message = $Message
 
 onready var animationTree = $SpritePlayer/AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -142,15 +144,36 @@ func executeEffectAnimation( effectKey : String ):
 		var effectInstance : AnimatedSprite = effectProvider.getEffect( effectKey )
 		effectBase.add_child( effectInstance )
 
-func applyDamage( result : DamageEffectResource.Result ):
-	damageNumber.set_text(str(10))
-	dataPlayer.play("TAKING_DAMAGE")
+func applyDamage( result : DamageEffectResource.Result , effectKey ):
+	result = currentCharacter.calculateDamage( result )
+	# TODO : Add critical hit effect
+	if( result.toHitRoll >= 100):
+		damageNumber.set_text( str(result.dmgRoll) )
+		dataPlayer.play( "TAKING_DAMAGE" )
+	else:
+		message.set_text( "Missed!" )
+		dataPlayer.play( "TAKING_MISS" )
 
-func applyHealing( result : HealEffectResource.Result ):
-	print("applying healing")
+	executeEffectAnimation( effectKey )
 
-func applyPassive( result : PassiveEffectResource.Result ):
-	print("applying mods")
+func applyHealing( result : HealEffectResource.Result , effectKey ):
+	result = currentCharacter.calculateHealing( result )
+	# TODO : Add critical hit effect
+	if( result.toHitRoll >= 100):
+		healingNumber.set_text( str(result.healRoll) )
+		dataPlayer.play( "TAKING_HEALING" )
+	else:
+		message.set_text( "Missed!" )
+		dataPlayer.play( "TAKING_MISS" )
 
-func applyMovement( result : MoveEffectResource.Result ):
-	print("applying movement")
+	executeEffectAnimation( effectKey )
+
+func applyPassive( result : PassiveEffectResource.Result , effectKey ):
+	result = currentCharacter.calculatePassive( result )
+
+	executeEffectAnimation( effectKey )
+
+func applyMovement( result : MoveEffectResource.Result , effectKey ):
+	# TODO : not sure how I want to do this yet. Likely will need to pass a Vector2 Target inside result.
+
+	executeEffectAnimation( effectKey )

@@ -81,14 +81,44 @@ position = Vector2( 0, 75 )
 [node name="DamageNumber" type="Label" parent="."]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.675702 )
-margin_left = 32.0
-margin_top = -150.0
-margin_right = 58.0001
-margin_bottom = -136.0
+margin_left = 16.0
+margin_top = -200.0
+margin_right = 42.0001
+margin_bottom = -186.0
 rect_scale = Vector2( 2, 2 )
 custom_colors/font_color = Color( 0.956863, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "{XX}"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealingNumber" type="Label" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.675702 )
+margin_left = 16.0
+margin_top = -200.0
+margin_right = 42.0001
+margin_bottom = -186.0
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 0, 1, 0.0745098, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "{XX}"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="Label" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.675702 )
+margin_left = 16.0
+margin_top = -200.0
+margin_right = 55.0
+margin_bottom = -186.0
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 1, 0.0352941, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "{TEXT}"
 __meta__ = {
 "_edit_use_anchors_": false
 }

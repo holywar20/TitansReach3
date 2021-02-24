@@ -6,12 +6,11 @@ const DAMAGE_TYPES = {
 }
 
 var dmgType = DAMAGE_TYPES.KINETIC
-var dmgHi = 0
-var dmgLo = 0
 
 class Result:
 	var toHitRoll : int = 0
 	var dmgRoll : int = 0
+	var dmgType = DAMAGE_TYPES.KINETIC
 
 func _init( damageEffectData : Dictionary , newKey : String , ability ):
 	# From Effect Resource 
@@ -19,11 +18,11 @@ func _init( damageEffectData : Dictionary , newKey : String , ability ):
 	key = newKey
 	parentAbility = ability
 
-	if( "effectMod" in damageEffectData ):
-		toEffectMod = damageEffectData.effectMod
+	if( "toPowerMod" in damageEffectData ):
+		toPowerMod = damageEffectData.toPowerMod
 	
 	if( "toHitMod" in damageEffectData ):
-		toHitMod = damageEffectData.effectMod
+		toHitMod = damageEffectData.toHitMod
 
 	if damageEffectData.effectAnimation:
 		effectAnimation = damageEffectData.effectAnimation
@@ -31,9 +30,6 @@ func _init( damageEffectData : Dictionary , newKey : String , ability ):
 		effectAnimation = EffectResource.NO_ANIMATION
 	
 	dmgType = damageEffectData.dmgType
-	dmgHi = damageEffectData.dmgHi
-	dmgLo = damageEffectData.dmgLo
-
 
 func get_class(): 
 	return "DamageEffectResource"
@@ -43,3 +39,25 @@ func is_class( name : String ):
 
 func rollEffect():
 	var result = Result.new()
+	result.dmgType = dmgType
+
+	if( parentAbility.toHitTrait == "ALWAYS" ):
+		result.toHitRoll = 200
+	else :
+		var traitVal : int = parentAbility.parentCharacter.getCurrentTrait( parentAbility.toPowerTrait )
+		var roll : int = int( randi() % 100 )
+		var bonus = int( parentAbility.toHitBase + ( traitVal * TO_HIT_TRAIT_MULTIPLE ) * toHitMod )
+		# TODO - a hook for character level special bonus's potentially. Or have that work on traits alone?
+		result.toHitRoll = roll + bonus
+
+	var traitValue = 0
+	if( parentAbility.toPowerTrait != "NONE" ):
+		traitValue = parentAbility.parentCharacter.getCurrentTrait( parentAbility.toPowerTrait )
+	# TODO - a hook for character level special bonus's potentially. Or have that work on traits alone?	
+	var modDmgHi = ( traitValue + parentAbility.powerHiBase ) * toPowerMod
+	var modDmgLo = ( traitValue + parentAbility.powerLoBase ) * toPowerMod
+
+	result.dmgRoll = randDiffValues( modDmgLo, modDmgHi )
+
+	return result
+	

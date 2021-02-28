@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Panel
 
 var initBoxScene = preload("res://ModeBattle/InitBlock/InitBlock.tscn")
 

@@ -1,7 +1,7 @@
-extends PanelContainer
+extends Panel
 
-onready var charIcon : TextureRect = $VBox/HBox/Icon
-onready var charName : Label = $VBox/HBox/Name
+onready var charIcon : TextureRect = $Title/Icon
+onready var charName : Label = $Title/Name
 
 var character : CharacterResource
 var currentState : int = STATE.HIDE

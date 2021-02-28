@@ -1,39 +1,109 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ReusableUI/AbilityList/AbilityList.gd" type="Script" id=1]
-[ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ReusableUI/AbilityIcon/AbilityIcon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assetts3.0/Controllers/XB1_LB.png" type="Texture" id=5]
+[ext_resource path="res://Assetts3.0/Controllers/XB1_RB.png" type="Texture" id=6]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=7]
 
-[node name="AbilityList" type="PanelContainer"]
-margin_right = 380.0
-margin_bottom = 274.0
+[node name="AbilityList" type="Panel"]
+margin_top = 832.0
+margin_right = 384.0
+margin_bottom = 1080.0
 focus_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Data" type="Panel" parent="."]
+self_modulate = Color( 0.968627, 0.592157, 0.992157, 1 )
+anchor_right = 1.0
+anchor_bottom = 0.129
+margin_bottom = 0.00799751
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LB" type="TextureRect" parent="Data"]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 164.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 20, 30 )
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Data"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = 6.0
+margin_right = -72.0
+margin_bottom = -7.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 3.0
+custom_fonts/font = ExtResource( 7 )
+text = "Actions"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Data"]
+anchor_left = 0.896
+anchor_top = 7.0
+anchor_right = 1.0
+anchor_bottom = 7.75
+margin_left = -0.0640259
+margin_top = -1.52588e-05
+margin_bottom = -1.52588e-05
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 4 )
+text = "1 / 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RB" type="TextureRect" parent="Data"]
+anchor_left = 0.844
+anchor_right = 0.844
+margin_left = -6.07999
+margin_top = 5.0
+margin_right = 149.92
+margin_bottom = 77.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 373.0
-margin_bottom = 267.0
-custom_constants/vseparation = 5
-custom_constants/hseparation = 5
+anchor_left = 0.023
+anchor_top = 0.129
+anchor_right = 0.977
+anchor_bottom = 0.903
+margin_left = -1.568
+margin_top = 0.00799751
+margin_right = -1.37601
+margin_bottom = 0.0559845
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 3
+custom_constants/hseparation = 3
 columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="PanelSpawner" type="Control" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 373.0
-margin_bottom = 267.0
-
-[node name="AbilityDetail" parent="PanelSpawner" instance=ExtResource( 2 )]
-visible = false
-anchor_left = 1.022
-anchor_top = -0.023
-anchor_right = 1.022
-anchor_bottom = -0.023
-margin_left = -0.0520325
-margin_top = -1.02
-margin_right = 261.948
-margin_bottom = 184.98
+[node name="Ability" parent="GridContainer" instance=ExtResource( 3 )]

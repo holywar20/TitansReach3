@@ -8,9 +8,13 @@ const DAMAGE_TYPES = {
 var dmgType = DAMAGE_TYPES.KINETIC
 
 class Result:
+	enum { MISS, HIT, CRITICAL }
+	
 	var toHitRoll : int = 0
 	var dmgRoll : int = 0
 	var dmgType = DAMAGE_TYPES.KINETIC
+
+	var success = MISS
 
 func _init( damageEffectData : Dictionary , newKey : String , ability ):
 	# From Effect Resource 

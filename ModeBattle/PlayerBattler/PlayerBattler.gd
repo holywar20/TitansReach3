@@ -4,10 +4,8 @@ class_name Battler
 var currentCharacter : CharacterResource
 onready var characterSprite : Sprite = $Sprite
 
-onready var dataBlock : Control = $Data
+onready var dataBlock : Control = $Sprite/Data
 onready var effectBase : Node2D = $Sprite/Effects 
-
-onready var dataPlayer = $DataPlayer
 
 onready var damageNumber = $DamageNumber
 onready var healingNumber = $HealingNumber
@@ -18,6 +16,7 @@ onready var animationState = animationTree.get("parameters/playback")
 
 onready var effectProvider = $EffectProvider
 
+const BATTLER_MESSAGE = preload("res://Effects/BattlerMessage.tscn")
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
 
 enum SELECTION {
@@ -146,25 +145,24 @@ func executeEffectAnimation( effectKey : String ):
 
 func applyDamage( result : DamageEffectResource.Result , effectKey ):
 	result = currentCharacter.calculateDamage( result )
-	# TODO : Add critical hit effect
-	if( result.toHitRoll >= 100):
-		damageNumber.set_text( str(result.dmgRoll) )
-		dataPlayer.play( "TAKING_DAMAGE" )
-	else:
-		message.set_text( "Missed!" )
-		dataPlayer.play( "TAKING_MISS" )
 
+	if( result.success == DamageEffectResource.Result.CRITICAL ):
+		_addBattlerMessage(  BattlerMessage.MESSAGE_TYPE.CRITICAL , "Crit! " + str(result.dmgRoll) )
+
+	elif( result.success == DamageEffectResource.Result.HIT ):
+		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.DAMAGE , str(result.dmgRoll))
+	else:
+		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.MISS , "Missed!")
+
+	_updateCharacterData()
 	executeEffectAnimation( effectKey )
 
 func applyHealing( result : HealEffectResource.Result , effectKey ):
 	result = currentCharacter.calculateHealing( result )
-	# TODO : Add critical hit effect
 	if( result.toHitRoll >= 100):
-		healingNumber.set_text( str(result.healRoll) )
-		dataPlayer.play( "TAKING_HEALING" )
+		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.HEALING , str(result.healRoll) )
 	else:
-		message.set_text( "Missed!" )
-		dataPlayer.play( "TAKING_MISS" )
+		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.MISS , "Missed!")
 
 	executeEffectAnimation( effectKey )
 
@@ -177,3 +175,11 @@ func applyMovement( result : MoveEffectResource.Result , effectKey ):
 	# TODO : not sure how I want to do this yet. Likely will need to pass a Vector2 Target inside result.
 
 	executeEffectAnimation( effectKey )
+
+func _addBattlerMessage( type : int , message : String ):
+	var battleMessage = BATTLER_MESSAGE.instance()
+	battleMessage.setupScene( type, message )
+	effectBase.add_child( battleMessage )
+
+func hasDied():
+	queue_free()

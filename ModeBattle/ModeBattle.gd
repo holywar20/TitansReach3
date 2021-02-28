@@ -2,14 +2,17 @@ extends Node2D
 
 # UI Nodes
 # Data Notes that mostly just display information
-onready var turnOrder : PanelContainer = $CanvasLayer/Turnorder
-onready var enemyUI : PanelContainer = $CanvasLayer/Enemy
-onready var playerUI : PanelContainer = $CanvasLayer/Player
-onready var activeDisplay : Control = $ActiveDisplay
+onready var turnOrder : Panel = $CanvasLayer/Turnorder
 
-# Powers & Abilities
-onready var abilityUI : PanelContainer = $CanvasLayer/AbilityList
+# Targeting Detail
+onready var targetUI : Panel = $CanvasLayer/TargetPanel
+onready var casterUI : Panel = $CanvasLayer/CasterPanel
+onready var abilityDetailUI : Panel = $CanvasLayer/AbilityDetail
+
+# Ability lists
+onready var abilityUI : Panel = $CanvasLayer/AbilityList
 onready var instantUI : PanelContainer = $CanvasLayer/Instants
+
 onready var battleMap : Control = $BattleMap
 
 # Utility Nodes
@@ -100,13 +103,12 @@ func setState(newState):
 			enemyExecutingTargets()
 
 func playerSelectingAbility():
-	playerUI.updateUI( currentCharacter )
-	
-	playerUI.setState( playerUI.STATE.SHOW )
+	casterUI.updateUI( currentCharacter )
+	casterUI.setState( casterUI.STATE.SHOW )
 	abilityUI.setState( abilityUI.STATE.FOCUS , currentCharacter )
 	battleMap.setState( battleMap.STATE.NOT_FOCUS , currentAbility, currentCharacter )
 
-	activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
+	# activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
 	
 
 func playerSelectingAbilityInputs( ev : InputEvent ):
@@ -130,8 +132,8 @@ func playerExecutingAbilityInputs( ev : InputEvent ):
 	pass
 
 func enemySelectingAbility():
-	enemyUI.updateUI( currentCharacter )
-	enemyUI.setState( enemyUI.STATE.SHOW )
+	# enemyUI.updateUI( currentCharacter )
+	# enemyUI.setState( enemyUI.STATE.SHOW )
 	enemyActionTimer.start()
 
 func enemySelectingAbilityInputs( ev : InputEvent ):
@@ -157,18 +159,21 @@ func _on_AbilityList_abilityActivated( ability ):
 	currentAbility = ability
 	setState( STATE.PLAYER_SELECTING_TARGETS )
 
-func _on_AbilityList_abilityChanged(ability ):
-	activeDisplay.activateLabel( activeDisplay.LABELS.ABILITY , ability.shortName )
+func _on_AbilityList_abilityChanged( ability ):
+	abilityDetailUI.setupScene( ability )
 
 func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
+	pass
+	# Find out if target is at a location where there is an enemy.
+	# If so, show detail about enemy. 
+	# Otherwise, show just the string about the target area
 	# TODO - update battler highlights based proximity to targetString
-	activeDisplay.activateLabel( activeDisplay.LABELS.TARGET , targetString )
 
 func _on_BattleMap_abilitySelectFinished():
 	print("ModeBattle : _on_BattleMap_abilitySelectFinished")
-	activeDisplay.clear()
-	playerUI.setState( playerUI.STATE.HIDE )
-	enemyUI.setState( enemyUI.STATE.HIDE )
+	# activeDisplay.clear()
+	# playerUI.setState( playerUI.STATE.HIDE )
+	# enemyUI.setState( enemyUI.STATE.HIDE )
 
 	setState( STATE.PLAYER_EXECUTING_ABILITY )
 
@@ -180,18 +185,11 @@ func _on_BattleMap_abilitySelectCanceled():
 	print("ModeBattle : _on_BattleMap_abilitySelectCanceled!")
 	setState( STATE.PLAYER_SELECTING_ABILITY )
 	# TODO - will likely need to be a clear all at some point, so we can permit free roam, controlled by ModeBattle.
-	activeDisplay.deactivateLabel( activeDisplay.LABELS.TARGET )
 
 func _on_BattleMap_playerSelected( character : CharacterResource ):
-	enemyUI.updateUI( null )
-	playerUI.setState( playerUI.STATE.SHOW )
-	
-	playerUI.updateUI( character )
-	playerUI.setState( playerUI.STATE.SHOW )
+	casterUI.updateUI( character )
+	casterUI.setState( casterUI.STATE.SHOW )
 
 func _on_Battlemap_enemySelected( character: CharacterResource ):
-	playerUI.updateUI( null )
-	playerUI.setState( playerUI.STATE.HIDE )
-
-	enemyUI.updateUI( character )
-	enemyUI.setState( enemyUI.STATE.SHOW )
+	casterUI.updateUI( character )
+	casterUI.setState( casterUI.STATE.SHOW )

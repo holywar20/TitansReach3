@@ -1,72 +1,84 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Game/DebugMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=2]
 
 [node name="DebugMenu" type="Control"]
 anchor_right = 0.161
 anchor_bottom = 0.148
 margin_right = 0.879974
 margin_bottom = 0.160004
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Menu" type="VBoxContainer" parent="."]
-margin_right = 310.0
-margin_bottom = 136.0
+margin_left = 2.61908
+margin_top = 13.8437
+margin_right = 312.619
+margin_bottom = 149.844
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Menu"]
-margin_right = 310.0
-margin_bottom = 14.0
+margin_right = 309.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-text = "Debug Menu"
+text = "DEBUG MENU"
 align = 1
 
 [node name="Start Battle" type="Button" parent="Menu"]
-margin_top = 18.0
-margin_right = 310.0
-margin_bottom = 38.0
+margin_top = 23.0
+margin_right = 309.0
+margin_bottom = 48.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Start Battle"
+text = "START BATTLE"
 
 [node name="Explore Solar System" type="Button" parent="Menu"]
-margin_top = 42.0
-margin_right = 310.0
-margin_bottom = 62.0
+margin_top = 52.0
+margin_right = 309.0
+margin_bottom = 77.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Explore System"
+text = "EXPLORE SYSTEM"
 
 [node name="Roll World" type="Button" parent="Menu"]
-margin_top = 66.0
-margin_right = 310.0
-margin_bottom = 86.0
+margin_top = 81.0
+margin_right = 309.0
+margin_bottom = 106.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Roll System ( Not Implimented )"
+text = "ROLL SYSTEM"
 
 [node name="Button" type="Button" parent="Menu"]
-margin_top = 90.0
-margin_right = 310.0
-margin_bottom = 110.0
+margin_top = 110.0
+margin_right = 309.0
+margin_bottom = 135.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Supercheat ( Not Implimented )"
+text = "SUPERCHEAT"
 
 [node name="Toggle" type="Button" parent="."]
-margin_left = 282.0
-margin_right = 310.0
-margin_bottom = 31.0
+margin_left = 283.871
+margin_top = 1.74155
+margin_right = 312.871
+margin_bottom = 29.7415
 focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 toggle_mode = true
 enabled_focus_mode = 0
-text = " X "
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Menu/Start Battle" to="." method="_onStartBattlePressed"]
-[connection signal="pressed" from="Menu/Explore Solar System" to="." method="_onStartBattlePressed"]
 [connection signal="pressed" from="Menu/Explore Solar System" to="." method="_onExploreSystemPressed"]
+[connection signal="pressed" from="Menu/Explore Solar System" to="." method="_onStartBattlePressed"]
 [connection signal="toggled" from="Toggle" to="." method="_onMenuButtonToggled"]

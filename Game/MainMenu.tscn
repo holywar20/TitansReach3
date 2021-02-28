@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Game/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=2]
 
 [node name="TitleScreenUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -21,6 +23,9 @@ margin_right = 250.0
 margin_bottom = 250.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 margin_left = 7.0
@@ -33,5 +38,5 @@ margin_right = 486.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 action_mode = 0
-text = "New Game"
+text = "NEW GAME"
 [connection signal="pressed" from="Panel/VBox/NewGame" to="." method="newGameButtonClick"]

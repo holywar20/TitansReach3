@@ -1,18 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ModeBattle/BattleActiveDisplay/ActiveDisplay.gd" type="Script" id=1]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=3]
 
 [node name="ActiveDisplay" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Attacker" type="Panel" parent="."]
-margin_right = 200.0
-margin_bottom = 45.0
+margin_right = 240.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 200, 45 )
 __meta__ = {
 "_edit_group_": true,
@@ -22,9 +25,10 @@ __meta__ = {
 [node name="Label" type="Label" parent="Attacker"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -67.0001
-margin_bottom = -15.0
+margin_right = -80.0
+margin_bottom = -16.0
 rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "{ATTACKER_NAME}"
 align = 1
@@ -36,10 +40,10 @@ __meta__ = {
 [node name="Ability" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 44.0
+margin_left = -20.0
 margin_top = 56.0
-margin_right = 244.0
-margin_bottom = 101.0
+margin_right = 220.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 200, 45 )
 __meta__ = {
 "_edit_group_": true,
@@ -49,11 +53,11 @@ __meta__ = {
 [node name="Label" type="Label" parent="Ability"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.1228
-margin_top = -0.0684052
-margin_right = -65.8773
-margin_bottom = -15.0684
+margin_left = 1.0
+margin_right = -80.0
+margin_bottom = -16.0
 rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "{ABILITY_NAME}"
 align = 1
@@ -65,10 +69,10 @@ __meta__ = {
 [node name="Target" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 100.0
+margin_left = -20.0
 margin_top = 112.0
-margin_right = 300.0
-margin_bottom = 157.0
+margin_right = 220.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 200, 45 )
 __meta__ = {
 "_edit_group_": true,
@@ -78,11 +82,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="Target"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.529053
-margin_top = 2.11661
-margin_right = -66.471
-margin_bottom = -12.8834
+margin_left = 1.0
+margin_top = 2.0
+margin_right = -80.0
+margin_bottom = -15.0
 rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "{TARGET_NAME}"
 align = 1

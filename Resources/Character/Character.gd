@@ -2,9 +2,13 @@ extends TitansResource
 class_name CharacterResource
 
 const BASE_WEIGHT = 3
-const BASE_HP = 12
+const BASE_HP = 20
 const BASE_MORALE = 8
+const BASE_CHARGE = 2
 const TRAIT_RESIST_BONUS = 5
+const DEFENSE_MULTIPLE = 5
+const HP_LEVEL_MULTIPLE = 8
+
 
 # Cosmetics
 var fullname = ["First" , "nickname" , "Last"]
@@ -52,10 +56,12 @@ var traits = {
 	TRAITS.INT : { "name" : "INT", "fullName": "Intelligence", "value": 0, "total" : 0 , "equip" : 0 , "talent": 0 ,"mod" : 0 }
 }
 
+# Derived traits
 var carryWeight = { "value": 0, "total" : 0 , "mod" : 0 , 'current' : 0 }
 var hp = { "value": 18, "total" : 18 , "mod" : 0 , 'current' : 18 }
 var morale = { "value": 18, "total" : 18 , "mod" : 0  , 'current': 18}
 var charge = { "value" : 5 , "total" : 5 , "mod" : 0 , 'current' : 0}
+var defense = { "value" : 0 , "total" : 0 , "mod" : 0 , 'current' : 0 }
 
 var damageReduction = { 
 	'KINETIC': 	{ "value" : 0, "total" : 0 , "mod" : 0 },
@@ -121,7 +127,7 @@ func calculateSelf( newCharacter = false ):
 	#_loadAbilitiesFromSavedKeys()
 
 	_calculateResists()
-	#_calculateDerivedStats( newCharacter )
+	_calculateDerivedStats( newCharacter )
 
 func _calculateTraits():
 	for key in traits:
@@ -139,12 +145,19 @@ func _calculateCarryWeight():
 
 func _calculateDerivedStats( newCharacter = false ):
 	
-	hp.total = BASE_HP + hp.mod + traits.STR.total
+	# TODO : Add check for status Effects
+	# TODO : Should have some modification for HP based on CP
+	hp.total = BASE_HP + hp.mod + ( traits.STR.total * HP_LEVEL_MULTIPLE )
 	morale.total = BASE_MORALE + morale.mod + traits.CHA.total
+	charge.total = BASE_CHARGE + charge.mod + traits.CHA.total
+	defense.total = 0 + defense.mod + traits.PER.total
 
 	if( newCharacter ):
+		charge.current = 0
 		hp.current = hp.total
 		morale.current = morale.total
+		defense.currennt = defense.total
+
 
 func _calculateResists():
 	resists.STR.Weaken.value 	= traits.STR.total * TRAIT_RESIST_BONUS
@@ -276,14 +289,41 @@ func getCurrentTrait( traitKey : String):
 	else:
 		return 0
 
+
 # Mutates the character on the basis of data
-func calculateDamage( result ):
-	# Test if to hit is good enough.
-	# Check damage type and reduce damage accordingly.
-	# Also allows any kind of weird data mutations we want. Could get super creative with triggered abilities
+func calculateDamage( result : DamageEffectResource.Result ):
+
+	if( (result.toHitRoll - defense.current) >= 180 ):
+		result.success = DamageEffectResource.Result.CRITICAL
+		result.dmgRoll = ( result.dmgRoll - ( result.dmgRoll * damageReduction[result.dmgType].total ) ) * 2
+
+		hp.current = hp.current - result.dmgRoll
+		if( hp.current <= 0 ):
+			hp.current = 0	
+	
+	elif( (result.toHitRoll - defense.current) >= 100 ):
+		result.success = DamageEffectResource.Result.HIT
+		# Apply basic damage reduction
+		result.dmgRoll = result.dmgRoll - ( result.dmgRoll * damageReduction[result.dmgType].total )
+
+		hp.current = hp.current - result.dmgRoll
+		if( hp.current <= 0 ):
+			hp.current = 0
+	else:
+		result.success = DamageEffectResource.Result.HIT
+
 	return result
 
-func calculateHealing( result ):
+func calculateHealing( result : HealEffectResource.Result ):
+	
+	if( result.toHitRoll >= 100 ):
+		result.success = HealEffectResource.Result.HEALING
+		result.healRoll = result.healRoll # Check for status effects that improve or weaken healing effect
+
+		hp.current = hp.current - result.healRoll
+		if( hp.current >= hp.total ):
+			hp.current = hp.total	
+
 	return result
 
 func calculateStatusEffect( result ):

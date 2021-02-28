@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assetts3.0/OtherUI/BattlerMessage.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Effects/BattlerMessage.gd" type="Script" id=2]
+
+[node name="BattlerMessage" type="Label"]
+self_modulate = Color( 1, 1, 1, 0.675702 )
+margin_left = -40.0
+margin_top = -176.0
+margin_right = -2.0
+margin_bottom = -152.0
+rect_scale = Vector2( 2.5, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "{XX}"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

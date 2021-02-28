@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Panel
 
 var noArea = preload("res://AssettsImage/Interface/black-square.png")
 var goArea = preload("res://AssettsImage/Interface/square.png")
@@ -9,34 +9,34 @@ var goMove = preload("res://AssettsImage/Interface/walking-boot.png")
 
 var currentAbility : AbilityResource
 
-onready var abilityIcon : TextureRect = $VBox/TitleRow/AbilityIcon
-onready var title : Label = $VBox/TitleRow/Label
-onready var detailText : RichTextLabel = $VBox/TextRow/RTLabel
+onready var title : Label = $TitleRow/Label
+onready var detailText : RichTextLabel = $TextRow/Description
+onready var dataText : RichTextLabel = $TextRow/Data
 
 onready var validFrom : Array = [
-	$VBox/ValidRow/PlayerFront,
-	$VBox/ValidRow/PlayerMid,
-	$VBox/ValidRow/PlayerBack
+	$ValidRow/PlayerFront,
+	$ValidRow/PlayerMid,
+	$ValidRow/PlayerBack
 ]
 onready var validTargets : Array = [
-	$VBox/ValidRow/EnemyFront,
-	$VBox/ValidRow/EnemyMid,
-	$VBox/ValidRow/EnemyBack
+	$ValidRow/EnemyFront,
+	$ValidRow/EnemyMid,
+	$ValidRow/EnemyBack
 ]
 onready var areaGrid : Array = [
 	[
-		get_node("VBox/TextRow/VBox/AreaGrid/0_0"), 
-		get_node("VBox/TextRow/VBox/AreaGrid/1_0"),
-		get_node("VBox/TextRow/VBox/AreaGrid/2_0")
+		get_node("TextRow/VBox/AreaGrid/0_0"), 
+		get_node("TextRow/VBox/AreaGrid/1_0"),
+		get_node("TextRow/VBox/AreaGrid/2_0")
 	] , [
 		
-		get_node("VBox/TextRow/VBox/AreaGrid/0_1"),  
-		get_node("VBox/TextRow/VBox/AreaGrid/1_1"),  
-		get_node("VBox/TextRow/VBox/AreaGrid/2_1") 
+		get_node("TextRow/VBox/AreaGrid/0_1"),  
+		get_node("TextRow/VBox/AreaGrid/1_1"),  
+		get_node("TextRow/VBox/AreaGrid/2_1") 
 	] , [
-		get_node("VBox/TextRow/VBox/AreaGrid/0_2"), 
-		get_node("VBox/TextRow/VBox/AreaGrid/1_2"),  
-		get_node("VBox/TextRow/VBox/AreaGrid/2_2") 
+		get_node("TextRow/VBox/AreaGrid/0_2"), 
+		get_node("TextRow/VBox/AreaGrid/1_2"),  
+		get_node("TextRow/VBox/AreaGrid/2_2") 
 	]
 ]
 
@@ -46,7 +46,7 @@ func setupScene( ability : AbilityResource ):
 		currentAbility = ability
 
 		# Set simple data
-		abilityIcon.set_texture(load(currentAbility.iconPath))
+		# abilityIcon.set_texture(load(currentAbility.iconPath))
 		title.set_text(currentAbility.fullName)
 		detailText.set_bbcode( currentAbility.description )
 

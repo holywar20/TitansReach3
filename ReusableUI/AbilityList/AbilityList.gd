@@ -1,7 +1,6 @@
-extends PanelContainer
+extends Panel
 
 onready var abilityGrid : GridContainer = $GridContainer # All children of this grid should be AbilityIcon scenes
-onready var abilityDetail : PanelContainer = $PanelSpawner/AbilityDetail
 
 var abilityIconScene = preload("res://ReusableUI/AbilityIcon/AbilityIcon.tscn")
 var currentState : int = STATE.HIDE
@@ -39,9 +38,9 @@ func setState( state : int , newBattler ):
 				# fire this signal manually to trigger UI updates.
 				_on_AbilityButton_focus_entered( action )
 
-			abilityInstance.get_node("Button").connect("pressed" , self , "_on_abilityButtonPressed" , [abilityInstance.ability])
-			abilityInstance.get_node("Button").connect("focus_entered" , self , "_on_AbilityButton_focus_entered" ,[abilityInstance.ability])
-			abilityInstance.get_node("Button").connect("focus_exited" , self , "_on_AbilityButton_focus_exited" ,[abilityInstance.ability])
+			abilityInstance.get_node("TextureButton").connect("pressed" , self , "_on_abilityButtonPressed" , [abilityInstance.ability])
+			abilityInstance.get_node("TextureButton").connect("focus_entered" , self , "_on_AbilityButton_focus_entered" ,[abilityInstance.ability])
+			abilityInstance.get_node("TextureButton").connect("focus_exited" , self , "_on_AbilityButton_focus_exited" ,[abilityInstance.ability])
 
 
 	match currentState:
@@ -68,8 +67,7 @@ func _on_abilityButtonPressed( ability : AbilityResource ):
 
 func _on_AbilityButton_focus_entered( ability: AbilityResource ):
 	emit_signal("abilityChanged" , ability )
-	abilityDetail.setupScene( ability )
-	#
+
+# Can potentially deprecate this
 func _on_AbilityButton_focus_exited( ability : AbilityResource ):
-	abilityDetail.setupScene( null )
-	#
+	pass

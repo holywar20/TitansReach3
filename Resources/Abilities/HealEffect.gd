@@ -20,8 +20,12 @@ func _init( healEffectData : Dictionary , newKey : String , ability ):
 		effectAnimation = EffectResource.NO_ANIMATION
 
 class Result:
+	enum { HEALING , MISS }
+
 	var toHitRoll : int = 0
 	var healRoll : int = 0
+
+	var success = MISS
 
 func get_class(): 
 	return "HealEffectResource"

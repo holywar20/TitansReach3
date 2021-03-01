@@ -1,0 +1,149 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://AssettsImage/Interface/SmallConverganceTarget.png" type="Texture" id=1]
+
+[node name="Minimap" type="PanelContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -437.0
+margin_bottom = 437.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 423.0
+margin_bottom = 460.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBox"]
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="VBox/HBoxContainer2"]
+margin_right = 297.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "{ STAR_SYSTEM } : { STAR_SECTOR } : { SLEVEL }"
+align = 1
+valign = 1
+
+[node name="TextureRect" type="TextureButton" parent="VBox/HBoxContainer2"]
+margin_left = 305.0
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 3
+
+[node name="Map" type="Panel" parent="VBox"]
+margin_top = 21.0
+margin_right = 409.0
+margin_bottom = 341.0
+rect_min_size = Vector2( 0, 320 )
+
+[node name="VBox" type="VBoxContainer" parent="VBox"]
+margin_top = 349.0
+margin_right = 409.0
+margin_bottom = 446.0
+
+[node name="Data" type="HBoxContainer" parent="VBox/VBox"]
+margin_right = 409.0
+margin_bottom = 13.0
+
+[node name="Label" type="Label" parent="VBox/VBox/Data"]
+margin_right = 200.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Date"
+
+[node name="Label2" type="Label" parent="VBox/VBox/Data"]
+margin_left = 208.0
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "5773,11,01 : 20:00"
+align = 2
+
+[node name="Fuel" type="HBoxContainer" parent="VBox/VBox"]
+margin_top = 21.0
+margin_right = 409.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="VBox/VBox/Fuel"]
+margin_right = 200.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Fuel"
+
+[node name="Label2" type="Label" parent="VBox/VBox/Fuel"]
+margin_left = 208.0
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "19.7 Tons"
+align = 2
+
+[node name="Food" type="HBoxContainer" parent="VBox/VBox"]
+margin_top = 42.0
+margin_right = 409.0
+margin_bottom = 55.0
+
+[node name="Label" type="Label" parent="VBox/VBox/Food"]
+margin_right = 200.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Food"
+
+[node name="Label2" type="Label" parent="VBox/VBox/Food"]
+margin_left = 208.0
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "122 Days"
+align = 2
+
+[node name="Ink" type="HBoxContainer" parent="VBox/VBox"]
+margin_top = 63.0
+margin_right = 409.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="VBox/VBox/Ink"]
+margin_right = 200.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Ink"
+
+[node name="Label2" type="Label" parent="VBox/VBox/Ink"]
+margin_left = 208.0
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "11.002.123"
+align = 2
+
+[node name="Morale" type="HBoxContainer" parent="VBox/VBox"]
+margin_top = 84.0
+margin_right = 409.0
+margin_bottom = 97.0
+
+[node name="Label" type="Label" parent="VBox/VBox/Morale"]
+margin_right = 200.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Morale"
+
+[node name="Label2" type="Label" parent="VBox/VBox/Morale"]
+margin_left = 208.0
+margin_right = 409.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Good"
+align = 2

@@ -22,40 +22,54 @@ onready var title : Label = $UI/Dropdown/Main/TitleRow/Label
 
 const NODE_GROUP_MAIN_MENU = "MAIN_MENU"
 
-enum MENU_BUTTONS {
-	CREW, CREW_ASSIGNMENT, STARSHIP, CARGO , STARMAP, SYSTEM, TRADE 
+enum MB {
+	CREW_ASSIGNMENT, CREW_MANAGEMENT, ENGINEERING, CARGOHOLD , STARMAP, SYSTEM, MARKETS 
+}
+
+var buttonQue = [MB.CREW_ASSIGNMENT, MB.CREW_MANAGEMENT , MB.ENGINEERING , MB.CARGOHOLD, MB.STARMAP , MB.SYSTEM , MB.MARKETS]
+
+onready var buttons = {
+	MB.CREW_ASSIGNMENT : $UI/TopPanel/ButtonBar/CrewAssignment,
+	MB.CREW_MANAGEMENT : $UI/TopPanel/ButtonBar/CrewManagement,
+	MB.ENGINEERING : $UI/TopPanel/ButtonBar/Engineering,
+	MB.CARGOHOLD : $UI/TopPanel/ButtonBar/Cargohold,
+	MB.STARMAP : $UI/TopPanel/ButtonBar/Starmap,
+	MB.SYSTEM :  $UI/TopPanel/ButtonBar/System,
+	MB.MARKETS : $UI/TopPanel/ButtonBar/Markets
 }
 
 const MENUS = {
-	MENU_BUTTONS.CREW : { 
-		"scene" : "res://ModeExplore/Menus/Crew/Crew.tscn",
-		"title" : "Medical"
+	MB.CREW_ASSIGNMENT : { 
+		"scene" : "res://ModeExplore/Menus/CrewAssignments/CrewAssignments.tscn",
+		"title" : "Crew Assignment"
 	},
-	MENU_BUTTONS.CREW_ASSIGNMENT : {
-		"scene" : "res://ModeExplore/Menus/Assignments/Assignments.tscn",
-		"title" : "Postings"
+	MB.CREW_MANAGEMENT : {
+		"scene" : "res://ModeExplore/Menus/CrewManagement/CrewManagement.tscn",
+		"title" : "Crew Management"
 	},
-	MENU_BUTTONS.STARSHIP : {
-		"scene" : "res://ModeExplore/Menus/Starship/Starship.tscn",
+	MB.ENGINEERING : {
+		"scene" : "res://ModeExplore/Menus/Engineering/Engineering.tscn",
 		"title" : "Engineering"
 	},
-	MENU_BUTTONS.CARGO : {
-		"scene" : "res://ModeExplore/Menus/Cargo/Cargo.tscn",
+	MB.CARGOHOLD : {
+		"scene" : "res://ModeExplore/Menus/Cargohold/Cargohold.tscn",
 		"title" : "Cargohold"
 	},
-	MENU_BUTTONS.STARMAP : {
+	MB.STARMAP : {
 		"scene" : "res://ModeExplore/Menus/Starmap/Starmap.tscn",
 		"title" : "Starmap"
 	},
-	MENU_BUTTONS.SYSTEM : {
+	MB.SYSTEM : {
 		"scene" : "res://ModeExplore/Menus/System/System.tscn",
 		"title" : "Sensors"
 	},
-	MENU_BUTTONS.TRADE : {
-		"scene" : "res://ModeExplore/Menus/Trade/Trade.tscn",
+	MB.MARKETS : {
+		"scene" : "res://ModeExplore/Menus/Markets/Markets.tscn",
 		"title" : "Markets"
 	}	
 }
+
+var currentButton = null
 
 # Various fudge factors for managing the relationship between 2d & 3d elements
 const SCALE_2DTO3D_FACTOR = 1000
@@ -70,12 +84,42 @@ var myCrew : Array = [] # An array of Character Resources
 func _ready() -> void:
 	setupScene( mySeed )
 
+func _input(event):
+	if( event.is_action_pressed("CUSTUI_LEFT_MENU") ):
+		if( currentButton == null ):
+			currentButton = buttonQue[0]
+			print( currentButton )
+			buttons[currentButton].set_pressed(true)
+		else:
+			print(currentButton)
+			buttons[currentButton].set_pressed(false)
+			currentButton = posmod( currentButton - 1 , buttonQue.size() )
+			buttons[currentButton].set_pressed(true)
+			
+	elif( event.is_action_pressed("CUSTUI_RIGHT_MENU") ):
+		if( currentButton == null ):
+			currentButton = buttonQue[buttonQue.size() - 1]
+			buttons[currentButton].set_pressed(true)
+		else:
+			buttons[currentButton].set_pressed(false)
+			currentButton = posmod( currentButton + 1 , buttonQue.size() )
+			buttons[currentButton].set_pressed(true)
+			
+			
+	if( event.is_action_pressed("ui_cancel") ):
+		if(currentButton):
+			dropdown.hide()
+			
+			buttons[currentButton].set_pressed(false)
+			currentButton = null
+	
+			for child in get_tree().get_nodes_in_group( NODE_GROUP_MAIN_MENU ):
+				child.queue_free()
+
 func setupScene( aSeed : int ) -> void:
 	mySeed = aSeed
 	thisSystem = systemGenerator.generateEntireSystem( mySeed )
 	myCrew = crewGenerator.generateManyCrew(30 , 10)
-
-	startFocusButton.grab_focus()
 
 func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , angularVelocity : float , shipRotation : float):
 	_move3dCamera( newPosition )
@@ -105,64 +149,44 @@ func _move3dCamera( position : Vector2 ):
 	
 	viewPortCamera.set_translation( translatedVector3 )
 
-
 # Top Menu Buttons
-func loadMenuButton( buttonIdx : int ):
+func loadMenu( buttonIdx : int ):
 	for child in get_tree().get_nodes_in_group( NODE_GROUP_MAIN_MENU ):
 		child.queue_free()
 	
 	var menuScene = load( MENUS[buttonIdx].scene )
 	var sceneInstance : Panel = menuScene.instance()
 	title.set_text( MENUS[buttonIdx].title )
+	dropdown.show()
+	mainContainer.add_child( sceneInstance )
 	
 	return sceneInstance
-	
 
-func _on_CrewButton_pressed():
-	var menuInstance = loadMenuButton( MENU_BUTTONS.CREW )
-	
-	menuInstance.setupScene( myCrew )
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
+func _on_CrewAssignment_toggled(button_pressed):	
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.CREW_ASSIGNMENT )
+		menuInstance.setupScene( myCrew )
 
-func _on_CrewAssignment_pressed():
-	var menuInstance =  loadMenuButton( MENU_BUTTONS.CREW_ASSIGNMENT)
-	
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
+func _on_CrewManagement_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.CREW_MANAGEMENT )
 
-func _on_Starship_pressed():	
-	var menuInstance = loadMenuButton( MENU_BUTTONS.STARSHIP)
-	
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
+func _on_Engineering_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.ENGINEERING )
 
-func _on_Cargo_pressed():	
-	var menuInstance = loadMenuButton( MENU_BUTTONS.CARGO )
-	
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
+func _on_Cargohold_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.CARGOHOLD )
 
-func _on_Starmap_pressed():	
-	var menuInstance = loadMenuButton( MENU_BUTTONS.STARMAP )
-	
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
+func _on_Starmap_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.STARMAP )
 
-func _on_System_pressed():
-	var menuInstance = loadMenuButton( MENU_BUTTONS.SYSTEM )
-	
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
+func _on_System_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.SYSTEM )
 
-func _on_Trade_pressed():
-	var menuInstance = loadMenuButton( MENU_BUTTONS.TRADE )
-	
-	mainContainer.add_child( menuInstance )
-	dropdown.show()
-
-func _on_closeButton_pressed():
-	dropdown.hide()
-	
-	for child in get_tree().get_nodes_in_group( NODE_GROUP_MAIN_MENU ):
-		child.queue_free()
+func _on_Markets_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.MARKETS )

@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ModeExplore/Menus/CrewAssignments/CrewAssignments.gd" type="Script" id=1]
+[ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
+
+[node name="CrewManagement" type="Panel" groups=[
+"MAIN_MENU",
+]]
+margin_right = 1274.0
+margin_bottom = 756.0
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tripane" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = -1.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tripane"]
+margin_right = 419.0
+margin_bottom = 755.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="Crew" type="VBoxContainer" parent="Tripane/ScrollContainer"]
+margin_right = 419.0
+margin_bottom = 755.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 7
+
+[node name="Label" type="Label" parent="Tripane/ScrollContainer/Crew"]
+margin_right = 419.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "Unassigned"
+align = 1
+
+[node name="Detail" type="VBoxContainer" parent="Tripane"]
+margin_left = 427.0
+margin_right = 847.0
+margin_bottom = 755.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+
+[node name="Label3" type="Label" parent="Tripane/Detail"]
+margin_right = 420.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "Detail"
+align = 1
+
+[node name="CombatDetail" parent="Tripane/Detail" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 27.0
+margin_right = 420.0
+margin_bottom = 283.0
+
+[node name="Container" type="Container" parent="Tripane/Detail"]
+margin_top = 291.0
+margin_right = 420.0
+margin_bottom = 755.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Tripane/Detail/Container"]
+margin_right = 40.0
+margin_bottom = 13.0
+text = "Equipment + Biogropahy potentially"
+
+[node name="Assignments" type="VBoxContainer" parent="Tripane"]
+margin_left = 855.0
+margin_right = 1275.0
+margin_bottom = 755.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+
+[node name="Label2" type="Label" parent="Tripane/Assignments"]
+margin_right = 420.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "Stations"
+align = 1

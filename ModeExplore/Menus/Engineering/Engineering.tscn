@@ -1,6 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ModeExplore/Menus/Starship/Starship.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/Menus/Engineering/Engineering.gd" type="Script" id=1]
+
+
+
 
 [node name="Starship" type="Panel" groups=[
 "MAIN_MENU",

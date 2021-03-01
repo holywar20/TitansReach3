@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://AssettsImage/Interface/SmallConverganceTarget.png" type="Texture" id=8]
 [ext_resource path="res://ModeExplore/UI.gd" type="Script" id=9]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=10]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.5, 1 )
@@ -388,10 +389,11 @@ margin_bottom = 40.0
 alignment = 1
 
 [node name="Label" type="Label" parent="UI/Dropdown/Main/TitleRow"]
-margin_right = 1154.0
+margin_right = 1150.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 10 )
 text = "{ TITLE }"
 align = 1
 valign = 1

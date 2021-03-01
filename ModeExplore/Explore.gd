@@ -63,6 +63,8 @@ const PARTICLE_SPEED_FACTOR = .1
 const BASE_PARTICLE_SPEED = 5
 
 var thisSystem : SystemResource = null
+
+# Need to hoist this to a neutral place at some point
 var myCrew : Array = [] # An array of Character Resources
 
 func _ready() -> void:
@@ -106,40 +108,58 @@ func _move3dCamera( position : Vector2 ):
 
 # Top Menu Buttons
 func loadMenuButton( buttonIdx : int ):
-	
-	
 	for child in get_tree().get_nodes_in_group( NODE_GROUP_MAIN_MENU ):
 		child.queue_free()
 	
 	var menuScene = load( MENUS[buttonIdx].scene )
 	var sceneInstance : Panel = menuScene.instance()
-	sceneInstance.setupScene()
-	mainContainer.add_child( sceneInstance )
-
 	title.set_text( MENUS[buttonIdx].title )
-	dropdown.show()
+	
+	return sceneInstance
 	
 
 func _on_CrewButton_pressed():
-	loadMenuButton( MENU_BUTTONS.CREW  )
+	var menuInstance = loadMenuButton( MENU_BUTTONS.CREW )
+	
+	menuInstance.setupScene( myCrew )
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_CrewAssignment_pressed():
-	loadMenuButton( MENU_BUTTONS.CREW_ASSIGNMENT)
+	var menuInstance =  loadMenuButton( MENU_BUTTONS.CREW_ASSIGNMENT)
+	
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_Starship_pressed():	
-	loadMenuButton( MENU_BUTTONS.STARSHIP)
+	var menuInstance = loadMenuButton( MENU_BUTTONS.STARSHIP)
+	
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_Cargo_pressed():	
-	loadMenuButton( MENU_BUTTONS.CARGO )
+	var menuInstance = loadMenuButton( MENU_BUTTONS.CARGO )
+	
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_Starmap_pressed():	
-	loadMenuButton( MENU_BUTTONS.STARMAP )
+	var menuInstance = loadMenuButton( MENU_BUTTONS.STARMAP )
+	
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_System_pressed():
-	loadMenuButton( MENU_BUTTONS.SYSTEM )
+	var menuInstance = loadMenuButton( MENU_BUTTONS.SYSTEM )
+	
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_Trade_pressed():
-	loadMenuButton( MENU_BUTTONS.TRADE )
+	var menuInstance = loadMenuButton( MENU_BUTTONS.TRADE )
+	
+	mainContainer.add_child( menuInstance )
+	dropdown.show()
 
 func _on_closeButton_pressed():
 	dropdown.hide()

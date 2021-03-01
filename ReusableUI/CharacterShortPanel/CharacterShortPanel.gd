@@ -28,6 +28,9 @@ func setupScene( newCharacter : CharacterResource ):
 	moraleAmount.set_text( character.getMoraleString() )
 	healthAmount.set_text( character.getHitPointString() )
 
+	smallTexture.set_texture(load(character.smallTexturePath))
+
+
 func _on_CPanel_focus_entered():
 	emit_signal( "focusEntered" , character )
 	set_self_modulate( STATE.FOCUS )

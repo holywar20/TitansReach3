@@ -169,9 +169,8 @@ func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
 
 func _on_BattleMap_abilitySelectFinished():
 	print("ModeBattle : _on_BattleMap_abilitySelectFinished")
-	# activeDisplay.clear()
-	# playerUI.setState( playerUI.STATE.HIDE )
-	# enemyUI.setState( enemyUI.STATE.HIDE )
+	casterUI.setState( casterUI.STATE.HIDE )
+	targetUI.setState( targetUI.STATE.HIDE )
 
 	setState( STATE.PLAYER_EXECUTING_ABILITY )
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=1]
+
+[node name="ScrollContainer" type="ScrollContainer"]
+margin_right = 419.0
+margin_bottom = 755.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="Crew" type="VBoxContainer" parent="."]
+margin_right = 419.0
+margin_bottom = 755.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 7
+
+[node name="Label" type="Label" parent="Crew"]
+margin_right = 419.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "Unassigned"
+align = 1

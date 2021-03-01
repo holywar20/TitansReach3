@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Starmap/Starmap.gd" type="Script" id=1]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
+[ext_resource path="res://AssettsImage/Stars/white_giant/star_white_giant01-small.png" type="Texture" id=3]
+[ext_resource path="res://Assetts3.0/UI/honeycombHex.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 256, 256 )
+margin_left = 11.7042
+margin_right = 19.507
+margin_top = 34.6249
+margin_bottom = 42.9154
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="Starmap" type="Panel" groups=[
 "MAIN_MENU",
@@ -14,18 +27,102 @@ __meta__ = {
 }
 
 [node name="Tripane" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tripane"]
-margin_right = 52.0
-margin_bottom = 40.0
+[node name="StarmapPane" type="VBoxContainer" parent="Tripane"]
+margin_right = 844.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 
-[node name="Label" type="Label" parent="Tripane/VBoxContainer"]
-margin_right = 52.0
-margin_bottom = 31.0
-text = "Starmap
-"
+[node name="TitleRow" type="HBoxContainer" parent="Tripane/StarmapPane"]
+margin_right = 844.0
+margin_bottom = 13.0
+
+[node name="Label" type="Label" parent="Tripane/StarmapPane/TitleRow"]
+margin_right = 205.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "SECTOR NAME"
+align = 1
+
+[node name="Label2" type="Label" parent="Tripane/StarmapPane/TitleRow"]
+margin_left = 213.0
+margin_right = 418.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "SECTOR NAME"
+align = 1
+
+[node name="Target Name" type="Label" parent="Tripane/StarmapPane/TitleRow"]
+margin_left = 426.0
+margin_right = 631.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Target Name"
+align = 1
+
+[node name="Target Distance" type="Label" parent="Tripane/StarmapPane/TitleRow"]
+margin_left = 639.0
+margin_right = 844.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Target Distance"
+align = 1
+
+[node name="Panel" type="Panel" parent="Tripane/StarmapPane"]
+margin_top = 21.0
+margin_right = 844.0
+margin_bottom = 723.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="Controls" type="VBoxContainer" parent="Tripane/StarmapPane"]
+margin_top = 731.0
+margin_right = 844.0
+margin_bottom = 756.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tripane/StarmapPane/Controls"]
+margin_right = 844.0
+margin_bottom = 25.0
+
+[node name="Button" type="Button" parent="Tripane/StarmapPane/Controls/HBoxContainer"]
+margin_right = 129.0
+margin_bottom = 25.0
+text = "Active RipDrive"
+
+[node name="Stardetail" type="VBoxContainer" parent="Tripane"]
+margin_left = 852.0
+margin_right = 1274.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Stardetail"]
+margin_right = 422.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 2 )
+text = "DETAIL"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="Tripane/Stardetail"]
+margin_top = 27.0
+margin_right = 422.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}

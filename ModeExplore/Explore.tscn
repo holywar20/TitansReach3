@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ModeExplore/Celestials/Star/Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ModeExplore/Celestials/Planet/Planet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=10]
 [ext_resource path="res://ReusableUI/Minimap.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assetts3.0/Controllers/XB1_LB.png" type="Texture" id=12]
@@ -157,8 +158,8 @@ __meta__ = {
 }
 
 [node name="TopPanel" type="PanelContainer" parent="UI"]
-margin_right = 1462.0
-margin_bottom = 77.0
+margin_right = 1485.0
+margin_bottom = 79.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -166,13 +167,13 @@ __meta__ = {
 [node name="ButtonBar" type="HBoxContainer" parent="UI/TopPanel"]
 margin_left = 14.0
 margin_top = 14.0
-margin_right = 1448.0
-margin_bottom = 63.0
+margin_right = 1471.0
+margin_bottom = 65.0
 alignment = 1
 
 [node name="Container" type="Container" parent="UI/TopPanel/ButtonBar"]
 margin_right = 80.0
-margin_bottom = 49.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 80, 0 )
 
 [node name="LB" type="Sprite" parent="UI/TopPanel/ButtonBar/Container"]
@@ -182,85 +183,92 @@ texture = ExtResource( 12 )
 
 [node name="CrewAssignment" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 88.0
-margin_right = 260.0
-margin_bottom = 49.0
+margin_right = 298.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
 text = "Crew Assignment"
 
 [node name="CrewManagement" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 268.0
-margin_right = 441.0
-margin_bottom = 49.0
+margin_left = 306.0
+margin_right = 529.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
 text = "Crew Management"
 
 [node name="Engineering" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 449.0
-margin_right = 622.0
-margin_bottom = 49.0
+margin_left = 537.0
+margin_right = 697.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
-text = "Starship"
+text = "Engineering"
 
 [node name="Cargohold" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 630.0
-margin_right = 803.0
-margin_bottom = 49.0
+margin_left = 705.0
+margin_right = 865.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
 text = "Cargo"
 
 [node name="Starmap" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 811.0
-margin_right = 984.0
-margin_bottom = 49.0
+margin_left = 873.0
+margin_right = 1033.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
 text = "Starmap"
 
 [node name="System" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 992.0
-margin_right = 1165.0
-margin_bottom = 49.0
+margin_left = 1041.0
+margin_right = 1201.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
 text = "System"
 
 [node name="Markets" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 1173.0
-margin_right = 1346.0
-margin_bottom = 49.0
+margin_left = 1209.0
+margin_right = 1369.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
 text = "MARKETS"
 
 [node name="Container2" type="Container" parent="UI/TopPanel/ButtonBar"]
-margin_left = 1354.0
-margin_right = 1434.0
-margin_bottom = 49.0
+margin_left = 1377.0
+margin_right = 1457.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 80, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -272,6 +280,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
 
 [node name="Dropdown" type="Panel" parent="UI"]
+visible = false
 modulate = Color( 1, 1, 1, 0.784314 )
 margin_left = 3.0
 margin_top = 77.0

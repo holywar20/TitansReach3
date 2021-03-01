@@ -6,7 +6,7 @@ var charShortPanelScene = preload("res://ReusableUI/CharacterShortPanel/Characte
 
 const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 
-onready var unassignedBase = $Tripane/ScrollContainer/Crew
+onready var unassignedBase = $Tripane/UnassignedList/Crew
 onready var stationBase = $Tripane/Assignments
 onready var combatDetail = $Tripane/Detail/CombatDetail
 

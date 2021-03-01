@@ -148,5 +148,6 @@ one_shot = true
 [connection signal="abilityExecuteFinished" from="BattleMap" to="." method="_on_BattleMap_abilityExecuteFinished"]
 [connection signal="abilitySelectCanceled" from="BattleMap" to="." method="_on_BattleMap_abilitySelectCanceled"]
 [connection signal="abilitySelectFinished" from="BattleMap" to="." method="_on_BattleMap_abilitySelectFinished"]
+[connection signal="battlerDied" from="BattleMap" to="CanvasLayer/Turnorder" method="_on_BattleMap_battlerDied"]
 [connection signal="selection_change" from="BattleMap/SelectionMap" to="." method="_on_SelectionMap_selection_change"]
 [connection signal="timeout" from="EnemyActionTimer" to="." method="_on_EnemyActionTimer_timeout"]

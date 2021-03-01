@@ -13,7 +13,7 @@ const ENEMY_TILE_MAP = [
 const HIGHLIGHT_CELL_INDEX = 0
 
 enum STATE {
-	NONE, SELF,  ALLY_FLOOR , ALLY_UNIT , ENEMY_FLOOR, ENEMY_UNIT
+	NONE, SELF, ALLY_FLOOR_EMPTY,  ALLY_FLOOR , ALLY_UNIT , ENEMY_FLOOR_EMPTY, ENEMY_FLOOR, ENEMY_UNIT
 }
 
 enum HIGHLIGHT {
@@ -69,8 +69,12 @@ func setState( effectGroup = null , formation = null , ability = null , battler 
 			stateSelf()
 		STATE.ALLY_FLOOR:
 			stateAllyFloor()
+		STATE.ALLY_FLOOR_EMPTY:
+			stateAllyFloorEmpty()
 		STATE.ALLY_UNIT:
 			stateAllyUnit()
+		STATE.ENEMY_FLOOR_EMPTY:
+			stateEnemyFloorEmpty()
 		STATE.ENEMY_UNIT:
 			stateEnemyUnit()
 		STATE.ENEMY_FLOOR:
@@ -92,6 +96,10 @@ func stateSelf():
 func stateAllyFloor():
 	_seekRow( -1 )
 
+func stateAllyFloorEmpty():
+	currentFormation.filterIsEmpty()
+	_seekRow(-1)
+
 func stateAllyUnit():
 	currentFormation.filterIsABattler()
 	_seekRow( -1 )
@@ -99,6 +107,10 @@ func stateAllyUnit():
 func stateEnemyFloor():
 	currentFormation.filterValidTargetRow( currentAbility.validTargets )
 	_seekRow( -1 )
+
+func stateEnemyFloorEmpty():
+	currentFormation.filterIsEmpty()
+	_seekRow(-1)
 
 func stateEnemyUnit():
 	currentFormation.filterValidTargetRow( currentAbility.validTargets )
@@ -119,10 +131,14 @@ func convertTargetingToEffectGroup( targetingState : String ):
 	match targetingState:
 		AbilityResource.TARGET_TYPE.SELF:
 			newState = STATE.SELF
+		AbilityResource.TARGET_TYPE.ALLY_FLOOR_EMPTY:
+			newState = STATE.ALLY_FLOOR_EMPTY
 		AbilityResource.TARGET_TYPE.ALLY_UNIT:
 			newState = STATE.ALLY_UNIT
 		AbilityResource.TARGET_TYPE.ALLY_FLOOR:
 			newState = STATE.ALLY_FLOOR
+		AbilityResource.TARGET_TYPE.ENEMY_FLOOR_EMPTY:
+			newState = STATE.ENEMY_FLOOR_EMPTY
 		AbilityResource.TARGET_TYPE.ENEMY_UNIT:
 			newState = STATE.ENEMY_UNIT
 		AbilityResource.TARGET_TYPE.ENEMY_FLOOR:
@@ -138,10 +154,14 @@ func handleInput( _ev : InputEvent ):
 	match currentState:
 		STATE.SELF:
 			pass
+		STATE.ALLY_FLOOR_EMPTY:
+			allyCursorInput(_ev)
 		STATE.ALLY_FLOOR:
 			allyCursorInput(_ev)
 		STATE.ALLY_UNIT:
 			allyCursorInput(_ev)
+		STATE.ENEMY_FLOOR_EMPTY:
+			enemyCursorInput(_ev)
 		STATE.ENEMY_UNIT:
 			enemyCursorInput(_ev)
 		STATE.ENEMY_FLOOR:

@@ -12,7 +12,7 @@
 		"targetAreaShown": "SINGLE",
 		"description" : "Move anywhere on the map that isn't blocked.",
 		"effectGroups" : [{
-			"targetType" : "ALLY_FLOOR",
+			"targetType" : "ALLY_FLOOR_EMPTY",
 			"targetArea" : "SINGLE",
 			"effectKeys" : ["MOVE_ANYWHERE"]
 		}]

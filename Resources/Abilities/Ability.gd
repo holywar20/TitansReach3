@@ -36,7 +36,13 @@ const TARGET_AREA = {
 	"SINGLE" : "SINGLE" ,"COLUMN" : "COLUMN", "ROW" : "ROW" , "CROSS" : "CROSS", "ALL" :  "ALL"
 }
 const TARGET_TYPE = {
-	"ALLY_FLOOR" : "ALLY_FLOOR" , "ALLY_UNIT" : "ALLY_UNIT", "ENEMY_UNIT" : "ENEMY_UNIT", "ENEMY_FLOOR" : "ENEMY_FLOOR", "SELF" : "SELF"
+	"ALLY_FLOOR" : "ALLY_FLOOR" ,
+	"ALLY_FLOOR_EMPTY" : "ALLY_FLOOR_EMPTY", 
+	"ALLY_UNIT" : "ALLY_UNIT", 
+	"ENEMY_UNIT" : "ENEMY_UNIT", 
+	"ENEMY_FLOOR" : "ENEMY_FLOOR", 
+	"ENEMY_FLOOR_EMPTY" : "ENEMY_FLOOR_EMPTY",
+	"SELF" : "SELF"
 }
 const ABILITY_TYPE = {
 	"ACTION" : "ACTION" , "STANCE" : "STANCE" , "INSTANT" : "INSTANT"
@@ -103,9 +109,13 @@ class EffectGroup:
 				targetsPlayer = true
 			TARGET_TYPE.ALLY_UNIT:
 				targetsPlayer = true
+			TARGET_TYPE.ALLY_FLOOR_EMPTY:
+				targetsPlayer = true
 			TARGET_TYPE.ENEMY_FLOOR:
 				targetsPlayer = false
 			TARGET_TYPE.ENEMY_UNIT:
+				targetsPlayer = false
+			TARGET_TYPE.ENEMY_FLOOR_EMPTY:
 				targetsPlayer = false
 		
 		# If the ability user isn't a player, flip the logic
@@ -145,8 +155,6 @@ func _init( newKey : String , filePath : int , character ):
 
 	flushAndFillProperties(abilityTable[key] , self)
 	_makeEffects( abilityTable[key]['effectGroups'] )
-
-	print("powerLoBase")
 
 	# Do any type casting to fix json, which comes in as strings
 	#validTargets = makeArrayIntegers( validTargets )

@@ -39,7 +39,7 @@ func rollEffect():
 	if( parentAbility.toHitTrait == "ALWAYS" ):
 		result.toHitRoll = 200
 	else:
-		var traitVal : int = parentAbility.parentCharacter.getCurrentTrait( parentAbility.toPowerTrait )
+		var traitVal : int = parentAbility.parentCharacter.getCurrentTrait( parentAbility.toHitTrait )
 		var roll : int = int( randi() % 100 )
 		var bonus = int( parentAbility.toHitBase + ( traitVal * TO_HIT_TRAIT_MULTIPLE ) * toHitMod )
 		# TODO - a hook for character level special bonus's potentially. Or have that work on traits alone?

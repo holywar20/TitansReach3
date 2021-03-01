@@ -7,7 +7,7 @@ const BASE_MORALE = 8
 const BASE_CHARGE = 2
 const TRAIT_RESIST_BONUS = 5
 const DEFENSE_MULTIPLE = 5
-const HP_LEVEL_MULTIPLE = 8
+const HP_LEVEL_MULTIPLE = 2
 
 
 # Cosmetics
@@ -299,6 +299,7 @@ func calculateDamage( result : DamageEffectResource.Result ):
 
 		hp.current = hp.current - result.dmgRoll
 		if( hp.current <= 0 ):
+			isDead = true
 			hp.current = 0	
 	
 	elif( (result.toHitRoll - defense.current) >= 100 ):
@@ -308,14 +309,14 @@ func calculateDamage( result : DamageEffectResource.Result ):
 
 		hp.current = hp.current - result.dmgRoll
 		if( hp.current <= 0 ):
+			isDead = true
 			hp.current = 0
 	else:
-		result.success = DamageEffectResource.Result.HIT
+		result.success = DamageEffectResource.Result.MISS
 
 	return result
 
 func calculateHealing( result : HealEffectResource.Result ):
-	
 	if( result.toHitRoll >= 100 ):
 		result.success = HealEffectResource.Result.HEALING
 		result.healRoll = result.healRoll # Check for status effects that improve or weaken healing effect
@@ -324,6 +325,12 @@ func calculateHealing( result : HealEffectResource.Result ):
 		if( hp.current >= hp.total ):
 			hp.current = hp.total	
 
+	return result
+
+func calculateMovement( result : MoveEffectResource.Result ):
+	if( result.toHitRoll >= 100 ):
+		result.success = MoveEffectResource.Result.MOVE
+	
 	return result
 
 func calculateStatusEffect( result ):

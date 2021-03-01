@@ -43,3 +43,9 @@ func nextTurn() -> CharacterResource:
 	turnBase.add_child( nextInit )
 	
 	return nextInit.crewman
+
+func _on_BattleMap_battlerDied( battler : Battler ):
+	for turn in turnBase.get_children():
+		if turn.crewman == battler.currentCharacter:
+			turn.queue_free()
+			break

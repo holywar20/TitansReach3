@@ -7,10 +7,6 @@ onready var characterSprite : Sprite = $Sprite
 onready var dataBlock : Control = $Sprite/Data
 onready var effectBase : Node2D = $Sprite/Effects 
 
-onready var damageNumber = $DamageNumber
-onready var healingNumber = $HealingNumber
-onready var message = $Message
-
 onready var animationTree = $SpritePlayer/AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 
@@ -18,6 +14,9 @@ onready var effectProvider = $EffectProvider
 
 const BATTLER_MESSAGE = preload("res://Effects/BattlerMessage.tscn")
 const OUTLINE_SHADER = preload("res://Shaders/OutlineShader.shader")
+
+signal has_died( battler )
+signal is_moving( battler, target)
 
 enum SELECTION {
 	NONE, TURN_TARGET, ASSIST_TARGET, ATTACK_TARGET
@@ -58,12 +57,20 @@ enum STATE {
 # Maps to states in the Animation Tree of player & enemy battler
 const ANIMATION = {
 	# TODO need a take damage animation
-	"BASIC_ATTACK" : "BASIC_ATTACK" , "READY_TO_ATTACK" : "READY_TO_ATTACK","IDLE" : "IDLE" ,
+	"BASIC_ATTACK" : "BASIC_ATTACK" , "READY_TO_ATTACK" : "READY_TO_ATTACK","IDLE" : "IDLE" , "MOVEMENT" : "MOVEMENT"
 }
 
 var currentFormationLocation = Vector2(0,0)
 var highlightState = HIGHLIGHT.NONE
 var turnState = STATE.NOT_TURN
+
+var animationQue = []
+
+class AnimationQueItem:
+	enum ANIMIATION_TYPE { EFFECT , STATE_MACHINE , DISPLAY }
+
+	var type : int = AnimationQueItem.ANIMATION_TYPE.EFFECT
+	var key : String  = ANIMATION.IDLE
 
 # Overrides
 func get_class(): 
@@ -125,7 +132,7 @@ func setTurnState( state : int , turnEndAnimation : String = ANIMATION.IDLE ):
 	
 	match turnState:
 		STATE.TURN:
-			animationState.travel("READY_TO_ATTACK")
+			animationState.travel( ANIMATION.READY_TO_ATTACK )
 			
 			for oneEffect in effectBase.get_children():
 				if "duration" in oneEffect:
@@ -155,11 +162,16 @@ func applyDamage( result : DamageEffectResource.Result , effectKey ):
 		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.MISS , "Missed!")
 
 	_updateCharacterData()
+
+	if( currentCharacter.isDead ):
+		print("dead signal")
+		emit_signal("has_died" , self )
+
 	executeEffectAnimation( effectKey )
 
 func applyHealing( result : HealEffectResource.Result , effectKey ):
 	result = currentCharacter.calculateHealing( result )
-	if( result.toHitRoll >= 100):
+	if( result.success == HealEffectResource.Result.HEALING ):
 		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.HEALING , str(result.healRoll) )
 	else:
 		_addBattlerMessage( BattlerMessage.MESSAGE_TYPE.MISS , "Missed!")
@@ -171,15 +183,27 @@ func applyPassive( result : PassiveEffectResource.Result , effectKey ):
 
 	executeEffectAnimation( effectKey )
 
-func applyMovement( result : MoveEffectResource.Result , effectKey ):
-	# TODO : not sure how I want to do this yet. Likely will need to pass a Vector2 Target inside result.
-
+func applyMovement( result , target , effectKey ):
+	result = currentCharacter.calculateMovement( result )
+	
+	if( result.success == MoveEffectResource.Result.MOVE ):
+		animationState.travel( ANIMATION.MOVEMENT )
+		emit_signal("is_moving" , self , target )
+	
 	executeEffectAnimation( effectKey )
+
+func kill():
+	yield(get_tree().create_timer(1.0) , "timeout")
+	queue_free()
 
 func _addBattlerMessage( type : int , message : String ):
 	var battleMessage = BATTLER_MESSAGE.instance()
 	battleMessage.setupScene( type, message )
 	effectBase.add_child( battleMessage )
 
-func hasDied():
-	queue_free()
+func _animationFinished():
+	var newAnimation : AnimationQueItem = animationQue.pop()
+
+	if( newAnimation ):
+		# Based on type of animation, create it and run it.
+		pass 

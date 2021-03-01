@@ -93,6 +93,16 @@ func isCharacterResource( loc : Vector2 ) -> bool:
 
 # Formation Filters. Use these methods to modify filteredPos
 # Filters out any target that isn't in the valid row
+func isAnyValid():
+	var isValid = false
+
+	for x in range(0 , filteredPos.size() ):
+		for y in range(0 , filteredPos[x].size() ):
+			if( filteredPos[x][y] ):
+				isValid = true
+
+	return isValid
+
 func filterValidTargetRow( validTargets : Array ):
 	for x in range(0, filteredPos.size() ):
 		if x in validTargets:
@@ -134,8 +144,11 @@ func filterByTargetArea( targetArea : String , targetLoc : Vector2 ):
 			else:
 				filteredPos[x][y] = false
 				
-
-
+func filterIsEmpty():
+	for x in range(0, filteredPos.size() ):
+		for y in range( 0, filteredPos[x].size() ):
+			if( typeof(filteredPos[x][y]) == TYPE_OBJECT ):
+				filteredPos[x][y] = false
 
 # Filters out all but the current battler
 func filterAllButSelf( battler : CharacterResource ):

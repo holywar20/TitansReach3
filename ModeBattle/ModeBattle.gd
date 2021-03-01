@@ -164,10 +164,8 @@ func _on_AbilityList_abilityChanged( ability ):
 
 func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
 	pass
-	# Find out if target is at a location where there is an enemy.
-	# If so, show detail about enemy. 
-	# Otherwise, show just the string about the target area
-	# TODO - update battler highlights based proximity to targetString
+	#targetUI.updateUI( character )
+	#targetUI.setState( casterUI.STATE.SHOW )
 
 func _on_BattleMap_abilitySelectFinished():
 	print("ModeBattle : _on_BattleMap_abilitySelectFinished")

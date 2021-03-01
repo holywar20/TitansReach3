@@ -37,6 +37,7 @@ var currentBattler : Node2D
 var effectGroupQue : Array
 var effectGroupSelected : Array
 
+signal battlerDied
 signal abilitySelectFinished
 signal abilityExecuteFinished
 signal abilitySelectCanceled
@@ -53,6 +54,9 @@ func setupScene( newCrew : Array , newEnemy : Array ):
 				playerBase.add_child( battler )
 				battler.setupScene(playerTiles.positions[x][y] ,Vector2( x, y ))
 
+				battler.connect("has_died" , self , "_on_Battler_hasDied")
+				battler.connect("is_moving" , self, "_on_Battler_isMoving")
+
 	enemyTiles = FormationResource.new( newEnemy , false )
 	for x in range(0, enemyTiles.positions.size() ):
 		for y in range( 0, enemyTiles.positions[x].size() ):
@@ -63,6 +67,9 @@ func setupScene( newCrew : Array , newEnemy : Array ):
 				battler.position = groundMap.map_to_world( ENEMY_TILE_MAP[x][y] ) + Vector2(32, TILE_SIZE.y)
 				enemyBase.add_child( battler )
 				battler.setupScene(enemyTiles.positions[x][y], Vector2( x, y ))
+
+				battler.connect("has_died" , self , "_on_Battler_hasDied")
+				battler.connect("is_moving" , self, "_on_Battler_isMoving" )
 
 func handleParentInput( event : InputEvent ):
 	# TODO add handling for hover
@@ -128,25 +135,26 @@ func _executeAllEffects():
 		formation.resetFilters()
 		formation.filterByTargetArea( group.targetArea , group.selectedTarget )
 		
-		# TODO add more sophisticated filters so we can have animations target areas as well.
-		formation.filterIsABattler()
-
-		var characters = formation.getFilteredCharacters()
-		
 		for effectGroup in effectGroupQue:
 			for effect in effectGroup.effects:
-				for chr in characters:
-					var battler = findBattlerFromCharacter( chr )
-					if( battler ):
-						match effect.type:
-							"DAMAGE":
-								battler.applyDamage( effect.rollEffect() , effect.effectAnimation )
-							"HEALING":
-								battler.applyHealing( effect.rollEffect() , effect.effectAnimation )
-							"PASSIVE":
-								battler.applyPassive( effect.rollEffect() , effect.effectAnimation )
-							"MOVEMENT":
-								battler.applyMovement( effect.rollEffect() , effect.effectAnimation )
+				if( effect.type == EffectResource.TYPES.MOVEMENT):
+					# Need to make this targeting smarter.
+					currentBattler.applyMovement( effect.rollEffect() , group.selectedTarget , effect.effectAnimation )
+				else:
+					var characters = formation.getFilteredCharacters()
+					for chr in characters:
+						# TODO add more sophisticated filters so we can have animations target areas as well.
+						formation.filterIsABattler()
+						var battler = findBattlerFromCharacter( chr )
+						if( battler ):
+							match effect.type:
+								EffectResource.TYPES.DAMAGE:
+									battler.applyDamage( effect.rollEffect() , effect.effectAnimation )
+								EffectResource.TYPES.HEALING:
+									battler.applyHealing( effect.rollEffect() , effect.effectAnimation )
+								EffectResource.TYPES.PASSIVE:
+									battler.applyPassive( effect.rollEffect() , effect.effectAnimation )
+									
 				
 
 	yield(get_tree().create_timer(1), "timeout") # No effect should take longer than a second for now. Need to do this a better way.
@@ -180,3 +188,22 @@ func _prevEffect():
 		currentBattler.setHighlightState( currentBattler.HIGHLIGHT.NONE )
 		selectionMap.setState()
 		emit_signal( "abilitySelectCanceled" )
+
+func _on_Battler_hasDied( battler ):
+	emit_signal("battlerDied" , battler )
+	battler.kill()
+
+# Once a movement action is confirmed. Execute the move. This move should be validated BEFORE this is called.
+func _on_Battler_isMoving( battler , target ):
+	# Not all movement is allowed, so we confirm it here.cursorLocation
+
+	var tilePositions = null
+	if battler.currentCharacter.isPlayer:
+		tilePositions = PLAYER_TILE_MAP
+	else:
+		tilePositions = ENEMY_TILE_MAP
+
+	var tilePosition = tilePositions[target.x][target.y]
+	battler.position = groundMap.map_to_world( tilePosition ) + TILE_OFFSET
+	battler.currentFormationLocation = target
+

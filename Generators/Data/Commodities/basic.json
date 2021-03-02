@@ -1,0 +1,41 @@
+{
+    "MAENESHIUM" : {
+        "itemKey" : "MENEOSHIUM",
+        "itemType" : "VOLITILE",
+        "itemMass" : 1320.0,
+        "itemVolume" : 1.0,
+        "itemValue" : 500.0,
+        "itemDisplayName" : "Maeneshium",
+        "itemDisplayNameShort" : "Meneshium",
+        "itemTexturePath" : "",
+        "itemTextureType" : "SINGLE",
+        "itemRarity": "UNCOMMON",
+        "itemFloatCountable" : true 
+    }, 
+    "FOODSTUFFS" : {
+        "itemKey" : "FOODSTUFFS",
+        "itemType" : "VOLITILE",
+        "itemMass" : 600.0,
+        "itemVolume" : 1.0,
+        "itemValue" : 150.0,
+        "itemDisplayName" : "Food",
+        "itemDisplayNameShort" : "Food",
+        "itemTexturePath" : "",
+        "itemTextureType" : "SINGLE",
+        "itemRarity" : "COMMON",
+        "itemFloatCountable" : true
+    },
+    "WATER" : {
+        "itemKey" : "WATER",
+        "itemType" : "VOLITILE",
+        "itemMass" : 1000.0,
+        "itemVolume" : 1.0,
+        "itemValue" : 50.0,
+        "itemDisplayName" : "Water",
+        "itemDisplayNameShort" : "Water",
+        "itemTexturePath" : "",
+        "itemTextureType" : "SINGLE",
+        "itemRarity" : "COMMON",
+        "itemFloatCountable" : true
+    }
+}

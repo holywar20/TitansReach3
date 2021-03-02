@@ -9,6 +9,8 @@ onready var stars : Node2D = $Stars
 onready var planets : Node2D = $Planets
 onready var anoms : Node2D = $Anoms
 
+onready var inventory : Node = $Inventory 
+
 onready var viewPortCamera : Camera = $Background/ViewportContainer/Viewport/Camera
 onready var closeParticles : CPUParticles2D = $Background/StarfieldClose/CPUParticles2D
 onready var midParticles : CPUParticles2D = $Background/StarfieldMid/CPUParticles2D
@@ -178,6 +180,11 @@ func _on_Engineering_toggled(button_pressed):
 func _on_Cargohold_toggled(button_pressed):
 	if( button_pressed == true ):
 		var menuInstance = loadMenu( MB.CARGOHOLD )
+
+		var commodities = inventory.getNonequipableItems()
+		var arms = inventory.getEquipableItems()
+
+		menuInstance.setupScene( commodities, arms )
 
 func _on_Starmap_toggled(button_pressed):
 	if( button_pressed == true ):

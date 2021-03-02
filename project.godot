@@ -77,7 +77,7 @@ _global_script_classes=[ {
 "base": "TitansResource",
 "class": "ItemResource",
 "language": "GDScript",
-"path": "res://Resources/Items/ItemsResource.gd"
+"path": "res://Resources/Items/ItemResource.gd"
 }, {
 "base": "EffectResource",
 "class": "MoveEffectResource",

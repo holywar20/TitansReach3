@@ -60,6 +60,9 @@ func genRandomKey():
 	return myKey
 
 # Helper method for bulk assignment of properties
+# Always assign 'self' when calling this, 
+# this is due to godot having some limitations on how objects refer to themselves.
+# Object is actually 'self' however
 func flushAndFillProperties( props : Dictionary, object ):
 
 	for key in fillableProps:
@@ -95,6 +98,17 @@ func flushAndFillProperties( props : Dictionary, object ):
 	object = calculateSpecialProperties( props , object )
 
 	return object
+
+func findKeyInJsonFile( key, filePath : String ):
+	var file = File.new()
+	file.open( filePath , File.READ)
+	var fileTable = parse_json( file.get_as_text() )
+	file.close()
+
+	if( fileTable.has(key) ):
+		return fileTable[key]
+	else:
+		print("Dev Error : Can't find key of " + key + " in path " + filePath )
 
 # plugin meant for override
 func calculateSpecialProperties( props: Dictionary , object ):

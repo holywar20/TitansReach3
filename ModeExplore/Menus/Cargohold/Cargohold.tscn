@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Cargohold/Cargohold.gd" type="Script" id=1]
-
-
+[ext_resource path="res://ReusableUI/ArmsRoom/ArmsRoom.gd" type="Script" id=2]
+[ext_resource path="res://ReusableUI/ArmsRoom/ArmsRoom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
 
 [node name="Cargo" type="Panel" groups=[
 "MAIN_MENU",
@@ -16,17 +17,59 @@ __meta__ = {
 }
 
 [node name="Tripane" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tripane"]
-margin_right = 46.0
-margin_bottom = 40.0
+[node name="TabContainer" type="TabContainer" parent="Tripane"]
+margin_right = 844.0
+margin_bottom = 756.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+custom_fonts/font = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="Tripane/VBoxContainer"]
-margin_right = 46.0
-margin_bottom = 14.0
-text = "CARGO"
+[node name="Commodities" type="VBoxContainer" parent="Tripane/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 55.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Tree" type="Tree" parent="Tripane/TabContainer/Commodities"]
+margin_right = 828.0
+margin_bottom = 693.0
+focus_neighbour_top = NodePath("../..")
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+columns = 5
+select_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Equipment" parent="Tripane/TabContainer" instance=ExtResource( 3 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 156.0
+margin_right = 140.0
+margin_bottom = -57.0
+size_flags_stretch_ratio = 2.0
+script = ExtResource( 2 )
+
+[node name="Item Details" type="VBoxContainer" parent="Tripane"]
+margin_left = 852.0
+margin_right = 1274.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Tripane/Item Details"]
+margin_right = 422.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "Item Detail"
+align = 1

@@ -7,9 +7,10 @@
 
 [node name="Panel" type="Panel"]
 anchor_right = 0.2
-anchor_bottom = 0.237
-margin_bottom = 0.039978
-rect_min_size = Vector2( 384, 256 )
+anchor_bottom = 0.207
+margin_right = 3.05176e-05
+margin_bottom = 16.44
+rect_min_size = Vector2( 384, 224 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,16 +53,17 @@ __meta__ = {
 
 [node name="HBox" type="HBoxContainer" parent="."]
 margin_left = 8.0
-margin_top = 72.0
+margin_top = 88.0
 margin_right = 376.0
-margin_bottom = 248.0
+margin_bottom = 232.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Traits" type="VBoxContainer" parent="HBox"]
 margin_right = 180.0
-margin_bottom = 176.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="HBox/Traits"]
@@ -319,7 +321,7 @@ valign = 1
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBox"]
 margin_left = 188.0
 margin_right = 368.0
-margin_bottom = 176.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 
 [node name="Traits" type="Label" parent="HBox/VBoxContainer2"]

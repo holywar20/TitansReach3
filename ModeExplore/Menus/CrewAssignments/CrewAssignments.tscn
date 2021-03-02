@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/CrewAssignments/CrewAssignments.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/CharEditPanel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ReusableUI/AbilityListPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.tscn" type="PackedScene" id=6]
 
 [node name="CrewManagement" type="Panel" groups=[
 "MAIN_MENU",
@@ -26,11 +27,13 @@ __meta__ = {
 }
 
 [node name="VBox" type="VBoxContainer" parent="Tripane"]
-margin_right = 384.0
+margin_right = 419.0
 margin_bottom = 755.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Tripane/VBox"]
-margin_right = 384.0
+margin_right = 419.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "Unassigned"
@@ -38,8 +41,8 @@ align = 1
 
 [node name="UnassignedList" type="ScrollContainer" parent="Tripane/VBox"]
 margin_top = 27.0
-margin_right = 384.0
-margin_bottom = 507.0
+margin_right = 419.0
+margin_bottom = 755.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
@@ -49,45 +52,28 @@ __meta__ = {
 }
 
 [node name="Crew" type="VBoxContainer" parent="Tripane/VBox/UnassignedList"]
-margin_right = 384.0
-margin_bottom = 480.0
+margin_right = 419.0
+margin_bottom = 728.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CombatDetail" parent="Tripane/VBox" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 515.0
-margin_right = 384.0
-margin_bottom = 755.0
-rect_min_size = Vector2( 384, 240 )
-
 [node name="Detail" type="VBoxContainer" parent="Tripane"]
-margin_left = 392.0
-margin_right = 829.0
+margin_left = 427.0
+margin_right = 847.0
 margin_bottom = 755.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 
-[node name="Label3" type="Label" parent="Tripane/Detail"]
-margin_right = 437.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 4 )
-text = "Detail"
-align = 1
-
-[node name="Panel" parent="Tripane/Detail" instance=ExtResource( 2 )]
+[node name="Traits" parent="Tripane/Detail" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 27.0
-margin_right = 437.0
-margin_bottom = 507.0
-size_flags_stretch_ratio = 2.0
+margin_right = 420.0
+margin_bottom = 373.0
 
-[node name="Panel2" type="Panel" parent="Tripane/Detail"]
-margin_top = 515.0
-margin_right = 437.0
+[node name="Other" type="Panel" parent="Tripane/Detail"]
+margin_top = 381.0
+margin_right = 420.0
 margin_bottom = 755.0
 rect_min_size = Vector2( 0, 240 )
 size_flags_vertical = 3
@@ -95,16 +81,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBox" type="VBoxContainer" parent="Tripane/Detail/Other"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.748352
+margin_right = -0.748352
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResistLabel" type="Label" parent="Tripane/Detail/Other/VBox"]
+margin_right = 420.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Resistance"
+align = 1
+
 [node name="Assignments" type="VBoxContainer" parent="Tripane"]
-margin_left = 837.0
+margin_left = 855.0
 margin_right = 1275.0
 margin_bottom = 755.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 
 [node name="Label2" type="Label" parent="Tripane/Assignments"]
-margin_right = 438.0
+margin_right = 420.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
-text = "Stations"
+text = "Abilities"
 align = 1
+
+[node name="Panel" parent="Tripane/Assignments" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 27.0
+margin_right = 420.0
+margin_bottom = 264.0
+
+[node name="Panel2" parent="Tripane/Assignments" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 272.0
+margin_right = 420.0
+margin_bottom = 509.0
+
+[node name="AbilityDetail" parent="Tripane/Assignments" instance=ExtResource( 6 )]
+margin_top = 517.0
+margin_right = 420.0
+margin_bottom = 755.0
+size_flags_vertical = 3

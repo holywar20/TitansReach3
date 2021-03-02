@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ReusableUI/CharEditPanel.gd" type="Script" id=1]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
@@ -8,30 +8,27 @@
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/minus_n.png" type="Texture" id=6]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/minus_a.png" type="Texture" id=7]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/plus_h.png" type="Texture" id=8]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=10]
 
 [node name="CharEditPanel" type="Panel"]
 anchor_right = 0.228
-anchor_bottom = 0.333
-margin_right = -0.759979
-margin_bottom = 120.36
+anchor_bottom = 0.444
+margin_right = 10.24
+margin_bottom = -7.52005
 size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBox" type="HBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TraitVBox" type="VBoxContainer" parent="HBox"]
-margin_right = 437.0
-margin_bottom = 480.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -39,22 +36,86 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBox/TraitVBox"]
-margin_right = 437.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 2 )
-text = "Traits"
+[node name="Label" type="Label" parent="VBox"]
+margin_right = 432.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = ExtResource( 9 )
+text = "{CHARACTER NAME}"
 align = 1
+valign = 1
 
-[node name="TitleRow" type="HBoxContainer" parent="HBox/TraitVBox"]
-margin_top = 19.0
-margin_right = 437.0
-margin_bottom = 38.0
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+margin_top = 40.0
+margin_right = 432.0
+margin_bottom = 88.0
+
+[node name="VBox" type="VBoxContainer" parent="VBox/HBox"]
+margin_right = 284.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="VBox/HBox/VBox"]
+margin_right = 284.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBox/HBox/VBox/HealthBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "xx / xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoraleBar" type="ProgressBar" parent="VBox/HBox/VBox"]
+margin_top = 28.0
+margin_right = 284.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 20 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBox/HBox/VBox/MoraleBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "xx / xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBox/HBox"]
+margin_left = 292.0
+margin_top = 12.0
+margin_right = 432.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 140, 0 )
+custom_fonts/font = ExtResource( 9 )
+text = "XX / XX CP"
+align = 1
+valign = 1
+
+[node name="TraitsBox" type="VBoxContainer" parent="VBox"]
+margin_top = 88.0
+margin_right = 432.0
+margin_bottom = 347.0
+
+[node name="TitleRow" type="HBoxContainer" parent="VBox/TraitsBox"]
+margin_right = 432.0
+margin_bottom = 19.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBox/TraitVBox/TitleRow"]
-margin_right = 142.0
+[node name="Label" type="Label" parent="VBox/TraitsBox/TitleRow"]
+margin_right = 140.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -63,19 +124,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Container" parent="HBox/TraitVBox/TitleRow"]
-margin_left = 142.0
-margin_right = 182.0
+[node name="LeftSpacer" type="Container" parent="VBox/TraitsBox/TitleRow"]
+margin_left = 140.0
+margin_right = 180.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 40, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base" type="Label" parent="HBox/TraitVBox/TitleRow"]
-margin_left = 182.0
+[node name="Base" type="Label" parent="VBox/TraitsBox/TitleRow"]
+margin_left = 180.0
 margin_top = 3.0
-margin_right = 254.0
+margin_right = 251.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Base"
@@ -84,10 +145,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mod" type="Label" parent="HBox/TraitVBox/TitleRow"]
-margin_left = 254.0
+[node name="Mod" type="Label" parent="VBox/TraitsBox/TitleRow"]
+margin_left = 251.0
 margin_top = 3.0
-margin_right = 325.0
+margin_right = 321.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Mod"
@@ -96,10 +157,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="HBox/TraitVBox/TitleRow"]
-margin_left = 325.0
+[node name="Total" type="Label" parent="VBox/TraitsBox/TitleRow"]
+margin_left = 321.0
 margin_top = 3.0
-margin_right = 397.0
+margin_right = 392.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Total"
@@ -108,37 +169,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightSpacer" type="Container" parent="HBox/TraitVBox/TitleRow"]
-margin_left = 397.0
-margin_right = 437.0
+[node name="RightSpacer" type="Container" parent="VBox/TraitsBox/TitleRow"]
+margin_left = 392.0
+margin_right = 432.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 40, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="STR" type="HBoxContainer" parent="HBox/TraitVBox"]
-margin_top = 38.0
-margin_right = 437.0
-margin_bottom = 78.0
+[node name="STR" type="HBoxContainer" parent="VBox/TraitsBox"]
+margin_top = 27.0
+margin_right = 432.0
+margin_bottom = 67.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBox/TraitVBox/STR"]
-margin_top = 10.0
-margin_right = 142.0
-margin_bottom = 29.0
+[node name="Label" type="Label" parent="VBox/TraitsBox/STR"]
+margin_top = 12.0
+margin_right = 140.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 10 )
 text = "STRength"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlusButton" type="TextureButton" parent="HBox/TraitVBox/STR"]
-margin_left = 142.0
-margin_right = 182.0
+[node name="PlusButton" type="TextureButton" parent="VBox/TraitsBox/STR"]
+margin_left = 140.0
+margin_right = 180.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 8 )
@@ -149,10 +210,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base" type="Label" parent="HBox/TraitVBox/STR"]
-margin_left = 182.0
+[node name="Base" type="Label" parent="VBox/TraitsBox/STR"]
+margin_left = 180.0
 margin_top = 10.0
-margin_right = 254.0
+margin_right = 251.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -162,10 +223,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base2" type="Label" parent="HBox/TraitVBox/STR"]
-margin_left = 254.0
+[node name="Mod" type="Label" parent="VBox/TraitsBox/STR"]
+margin_left = 251.0
 margin_top = 10.0
-margin_right = 325.0
+margin_right = 321.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -175,10 +236,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base3" type="Label" parent="HBox/TraitVBox/STR"]
-margin_left = 325.0
+[node name="Total" type="Label" parent="VBox/TraitsBox/STR"]
+margin_left = 321.0
 margin_top = 10.0
-margin_right = 397.0
+margin_right = 392.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -188,9 +249,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinusButton" type="TextureButton" parent="HBox/TraitVBox/STR"]
-margin_left = 397.0
-margin_right = 437.0
+[node name="MinusButton" type="TextureButton" parent="VBox/TraitsBox/STR"]
+margin_left = 392.0
+margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -201,28 +262,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DEX" type="HBoxContainer" parent="HBox/TraitVBox"]
-margin_top = 78.0
-margin_right = 437.0
-margin_bottom = 118.0
+[node name="DEX" type="HBoxContainer" parent="VBox/TraitsBox"]
+margin_top = 75.0
+margin_right = 432.0
+margin_bottom = 115.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBox/TraitVBox/DEX"]
-margin_top = 10.0
-margin_right = 142.0
-margin_bottom = 29.0
+[node name="Label" type="Label" parent="VBox/TraitsBox/DEX"]
+margin_top = 12.0
+margin_right = 140.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 10 )
 text = "Dexerity"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlusButton" type="TextureButton" parent="HBox/TraitVBox/DEX"]
-margin_left = 142.0
-margin_right = 182.0
+[node name="PlusButton" type="TextureButton" parent="VBox/TraitsBox/DEX"]
+margin_left = 140.0
+margin_right = 180.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 8 )
@@ -233,10 +294,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base" type="Label" parent="HBox/TraitVBox/DEX"]
-margin_left = 182.0
+[node name="Base" type="Label" parent="VBox/TraitsBox/DEX"]
+margin_left = 180.0
 margin_top = 10.0
-margin_right = 254.0
+margin_right = 251.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -246,10 +307,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base2" type="Label" parent="HBox/TraitVBox/DEX"]
-margin_left = 254.0
+[node name="Mod" type="Label" parent="VBox/TraitsBox/DEX"]
+margin_left = 251.0
 margin_top = 10.0
-margin_right = 325.0
+margin_right = 321.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -259,10 +320,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base3" type="Label" parent="HBox/TraitVBox/DEX"]
-margin_left = 325.0
+[node name="Total" type="Label" parent="VBox/TraitsBox/DEX"]
+margin_left = 321.0
 margin_top = 10.0
-margin_right = 397.0
+margin_right = 392.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -272,9 +333,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinusButton" type="TextureButton" parent="HBox/TraitVBox/DEX"]
-margin_left = 397.0
-margin_right = 437.0
+[node name="MinusButton" type="TextureButton" parent="VBox/TraitsBox/DEX"]
+margin_left = 392.0
+margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -285,28 +346,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PER" type="HBoxContainer" parent="HBox/TraitVBox"]
-margin_top = 118.0
-margin_right = 437.0
-margin_bottom = 158.0
+[node name="PER" type="HBoxContainer" parent="VBox/TraitsBox"]
+margin_top = 123.0
+margin_right = 432.0
+margin_bottom = 163.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBox/TraitVBox/PER"]
-margin_top = 10.0
-margin_right = 142.0
-margin_bottom = 29.0
+[node name="Label" type="Label" parent="VBox/TraitsBox/PER"]
+margin_top = 12.0
+margin_right = 140.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 10 )
 text = "Perception"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlusButton" type="TextureButton" parent="HBox/TraitVBox/PER"]
-margin_left = 142.0
-margin_right = 182.0
+[node name="PlusButton" type="TextureButton" parent="VBox/TraitsBox/PER"]
+margin_left = 140.0
+margin_right = 180.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 8 )
@@ -317,10 +378,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base" type="Label" parent="HBox/TraitVBox/PER"]
-margin_left = 182.0
+[node name="Base" type="Label" parent="VBox/TraitsBox/PER"]
+margin_left = 180.0
 margin_top = 10.0
-margin_right = 254.0
+margin_right = 251.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -330,10 +391,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base2" type="Label" parent="HBox/TraitVBox/PER"]
-margin_left = 254.0
+[node name="Mod" type="Label" parent="VBox/TraitsBox/PER"]
+margin_left = 251.0
 margin_top = 10.0
-margin_right = 325.0
+margin_right = 321.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -343,10 +404,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base3" type="Label" parent="HBox/TraitVBox/PER"]
-margin_left = 325.0
+[node name="Total" type="Label" parent="VBox/TraitsBox/PER"]
+margin_left = 321.0
 margin_top = 10.0
-margin_right = 397.0
+margin_right = 392.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -356,9 +417,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinusButton" type="TextureButton" parent="HBox/TraitVBox/PER"]
-margin_left = 397.0
-margin_right = 437.0
+[node name="MinusButton" type="TextureButton" parent="VBox/TraitsBox/PER"]
+margin_left = 392.0
+margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -369,28 +430,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="INT" type="HBoxContainer" parent="HBox/TraitVBox"]
-margin_top = 158.0
-margin_right = 437.0
-margin_bottom = 198.0
+[node name="INT" type="HBoxContainer" parent="VBox/TraitsBox"]
+margin_top = 171.0
+margin_right = 432.0
+margin_bottom = 211.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBox/TraitVBox/INT"]
-margin_top = 10.0
-margin_right = 142.0
-margin_bottom = 29.0
+[node name="Label" type="Label" parent="VBox/TraitsBox/INT"]
+margin_top = 12.0
+margin_right = 140.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 10 )
 text = "Intelligence"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlusButton" type="TextureButton" parent="HBox/TraitVBox/INT"]
-margin_left = 142.0
-margin_right = 182.0
+[node name="PlusButton" type="TextureButton" parent="VBox/TraitsBox/INT"]
+margin_left = 140.0
+margin_right = 180.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 8 )
@@ -401,10 +462,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base" type="Label" parent="HBox/TraitVBox/INT"]
-margin_left = 182.0
+[node name="Base" type="Label" parent="VBox/TraitsBox/INT"]
+margin_left = 180.0
 margin_top = 10.0
-margin_right = 254.0
+margin_right = 251.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -414,10 +475,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base2" type="Label" parent="HBox/TraitVBox/INT"]
-margin_left = 254.0
+[node name="Mod" type="Label" parent="VBox/TraitsBox/INT"]
+margin_left = 251.0
 margin_top = 10.0
-margin_right = 325.0
+margin_right = 321.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -427,10 +488,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base3" type="Label" parent="HBox/TraitVBox/INT"]
-margin_left = 325.0
+[node name="Total" type="Label" parent="VBox/TraitsBox/INT"]
+margin_left = 321.0
 margin_top = 10.0
-margin_right = 397.0
+margin_right = 392.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -440,9 +501,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinusButton" type="TextureButton" parent="HBox/TraitVBox/INT"]
-margin_left = 397.0
-margin_right = 437.0
+[node name="MinusButton" type="TextureButton" parent="VBox/TraitsBox/INT"]
+margin_left = 392.0
+margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -453,28 +514,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="STR5" type="HBoxContainer" parent="HBox/TraitVBox"]
-margin_top = 198.0
-margin_right = 437.0
-margin_bottom = 238.0
+[node name="CHA" type="HBoxContainer" parent="VBox/TraitsBox"]
+margin_top = 219.0
+margin_right = 432.0
+margin_bottom = 259.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBox/TraitVBox/STR5"]
-margin_top = 10.0
-margin_right = 142.0
-margin_bottom = 29.0
+[node name="Label" type="Label" parent="VBox/TraitsBox/CHA"]
+margin_top = 12.0
+margin_right = 140.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 10 )
 text = "CHARISMA"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlusButton" type="TextureButton" parent="HBox/TraitVBox/STR5"]
-margin_left = 142.0
-margin_right = 182.0
+[node name="PlusButton" type="TextureButton" parent="VBox/TraitsBox/CHA"]
+margin_left = 140.0
+margin_right = 180.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 8 )
@@ -485,10 +546,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base" type="Label" parent="HBox/TraitVBox/STR5"]
-margin_left = 182.0
+[node name="Base" type="Label" parent="VBox/TraitsBox/CHA"]
+margin_left = 180.0
 margin_top = 10.0
-margin_right = 254.0
+margin_right = 251.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -498,10 +559,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base2" type="Label" parent="HBox/TraitVBox/STR5"]
-margin_left = 254.0
+[node name="Mod" type="Label" parent="VBox/TraitsBox/CHA"]
+margin_left = 251.0
 margin_top = 10.0
-margin_right = 325.0
+margin_right = 321.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -511,10 +572,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Base3" type="Label" parent="HBox/TraitVBox/STR5"]
-margin_left = 325.0
+[node name="Total" type="Label" parent="VBox/TraitsBox/CHA"]
+margin_left = 321.0
 margin_top = 10.0
-margin_right = 397.0
+margin_right = 392.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -524,9 +585,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinusButton" type="TextureButton" parent="HBox/TraitVBox/STR5"]
-margin_left = 397.0
-margin_right = 437.0
+[node name="MinusButton" type="TextureButton" parent="VBox/TraitsBox/CHA"]
+margin_left = 392.0
+margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -536,3 +597,13 @@ texture_focused = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="VBox/TraitsBox/STR/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/STR/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/DEX/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/DEX/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/PER/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/PER/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/INT/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/INT/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/CHA/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
+[connection signal="pressed" from="VBox/TraitsBox/CHA/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]

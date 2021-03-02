@@ -8,7 +8,8 @@ const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 
 onready var unassignedBase = $Tripane/VBox/UnassignedList/Crew
 onready var stationBase = $Tripane/Assignments
-onready var combatDetail = $Tripane/VBox/CombatDetail
+
+
 
 func setupScene( myCrew : Array ):
 	crew = myCrew
@@ -30,4 +31,4 @@ func setupScene( myCrew : Array ):
 			oneFocused = true
 		
 func _on_CharShortPanelFocusEntered( character : CharacterResource ):
-	combatDetail.updateUI( character )
+	print("we are open now!")

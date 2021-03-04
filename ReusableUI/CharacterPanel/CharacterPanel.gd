@@ -7,8 +7,8 @@ var character : CharacterResource
 var currentState : int = STATE.HIDE
 
 const BASE_NODE_TRAIT_PATH = "HBox/Traits/"
-const BASE_NODE_DMG_PATH = "HBox/Dmg"
-const BASE_NODE_RESIST_PATH = "HBoxResists"
+const BASE_NODE_DMG_PATH = "HBox/Resists/Status/Grid/"
+const BASE_NODE_RESIST_PATH = "HBox/Resists/Status/Grid/"
 
 enum STATE {
 	SHOW, FOCUS , NOT_FOCUS , HIDE
@@ -34,12 +34,12 @@ func _loadStatBlockIntoRow( traitName ):
 	get_node( BASE_NODE_TRAIT_PATH + traitName + "/Cur").set_text( str(myStatBlock.total) )
 
 func _loadDamageBlockIntoRow( dmgType ):
-	var myStatBlock = character.getDmgStatBlock( dmgType )
-	get_node(BASE_NODE_DMG_PATH + dmgType + "/Cur").set_text( str(myStatBlock.total + "%" ) )
+	var myStatBlock = character.getDmgResistStatBlock( dmgType )
+	get_node(BASE_NODE_DMG_PATH + dmgType + "/Cur").set_text( str(myStatBlock.total ) + "%" )
 
 func _loadResistBlockIntoRow( resist ):
 	var myStatBlock = character.getResistStatBlock( resist )
-	get_node(BASE_NODE_RESIST_PATH + resist + "/Cur").set_text( str(myStatBlock.total + "%" ) )
+	get_node(BASE_NODE_RESIST_PATH + resist + "/Cur").set_text( str(myStatBlock.total ) + "%" )
 
 func setState( newState : int ):
 	currentState = newState

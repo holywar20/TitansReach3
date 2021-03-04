@@ -1,20 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.gd" type="Script" id=1]
 [ext_resource path="res://AssettsImage/Faces/BorrowedWomen/woman-3-small.jpg" type="Texture" id=2]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Assetts3.0/UI/Icons/ballistic.png" type="Texture" id=5]
+[ext_resource path="res://Assetts3.0/UI/Icons/em.png" type="Texture" id=5]
 [ext_resource path="res://Assetts3.0/UI/Icons/thermal.png" type="Texture" id=6]
 [ext_resource path="res://Assetts3.0/UI/Icons/toxic.png" type="Texture" id=7]
-[ext_resource path="res://Assetts3.0/UI/Icons/electromagnetic.png" type="Texture" id=8]
-[ext_resource path="res://Assetts3.0/UI/Icons/push.png" type="Texture" id=9]
+[ext_resource path="res://Assetts3.0/UI/Icons/kinetic.png" type="Texture" id=8]
+[ext_resource path="res://Assetts3.0/UI/Icons/move.png" type="Texture" id=9]
+[ext_resource path="res://Assetts3.0/UI/Icons/Oppression.png" type="Texture" id=10]
+[ext_resource path="res://Assetts3.0/UI/Icons/slow.png" type="Texture" id=12]
+[ext_resource path="res://Assetts3.0/UI/Icons/stun.png" type="Texture" id=13]
+[ext_resource path="res://Assetts3.0/UI/Icons/charm.png" type="Texture" id=14]
+[ext_resource path="res://Assetts3.0/UI/Icons/silenced.png" type="Texture" id=15]
+[ext_resource path="res://Assetts3.0/UI/Icons/marked.png" type="Texture" id=16]
 
 [node name="Panel" type="Panel"]
 anchor_right = 0.2
 anchor_bottom = 0.207
-margin_right = 3.05176e-05
-margin_bottom = 16.44
+margin_bottom = 32.44
 rect_min_size = Vector2( 384, 224 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -78,18 +83,18 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 64.0
 margin_right = 376.0
-margin_bottom = 232.0
+margin_bottom = 248.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Traits" type="VBoxContainer" parent="HBox"]
-margin_right = 102.0
-margin_bottom = 168.0
+margin_right = 108.0
+margin_bottom = 190.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="HBox/Traits"]
-margin_right = 102.0
+margin_right = 108.0
 margin_bottom = 13.0
 custom_fonts/font = ExtResource( 4 )
 text = "Traits"
@@ -97,21 +102,21 @@ align = 1
 
 [node name="STR" type="HBoxContainer" parent="HBox/Traits"]
 margin_top = 21.0
-margin_right = 102.0
+margin_right = 108.0
 margin_bottom = 34.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/STR"]
-margin_right = 47.0
+margin_right = 50.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "STR"
 
 [node name="Cur" type="Label" parent="HBox/Traits/STR"]
-margin_left = 55.0
-margin_right = 102.0
+margin_left = 58.0
+margin_right = 108.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -120,21 +125,21 @@ valign = 1
 
 [node name="PER" type="HBoxContainer" parent="HBox/Traits"]
 margin_top = 42.0
-margin_right = 102.0
+margin_right = 108.0
 margin_bottom = 55.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/PER"]
-margin_right = 47.0
+margin_right = 50.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "PER"
 
 [node name="Cur" type="Label" parent="HBox/Traits/PER"]
-margin_left = 55.0
-margin_right = 102.0
+margin_left = 58.0
+margin_right = 108.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -143,21 +148,21 @@ valign = 1
 
 [node name="DEX" type="HBoxContainer" parent="HBox/Traits"]
 margin_top = 63.0
-margin_right = 102.0
+margin_right = 108.0
 margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/DEX"]
-margin_right = 47.0
+margin_right = 50.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "DEX"
 
 [node name="Cur" type="Label" parent="HBox/Traits/DEX"]
-margin_left = 55.0
-margin_right = 102.0
+margin_left = 58.0
+margin_right = 108.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -166,21 +171,21 @@ valign = 1
 
 [node name="INT" type="HBoxContainer" parent="HBox/Traits"]
 margin_top = 84.0
-margin_right = 102.0
+margin_right = 108.0
 margin_bottom = 97.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/INT"]
-margin_right = 47.0
+margin_right = 50.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "INT"
 
 [node name="Cur" type="Label" parent="HBox/Traits/INT"]
-margin_left = 55.0
-margin_right = 102.0
+margin_left = 58.0
+margin_right = 108.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -189,631 +194,552 @@ valign = 1
 
 [node name="CHA" type="HBoxContainer" parent="HBox/Traits"]
 margin_top = 105.0
-margin_right = 102.0
+margin_right = 108.0
 margin_bottom = 118.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/CHA"]
-margin_right = 47.0
+margin_right = 50.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "CHA"
 
 [node name="Cur" type="Label" parent="HBox/Traits/CHA"]
-margin_left = 55.0
-margin_right = 102.0
+margin_left = 58.0
+margin_right = 108.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
 align = 1
 valign = 1
 
-[node name="Resists" type="VBoxContainer" parent="HBox"]
-margin_left = 110.0
-margin_right = 368.0
-margin_bottom = 168.0
+[node name="EffectsLabel" type="Label" parent="HBox/Traits"]
+margin_top = 126.0
+margin_right = 108.0
+margin_bottom = 139.0
+custom_fonts/font = ExtResource( 4 )
+text = "Status Effects"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="HBox/Traits"]
+margin_top = 147.0
+margin_right = 108.0
+margin_bottom = 190.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Resists" type="VBoxContainer" parent="HBox"]
+margin_left = 116.0
+margin_right = 368.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 2.5
 
-[node name="Damage" type="VBoxContainer" parent="HBox/Resists"]
-margin_right = 258.0
-margin_bottom = 59.0
+[node name="Status" type="VBoxContainer" parent="HBox/Resists"]
+margin_right = 252.0
+margin_bottom = 190.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_constants/separation = 0
 
-[node name="Traits" type="Label" parent="HBox/Resists/Damage"]
-margin_right = 258.0
+[node name="Label" type="Label" parent="HBox/Resists/Status"]
+margin_right = 252.0
 margin_bottom = 13.0
 custom_fonts/font = ExtResource( 4 )
-text = "Damage"
+text = "Resistance"
 align = 1
 
-[node name="Panel" type="Panel" parent="HBox/Resists/Damage"]
-margin_top = 21.0
-margin_right = 258.0
-margin_bottom = 59.0
+[node name="Grid" type="GridContainer" parent="HBox/Resists/Status"]
+margin_top = 13.0
+margin_right = 252.0
+margin_bottom = 190.0
+size_flags_vertical = 3
+custom_constants/vseparation = -3
+columns = 2
+
+[node name="TOXIC" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_right = 123.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/TOXIC"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 7 )
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EM" type="Control" parent="HBox/Resists/Damage/Panel"]
-anchor_left = 0.504
-anchor_top = -0.132
-anchor_right = 1.0
-anchor_bottom = 0.289
-margin_left = 7.968
-margin_top = 0.0159998
-margin_bottom = 0.0179996
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/TOXIC"]
+margin_left = 40.0
+margin_right = 98.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/EM"]
-margin_right = 16.0
-margin_bottom = 16.0
-texture = ExtResource( 8 )
-expand = true
-stretch_mode = 1
+text = "Toxic"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/EM"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "EM"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/EM"]
-margin_left = 73.0
-margin_top = 2.0
-margin_right = 117.0
-margin_bottom = 15.0
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/TOXIC"]
+margin_left = 106.0
+margin_top = 9.0
+margin_right = 123.0
+margin_bottom = 22.0
 text = "xx"
-align = 1
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="THERMAL" type="Control" parent="HBox/Resists/Damage/Panel"]
-anchor_left = 0.07
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.921
-margin_left = -0.0599995
-margin_right = 1.0
-margin_bottom = 0.0019989
+[node name="EM" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_left = 131.0
+margin_right = 252.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/THERMAL"]
-margin_left = -8.0
-margin_right = 8.0
-margin_bottom = 16.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/THERMAL"]
-margin_left = 16.0
-margin_top = 2.0
-margin_right = 74.0
-margin_bottom = 15.0
-text = "Thermal"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/THERMAL"]
-anchor_right = 0.071
-margin_left = 72.0
-margin_top = 2.0
-margin_right = 108.048
-margin_bottom = 15.0
-text = "XX"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="KINETIC" type="Control" parent="HBox/Resists/Damage/Panel"]
-anchor_left = 0.535
-anchor_top = 0.5
-anchor_right = 0.969
-anchor_bottom = 0.921
-margin_left = -0.030014
-margin_right = -0.00201416
-margin_bottom = 0.0019989
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/KINETIC"]
-margin_right = 16.0
-margin_bottom = 16.0
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/EM"]
+margin_right = 32.0
+margin_bottom = 32.0
 texture = ExtResource( 5 )
-expand = true
-stretch_mode = 1
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/KINETIC"]
-margin_left = 24.0
-margin_right = 68.0
-margin_bottom = 13.0
-text = "Kinetic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/KINETIC"]
-anchor_right = 0.929
-anchor_bottom = 0.812
-margin_left = 83.0
-margin_top = 1.0
-margin_right = 2.952
-margin_bottom = 1.008
-text = "xx"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Toxic" type="Control" parent="HBox/Resists/Damage/Panel"]
-margin_left = 10.0
-margin_top = -5.0
-margin_right = 130.0
-margin_bottom = 11.0
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/Toxic"]
-anchor_right = 0.133
-anchor_bottom = 1.0
-margin_right = 1.04
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/Toxic"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Toxic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/Toxic"]
-margin_left = 80.0
-margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 15.0
-text = "xx"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Effects2" type="VBoxContainer" parent="HBox/Resists"]
-margin_top = 67.0
-margin_right = 258.0
-margin_bottom = 168.0
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/EM"]
+margin_left = 40.0
+margin_right = 96.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.7
-
-[node name="Traits" type="Label" parent="HBox/Resists/Effects2"]
-margin_right = 258.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 4 )
-text = "STATUS EFFECTS"
-align = 1
-
-[node name="Panel2" type="Panel" parent="HBox/Resists/Effects2"]
-margin_top = 21.0
-margin_right = 258.0
-margin_bottom = 101.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MOVE" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = -0.0620003
-margin_right = -0.0340042
-size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/MOVE"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 9 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/MOVE"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Move"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/MOVE"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
-text = "xx"
-align = 1
+text = "EM"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SLOW" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = -0.0620003
-margin_top = 24.0
-margin_right = -0.0340042
-margin_bottom = 24.0
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/EM"]
+margin_left = 104.0
+margin_top = 9.0
+margin_right = 121.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="THERMAL" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_top = 29.0
+margin_right = 123.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/SLOW"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/THERMAL"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 6 )
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/SLOW"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 64.0
-margin_bottom = 15.0
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/THERMAL"]
+margin_left = 40.0
+margin_right = 98.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Thermal"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/THERMAL"]
+margin_left = 106.0
+margin_top = 9.0
+margin_right = 123.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KINETIC" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_left = 131.0
+margin_top = 29.0
+margin_right = 252.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/KINETIC"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 8 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/KINETIC"]
+margin_left = 40.0
+margin_right = 96.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "KINETIC"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/KINETIC"]
+margin_left = 104.0
+margin_top = 9.0
+margin_right = 121.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SLOW" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_top = 58.0
+margin_right = 123.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/SLOW"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 12 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/SLOW"]
+margin_left = 40.0
+margin_right = 98.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "SLOW"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/SLOW"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
-text = "xx"
-align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BLEED" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = -0.0620003
-margin_top = 72.0
-margin_right = -0.0340042
-margin_bottom = 72.0
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/SLOW"]
+margin_left = 106.0
+margin_top = 9.0
+margin_right = 123.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MOVE" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_left = 131.0
+margin_top = 58.0
+margin_right = 252.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/BLEED"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/MOVE"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 9 )
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/BLEED"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 80.0
-margin_bottom = 15.0
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/MOVE"]
+margin_left = 40.0
+margin_right = 96.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Move"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/MOVE"]
+margin_left = 104.0
+margin_top = 9.0
+margin_right = 121.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BLEED" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_top = 87.0
+margin_right = 123.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/BLEED"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 12 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/BLEED"]
+margin_left = 40.0
+margin_right = 98.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "BLEED"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/BLEED"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
-text = "xx"
-align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OPPRESS" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = -0.0620003
-margin_top = 48.0
-margin_right = -0.0340042
-margin_bottom = 48.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/OPPRESS"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/OPPRESS"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Oppress"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/OPPRESS"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/BLEED"]
+margin_left = 106.0
+margin_top = 9.0
+margin_right = 123.0
+margin_bottom = 22.0
 text = "xx"
-align = 1
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Toxic6" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = 127.938
-margin_right = 127.966
+[node name="STUN" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_left = 131.0
+margin_top = 87.0
+margin_right = 252.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic6"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/STUN"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic6"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Toxic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic6"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
-text = "xx"
-align = 1
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/STUN"]
+margin_left = 40.0
+margin_right = 96.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "STUN"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Toxic7" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = 127.938
-margin_top = 24.0
-margin_right = 127.966
-margin_bottom = 24.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic7"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic7"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Toxic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic7"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/STUN"]
+margin_left = 104.0
+margin_top = 9.0
+margin_right = 121.0
+margin_bottom = 22.0
 text = "xx"
-align = 1
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Toxic8" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = 127.938
-margin_top = 48.0
-margin_right = 127.966
-margin_bottom = 48.0
+[node name="MARKED" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_top = 116.0
+margin_right = 123.0
+margin_bottom = 148.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic8"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/MARKED"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 16 )
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic8"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Toxic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic8"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
-text = "xx"
-align = 1
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/MARKED"]
+margin_left = 40.0
+margin_right = 98.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "MARKED"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Toxic9" type="Control" parent="HBox/Resists/Effects2/Panel2"]
-anchor_left = 0.039
-anchor_top = -0.1
-anchor_right = 0.473
-anchor_bottom = 0.1
-margin_left = 127.938
-margin_top = 72.0
-margin_right = 127.966
-margin_bottom = 72.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic9"]
-anchor_right = 0.07
-margin_right = 8.02
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic9"]
-margin_left = 24.0
-margin_top = 2.0
-margin_right = 68.0
-margin_bottom = 15.0
-text = "Toxic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic9"]
-margin_left = 74.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 15.0
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/MARKED"]
+margin_left = 106.0
+margin_top = 9.0
+margin_right = 123.0
+margin_bottom = 22.0
 text = "xx"
-align = 1
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CHARM" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_left = 131.0
+margin_top = 116.0
+margin_right = 252.0
+margin_bottom = 148.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/CHARM"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 14 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/CHARM"]
+margin_left = 40.0
+margin_right = 96.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "CHARM"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/CHARM"]
+margin_left = 104.0
+margin_top = 9.0
+margin_right = 121.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OPPRESS" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_top = 145.0
+margin_right = 123.0
+margin_bottom = 177.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/OPPRESS"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 10 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/OPPRESS"]
+margin_left = 40.0
+margin_right = 98.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "OPPRESS"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/OPPRESS"]
+margin_left = 106.0
+margin_top = 9.0
+margin_right = 123.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SILENCE" type="HBoxContainer" parent="HBox/Resists/Status/Grid"]
+margin_left = 131.0
+margin_top = 145.0
+margin_right = 252.0
+margin_bottom = 177.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Status/Grid/SILENCE"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 15 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Status/Grid/SILENCE"]
+margin_left = 40.0
+margin_right = 96.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "SILENCE"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Status/Grid/SILENCE"]
+margin_left = 104.0
+margin_top = 9.0
+margin_right = 121.0
+margin_bottom = 22.0
+text = "xx"
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

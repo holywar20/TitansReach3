@@ -84,8 +84,6 @@ var resists = {
 }
 
 
-
-
 # Overrides
 func get_class(): 
 	return "CharacterResource"
@@ -152,27 +150,7 @@ func _calculateDerivedStats( newCharacter = false ):
 
 
 func _calculateResists():
-	resists.STR.Weaken.value 	= traits.STR.total * TRAIT_RESIST_BONUS
-	resists.STR.Move.value 		= traits.STR.total * TRAIT_RESIST_BONUS
-	resists.PER.Surprise.value 	= traits.PER.total * TRAIT_RESIST_BONUS
-	resists.PER.Blind.value 	= traits.PER.total * TRAIT_RESIST_BONUS
-	resists.INT.Confuse.value 	= traits.INT.total * TRAIT_RESIST_BONUS
-	resists.INT.Charm.value 	= traits.INT.total * TRAIT_RESIST_BONUS
-	resists.DEX.Balance.value 	= traits.DEX.total * TRAIT_RESIST_BONUS
-	resists.DEX.Disarm.value 	= traits.DEX.total * TRAIT_RESIST_BONUS
-	resists.CHA.Lock.value 		= traits.CHA.total * TRAIT_RESIST_BONUS
-	resists.CHA.Slow.value 		= traits.CHA.total * TRAIT_RESIST_BONUS
-
-	resists.STR.Weaken.total 	= resists.STR.Weaken.value 	+ resists.STR.Weaken.mod
-	resists.STR.Move.total 		= resists.STR.Move.value 	+ resists.STR.Move.mod
-	resists.PER.Surprise.total 	= resists.PER.Surprise.value + resists.PER.Surprise.mod
-	resists.PER.Blind.total 	= resists.PER.Blind.value 	+ resists.PER.Blind.mod
-	resists.INT.Confuse.total 	= resists.INT.Confuse.value + resists.INT.Confuse.mod
-	resists.INT.Charm.total 	= resists.INT.Charm.value	+ resists.INT.Charm.mod
-	resists.DEX.Balance.total 	= resists.DEX.Balance.value + resists.DEX.Balance.mod
-	resists.DEX.Disarm.total 	= resists.DEX.Disarm.value 	+ resists.DEX.Disarm.mod
-	resists.CHA.Lock.total 		= resists.CHA.Lock.value 	+ resists.CHA.Lock.mod
-	resists.CHA.Slow.total 		= resists.CHA.Slow.value 	+ resists.CHA.Slow.mod
+	pass
 
 func getNickName():
 	return fullname[1]
@@ -262,7 +240,7 @@ func getResistStatBlock( resist ):
 func getAllResistStatBlocks():
 	return resists.duplicate()
 
-func getDamageStatBlock( dmgBlock ):
+func getDmgResistStatBlock( dmgBlock ):
 	return damageReduction[dmgBlock].duplicate()
 
 func getFightableStatus():
@@ -283,7 +261,6 @@ func getCurrentTrait( traitKey : String):
 		return traits[traitKey].total
 	else:
 		return 0
-
 
 # Mutates the character on the basis of data
 func calculateDamage( result : DamageEffectResource.Result ):

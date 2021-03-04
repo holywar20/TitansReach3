@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/electromagnetic.png-a6b30ef8fdabfa4eec53661dfeaf06f3.stex"
+path="res://.import/em.png-80cecf34842e2e2fc55ac8004e08f1a3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assetts3.0/UI/Icons/electromagnetic.png"
-dest_files=[ "res://.import/electromagnetic.png-a6b30ef8fdabfa4eec53661dfeaf06f3.stex" ]
+source_file="res://Assetts3.0/UI/Icons/em.png"
+dest_files=[ "res://.import/em.png-80cecf34842e2e2fc55ac8004e08f1a3.stex" ]
 
 [params]
 

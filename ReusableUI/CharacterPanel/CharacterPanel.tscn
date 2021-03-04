@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.gd" type="Script" id=1]
 [ext_resource path="res://AssettsImage/Faces/BorrowedWomen/woman-3-small.jpg" type="Texture" id=2]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assetts3.0/UI/Icons/ballistic.png" type="Texture" id=5]
+[ext_resource path="res://Assetts3.0/UI/Icons/thermal.png" type="Texture" id=6]
+[ext_resource path="res://Assetts3.0/UI/Icons/toxic.png" type="Texture" id=7]
+[ext_resource path="res://Assetts3.0/UI/Icons/electromagnetic.png" type="Texture" id=8]
+[ext_resource path="res://Assetts3.0/UI/Icons/push.png" type="Texture" id=9]
 
 [node name="Panel" type="Panel"]
 anchor_right = 0.2
@@ -36,118 +41,77 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="Title"]
-anchor_left = 0.146
-anchor_right = 0.979
-anchor_bottom = 0.422
-margin_left = -0.0640106
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
 margin_top = 8.0
-margin_right = 0.0639648
-margin_bottom = -0.00800133
+margin_right = -128.0
+margin_bottom = -4.0
 custom_fonts/font = ExtResource( 3 )
 text = "Character Name"
 align = 1
 valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Title"]
+margin_left = 264.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar2" type="ProgressBar" parent="Title"]
+margin_left = 264.0
+margin_top = 32.0
+margin_right = 376.0
+margin_bottom = 48.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBox" type="HBoxContainer" parent="."]
 margin_left = 8.0
-margin_top = 88.0
+margin_top = 64.0
 margin_right = 376.0
 margin_bottom = 232.0
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Traits" type="VBoxContainer" parent="HBox"]
-margin_right = 180.0
-margin_bottom = 144.0
+margin_right = 102.0
+margin_bottom = 168.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="HBox/Traits"]
-margin_right = 180.0
+margin_right = 102.0
 margin_bottom = 13.0
 custom_fonts/font = ExtResource( 4 )
 text = "Traits"
 align = 1
 
-[node name="TitleRow" type="HBoxContainer" parent="HBox/Traits"]
+[node name="STR" type="HBoxContainer" parent="HBox/Traits"]
 margin_top = 21.0
-margin_right = 180.0
+margin_right = 102.0
 margin_bottom = 34.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="HBox/Traits/TitleRow"]
-margin_right = 39.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-
-[node name="Base" type="Label" parent="HBox/Traits/TitleRow"]
-margin_left = 47.0
-margin_right = 86.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "Base"
-align = 1
-valign = 1
-
-[node name="Mod" type="Label" parent="HBox/Traits/TitleRow"]
-margin_left = 94.0
-margin_right = 133.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "MOD"
-align = 1
-valign = 1
-
-[node name="Cur" type="Label" parent="HBox/Traits/TitleRow"]
-margin_left = 141.0
-margin_right = 180.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "Curr"
-align = 1
-valign = 1
-
-[node name="STR" type="HBoxContainer" parent="HBox/Traits"]
-margin_top = 42.0
-margin_right = 180.0
-margin_bottom = 55.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Trait" type="Label" parent="HBox/Traits/STR"]
-margin_right = 39.0
+margin_right = 47.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "STR"
 
-[node name="Base" type="Label" parent="HBox/Traits/STR"]
-margin_left = 47.0
-margin_right = 86.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
-[node name="Mod" type="Label" parent="HBox/Traits/STR"]
-margin_left = 94.0
-margin_right = 133.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
 [node name="Cur" type="Label" parent="HBox/Traits/STR"]
-margin_left = 141.0
-margin_right = 180.0
+margin_left = 55.0
+margin_right = 102.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -155,40 +119,22 @@ align = 1
 valign = 1
 
 [node name="PER" type="HBoxContainer" parent="HBox/Traits"]
-margin_top = 63.0
-margin_right = 180.0
-margin_bottom = 76.0
+margin_top = 42.0
+margin_right = 102.0
+margin_bottom = 55.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/PER"]
-margin_right = 39.0
+margin_right = 47.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "PER"
 
-[node name="Base" type="Label" parent="HBox/Traits/PER"]
-margin_left = 47.0
-margin_right = 86.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
-[node name="Mod" type="Label" parent="HBox/Traits/PER"]
-margin_left = 94.0
-margin_right = 133.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
 [node name="Cur" type="Label" parent="HBox/Traits/PER"]
-margin_left = 141.0
-margin_right = 180.0
+margin_left = 55.0
+margin_right = 102.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -196,40 +142,22 @@ align = 1
 valign = 1
 
 [node name="DEX" type="HBoxContainer" parent="HBox/Traits"]
-margin_top = 84.0
-margin_right = 180.0
-margin_bottom = 97.0
+margin_top = 63.0
+margin_right = 102.0
+margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/DEX"]
-margin_right = 39.0
+margin_right = 47.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "DEX"
 
-[node name="Base" type="Label" parent="HBox/Traits/DEX"]
-margin_left = 47.0
-margin_right = 86.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
-[node name="Mod" type="Label" parent="HBox/Traits/DEX"]
-margin_left = 94.0
-margin_right = 133.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
 [node name="Cur" type="Label" parent="HBox/Traits/DEX"]
-margin_left = 141.0
-margin_right = 180.0
+margin_left = 55.0
+margin_right = 102.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -237,40 +165,22 @@ align = 1
 valign = 1
 
 [node name="INT" type="HBoxContainer" parent="HBox/Traits"]
-margin_top = 105.0
-margin_right = 180.0
-margin_bottom = 118.0
+margin_top = 84.0
+margin_right = 102.0
+margin_bottom = 97.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/INT"]
-margin_right = 39.0
+margin_right = 47.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "INT"
 
-[node name="Base" type="Label" parent="HBox/Traits/INT"]
-margin_left = 47.0
-margin_right = 86.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
-[node name="Mod" type="Label" parent="HBox/Traits/INT"]
-margin_left = 94.0
-margin_right = 133.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
 [node name="Cur" type="Label" parent="HBox/Traits/INT"]
-margin_left = 141.0
-margin_right = 180.0
+margin_left = 55.0
+margin_right = 102.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
@@ -278,55 +188,633 @@ align = 1
 valign = 1
 
 [node name="CHA" type="HBoxContainer" parent="HBox/Traits"]
-margin_top = 126.0
-margin_right = 180.0
-margin_bottom = 139.0
+margin_top = 105.0
+margin_right = 102.0
+margin_bottom = 118.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trait" type="Label" parent="HBox/Traits/CHA"]
-margin_right = 39.0
+margin_right = 47.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "CHA"
 
-[node name="Base" type="Label" parent="HBox/Traits/CHA"]
-margin_left = 47.0
-margin_right = 86.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
-[node name="Mod" type="Label" parent="HBox/Traits/CHA"]
-margin_left = 94.0
-margin_right = 133.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "X"
-align = 1
-valign = 1
-
 [node name="Cur" type="Label" parent="HBox/Traits/CHA"]
-margin_left = 141.0
-margin_right = 180.0
+margin_left = 55.0
+margin_right = 102.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "X"
 align = 1
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBox"]
-margin_left = 188.0
+[node name="Resists" type="VBoxContainer" parent="HBox"]
+margin_left = 110.0
 margin_right = 368.0
-margin_bottom = 144.0
+margin_bottom = 168.0
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
 
-[node name="Traits" type="Label" parent="HBox/VBoxContainer2"]
-margin_right = 180.0
+[node name="Damage" type="VBoxContainer" parent="HBox/Resists"]
+margin_right = 258.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Traits" type="Label" parent="HBox/Resists/Damage"]
+margin_right = 258.0
 margin_bottom = 13.0
 custom_fonts/font = ExtResource( 4 )
-text = "RESISTS"
+text = "Damage"
 align = 1
+
+[node name="Panel" type="Panel" parent="HBox/Resists/Damage"]
+margin_top = 21.0
+margin_right = 258.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EM" type="Control" parent="HBox/Resists/Damage/Panel"]
+anchor_left = 0.504
+anchor_top = -0.132
+anchor_right = 1.0
+anchor_bottom = 0.289
+margin_left = 7.968
+margin_top = 0.0159998
+margin_bottom = 0.0179996
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/EM"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/EM"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "EM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/EM"]
+margin_left = 73.0
+margin_top = 2.0
+margin_right = 117.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="THERMAL" type="Control" parent="HBox/Resists/Damage/Panel"]
+anchor_left = 0.07
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.921
+margin_left = -0.0599995
+margin_right = 1.0
+margin_bottom = 0.0019989
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/THERMAL"]
+margin_left = -8.0
+margin_right = 8.0
+margin_bottom = 16.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/THERMAL"]
+margin_left = 16.0
+margin_top = 2.0
+margin_right = 74.0
+margin_bottom = 15.0
+text = "Thermal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/THERMAL"]
+anchor_right = 0.071
+margin_left = 72.0
+margin_top = 2.0
+margin_right = 108.048
+margin_bottom = 15.0
+text = "XX"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KINETIC" type="Control" parent="HBox/Resists/Damage/Panel"]
+anchor_left = 0.535
+anchor_top = 0.5
+anchor_right = 0.969
+anchor_bottom = 0.921
+margin_left = -0.030014
+margin_right = -0.00201416
+margin_bottom = 0.0019989
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/KINETIC"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/KINETIC"]
+margin_left = 24.0
+margin_right = 68.0
+margin_bottom = 13.0
+text = "Kinetic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/KINETIC"]
+anchor_right = 0.929
+anchor_bottom = 0.812
+margin_left = 83.0
+margin_top = 1.0
+margin_right = 2.952
+margin_bottom = 1.008
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toxic" type="Control" parent="HBox/Resists/Damage/Panel"]
+margin_left = 10.0
+margin_top = -5.0
+margin_right = 130.0
+margin_bottom = 11.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Damage/Panel/Toxic"]
+anchor_right = 0.133
+anchor_bottom = 1.0
+margin_right = 1.04
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Damage/Panel/Toxic"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Toxic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Damage/Panel/Toxic"]
+margin_left = 80.0
+margin_top = 2.0
+margin_right = 124.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Effects2" type="VBoxContainer" parent="HBox/Resists"]
+margin_top = 67.0
+margin_right = 258.0
+margin_bottom = 168.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.7
+
+[node name="Traits" type="Label" parent="HBox/Resists/Effects2"]
+margin_right = 258.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 4 )
+text = "STATUS EFFECTS"
+align = 1
+
+[node name="Panel2" type="Panel" parent="HBox/Resists/Effects2"]
+margin_top = 21.0
+margin_right = 258.0
+margin_bottom = 101.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MOVE" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = -0.0620003
+margin_right = -0.0340042
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/MOVE"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/MOVE"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/MOVE"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SLOW" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = -0.0620003
+margin_top = 24.0
+margin_right = -0.0340042
+margin_bottom = 24.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/SLOW"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/SLOW"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 64.0
+margin_bottom = 15.0
+text = "SLOW"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/SLOW"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BLEED" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = -0.0620003
+margin_top = 72.0
+margin_right = -0.0340042
+margin_bottom = 72.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/BLEED"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/BLEED"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 80.0
+margin_bottom = 15.0
+text = "BLEED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/BLEED"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OPPRESS" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = -0.0620003
+margin_top = 48.0
+margin_right = -0.0340042
+margin_bottom = 48.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/OPPRESS"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox/Resists/Effects2/Panel2/OPPRESS"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Oppress"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cur" type="Label" parent="HBox/Resists/Effects2/Panel2/OPPRESS"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toxic6" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = 127.938
+margin_right = 127.966
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic6"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic6"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Toxic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic6"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toxic7" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = 127.938
+margin_top = 24.0
+margin_right = 127.966
+margin_bottom = 24.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic7"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic7"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Toxic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic7"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toxic8" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = 127.938
+margin_top = 48.0
+margin_right = 127.966
+margin_bottom = 48.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic8"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic8"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Toxic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic8"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toxic9" type="Control" parent="HBox/Resists/Effects2/Panel2"]
+anchor_left = 0.039
+anchor_top = -0.1
+anchor_right = 0.473
+anchor_bottom = 0.1
+margin_left = 127.938
+margin_top = 72.0
+margin_right = 127.966
+margin_bottom = 72.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Resists/Effects2/Panel2/Toxic9"]
+anchor_right = 0.07
+margin_right = 8.02
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic9"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 15.0
+text = "Toxic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kinetic2" type="Label" parent="HBox/Resists/Effects2/Panel2/Toxic9"]
+margin_left = 74.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 15.0
+text = "xx"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

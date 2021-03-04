@@ -47,7 +47,6 @@ var temporaryPassives = {}
 const TRAITS = {
 	"CHA" : "CHA" , "INT" : "INT" , "DEX" : "DEX" ,  "STR" : "STR" , "PER" : "PER"
 }
-
 var traits = {
 	TRAITS.STR : { "name" : "STR", "fullName": "Strength" 	, "value": 0, "total" : 0 , "equip" : 0 , "talent": 0 ,"mod" : 0 },
 	TRAITS.CHA : { "name" : "CHA", "fullName": "Charisma" 	, "value": 0, "total" : 0 , "equip" : 0 , "talent": 0 ,"mod" : 0 },
@@ -70,28 +69,21 @@ var damageReduction = {
 	'EM':		{ "value" : 0, "total" : 0 , "mod" : 0 }, 
 }
 
-var resists = {
-	TRAITS.STR : {
-		"Move"		: { "name" : "Move"		, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 }, # Forces target to move 
-		"Weaken"	: { "name" : "Weaken"	, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 }, # Target deals less damage + Loses armor
-	} , 
-	TRAITS.PER : {
-		"Surprise" 	: { "name" : "Surprise"	, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 }, # Target suffers extra damage on attacks
-		"Blind" 	: { "name" : "Blind" 	, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 }, # Target has penalty to actions
-	} ,
-	TRAITS.INT : {
-		"Confuse"	: { "name" : "Confuse"	, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 }, # Target does random action
-		"Charm" 	: { "name" : "Charm"		, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 }, # Target does random action to benifit enemy
-	},
-	TRAITS.DEX : {
-		"Balance"	: { "name" : "Balance"	, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 } , # Target loses defense & Saves
-		"Disarm" 	: { "name" : "Disarm"	, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 } , # Target can't use a weapon
-	},
-	TRAITS.CHA : {
-		"Lock"		: { "name" : "Lock"		, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 } , # Target can't use certain powers
-		"Slow"		: { "name" : "Slow"		, "value" : 0, "total" : 0 , "equip" : 0 , "talent" : 0, "mod" : 0 } , # Target loses AP
-	}
+const RESISTS = {
+	"MOVE" : "MOVE" , "SILENCE" : "SILENCE" , "CHARM" : "CHARM" , "STUN" : "STUN" , "OPPRESS": "OPPRESS" ,"BLEED" : "BLEED" , "MARKED" : "MARKED","SLOW" : "SLOW"
 }
+var resists = {
+	RESISTS.MOVE : { "value" : 0, "total" : 0 , "mod" : 0 } ,
+	RESISTS.SILENCE : { "value" : 0, "total" : 0 , "mod" : 0 },
+	RESISTS.CHARM : { "value" : 0, "total" : 0 , "mod" : 0 } ,
+	RESISTS.STUN :  { "value" : 0, "total" : 0 , "mod" : 0 },
+	RESISTS.OPPRESS : { "value" : 0, "total" : 0 , "mod" : 0 },
+	RESISTS.BLEED : { "value" : 0, "total" : 0 , "mod" : 0 },
+	RESISTS.MARKED : { "value" : 0, "total" : 0 , "mod" : 0 },
+	RESISTS.SLOW : { "value" : 0, "total" : 0 , "mod" : 0 }
+}
+
+
 
 
 # Overrides
@@ -156,7 +148,7 @@ func _calculateDerivedStats( newCharacter = false ):
 		charge.current = 0
 		hp.current = hp.total
 		morale.current = morale.total
-		defense.currennt = defense.total
+		defense.current = defense.total
 
 
 func _calculateResists():
@@ -269,6 +261,9 @@ func getResistStatBlock( resist ):
 
 func getAllResistStatBlocks():
 	return resists.duplicate()
+
+func getDamageStatBlock( dmgBlock ):
+	return damageReduction[dmgBlock].duplicate()
 
 func getFightableStatus():
 	var isFightable = true

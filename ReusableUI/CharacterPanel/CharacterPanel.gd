@@ -7,6 +7,8 @@ var character : CharacterResource
 var currentState : int = STATE.HIDE
 
 const BASE_NODE_TRAIT_PATH = "HBox/Traits/"
+const BASE_NODE_DMG_PATH = "HBox/Dmg"
+const BASE_NODE_RESIST_PATH = "HBoxResists"
 
 enum STATE {
 	SHOW, FOCUS , NOT_FOCUS , HIDE
@@ -18,15 +20,26 @@ func updateUI( newCharacter : CharacterResource ):
 	charIcon.set_texture(load(character.smallTexturePath))
 	charName.set_text(character.getFullName())
 
-	for stat in ["STR" , "PER", "DEX" , "INT" , "CHA"]:
+	for stat in CharacterResource.TRAITS:
 		_loadStatBlockIntoRow( stat )
+		
+	for dmg in ["KINETIC" , "TOXIC" , "THERMAL" , "EM"]:
+		_loadDamageBlockIntoRow( dmg )
+		
+	for resist in CharacterResource.RESISTS:
+		_loadResistBlockIntoRow( resist )
 
 func _loadStatBlockIntoRow( traitName ):
 	var myStatBlock = character.getTraitStatBlock( traitName )
-
-	get_node( BASE_NODE_TRAIT_PATH + traitName + "/Base").set_text( str(myStatBlock.value) )
-	get_node( BASE_NODE_TRAIT_PATH + traitName + "/Mod").set_text( str(myStatBlock.equip + myStatBlock.talent + myStatBlock.mod ) )
 	get_node( BASE_NODE_TRAIT_PATH + traitName + "/Cur").set_text( str(myStatBlock.total) )
+
+func _loadDamageBlockIntoRow( dmgType ):
+	var myStatBlock = character.getDmgStatBlock( dmgType )
+	get_node(BASE_NODE_DMG_PATH + dmgType + "/Cur").set_text( str(myStatBlock.total + "%" ) )
+
+func _loadResistBlockIntoRow( resist ):
+	var myStatBlock = character.getResistStatBlock( resist )
+	get_node(BASE_NODE_RESIST_PATH + resist + "/Cur").set_text( str(myStatBlock.total + "%" ) )
 
 func setState( newState : int ):
 	currentState = newState

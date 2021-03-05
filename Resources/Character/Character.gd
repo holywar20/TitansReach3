@@ -38,9 +38,12 @@ var gear = {
 }
 
 # abilityTrees
-var primary : AbilityTreeResource
-var secondary : AbilityTreeResource
+var defaultTree = null
+var primaryTree = null
+var secondaryTree = null
 
+# 
+var equipmentAbilities = null
 
 # store off all this users abilities
 var actions = []
@@ -88,13 +91,21 @@ var resists = {
 	RESISTS.SLOW : { "value" : 0, "total" : 0 , "mod" : 0 }
 }
 
-
 # Overrides
 func get_class(): 
 	return "CharacterResource"
 
 func is_class( name : String ): 
 	return name == "CharacterResource"
+
+func setDefaultAbilityTree( treeIndex : int ):
+	defaultTree = AbilityTreeResource.new( treeIndex , self )
+
+func setNewPrimaryAbilityTree( treeIndex : int ):
+	primaryTree = AbilityTreeResource.new( treeIndex , self )
+	
+func setNewSecondaryAbilityTree( treeIndex : int ):
+	secondaryTree = AbilityTreeResource.new( treeIndex , self )
 
 # Accepts an AbilityResource
 func addAction( action ):

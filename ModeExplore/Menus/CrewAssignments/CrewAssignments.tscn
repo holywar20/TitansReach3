@@ -99,36 +99,38 @@ custom_fonts/font = ExtResource( 4 )
 text = "OTHER DATA?"
 align = 1
 
-[node name="Assignments" type="VBoxContainer" parent="Tripane"]
+[node name="Abilities" type="VBoxContainer" parent="Tripane"]
 margin_left = 855.0
 margin_right = 1275.0
 margin_bottom = 755.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 
-[node name="Label2" type="Label" parent="Tripane/Assignments"]
+[node name="Label" type="Label" parent="Tripane/Abilities"]
 margin_right = 420.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "Abilities"
 align = 1
 
-[node name="Panel" parent="Tripane/Assignments" instance=ExtResource( 5 )]
+[node name="Primary" parent="Tripane/Abilities" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 27.0
 margin_right = 420.0
 margin_bottom = 264.0
 
-[node name="Panel2" parent="Tripane/Assignments" instance=ExtResource( 5 )]
+[node name="Secondary" parent="Tripane/Abilities" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 272.0
 margin_right = 420.0
 margin_bottom = 509.0
 
-[node name="AbilityDetail" parent="Tripane/Assignments" instance=ExtResource( 6 )]
+[node name="AbilityDetail" parent="Tripane/Abilities" instance=ExtResource( 6 )]
 margin_top = 517.0
 margin_right = 420.0
 margin_bottom = 755.0
 size_flags_vertical = 3
+[connection signal="abilityChanged" from="Tripane/Abilities/Primary" to="." method="_on_Primary_abilityChanged"]
+[connection signal="abilityChanged" from="Tripane/Abilities/Secondary" to="." method="_on_Secondary_abilityChanged"]

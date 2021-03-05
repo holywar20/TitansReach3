@@ -1,23 +1,36 @@
 extends TitansResource
 class_name AbilityTreeResource
 
+var parentCharacter
 var treeName = "Unassigned Tree"
 var isTitanTree = false
 
-enum PATH {
-	MEDIC, COMMANDO
+var abilityStore = []
+
+enum TREE {
+	DEFAULT, MEDIC, COMMANDO
 }
 
-const FILES = {
-	PATH.MEDIC : "res://Generators/Data/AbilityTree/medic.json",
-    PATH.COMMANDO : "res://Generators/Data/AbilityTree/commando.json"
+const ABILITY_TREE_METADATA = {
+	TREE.DEFAULT : {
+		"treeName" : "DEFAULT",
+		"isTitanTree" : false
+	},
+	TREE.MEDIC : {
+		"treeName" : "TEST_MEDIC_TREE",
+		"isTitanTree" : false
+	},
+	TREE.COMMANDO : {
+		"treeName" : "TEST_COMMANDO_TREE",
+		"isTitanTree" : false
+	}
 }
 
-
-class AbilityMeta:
-    var ability : AbilityResource
-    var isLearned : bool = false
-    var cost : int = 5
+const ABILITY_FILES = {
+	TREE.DEFAULT : "res://Generators/Data/Abilities/default.json",
+	TREE.MEDIC : "res://Generators/Data/Abilities/testmedic.json",
+	TREE.COMMANDO : "res://Generators/Data/Abilities/testcommando.json"
+}
 
 func get_class(): 
 	return "AbilityResource"
@@ -25,8 +38,19 @@ func get_class():
 func is_class( name : String ): 
 	return name == "AbilityResource"
 
-func _init( treePath : int , abilityPath : int ):
-    pass
+func _init( treePath : int , character ):
+	parentCharacter = character
+	
+	# Open the file, just to get the name.
+	# Bit stupid, but not worth refactoring ability _init, which knows how to build itself.
+	var abilityFile = File.new()
+	abilityFile.open( ABILITY_FILES[treePath] , File.READ)
+	var abilityTable = parse_json( abilityFile.get_as_text() )
+	abilityFile.close()
 
-func getFilteredAbilities( unlearned : Bool ):
-    pass
+	# TODO Remove 'start learned' . Learning all for now for testing.
+	for ability in abilityTable:
+		abilityStore.append( AbilityResource.new( ability , abilityTable[ability] ,  parentCharacter , true ) )
+
+func getFilteredAbilities( unlearned ):
+	pass

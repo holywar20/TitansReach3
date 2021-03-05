@@ -30,5 +30,12 @@ func setupScene( myCrew : Array ):
 			newPanel._on_CPanel_focus_entered() # Firing first event manually
 			oneFocused = true
 		
-func _on_CharShortPanelFocusEntered( character : CharacterResource ):
+func _on_CharShortPanelFocusEntered( character ):
 	traitDetails.updateUI( character )
+
+
+func _on_Primary_abilityChanged(ability):
+	print(ability)
+
+func _on_Secondary_abilityChanged(ability):
+	print(ability)

@@ -30,6 +30,17 @@ var masterEffectData = {
 	"HEAL_EFFECT" :{
 		"type" : "HEALING",
 		"effectAnimation" : "MEDKIT",	
+	},
+	"SLOW_1_STACK":{
+		"type" : "STATUS_EFFECT",
+		"statusEffect" : "SLOW",
+		"statusAmount" : 1,
+		"effectAnimation" : "MEDKIT"
+	},
+	"STUN" : {
+		"type" : "STATUS_EFFECT",
+		"statusEffect" : "STUN",
+		"effectAnimation" : "MEDKIT" 
 	}
 }
 const TARGET_AREA = {
@@ -55,14 +66,6 @@ const TO_POWER_TRAIT = {
 	"NONE" : "NONE" , "DEX" : "DEX" , "STR" : "STR" , "PER" : "PER" , "INT" : "INT" , "CHA" : "CHA"
 }
 
-enum PATH {
-	DEFAULT
-}
-
-const FILES = {
-	PATH.DEFAULT : "res://Generators/Data/Abilities/default.json"
-}
-
 const TARGET_MATRIX = {
 	TARGET_AREA.SINGLE : [[0 , 0 , 0] , [0 , 1 , 0] , [0 ,0 ,0]],
 	TARGET_AREA.COLUMN : [[0 , 1 , 0] , [0 , 1 , 0] , [0 ,1 ,0]],
@@ -82,6 +85,7 @@ var validFrom : Array = []
 var iconPath : String
 var description : String
 var targetAreaShown : String = TARGET_AREA.SINGLE
+var cost = 0
 
 var toHitTrait : String = TO_HIT_TRAIT.ALWAYS
 var toPowerTrait : String = TO_POWER_TRAIT.NONE
@@ -89,6 +93,8 @@ var toHitBase = 80
 var powerHiBase = 0
 var powerLoBase = 0
 
+
+var isLearned = false
 var effectGroups : Array = [] # An array of EffectGroup
 
 class EffectGroup:	
@@ -129,7 +135,7 @@ func get_class():
 func is_class( name : String ): 
 	return name == "AbilityResource"
 
-func _init( newKey : String , filePath : int , character ):
+func _init( newKey : String , abilityTable : Dictionary , character , startLearned = false ):
 	parentCharacter = character
 	key = newKey
 	fillableProps = [
@@ -144,16 +150,15 @@ func _init( newKey : String , filePath : int , character ):
 		"powerHiBase",
 		"powerLoBase",
 		"description",
-		"targetAreaShown"	
+		"targetAreaShown",
+		"cost"	
 	]
 	
-	var abilityFile = File.new()
-	abilityFile.open( FILES[filePath] , File.READ)
-	var abilityTable = parse_json( abilityFile.get_as_text() )
-	abilityFile.close()
+	if( startLearned ):
+		isLearned = true
 
-	flushAndFillProperties(abilityTable[key] , self)
-	_makeEffects( abilityTable[key]['effectGroups'] )
+	flushAndFillProperties(abilityTable , self)
+	_makeEffects( abilityTable['effectGroups'] )
 
 	# Do any type casting to fix json, which comes in as strings
 	#validTargets = makeArrayIntegers( validTargets )

@@ -6,9 +6,9 @@
 
 [node name="Panel" type="Panel"]
 anchor_right = 0.217
-anchor_bottom = 0.333
-margin_right = -0.639984
-margin_bottom = -103.64
+anchor_bottom = 0.237
+margin_right = -0.640015
+margin_bottom = 0.039978
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )

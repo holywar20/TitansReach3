@@ -9,7 +9,11 @@ const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 onready var unassignedBase = $Tripane/VBox/UnassignedList/Crew
 onready var stationBase = $Tripane/Assignments
 
+# Sub UI Scenes
 onready var traitDetails = $Tripane/Detail/Traits
+onready var abilityDetail = $Tripane/Details/AbilityDetail
+onready var primaryAbilityList = $Tripane/Abilities/Primary
+onready var secondaryAbilityList = $Tripane/Abilities/Secondary
 
 func setupScene( myCrew : Array ):
 	crew = myCrew
@@ -29,13 +33,21 @@ func setupScene( myCrew : Array ):
 			newPanel.grab_focus()
 			newPanel._on_CPanel_focus_entered() # Firing first event manually
 			oneFocused = true
-		
+
+# Signal responses
 func _on_CharShortPanelFocusEntered( character ):
 	traitDetails.updateUI( character )
-
+	primaryAbilityList.updateUI( character.primaryTree )
+	secondaryAbilityList.updateUI( character.secondaryTree )
 
 func _on_Primary_abilityChanged(ability):
-	print(ability)
+	abilityDetail.setupScene( ability )
 
 func _on_Secondary_abilityChanged(ability):
-	print(ability)
+	abilityDetail.setupScene( ability )
+
+func _on_Primary_abilityExit(ability):
+	abilityDetail.setupScene()
+
+func _on_Secondary_abilityExit(ability):
+	abilityDetail.setupScene()

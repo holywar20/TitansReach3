@@ -119,6 +119,8 @@ anchor_bottom = 0.0
 margin_top = 27.0
 margin_right = 420.0
 margin_bottom = 264.0
+rect_min_size = Vector2( 0, 237 )
+size_flags_vertical = 1
 
 [node name="Secondary" parent="Tripane/Abilities" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -126,11 +128,16 @@ anchor_bottom = 0.0
 margin_top = 272.0
 margin_right = 420.0
 margin_bottom = 509.0
+rect_min_size = Vector2( 0, 237 )
+size_flags_vertical = 1
 
 [node name="AbilityDetail" parent="Tripane/Abilities" instance=ExtResource( 6 )]
+visible = false
 margin_top = 517.0
 margin_right = 420.0
 margin_bottom = 755.0
 size_flags_vertical = 3
 [connection signal="abilityChanged" from="Tripane/Abilities/Primary" to="." method="_on_Primary_abilityChanged"]
+[connection signal="abilityExit" from="Tripane/Abilities/Primary" to="." method="_on_Primary_abilityExit"]
 [connection signal="abilityChanged" from="Tripane/Abilities/Secondary" to="." method="_on_Secondary_abilityChanged"]
+[connection signal="abilityExit" from="Tripane/Abilities/Secondary" to="." method="_on_Secondary_abilityExit"]

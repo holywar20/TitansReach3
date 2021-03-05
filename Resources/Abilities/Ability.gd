@@ -89,7 +89,6 @@ var toHitBase = 80
 var powerHiBase = 0
 var powerLoBase = 0
 
-
 var effectGroups : Array = [] # An array of EffectGroup
 
 class EffectGroup:	

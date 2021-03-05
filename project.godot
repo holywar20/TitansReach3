@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Resources/Abilities/Ability.gd"
 }, {
 "base": "TitansResource",
+"class": "AbilityTreeResource",
+"language": "GDScript",
+"path": "res://Resources/Abilities/AbilityTreeResource.gd"
+}, {
+"base": "TitansResource",
 "class": "AnomolyResource",
 "language": "GDScript",
 "path": "res://Resources/Anoms/Anom.gd"
@@ -141,6 +146,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AbilityResource": "",
+"AbilityTreeResource": "",
 "AnomolyResource": "",
 "ArmorResource": "",
 "Battler": "",

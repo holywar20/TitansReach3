@@ -37,6 +37,11 @@ var gear = {
 	"Frame" : null, "LWeapon" : null,  "RWeapon" : null , "CEquip" : null , "LEquip" : null , "REquip" : null
 }
 
+# abilityTrees
+var primary : AbilityTreeResource
+var secondary : AbilityTreeResource
+
+
 # store off all this users abilities
 var actions = []
 var stances = []

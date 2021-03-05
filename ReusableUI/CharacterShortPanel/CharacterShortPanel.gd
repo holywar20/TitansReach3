@@ -1,12 +1,14 @@
 extends Panel
 
-onready var charName : Label = $Name
-onready var hWorld : Label = $HWorld
-onready var species : Label =  $Species
-onready var cp : Label = $CP 
-onready var healthAmount : Label = $HealthAmount
-onready var moraleAmount : Label = $MoraleAmount
 onready var smallTexture : TextureRect = $TextureRect
+onready var charName : Label = $VBox/Label
+
+onready var healthBar : ProgressBar = $VBox/HBox/Stats/HealthBar
+onready var moraleBar : ProgressBar = $VBox/HBox/Stats/MoraleBar
+
+onready var raceValue : Label = $VBox/HBox/Profile/HomeworldRow/Value
+onready var homeworldValue : Label = $VBox/HBox/Profile/RaceRow/Value
+onready var cpDisplay : Label = $VBox/HBox/Stats/CP/Points
 
 var character : CharacterResource
 
@@ -14,19 +16,21 @@ signal focusEntered( character )
 
 
 const STATE = {
-	"FOCUS" : Color( .64 , .77 , .64 , 1 ),
-	"NOT_FOCUS" : Color( 1 , 1 , 1 , 1 )
+	"FOCUS" : Color( .2 , 1 , .2 , 1 ),
+	"NOT_FOCUS" : Color( 1 , 1 , 1 , .7 )
 }
 
 func setupScene( newCharacter : CharacterResource ):
 	character = newCharacter
 
 	charName.set_text( character.getFullName() )
-	hWorld.set_text( character.getWorldString() )
-	species.set_text( character.getRaceString() )
-	cp.set_text( character.getCPointString() )
-	moraleAmount.set_text( character.getMoraleString() )
-	healthAmount.set_text( character.getHitPointString() )
+	
+	homeworldValue.set_text( character.getWorldString() )
+	raceValue.set_text( character.getRaceString() )
+	cpDisplay.set_text( str( character.cp - character.cpSpent ) )
+
+	healthBar.setBarValues( character.hp.current , character.hp.total )
+	moraleBar.setBarValues( character.morale.current, character.morale.total )
 
 	smallTexture.set_texture(load(character.smallTexturePath))
 

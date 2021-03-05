@@ -9,7 +9,7 @@ const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 onready var unassignedBase = $Tripane/VBox/UnassignedList/Crew
 onready var stationBase = $Tripane/Assignments
 
-
+onready var traitDetails = $Tripane/Detail/Traits
 
 func setupScene( myCrew : Array ):
 	crew = myCrew
@@ -31,4 +31,4 @@ func setupScene( myCrew : Array ):
 			oneFocused = true
 		
 func _on_CharShortPanelFocusEntered( character : CharacterResource ):
-	print("we are open now!")
+	traitDetails.updateUI( character )

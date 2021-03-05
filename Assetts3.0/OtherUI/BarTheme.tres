@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=5 format=2]
+[gd_resource type="Theme" load_steps=6 format=2]
 
 [ext_resource path="res://Assetts3.0/UI/cb_fill.png" type="Texture" id=1]
 [ext_resource path="res://Assetts3.0/UI/cb_frame.png" type="Texture" id=2]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -9,11 +10,11 @@ region_rect = Rect2( 0, 0, 374, 35 )
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 1 )
-region_rect = Rect2( 0, 0, 345, 19 )
-margin_left = 5.0
-margin_right = 5.0
+region_rect = Rect2( 3.1516, 0.981888, 342.292, 36.3756 )
+margin_top = 5.85518
 
 [resource]
+default_font = ExtResource( 3 )
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = null

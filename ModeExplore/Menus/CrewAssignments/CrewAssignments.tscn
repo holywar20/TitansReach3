@@ -69,14 +69,15 @@ size_flags_vertical = 7
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 420.0
-margin_bottom = 373.0
+margin_bottom = 393.0
 
 [node name="Other" type="Panel" parent="Tripane/Detail"]
-margin_top = 381.0
+margin_top = 401.0
 margin_right = 420.0
 margin_bottom = 755.0
 rect_min_size = Vector2( 0, 240 )
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.9
 __meta__ = {
 "_edit_use_anchors_": false
 }

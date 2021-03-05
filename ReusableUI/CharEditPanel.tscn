@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ReusableUI/CharEditPanel.gd" type="Script" id=1]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
@@ -10,12 +10,14 @@
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/plus_h.png" type="Texture" id=8]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=10]
+[ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/minus_h.png" type="Texture" id=12]
 
 [node name="CharEditPanel" type="Panel"]
-anchor_right = 0.228
-anchor_bottom = 0.444
-margin_right = 10.24
-margin_bottom = -7.52005
+anchor_right = 0.233
+anchor_bottom = 0.393
+margin_right = 0.639984
+margin_bottom = -0.440002
 size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
@@ -37,76 +39,74 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBox"]
+margin_top = -1.0
 margin_right = 432.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
+margin_bottom = 53.0
+rect_min_size = Vector2( 0, 54 )
 custom_fonts/font = ExtResource( 9 )
 text = "{CHARACTER NAME}"
 align = 1
 valign = 1
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
-margin_top = 40.0
+margin_top = 54.0
 margin_right = 432.0
-margin_bottom = 88.0
+margin_bottom = 118.0
 
-[node name="VBox" type="VBoxContainer" parent="VBox/HBox"]
-margin_right = 284.0
-margin_bottom = 48.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CPoints" type="VBoxContainer" parent="VBox/HBox"]
+margin_right = 140.0
+margin_bottom = 64.0
 
-[node name="HealthBar" type="ProgressBar" parent="VBox/HBox/VBox"]
-margin_right = 284.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-percent_visible = false
-
-[node name="Label" type="Label" parent="VBox/HBox/VBox/HealthBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "xx / xx"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MoraleBar" type="ProgressBar" parent="VBox/HBox/VBox"]
-margin_top = 28.0
-margin_right = 284.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 0, 20 )
-percent_visible = false
-
-[node name="Label" type="Label" parent="VBox/HBox/VBox/MoraleBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "xx / xx"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="VBox/HBox"]
-margin_left = 292.0
-margin_top = 12.0
-margin_right = 432.0
-margin_bottom = 36.0
+[node name="Label" type="Label" parent="VBox/HBox/CPoints"]
+margin_right = 140.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 140, 0 )
 custom_fonts/font = ExtResource( 9 )
-text = "XX / XX CP"
+text = "C. Points"
 align = 1
 valign = 1
 
-[node name="TraitsBox" type="VBoxContainer" parent="VBox"]
-margin_top = 88.0
+[node name="Points" type="Label" parent="VBox/HBox/CPoints"]
+margin_top = 32.0
+margin_right = 140.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 140, 0 )
+custom_fonts/font = ExtResource( 9 )
+text = "XX / XX"
+align = 1
+valign = 1
+
+[node name="Bars" type="VBoxContainer" parent="VBox/HBox"]
+margin_left = 148.0
 margin_right = 432.0
-margin_bottom = 347.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" parent="VBox/HBox/Bars" instance=ExtResource( 11 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 284.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 96, 32 )
+
+[node name="MoraleBar" parent="VBox/HBox/Bars" instance=ExtResource( 11 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 32.0
+margin_right = 284.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 96, 32 )
+barType = 2
+
+[node name="TraitsBox" type="VBoxContainer" parent="VBox"]
+margin_top = 118.0
+margin_right = 432.0
+margin_bottom = 377.0
 
 [node name="TitleRow" type="HBoxContainer" parent="VBox/TraitsBox"]
 margin_right = 432.0
@@ -254,7 +254,7 @@ margin_left = 392.0
 margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
+texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 6 )
 texture_disabled = ExtResource( 3 )
 texture_focused = ExtResource( 6 )
@@ -338,7 +338,7 @@ margin_left = 392.0
 margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
+texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 6 )
 texture_disabled = ExtResource( 3 )
 texture_focused = ExtResource( 6 )
@@ -422,7 +422,7 @@ margin_left = 392.0
 margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
+texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 6 )
 texture_disabled = ExtResource( 3 )
 texture_focused = ExtResource( 6 )
@@ -506,7 +506,7 @@ margin_left = 392.0
 margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
+texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 6 )
 texture_disabled = ExtResource( 3 )
 texture_focused = ExtResource( 6 )
@@ -590,13 +590,40 @@ margin_left = 392.0
 margin_right = 432.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
+texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 6 )
 texture_disabled = ExtResource( 3 )
 texture_focused = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBox"]
+margin_top = 377.0
+margin_right = 432.0
+margin_bottom = 408.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBox/VBoxContainer"]
+margin_right = 58.0
+margin_bottom = 31.0
+text = "SAVE"
+
+[node name="Container" type="Container" parent="VBox/VBoxContainer"]
+margin_left = 66.0
+margin_right = 362.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="VBox/VBoxContainer"]
+margin_left = 370.0
+margin_right = 432.0
+margin_bottom = 31.0
+text = "RESET"
 [connection signal="pressed" from="VBox/TraitsBox/STR/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
 [connection signal="pressed" from="VBox/TraitsBox/STR/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]
 [connection signal="pressed" from="VBox/TraitsBox/DEX/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]

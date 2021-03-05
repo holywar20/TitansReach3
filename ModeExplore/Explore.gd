@@ -172,6 +172,7 @@ func _on_CrewAssignment_toggled(button_pressed):
 func _on_CrewManagement_toggled(button_pressed):
 	if( button_pressed == true ):
 		var menuInstance = loadMenu( MB.CREW_MANAGEMENT )
+		menuInstance.setupScene( myCrew )
 
 func _on_Engineering_toggled(button_pressed):
 	if( button_pressed == true ):

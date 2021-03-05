@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ReusableUI/Bar.gd" type="Script" id=2]
+
+[node name="Bar" type="ProgressBar"]
+anchor_right = 0.05
+anchor_bottom = 0.015
+margin_bottom = -0.200001
+rect_min_size = Vector2( 96, 16 )
+size_flags_vertical = 1
+value = 40.0
+percent_visible = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "XX / XX"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -41,6 +41,9 @@ func is_class( name : String ):
 func _init( treePath : int , character ):
 	parentCharacter = character
 	
+	treeName = ABILITY_TREE_METADATA[treePath].treeName
+	isTitanTree = ABILITY_TREE_METADATA[treePath].isTitanTree
+
 	# Open the file, just to get the name.
 	# Bit stupid, but not worth refactoring ability _init, which knows how to build itself.
 	var abilityFile = File.new()

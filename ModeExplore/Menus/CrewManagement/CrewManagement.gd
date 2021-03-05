@@ -6,8 +6,15 @@ var charShortPanelScene = preload("res://ReusableUI/CharacterShortPanel/Characte
 
 const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 
+# Left Panel
 onready var crewList = $Tripane/Crewlist/CrewList/Crew
-onready var stationBase = $Tripane/Assignments
+onready var charPanel = $Tripane/Crewlist/CharacterPanel
+
+# Center Panel
+onready var equipmentPanel = $Tripane/Detail/EquipmentPane
+
+# Right Panel
+onready var armsRoom = $Tripane/ArmsRoom
 
 func setupScene( myCrew : Array ):
 	crew = myCrew
@@ -25,8 +32,9 @@ func setupScene( myCrew : Array ):
 		
 		if( !oneFocused ):
 			newPanel.grab_focus()
-			newPanel._on_CPanel_focus_entered() # Firing first event manually
+			newPanel._on_CPanel_focus_entered() # Firing first event manuallyp
 			oneFocused = true
 		
 func _on_CharShortPanelFocusEntered( character : CharacterResource ):
-	print("we are open now!")
+	charPanel.updateUI( character )
+	equipmentPanel.updateUI( character )

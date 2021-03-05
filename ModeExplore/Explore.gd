@@ -5,8 +5,6 @@ export(int) var mySeed = 1000000
 onready var systemGenerator : Node = $SystemGenerator
 onready var crewGenerator : Node = $CrewGenerator
 
-onready var stars : Node2D = $Stars
-onready var planets : Node2D = $Planets
 onready var anoms : Node2D = $Anoms
 
 onready var inventory : Node = $Inventory 

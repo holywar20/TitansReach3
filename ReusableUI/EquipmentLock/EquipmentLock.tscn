@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ReusableUI/EquipmentLock/EquipmentLock.gd" type="Script" id=1]
+[ext_resource path="res://AssettsImage/Items/Equipment/TerranFragGrenade.jpg" type="Texture" id=2]
+
+[node name="EquipmentLock" type="PanelContainer"]
+anchor_right = 0.048
+anchor_bottom = 0.105
+margin_right = -0.160004
+margin_bottom = -0.400002
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 78.0
+margin_bottom = 99.0
+
+[node name="TextureRect" type="TextureRect" parent="VBox"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="VBox"]
+margin_top = 72.0
+margin_right = 64.0
+margin_bottom = 85.0
+text = "Equip."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

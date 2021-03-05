@@ -198,7 +198,7 @@ text = "Crew Assignment"
 
 [node name="CrewManagement" type="Button" parent="UI/TopPanel/ButtonBar"]
 margin_left = 306.0
-margin_right = 529.0
+margin_right = 528.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
@@ -209,8 +209,8 @@ enabled_focus_mode = 1
 text = "Crew Management"
 
 [node name="Engineering" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 537.0
-margin_right = 697.0
+margin_left = 536.0
+margin_right = 696.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
@@ -221,8 +221,8 @@ enabled_focus_mode = 1
 text = "Engineering"
 
 [node name="Cargohold" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 705.0
-margin_right = 865.0
+margin_left = 704.0
+margin_right = 864.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
@@ -233,8 +233,8 @@ enabled_focus_mode = 1
 text = "Cargo"
 
 [node name="Starmap" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 873.0
-margin_right = 1033.0
+margin_left = 872.0
+margin_right = 1032.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
@@ -245,8 +245,8 @@ enabled_focus_mode = 1
 text = "Starmap"
 
 [node name="System" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 1041.0
-margin_right = 1201.0
+margin_left = 1040.0
+margin_right = 1200.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
@@ -257,8 +257,8 @@ enabled_focus_mode = 1
 text = "System"
 
 [node name="Markets" type="Button" parent="UI/TopPanel/ButtonBar"]
-margin_left = 1209.0
-margin_right = 1369.0
+margin_left = 1208.0
+margin_right = 1368.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
@@ -269,8 +269,8 @@ enabled_focus_mode = 1
 text = "MARKETS"
 
 [node name="Container2" type="Container" parent="UI/TopPanel/ButtonBar"]
-margin_left = 1377.0
-margin_right = 1457.0
+margin_left = 1376.0
+margin_right = 1456.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 80, 0 )
 __meta__ = {
@@ -330,4 +330,3 @@ velocityMaxForward = 1000
 [connection signal="toggled" from="UI/TopPanel/ButtonBar/Starmap" to="." method="_on_Starmap_toggled"]
 [connection signal="toggled" from="UI/TopPanel/ButtonBar/System" to="." method="_on_System_toggled"]
 [connection signal="toggled" from="UI/TopPanel/ButtonBar/Markets" to="." method="_on_Markets_toggled"]
-[connection signal="PLAYER_MOVING" from="PlayerShip" to="." method="_on_PlayerShip_PLAYER_MOVING"]

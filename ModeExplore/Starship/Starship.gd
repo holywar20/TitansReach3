@@ -17,12 +17,11 @@ var stopping = false
 var vectorDirection = Vector2(0,0)
 var speed = 0
 
-signal PLAYER_MOVING # Emitted when ever a player moves in any direction or rotates.
+signal playerMoving # Emitted when ever a player moves in any direction or rotates.
 
 onready var myCamera = $Camera
-onready var area2D = $ShipArea # I need this for collision detection of areas for some reason. Rigid2D Bodies can't poll for areas, only for bodies, and i'm using mostly areas.
-onready var ship = $Ship
-# onready var viewPortCamera = get_node("../ViewPortCanvas/ViewportContainer/Celestials/Camera")
+onready var collision : CollisionShape2D = $CollisionShape2D 
+# I need this for collision detection of areas for some reason. Rigid2D Bodies can't poll for areas, only for bodies, and i'm using mostly areas.
 
 var starship = null
 
@@ -91,7 +90,7 @@ func _physics_process( delta : float ) -> void:
 
 	if( isPlayer ):
 		#if( linearVelocity.x != 0 || linearVelocity.y != 0 || angularVelocity != 0 ):
-		emit_signal("PLAYER_MOVING", myCamera.get_global_position() , linearVelocity, angularVelocity, rotation)
+		emit_signal("playerMoving", myCamera.get_global_position() , linearVelocity, angularVelocity, rotation)
 
 func goRotation( direction, delta ):
 	var newRotationSpeed = get_angular_velocity() + ( rotationSpeed * delta * direction )

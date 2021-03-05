@@ -17,7 +17,6 @@ var currentBattler : CharacterResource
 func setState( state : int , newBattler ):
 	currentState = state
 	currentBattler = newBattler
-	var currentAction = null
 
 	for child in abilityGrid.get_children():
 		child.queue_free()

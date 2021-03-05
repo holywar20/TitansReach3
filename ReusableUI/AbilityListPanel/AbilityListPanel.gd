@@ -5,6 +5,7 @@ var abilityIconScene = preload("res://ReusableUI/AbilityIcon/AbilityIcon.tscn")
 var abilityTree
 
 onready var abilityContainer : GridContainer = $VBox/GridContainer
+onready var title : Label = $VBox/ClassName
 
 signal abilityChanged( ability )
 signal abilityExit( ability )
@@ -15,18 +16,20 @@ func setupScene( newTree ):
 func updateUI( newTree ):
 	abilityTree = newTree
 
+	title.set_text( abilityTree.treeName )
+
 	for child in abilityContainer.get_children():
 		child.queue_free()
 
-	for ability in abilityTree.abilityStore:
+	for thisAbility in abilityTree.abilityStore:
 		var newIcon = abilityIconScene.instance()
 		
 		abilityContainer.add_child( newIcon )
-		newIcon.setupScene( ability )
+		newIcon.setupScene( thisAbility )
 		newIcon.allowFocus()
 
-		newIcon.connect("focus_entered" , self , "on_AbilityIcon_focus_entered" [newIcon.ability])
-		newIcon.connect("focus_exited" , self , "on_AbilityIcon_focus_exited" [newIcon.ability])
+		newIcon.get_node("TextureButton").connect("focus_entered" , self , "on_AbilityIcon_focus_entered" , [newIcon.ability])
+		newIcon.get_node("TextureButton").connect("focus_exited" , self , "on_AbilityIcon_focus_exited" , [newIcon.ability])
 
 func on_AbilityIcon_focus_entered( ability : AbilityResource ):
 	# Bit of a hack, but we want focus entered to occur after exit to ensure

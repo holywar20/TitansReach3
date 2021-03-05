@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=1]
-[ext_resource path="res://ReusableUI/AbilityIcon/AbilityIcon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ReusableUI/AbilityListPanel.gd" type="Script" id=3]
+[ext_resource path="res://ReusableUI/AbilityListPanel/AbilityListPanel.gd" type="Script" id=2]
+[ext_resource path="res://ReusableUI/AbilityIcon/AbilityIcon.tscn" type="PackedScene" id=3]
 
 [node name="Panel" type="Panel"]
 anchor_right = 0.217
@@ -11,7 +11,7 @@ margin_right = -0.640015
 margin_bottom = 0.039978
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,8 +27,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Primary" type="Label" parent="VBox"]
-margin_right = 400.0
+[node name="ClassName" type="Label" parent="VBox"]
+margin_right = 399.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 1 )
 text = "ClassName"
@@ -38,7 +38,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="VBox"]
 margin_top = 27.0
-margin_right = 400.0
+margin_right = 399.0
 margin_bottom = 91.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 20
@@ -47,4 +47,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ability" parent="VBox/GridContainer" instance=ExtResource( 2 )]
+[node name="Ability" parent="VBox/GridContainer" instance=ExtResource( 3 )]

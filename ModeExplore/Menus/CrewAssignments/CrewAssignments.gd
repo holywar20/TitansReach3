@@ -6,12 +6,14 @@ var charShortPanelScene = preload("res://ReusableUI/CharacterShortPanel/Characte
 
 const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 
+# Left Pain
 onready var unassignedBase = $Tripane/VBox/UnassignedList/Crew
-onready var stationBase = $Tripane/Assignments
 
-# Sub UI Scenes
-onready var traitDetails = $Tripane/Detail/Traits
-onready var abilityDetail = $Tripane/Details/AbilityDetail
+# Center Pain
+onready var traitDetails = $Tripane/Details/Traits
+
+# Right Pane
+onready var abilityDetail = $Tripane/Abilities/AbilityDetail
 onready var primaryAbilityList = $Tripane/Abilities/Primary
 onready var secondaryAbilityList = $Tripane/Abilities/Secondary
 
@@ -41,13 +43,17 @@ func _on_CharShortPanelFocusEntered( character ):
 	secondaryAbilityList.updateUI( character.secondaryTree )
 
 func _on_Primary_abilityChanged(ability):
+	print("ability changed")
+	abilityDetail.show()
 	abilityDetail.setupScene( ability )
 
 func _on_Secondary_abilityChanged(ability):
+	print("ability changed")
+	abilityDetail.show()
 	abilityDetail.setupScene( ability )
 
 func _on_Primary_abilityExit(ability):
-	abilityDetail.setupScene()
+	abilityDetail.hide()
 
 func _on_Secondary_abilityExit(ability):
-	abilityDetail.setupScene()
+	abilityDetail.hide()

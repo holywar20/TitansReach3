@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/CrewAssignments/CrewAssignments.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/CharEditPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ReusableUI/CharacterDetail/CharacterDetail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
-[ext_resource path="res://ReusableUI/AbilityListPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ReusableUI/AbilityListPanel/AbilityListPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.tscn" type="PackedScene" id=6]
 
 [node name="CrewManagement" type="Panel" groups=[
@@ -58,46 +59,25 @@ rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Detail" type="VBoxContainer" parent="Tripane"]
+[node name="Details" type="VBoxContainer" parent="Tripane"]
 margin_left = 427.0
 margin_right = 847.0
 margin_bottom = 755.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 
-[node name="Traits" parent="Tripane/Detail" instance=ExtResource( 2 )]
+[node name="Traits" parent="Tripane/Details" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 420.0
 margin_bottom = 415.0
 
-[node name="Other" type="Panel" parent="Tripane/Detail"]
+[node name="Other" parent="Tripane/Details" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 423.0
 margin_right = 420.0
 margin_bottom = 755.0
-rect_min_size = Vector2( 0, 240 )
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBox" type="VBoxContainer" parent="Tripane/Detail/Other"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -0.748352
-margin_right = -0.748352
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ResistLabel" type="Label" parent="Tripane/Detail/Other/VBox"]
-margin_right = 420.0
-margin_bottom = 19.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
-text = "OTHER DATA?"
-align = 1
 
 [node name="Abilities" type="VBoxContainer" parent="Tripane"]
 margin_left = 855.0

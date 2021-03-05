@@ -6,17 +6,16 @@ onready var charName : Label = $VBox/Label
 onready var healthBar : ProgressBar = $VBox/HBox/Stats/HealthBar
 onready var moraleBar : ProgressBar = $VBox/HBox/Stats/MoraleBar
 
-onready var raceValue : Label = $VBox/HBox/Profile/HomeworldRow/Value
 onready var homeworldValue : Label = $VBox/HBox/Profile/RaceRow/Value
+onready var raceValue : Label = $VBox/HBox/Profile/HomeworldRow/Value
 onready var cpDisplay : Label = $VBox/HBox/Stats/CP/Points
 
 var character : CharacterResource
 
 signal focusEntered( character )
 
-
 const STATE = {
-	"FOCUS" : Color( .2 , 1 , .2 , 1 ),
+	"FOCUS" : Color( .3 , 3 , .3 , 1 ),
 	"NOT_FOCUS" : Color( 1 , 1 , 1 , .7 )
 }
 

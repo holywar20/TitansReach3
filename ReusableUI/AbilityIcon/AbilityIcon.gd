@@ -13,6 +13,9 @@ func setupScene( newAbility : AbilityResource ):
 	ability = newAbility
 	abilityIcon.set_normal_texture( load(ability.iconPath) )
 
+func clear():
+	ability = null
+
 func setFocused():
 	abilityIcon.grab_focus()
 	_on_TextureButton_focus_entered()

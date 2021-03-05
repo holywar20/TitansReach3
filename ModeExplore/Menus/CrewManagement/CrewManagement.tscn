@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/CrewManagement/CrewManagement.gd" type="Script" id=1]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ReusableUI/ArmsRoom/ArmsRoom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ReusableUI/EquipmentPane/EquipmentPane.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=6]
 
@@ -60,6 +61,7 @@ anchor_bottom = 0.0
 margin_top = 500.0
 margin_right = 419.0
 margin_bottom = 756.0
+hideStatusEffects = true
 
 [node name="Detail" type="VBoxContainer" parent="Tripane"]
 margin_left = 427.0
@@ -68,35 +70,19 @@ margin_bottom = 756.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Tripane/Detail"]
+[node name="EquipmentPane" parent="Tripane/Detail" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 419.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 2 )
-text = "Detail"
-align = 1
-valign = 1
-
-[node name="EquipmentPane" type="Panel" parent="Tripane/Detail"]
-margin_top = 27.0
-margin_right = 419.0
-margin_bottom = 507.0
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="Label2" type="Label" parent="Tripane/Detail/EquipmentPane"]
-margin_right = 124.0
-margin_bottom = 13.0
-text = "Equipment Equiped"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 492.0
 
 [node name="Panel" parent="Tripane/Detail" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 515.0
+margin_top = 500.0
 margin_right = 419.0
 margin_bottom = 756.0
+rect_min_size = Vector2( 0, 256 )
 
 [node name="Label" type="Label" parent="Tripane/Detail/Panel"]
 margin_right = 40.0

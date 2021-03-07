@@ -2,13 +2,18 @@ extends Node2D
 
 export(int) var mySeed = 1000000
 
+# Generators and Data
 onready var systemGenerator : Node = $SystemGenerator
 onready var crewGenerator : Node = $CrewGenerator
-
-onready var anoms : Node2D = $Anoms
-
 onready var inventory : Node = $Inventory 
 
+
+# Bases
+onready var anoms : Node2D = $Anoms
+onready var starBase : Spatial = $Background/ViewportContainer/Viewport/Stars
+onready var planetBase : Spatial = $Background/ViewportContainer/Viewport/Stars
+
+# Particiles and Camera
 onready var viewPortCamera : Camera = $Background/ViewportContainer/Viewport/Camera
 onready var closeParticles : CPUParticles2D = $Background/StarfieldClose/CPUParticles2D
 onready var midParticles : CPUParticles2D = $Background/StarfieldMid/CPUParticles2D
@@ -119,6 +124,14 @@ func _input(event):
 func setupScene( aSeed : int ) -> void:
 	mySeed = aSeed
 	thisSystem = systemGenerator.generateEntireSystem( mySeed )
+
+	for star in thisSystem.stars:
+		var newStar : Spatial = systemGenerator.buildStarMesh( star )
+		planetBase.add_child(newStar)
+
+		for planet in star.planets:
+			var newPlanet : Spatial = systemGenerator.buildPlanetMesh( planet )
+
 	myCrew = crewGenerator.generateManyCrew(30 , 10)
 
 func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , angularVelocity : float , shipRotation : float):

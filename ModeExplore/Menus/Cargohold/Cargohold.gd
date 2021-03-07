@@ -1,7 +1,6 @@
 extends Panel
 
-onready var itemTree : Tree = $Tripane/TabContainer/Commodities/Tree
-onready var armsRoom : VBoxContainer = $Tripane/TabContainer/Commodities/Equipment
+onready var itemTree : Tree = $Tripane/Commodities/Tree
 
 const HEADERS = [
 	"" , "Mass" , "Volume" ,  "Value" ,  "Quantity"
@@ -40,8 +39,6 @@ func setupScene( newCommodities : Array , newArms : Array):
 	for commodity in commodities:
 		_createTreeItem( commodity )
 		
-	
-
 func _createTreeItem( item : ItemResource ):
 	var target : TreeItem
 		

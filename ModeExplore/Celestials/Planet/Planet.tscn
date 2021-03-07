@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ModeExplore/Celestials/Planet/PlanetMat.tres" type="Material" id=1]
 [ext_resource path="res://ModeExplore/Celestials/Planet/Planet.gd" type="Script" id=2]
+[ext_resource path="res://ModeExplore/Celestials/Planet/PlanetSpatial.gd" type="Script" id=3]
 
 [sub_resource type="SphereMesh" id=1]
 
 [node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( -0.0095292, 0, -0.999955, 0, 1, 0, 0.999955, 0, -0.0095292, -7.46928, 1.19209e-07, 0.0527196 )

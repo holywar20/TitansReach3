@@ -189,7 +189,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "godot-sqlite" )
 
 [gui]
 

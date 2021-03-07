@@ -1,11 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://AssettsImage/Backgrounds/Space001.png" type="Texture" id=3]
 [ext_resource path="res://Generators/SystemGenerator.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ModeExplore/Celestials/Star/Star.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ModeExplore/Celestials/Planet/Planet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Generators/Inventory/Inventory.tscn" type="PackedScene" id=9]
@@ -89,12 +87,7 @@ fov = 38.0
 
 [node name="Stars" type="Spatial" parent="Background/ViewportContainer/Viewport"]
 
-[node name="Star" parent="Background/ViewportContainer/Viewport/Stars" instance=ExtResource( 5 )]
-
 [node name="Planets" type="Spatial" parent="Background/ViewportContainer/Viewport"]
-
-[node name="Planet" parent="Background/ViewportContainer/Viewport/Planets" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.14265, 1.19209e-07, -0.00527644 )
 
 [node name="StarfieldMid" type="ParallaxBackground" parent="Background"]
 layer = -50
@@ -330,3 +323,4 @@ velocityMaxForward = 1000
 [connection signal="toggled" from="UI/TopPanel/ButtonBar/Starmap" to="." method="_on_Starmap_toggled"]
 [connection signal="toggled" from="UI/TopPanel/ButtonBar/System" to="." method="_on_System_toggled"]
 [connection signal="toggled" from="UI/TopPanel/ButtonBar/Markets" to="." method="_on_Markets_toggled"]
+[connection signal="playerMoving" from="PlayerShip" to="." method="_on_PlayerShip_PLAYER_MOVING"]

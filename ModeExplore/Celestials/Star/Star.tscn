@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ModeExplore/Celestials/Star/Star.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Celestials/Star/StarMaterial.tres" type="Material" id=2]
 [ext_resource path="res://ModeExplore/Celestials/Star/Particles.gd" type="Script" id=3]
 [ext_resource path="res://ModeExplore/Celestials/Star/RayMesh.tres" type="CylinderMesh" id=4]
+[ext_resource path="res://ModeExplore/Celestials/Star/StarSpatial.gd" type="Script" id=5]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -19,6 +20,7 @@ angle_random = 1.0
 [sub_resource type="SphereMesh" id=2]
 
 [node name="Spatial" type="Spatial"]
+script = ExtResource( 5 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( -1, 3.25841e-07, 0, 1.4243e-14, 4.37114e-08, 1, 3.25841e-07, 1, -4.37114e-08, 0, 0.288167, -0.159798 )

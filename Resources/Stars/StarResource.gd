@@ -104,7 +104,7 @@ func _generatePlanets():
 	for orbit in range( 1 , planets.size() ):
 		var planetChance = min( randi() % 100 , PLANET_CHANCE )
 		if( planetChance < PLANET_CHANCE ):
-			planets[orbit] = PlanetResource.new( mySeed, self , orbit )
+			planets[orbit] = PlanetResource.new( genRandomSeed(), self , orbit )
 		else:
 			planets[orbit] = null
 

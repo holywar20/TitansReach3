@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://AssettsImage/Backgrounds/Space001.png" type="Texture" id=3]
 [ext_resource path="res://Generators/SystemGenerator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Generators/TimeData/Timedata.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Generators/Inventory/Inventory.tscn" type="PackedScene" id=9]
@@ -25,6 +26,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Timedata" parent="." instance=ExtResource( 5 )]
 
 [node name="Inventory" parent="." instance=ExtResource( 9 )]
 
@@ -140,6 +143,10 @@ hue_variation_random = 1.0
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Minimap" parent="UI" instance=ExtResource( 11 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -437.0
+margin_right = 0.0
 
 [node name="ButtonPanel" type="PanelContainer" parent="UI"]
 anchor_left = 0.32

@@ -5,7 +5,12 @@ export(int) var mySeed = 1000000
 # Generators and Data
 onready var systemGenerator : Node = $SystemGenerator
 onready var crewGenerator : Node = $CrewGenerator
+
+
 onready var inventory : Node = $Inventory 
+
+# TODO put into some kind of wallet resource. Will need this for trade & markets to work
+onready var ink = 200000
 
 
 # Bases
@@ -24,6 +29,9 @@ onready var startFocusButton : Button = $UI/TopPanel/ButtonBar/CrewButton
 onready var mainContainer : VBoxContainer = $UI/Dropdown/Main
 onready var dropdown : Panel = $UI/Dropdown
 onready var title : Label = $UI/Dropdown/Main/TitleRow/Label
+
+# Other UI
+onready var minimap : PanelContainer = $UI/Minimap
 
 const NODE_GROUP_MAIN_MENU = "MAIN_MENU"
 
@@ -127,10 +135,18 @@ func setupScene( aSeed : int ) -> void:
 
 	for star in thisSystem.stars:
 		var newStar : Spatial = systemGenerator.buildStarMesh( star )
-		planetBase.add_child(newStar)
+		# TODO : if we impliment multiple stars, will need to off set their locations
+		#starBase.add_child(newStar)
 
-		for planet in star.planets:
-			var newPlanet : Spatial = systemGenerator.buildPlanetMesh( planet )
+		for planetData in star.planets:
+			if( planetData ):
+				var newPlanet : Spatial = systemGenerator.buildPlanetMesh( planetData )
+				var planetPosition = Vector3( planetData.position2d.x , 0 , planetData.position2d.y )
+				newPlanet.set_translation( planetPosition )
+				planetBase.add_child( newPlanet )
+
+	minimap.setupScene( thisSystem )
+			
 
 	myCrew = crewGenerator.generateManyCrew(30 , 10)
 

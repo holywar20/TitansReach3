@@ -16,8 +16,8 @@
 			"hi": 0.080
 		},
 		"rollWeight" : 4,
-		"systemScale" : 0.15,
-		"starScale" : 0.15 ,
+		"systemScale" : 1,
+		"starScale" : 1 ,
 		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
 		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
 		"textureSmallPath" : "res://AssettsImage/Stars/celestial_blank_small.png",
@@ -39,8 +39,8 @@
 			"hi": 0.60
 		}, 
 		"rollWeight" : 25,
-		"systemScale" : 0.25,
-		"starScale" : 0.25 ,
+		"systemScale" : 1.15,
+		"starScale" : 1 ,
 		"texturePath" : "res://AssettsImage/Stars/red/red01-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/red/red01-tiny.png",
 		"textureSmallPath" : "res://AssettsImage/Stars/red/red01-small.png",
@@ -62,8 +62,8 @@
 			"hi" : 0.90
 		},
 		"rollWeight" : 16,
-		"systemScale" : 0.35,
-		"starScale" : 0.35 ,
+		"systemScale" : 2,
+		"starScale" : 3 ,
 		"texturePath" : "res://AssettsImage/Stars/orange/orange01-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/orange/orange01-tiny.png",
 		"textureSmallPath" : "res://AssettsImage/Stars/orange/orange01-small.png",
@@ -85,8 +85,8 @@
 			"hi" : 1.15
 		} , 
 		"rollWeight" : 8,
-		"systemScale" : 0.5,
-		"starScale" : 0.5 ,
+		"systemScale" : 3,
+		"starScale" : 6 ,
 		"texturePath" : "res://AssettsImage/Stars/orange/orange02-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/orange/orange02-tiny.png",
 		"textureSmallPath" : "res://AssettsImage/Stars/orange/orange02-small.png",
@@ -108,7 +108,7 @@
 			"hi" : 1.40
 		} ,
 		"rollWeight" : 4,
-		"systemScale" : 0.75,
+		"systemScale" : 5,
 		"starScale" : 0.75 ,
 		"texturePath" : "res://AssettsImage/Stars/white/white01-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/white/white01-tiny.png",
@@ -131,7 +131,7 @@
 			"hi" : 2.40
 		} , 
 		"rollWeight" : 2,
-		"systemScale" : 1,
+		"systemScale" : 6,
 		"starScale" : 1,
 		"texturePath" : "res://AssettsImage/Stars/blue/blue01-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/blue/blue01-tiny.png",
@@ -154,7 +154,7 @@
 			"hi" : 2.40
 		},
 		"rollWeight" : 1,
-		"systemScale" : 1.4,
+		"systemScale" : 7,
 		"starScale" : 1.4,
 		"texturePath" : "res://AssettsImage/Stars/blue/blue02-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/blue/blue02-tiny.png",
@@ -177,7 +177,7 @@
 			"hi" : 0.00
 		}, 
 		"rollWeight" : 1,
-		"systemScale" : 5,
+		"systemScale" : 10,
 		"starScale" : 3 ,
 		"texturePath" : "res://AssettsImage/Stars/blue_giant/blue_giant01-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/blue_giant/blue_giant01-tiny.png",
@@ -199,7 +199,7 @@
 			"lo": 0.075,
 			"hi": 0.60
 		}, 
-		"rollWeight" : 1,
+		"rollWeight" : 3,
 		"systemScale" : 1,
 		"starScale" : 0.05,
 		"texturePath" : "res://AssettsImage/Stars/white/white04-large.png",
@@ -223,7 +223,7 @@
 			"hi" : 400
 		}, 
 		"rollWeight" : 1,
-		"systemScale" : 8,
+		"systemScale" : 12,
 		"starScale" : 3,
 		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
 		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
@@ -246,7 +246,7 @@
 			"hi" : 400
 		}, 
 		"rollWeight" : 1,
-		"systemScale" : 8,
+		"systemScale" : 18,
 		"starScale" : 3,
 		"texturePath" : "res://AssettsImage/Stars/celestial_blank.png",
 		"textureIconPath" : "res://AssettsImage/Stars/celestial_blank_icon.png",
@@ -269,7 +269,7 @@
 			"hi" : 150
 		},
 		"rollWeight" : 1,
-		"systemScale" : 0.25,
+		"systemScale" : 12,
 		"starScale" : 0.25 ,
 		"texturePath" : "res://AssettsImage/Stars/red_giant/red_giant01-large.png",
 		"textureIconPath" : "res://AssettsImage/Stars/red_giant/red_giant01-icon.png",

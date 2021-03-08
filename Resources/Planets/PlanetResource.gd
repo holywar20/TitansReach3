@@ -34,6 +34,7 @@ export(PLANET_CLASS) var planetClass = PLANET_CLASS.TERRAN
 
 var planetClassName : String = ""
 var codex : String = ""
+var color : Color = Color(1 , 1 , 1 , 1 )
 
 var texturePath : String = ""
 var textureIconPath : String = ""
@@ -48,8 +49,14 @@ var atmopshere : String = ""
 
 # populated by special mechanisms
 var orbit = 0
+
 var hasLife = false
 var minerals = {}
+
+var distance = 0
+var radial = 0
+var position2d = 0 # The position of the planet in the 2 dimensional space. 3d position set based on that.
+
 export(String) var planetName = "Unknown Planet"
 
 # Relationships with other resources
@@ -64,7 +71,7 @@ func _init( aSeed : int , starResource , newOrbit : int ):
 	mySeed = genRandomSeed()
 
 	fillableProps = [
-		'planetClassName','codex' , 'texturePath' , 'textureIconPath' , 'textureSmallPath'
+		'planetClassName','codex' , 'texturePath' , 'textureIconPath' , 'textureSmallPath', 'color'
 	]
 	hiLoDiffProps = [
 		'temp' , 'mass'
@@ -133,7 +140,10 @@ func calculateSpecialProperties( props: Dictionary, object):
 
 	planetName = parentStar.starName + " " + ROMAN_NUMERALS[parentStar.getCurrentPlanetCount(orbit)+1]
 
-	
+	distance = parentStar.systemScale * orbit
+	var randomRadian = randf() * 3.14 * 2
+	radial = Vector2( cos(randomRadian) , sin(randomRadian) )
+	position2d = distance * radial
+	print( radial )
 	# Use mineralNum + mineralChance to create minerals
 	# determine atmoshpere type ( should atmosphere be another resource? )
-

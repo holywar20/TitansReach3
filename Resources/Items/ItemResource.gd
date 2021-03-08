@@ -12,9 +12,21 @@ const TEXTURE_GRID_TYPE = {
 	"COL" : "COL", 
 }
 
-const ITEM_TYPE = {
+const ITEM_CATEGORY = {
 	"VOLITILE" : "VOLITILE",
-	"MINERAL" : "MINERAL"
+	"MINERAL" : "MINERAL",
+	# Equipables
+	"WEAPON"  : "WEAPON",
+	"ARMOR" : "ARMOR",
+	"EQUIPMENT" : "EQUIPMENT"
+} 
+
+const ITEM_TYPE = {
+	"COMMODITY" : "COMMODITY",
+	# Equipables
+	"WEAPON"  : "WEAPON",
+	"ARMOR" : "ARMOR",
+	"EQUIPMENT" : "EQUIPMENT"
 }
 
 # Metadata universal to all items
@@ -27,8 +39,10 @@ var itemKey : String = "Unassigned"
 var itemTextureType : String = TEXTURE_GRID_TYPE.SINGLE
 var itemTexturePath : String = "res://icon.png"
 var itemAmount : float = 0.0
-var itemType : String = "Volitile"
+var itemType : String = ITEM_TYPE.COMMODITY
 var itemFloatCountable = false # If true, allow subtraction & float changes. otherwise treat as integer
+var itemCategory : String = ITEM_CATEGORY.VOLITILE
+var itemDescription : String = "No description"
 
 # Meta that applies to crew equipable items
 var itemIsCrewEquipable = false

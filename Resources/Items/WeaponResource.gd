@@ -8,3 +8,25 @@ func is_class( name : String ):
 	return name == "WeaponResource"
 
 # Implimented fillable properties
+func _init( dbDictionary : Dictionary ):
+	fillableProps = [
+		"itemKey",
+		"itemType",
+		"itemMass",
+		"itemVolume",
+		"itemValue",
+		"itemDisplayName",
+		"itemDisplayNameShort",
+		"itemTexturePath",
+		"itemTextureType",
+		"itemRarity",
+		"itemAmount",
+		"itemCategory",
+		"itemFloatCountable",
+		"itemDescription"
+	]
+
+	# if not found, this will fail. This is on purpose
+	flushAndFillProperties( dbDictionary , self )
+
+	itemIsCrewEquipable = true

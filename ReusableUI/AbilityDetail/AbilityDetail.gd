@@ -25,18 +25,18 @@ onready var validTargets : Array = [
 ]
 onready var areaGrid : Array = [
 	[
-		get_node("TextRow/VBox/AreaGrid/0_0"), 
-		get_node("TextRow/VBox/AreaGrid/1_0"),
-		get_node("TextRow/VBox/AreaGrid/2_0")
+		get_node("ValidRow/AreaGrid/0_0"), 
+		get_node("ValidRow/AreaGrid/1_0"),
+		get_node("ValidRow/AreaGrid/2_0")
 	] , [
 		
-		get_node("TextRow/VBox/AreaGrid/0_1"),  
-		get_node("TextRow/VBox/AreaGrid/1_1"),  
-		get_node("TextRow/VBox/AreaGrid/2_1") 
+		get_node("ValidRow/AreaGrid/0_1"),  
+		get_node("ValidRow/AreaGrid/1_1"),  
+		get_node("ValidRow/AreaGrid/2_1") 
 	] , [
-		get_node("TextRow/VBox/AreaGrid/0_2"), 
-		get_node("TextRow/VBox/AreaGrid/1_2"),  
-		get_node("TextRow/VBox/AreaGrid/2_2") 
+		get_node("ValidRow/AreaGrid/0_2"), 
+		get_node("ValidRow/AreaGrid/1_2"),  
+		get_node("ValidRow/AreaGrid/2_2") 
 	]
 ]
 

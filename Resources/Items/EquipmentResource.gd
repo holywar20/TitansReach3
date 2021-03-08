@@ -1,11 +1,12 @@
 extends ItemResource
-class_name ArmorResource
+class_name EquipmentResource
 
 func get_class(): 
-	return "ArmorResource"
+	return "EquipmentResource"
 
 func is_class( name : String ): 
-	return name == "ArmorResource"
+	return name == "EquipmentResource"
+
 
 func _init( dbDictionary : Dictionary ):
 	fillableProps = [
@@ -20,9 +21,9 @@ func _init( dbDictionary : Dictionary ):
 		"itemTextureType",
 		"itemRarity",
 		"itemAmount",
-		"itemCategory",
+        "itemCategory",
 		"itemFloatCountable",
-		"itemDescription"
+		"itemResource"
 	]
 
 	# if not found, this will fail. This is on purpose

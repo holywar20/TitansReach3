@@ -208,11 +208,7 @@ func _on_Engineering_toggled(button_pressed):
 func _on_Cargohold_toggled(button_pressed):
 	if( button_pressed == true ):
 		var menuInstance = loadMenu( MB.CARGOHOLD )
-
-		var commodities = inventory.getNonequipableItems()
-		var arms = inventory.getEquipableItems()
-
-		menuInstance.setupScene( commodities, arms )
+		menuInstance.setupScene()
 
 func _on_Starmap_toggled(button_pressed):
 	if( button_pressed == true ):

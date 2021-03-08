@@ -4,7 +4,8 @@ var currentDate
 var system : SystemResource
 var myPlanets : Array = []
 
-const PLANET_ORBIT_FACTOR = 18
+const STAR_SPACER = 40
+const PLANET_ORBIT_FACTOR = 20
 const ORBIT_SEGMENT_COUNT = 25
 const ORBIT_CENTER = Vector2( 0 , 0 )
 const ORBIT_LINE_WIDTH = 10
@@ -26,10 +27,13 @@ onready var planetIconBase = $VBox/Map/PlanetBase
 
 # TODO : Allow for navigation input
 func _draw():
-	for planetData in myPlanets:
-		if( planetData ):
-			print( starIcon.get_position() ,  PLANET_ORBIT_FACTOR * planetData.orbit )
-			replaceAbles.draw_circle( Vector2( 200, 150 ) , PLANET_ORBIT_FACTOR * planetData.orbit , Color( 1, 1, 1 ,1) )
+	pass
+	#for planetData in myPlanets:
+	#	if( planetData ):
+	#		print( starIcon.get_position() ,  PLANET_ORBIT_FACTOR * planetData.orbit )
+	#		replaceAbles.draw_circle( Vector2( 200, 150 ) , PLANET_ORBIT_FACTOR * planetData.orbit , Color( 1, 1, 1 ,1) )
+
+	#update()
 
 func setupScene( newSystem : SystemResource ):
 	system = newSystem
@@ -43,11 +47,7 @@ func setupScene( newSystem : SystemResource ):
 		if( planetData ):
 			var planetIconInstance = planetIconScene.instance()
 			planetIconInstance.setupScene( planetData )
-			
-			planetIconInstance.set_position( planetData.radial * PLANET_ORBIT_FACTOR * planetData.orbit  )
-
-			starIcon.draw_circle( Vector2( 0 ,0 ) , PLANET_ORBIT_FACTOR * planetData.orbit , Color( 1, 1,1 ,1) )
-
+			planetIconInstance.set_position( planetData.radial * PLANET_ORBIT_FACTOR * planetData.orbit )
 			planetIconBase.add_child( planetIconInstance )
 			# TODO : Wire up the icons so that 'selection is possible'
 

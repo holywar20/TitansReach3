@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Cargohold/Cargohold.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Generators/Inventory/Inventory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=8]
 
 [node name="Cargo" type="Panel" groups=[
 "MAIN_MENU",
@@ -16,6 +19,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Inventory" parent="." instance=ExtResource( 6 )]
 
 [node name="Tripane" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -40,8 +45,7 @@ align = 1
 [node name="Tree" type="Tree" parent="Tripane/Commodities"]
 margin_top = 32.0
 margin_right = 844.0
-margin_bottom = 756.0
-focus_neighbour_top = NodePath("../..")
+margin_bottom = 696.0
 size_flags_vertical = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 columns = 5
@@ -50,20 +54,97 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Item Details" type="VBoxContainer" parent="Tripane"]
+[node name="HBox" type="HBoxContainer" parent="Tripane/Commodities"]
+margin_top = 704.0
+margin_right = 844.0
+margin_bottom = 756.0
+
+[node name="Mass" type="VBoxContainer" parent="Tripane/Commodities/HBox"]
+margin_right = 276.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Tripane/Commodities/HBox/Mass"]
+margin_right = 276.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "MASS"
+align = 1
+valign = 1
+
+[node name="Bar" parent="Tripane/Commodities/HBox/Mass" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 27.0
+margin_right = 276.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 96, 25 )
+barType = 3
+
+[node name="Volume" type="VBoxContainer" parent="Tripane/Commodities/HBox"]
+margin_left = 284.0
+margin_right = 560.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Tripane/Commodities/HBox/Volume"]
+margin_right = 276.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "VOLUME"
+align = 1
+valign = 1
+
+[node name="Bar" parent="Tripane/Commodities/HBox/Volume" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 27.0
+margin_right = 276.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 96, 25 )
+barType = 4
+
+[node name="Value" type="VBoxContainer" parent="Tripane/Commodities/HBox"]
+margin_left = 568.0
+margin_right = 844.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Tripane/Commodities/HBox/Value"]
+margin_right = 276.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "Value"
+align = 1
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Commodities/HBox/Value"]
+margin_top = 26.0
+margin_right = 276.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 8 )
+text = "XXXXXX INK"
+align = 1
+valign = 1
+
+[node name="ItemDetails" type="VBoxContainer" parent="Tripane"]
 margin_left = 852.0
 margin_right = 1274.0
 margin_bottom = 756.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Tripane/Item Details"]
+[node name="Label" type="Label" parent="Tripane/ItemDetails"]
 margin_right = 422.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "Item Detail"
 align = 1
 
-[node name="EquipmentDetail" parent="Tripane/Item Details" instance=ExtResource( 2 )]
+[node name="EquipmentDetail" parent="Tripane/ItemDetails" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 27.0
@@ -72,56 +153,59 @@ margin_bottom = 353.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="AbilityDetail" parent="Tripane/Item Details" instance=ExtResource( 3 )]
+[node name="AbilityDetail" parent="Tripane/ItemDetails" instance=ExtResource( 3 )]
 margin_top = 361.0
 margin_right = 422.0
 margin_bottom = 617.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="InnerSpacer" type="Container" parent="Tripane/Item Details"]
+[node name="InnerSpacer" type="Container" parent="Tripane/ItemDetails"]
 margin_top = 625.0
 margin_right = 422.0
-margin_bottom = 670.0
+margin_bottom = 679.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBox" type="HBoxContainer" parent="Tripane/Item Details"]
-margin_top = 678.0
+[node name="HBox" type="HBoxContainer" parent="Tripane/ItemDetails"]
+margin_top = 687.0
 margin_right = 422.0
-margin_bottom = 703.0
+margin_bottom = 718.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Tripane/Item Details/HBox"]
-margin_right = 79.0
-margin_bottom = 25.0
+[node name="Button" type="Button" parent="Tripane/ItemDetails/HBox"]
+margin_right = 115.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
 text = "Jettison"
 
-[node name="OuterSpacer2" type="Container" parent="Tripane/Item Details/HBox"]
-margin_left = 87.0
-margin_right = 285.0
-margin_bottom = 25.0
+[node name="OuterSpacer2" type="Container" parent="Tripane/ItemDetails/HBox"]
+margin_left = 123.0
+margin_right = 231.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="Tripane/Item Details/HBox"]
-margin_left = 293.0
+[node name="Button2" type="Button" parent="Tripane/ItemDetails/HBox"]
+margin_left = 239.0
 margin_right = 422.0
-margin_bottom = 25.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
 text = "Mark for sale"
 
-[node name="OuterSpacer" type="Container" parent="Tripane/Item Details"]
-margin_top = 711.0
+[node name="OuterSpacer" type="Container" parent="Tripane/ItemDetails"]
+margin_top = 726.0
 margin_right = 422.0
 margin_bottom = 756.0
-size_flags_vertical = 3
+rect_min_size = Vector2( 0, 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="item_selected" from="Tripane/Commodities/Tree" to="." method="_on_Tree_item_selected"]

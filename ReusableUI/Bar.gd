@@ -3,7 +3,7 @@ extends ProgressBar
 onready var valueDisplay : Label = $Label
 
 enum BAR_TYPE {
-	HEALTH , CHARGE , MORALE
+	HEALTH , CHARGE , MORALE , MASS, VOLUME
 }
 
 var barData = {
@@ -18,6 +18,14 @@ var barData = {
 	BAR_TYPE.MORALE : {
 		"fillColor": Color( 1 ,  1 ,  0 , 1 ),
 		"barColor" : Color(.65 , .65 , 0 , 1 )
+	} ,
+	BAR_TYPE.MASS : {
+		"fillColor" : Color( 1, 0, 1, 1 ),
+		"barColor" : Color( .65, 0, .65, 1 )
+	},
+	BAR_TYPE.VOLUME: {
+		"fillColor" : Color( 0, 1, 1, 1 ),
+		"barColor" : Color( 0, .65, .65, 1 )
 	}
 }
 

@@ -4,10 +4,7 @@ export(int) var mySeed = 1000000
 
 # Generators and Data
 onready var systemGenerator : Node = $SystemGenerator
-onready var crewGenerator : Node = $CrewGenerator
-
-
-onready var inventory : Node = $Inventory 
+onready var WorldData : Node = $WorldData 
 
 # TODO put into some kind of wallet resource. Will need this for trade & markets to work
 onready var ink = 200000
@@ -145,10 +142,9 @@ func setupScene( aSeed : int ) -> void:
 				newPlanet.set_translation( planetPosition )
 				planetBase.add_child( newPlanet )
 
-	minimap.setupScene( thisSystem )
-			
+	minimap.setupScene( thisSystem )		
 
-	myCrew = crewGenerator.generateManyCrew(30 , 10)
+	myCrew = WorldData.Crew.generateManyCrew(30 , 10)
 
 func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , angularVelocity : float , shipRotation : float):
 	_move3dCamera( newPosition )
@@ -208,7 +204,7 @@ func _on_Engineering_toggled(button_pressed):
 func _on_Cargohold_toggled(button_pressed):
 	if( button_pressed == true ):
 		var menuInstance = loadMenu( MB.CARGOHOLD )
-		menuInstance.setupScene()
+		menuInstance.setupScene( WorldData.Inventory )
 
 func _on_Starmap_toggled(button_pressed):
 	if( button_pressed == true ):

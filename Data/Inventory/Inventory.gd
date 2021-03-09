@@ -1,27 +1,21 @@
 extends Node
 
-const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
-
-# TODO Eventually use this with some kind of save file mechanism. For now, we rely entirely upon Core.db
-var CORE_DB_PATH = "res://Generators/Data/Core.db" 
-var db : SQLite
 
 # TODO : should be deterimined dynamically based on ship data or mods
 var volumeCapacity = 2000
 var massCapacity = 1000000
 
 var allItems = {}
+var db
 
-func _ready():
-	db = SQLite.new()
-	db.path = CORE_DB_PATH
-	db.verbose_mode = true
+func setupData( newDb ):
+	db = newDb
 	db.open_db()
 
+	# Load intially owned items based on the current save
 	_loadOwnedItems()
-	# Execute the SQL 
-	# Loop through the values
-	# Apply them to all items by using native build methods based on type
+
+	db.close_db()
 
 func _loadOwnedItems():
 	# Blank out current item list, as we are using DB as source of truth now.
@@ -44,7 +38,7 @@ func _loadOwnedItems():
 		for result in db.query_result:
 			keyDictionary[result.itemType].append( result.id )
 
-		# Then populate based on the keyword filter. Note each type will have it's own sql
+		# Then populate based on the keyword filter. Note each type will have it's own sql so we can do itemType specific joins
 		for itemType in keyDictionary:
 			retreiveItemsByType( itemType , keyDictionary[itemType] )		
 

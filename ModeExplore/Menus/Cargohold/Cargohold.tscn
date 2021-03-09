@@ -5,9 +5,10 @@
 [ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Generators/Inventory/Inventory.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=8]
+
+
 
 [node name="Cargo" type="Panel" groups=[
 "MAIN_MENU",
@@ -19,8 +20,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Inventory" parent="." instance=ExtResource( 6 )]
 
 [node name="Tripane" type="HBoxContainer" parent="."]
 anchor_right = 1.0

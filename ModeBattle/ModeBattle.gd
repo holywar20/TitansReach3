@@ -17,7 +17,7 @@ onready var battleMap : Control = $BattleMap
 
 # Utility Nodes
 onready var enemyActionTimer : Timer = $EnemyActionTimer
-onready var crewGenerator : Node = $CrewGenerator
+onready var WorldData : Node = $WorldData
 
 var crew : Array = []
 var enemy : Array = []
@@ -46,8 +46,8 @@ func _ready():
 
 func setupScene( _crew : Array = []):
 	# TODO : have this load crew from a database with maybe a switch allowing for random
-	crew = crewGenerator.generateManyCrew(30 , 6, true)
-	enemy = crewGenerator.generateManyCrew(30, 6)
+	crew = WorldData.Crew.generateManyCrew(30 , 6, true)
+	enemy = WorldData.Crew.generateManyCrew(30, 6)
 
 	battleMap.setupScene( crew, enemy )
 	turnOrder.rollAllTurns(crew, enemy)

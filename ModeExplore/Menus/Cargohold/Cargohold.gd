@@ -1,7 +1,6 @@
 extends Panel
 
 onready var itemTree : Tree = $Tripane/Commodities/Tree
-onready var inventory : Node = $Inventory
 
 # Sub UI scenes
 onready var abilityDetail : Panel = $Tripane/ItemDetails/AbilityDetail
@@ -11,6 +10,8 @@ onready var equipmentDetail : Panel = $Tripane/ItemDetails/EquipmentDetail
 onready var massBar = $Tripane/Commodities/HBox/Mass/Bar
 onready var volumeBar = $Tripane/Commodities/HBox/Volume/Bar
 onready var valueBox = $Tripane/Commodities/HBox/Value/Data
+
+var inventory = null
 
 const HEADERS = [
 	"" , "" , "Mass" , "Volume" ,  "Value" ,  "Quantity"
@@ -61,14 +62,14 @@ func resetInventory():
 	treeItems[ItemResource.ITEM_CATEGORY.EQUIPMENT] = equipment
 
 # Arrays of Commodity items, and mixed equipment, frames and weapons in arms
-func setupScene():
+func setupScene( newInventory : Node ):
 	resetInventory()
+	inventory = newInventory
+
 	itemTree.grab_focus()
 	
 	for itemKey in inventory.allItems:
 		_createTreeItem( inventory.allItems[itemKey] )
-
-	populateMetadata()
 	
 func _createTreeItem( item : ItemResource ):
 	var target : TreeItem = treeItems[item.itemCategory]
@@ -84,7 +85,7 @@ func _createTreeItem( item : ItemResource ):
 	newItem.set_text( COL.QUANTITY, str(item.itemAmount) )
 	newItem.set_metadata( COL.ICON , item.itemKey )
 
-func populateMetadata():
+func populateMetadata( inventory ):
 	massBar.setBarValues(  inventory.massCapacity , inventory.getTotalMass() )
 	volumeBar.setBarValues( inventory.volumeCapacity , inventory.getTotalVolume() )
 	valueBox.set_text( inventory.getTotalValueAsString() ) 

@@ -3,7 +3,7 @@
 [ext_resource path="res://ModeBattle/ModeBattle.gd" type="Script" id=1]
 [ext_resource path="res://ModeBattle/BlankTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://ModeBattle/Turnorder.gd" type="Script" id=3]
-[ext_resource path="res://Generators/CrewGenerator/CrewGenerator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Data/WorldData/WorldData.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Helpers/Sorting.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ReusableUI/AbilityList/AbilityList.tscn" type="PackedScene" id=7]
@@ -14,6 +14,8 @@
 
 [node name="ModeBattle" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="WorldData" parent="." instance=ExtResource( 4 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -100,8 +102,6 @@ margin_bottom = 256.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="CrewGenerator" parent="." instance=ExtResource( 4 )]
 
 [node name="BattleMap" type="Control" parent="."]
 script = ExtResource( 9 )

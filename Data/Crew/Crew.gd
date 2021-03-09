@@ -29,9 +29,10 @@ const MAJOR_RACE = [ "Human" ]
 const HUMAN_SECTS = ["Meridian" , "Novan" , "Terran" ]
 
 var dummyCrewman
+var db
 
-func _ready():
-	pass
+func setupData( newDb ):
+	db = newDb
 
 func createDummyCrewman():
 	dummyCrewman = generateNewCrew( 0 )

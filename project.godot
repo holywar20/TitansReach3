@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "TitansResource",
 "class": "AbilityResource",
 "language": "GDScript",
-"path": "res://Resources/Abilities/Ability.gd"
+"path": "res://Resources/Abilities/AbilityResource.gd"
 }, {
 "base": "TitansResource",
 "class": "AbilityTreeResource",

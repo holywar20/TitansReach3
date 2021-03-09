@@ -2,7 +2,6 @@ extends TitansResource
 class_name AbilityResource
 
 # TODO Need to put this into JSON or a database
-# TODO Add Hook for a sound player
 var masterEffectData = {
 	"DEFEND" : { # Passive abilities will mirror the character and be swapped in as a mod, 1 for 1.
 		"type" : "PASSIVE",
@@ -158,7 +157,7 @@ func _init( newKey : String , abilityTable : Dictionary , character , startLearn
 		isLearned = true
 
 	flushAndFillProperties(abilityTable , self)
-	_makeEffects( abilityTable['effectGroups'] )
+	#_makeEffects( abilityTable['effectGroups'] )
 
 	# Do any type casting to fix json, which comes in as strings
 	#validTargets = makeArrayIntegers( validTargets )

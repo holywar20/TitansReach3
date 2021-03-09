@@ -15,3 +15,6 @@ data_*/
 
 # Addons
 addons/
+
+# VS Code
+.vscode

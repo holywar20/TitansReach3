@@ -6,8 +6,10 @@
 [ext_resource path="res://ReusableUI/Minimap/Star.tscn" type="PackedScene" id=4]
 
 [node name="Minimap" type="PanelContainer"]
-margin_right = 437.0
-margin_bottom = 491.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -437.0
+margin_bottom = 580.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

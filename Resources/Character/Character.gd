@@ -254,6 +254,8 @@ func getBonus( primaryTrait : String , secondaryTrait : String ):
 func getTraitTotal( trait : String ):
 	if( traits.has( trait ) ):
 		return traits[trait].total
+	elif( trait == TRAITS.NONE ):
+		return 0
 	else:
 		print("Dev Error: requested a trait that doesn't exist:" , trait )
 		return null

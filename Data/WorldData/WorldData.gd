@@ -10,6 +10,7 @@ var db
 onready var Inventory : Node = $Inventory
 onready var AbilityStore : Node = $AbilityStore
 onready var Crew : Node = $Crew
+onready var StarshipStore : Node = $StarshipStore
 
 func _ready():
 	db = SQLite.new()
@@ -20,3 +21,4 @@ func _ready():
 	Inventory.setupData( db )
 	AbilityStore.setupData( db )
 	Crew.setupData( db )
+	StarshipStore.setupData( db )

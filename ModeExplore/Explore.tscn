@@ -285,13 +285,17 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
 
 [node name="Dropdown" type="Panel" parent="UI"]
-visible = false
-modulate = Color( 1, 1, 1, 0.784314 )
-margin_left = 3.0
-margin_top = 77.0
-margin_right = 1277.0
-margin_bottom = 877.0
+self_modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.002
+anchor_top = 0.071
+anchor_right = 0.665
+anchor_bottom = 0.812
+margin_left = -0.84
+margin_top = 0.32
+margin_right = 0.199951
+margin_bottom = 0.039978
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -308,9 +312,8 @@ margin_bottom = 30.0
 alignment = 1
 
 [node name="Label" type="Label" parent="UI/Dropdown/Main/TitleRow"]
-margin_top = -1.0
 margin_right = 1274.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )

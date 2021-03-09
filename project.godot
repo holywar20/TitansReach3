@@ -129,6 +129,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ModeExplore/Celestials/Star/StarNoise.gd"
 }, {
+"base": "TitansResource",
+"class": "StationResource",
+"language": "GDScript",
+"path": "res://Resources/Starship/StationResource.gd"
+}, {
 "base": "EffectResource",
 "class": "StatusEffectResource",
 "language": "GDScript",
@@ -174,6 +179,7 @@ _global_script_class_icons={
 "ShipModResource": "",
 "StarResource": "",
 "StarVisualShaderNodePerlinNoise3D": "",
+"StationResource": "",
 "StatusEffectResource": "",
 "SystemResource": "",
 "TitansResource": "",

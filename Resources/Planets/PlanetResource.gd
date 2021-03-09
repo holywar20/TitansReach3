@@ -144,6 +144,6 @@ func calculateSpecialProperties( props: Dictionary, object):
 	var randomRadian = randf() * 3.14 * 2
 	radial = Vector2( cos(randomRadian) , sin(randomRadian) )
 	position2d = distance * radial
-	print( radial )
+
 	# Use mineralNum + mineralChance to create minerals
 	# determine atmoshpere type ( should atmosphere be another resource? )

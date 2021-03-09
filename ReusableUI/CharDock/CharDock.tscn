@@ -1,10 +1,40 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ReusableUI/CharDock/CharDock.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [node name="Panel" type="Panel"]
 self_modulate = Color( 0.337255, 0.960784, 0.152941, 1 )
-margin_left = 163.0
-margin_right = 253.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 90, 90 )
+anchor_right = 0.046
+anchor_bottom = 0.081
+margin_right = -0.320007
+margin_bottom = 0.519997
+rect_min_size = Vector2( 88, 88 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.818
+margin_right = -7.62939e-06
+margin_bottom = 0.0159912
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 72.0
+text = "TEST"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

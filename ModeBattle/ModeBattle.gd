@@ -105,7 +105,6 @@ func setState(newState):
 func playerSelectingAbility():
 	casterUI.updateUI( currentCharacter )
 	casterUI.setState( casterUI.STATE.SHOW )
-	print( currentCharacter )
 	abilityUI.setState( abilityUI.STATE.FOCUS , currentCharacter )
 	battleMap.setState( battleMap.STATE.NOT_FOCUS , currentAbility, currentCharacter )
 

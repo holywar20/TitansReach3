@@ -1,15 +1,14 @@
 extends Panel
 
 var crew : Array
-
 var charShortPanelScene = preload("res://ReusableUI/CharacterShortPanel/CharacterShortPanel.tscn")
 
 const NODE_GROUP_SHORT_PANEL = "SHORT_PANEL"
 
-# Left Pain
+# Left Pane
 onready var unassignedBase = $Tripane/VBox/UnassignedList/Crew
 
-# Center Pain
+# Center Pane
 onready var traitDetails = $Tripane/Details/Traits
 onready var otherDetails = $Tripane/Details/Other
 
@@ -45,17 +44,15 @@ func _on_CharShortPanelFocusEntered( character ):
 	secondaryAbilityList.updateUI( character.secondaryTree )
 
 func _on_Primary_abilityChanged(ability):
-	print("ability changed")
 	abilityDetail.show()
 	abilityDetail.setupScene( ability )
 
 func _on_Secondary_abilityChanged(ability):
-	print("ability changed")
 	abilityDetail.show()
 	abilityDetail.setupScene( ability )
 
-func _on_Primary_abilityExit(ability):
+func _on_Primary_abilityExit(_ability):
 	abilityDetail.hide()
 
-func _on_Secondary_abilityExit(ability):
+func _on_Secondary_abilityExit(_ability):
 	abilityDetail.hide()

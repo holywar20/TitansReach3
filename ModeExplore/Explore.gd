@@ -103,10 +103,8 @@ func _input(event):
 	if( event.is_action_pressed("CUSTUI_LEFT_MENU") ):
 		if( currentButton == null ):
 			currentButton = buttonQue[0]
-			print( currentButton )
 			buttons[currentButton].set_pressed(true)
 		else:
-			print(currentButton)
 			buttons[currentButton].set_pressed(false)
 			currentButton = posmod( currentButton - 1 , buttonQue.size() )
 			buttons[currentButton].set_pressed(true)
@@ -138,7 +136,7 @@ func setupScene( aSeed : int ) -> void:
 	for star in thisSystem.stars:
 		var newStar : Spatial = systemGenerator.buildStarMesh( star )
 		# TODO : if we impliment multiple stars, will need to off set their locations
-		#starBase.add_child(newStar)
+		starBase.add_child(newStar)
 
 		for planetData in star.planets:
 			if( planetData ):
@@ -151,7 +149,7 @@ func setupScene( aSeed : int ) -> void:
 
 	myCrew = WorldData.Crew.generateManyCrew(30 , 10)
 
-func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , angularVelocity : float , shipRotation : float):
+func _on_PlayerShip_PLAYER_MOVING( newPosition : Vector2 , velocity : Vector2 , _angularVelocity : float , shipRotation : float):
 	_move3dCamera( newPosition )
 	_moveParticles( velocity , shipRotation)
 
@@ -194,6 +192,7 @@ func loadMenu( buttonIdx : int ):
 func _on_Orders_toggled( button_pressed ):
 	if( button_pressed == true ):
 		var menuInstance = loadMenu( MB.ORDERS )
+		menuInstance.setupScene( myCrew , WorldData.StarshipStore.getStations() )
 
 func _on_Training_toggled(button_pressed):
 	if( button_pressed == true ):
@@ -207,7 +206,7 @@ func _on_Equipment_toggled(button_pressed):
 
 func _on_Engineering_toggled(button_pressed):
 	if( button_pressed == true ):
-		var menuInstance = loadMenu( MB.ENGINEERING )
+		var _menuInstance = loadMenu( MB.ENGINEERING )
 
 func _on_Cargohold_toggled(button_pressed):
 	if( button_pressed == true ):
@@ -216,12 +215,12 @@ func _on_Cargohold_toggled(button_pressed):
 
 func _on_Starmap_toggled(button_pressed):
 	if( button_pressed == true ):
-		var menuInstance = loadMenu( MB.STARMAP )
+		var _menuInstance = loadMenu( MB.STARMAP )
 
 func _on_System_toggled(button_pressed):
 	if( button_pressed == true ):
-		var menuInstance = loadMenu( MB.SYSTEM )
+		var _menuInstance = loadMenu( MB.SYSTEM )
 
 func _on_Markets_toggled(button_pressed):
 	if( button_pressed == true ):
-		var menuInstance = loadMenu( MB.MARKETS )
+		var _menuInstance = loadMenu( MB.MARKETS )

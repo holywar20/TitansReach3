@@ -34,7 +34,6 @@ func getAbility( key : String , character : CharacterResource ):
 	var effectGroupsArray = []
 
 	for abilityData in db.query_result:
-		print(abilityData)
 		if( abilityDictionary == null ):
 			abilityDictionary = abilityData
 		effectGroupsArray.append( {
@@ -70,5 +69,5 @@ func getAbilityTree( tree : String , character ):
 	return abilityTree
 
 
-func getEffects( effectString ):
+func getEffects( _effectString ):
 	pass

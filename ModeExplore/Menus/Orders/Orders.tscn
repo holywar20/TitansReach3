@@ -16,20 +16,26 @@ anchor_bottom = 0.7
 margin_right = -0.880127
 margin_bottom = -6.10352e-05
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tripane" type="HBoxContainer" parent="."]
 margin_left = 14.0
 margin_top = 14.0
 margin_right = 1260.0
 margin_bottom = 742.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBox" type="VBoxContainer" parent="Tripane"]
-margin_right = 407.0
-margin_bottom = 727.0
+[node name="Left" type="VBoxContainer" parent="Tripane"]
+margin_right = 410.0
+margin_bottom = 728.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Tripane/VBox"]
-margin_right = 407.0
+[node name="Label" type="Label" parent="Tripane/Left"]
+margin_right = 410.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -38,33 +44,38 @@ text = "Crew Manifest"
 align = 1
 valign = 1
 
-[node name="GridContainer" type="GridContainer" parent="Tripane/VBox"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Tripane/Left"]
 margin_top = 27.0
-margin_right = 407.0
-margin_bottom = 463.0
+margin_right = 410.0
+margin_bottom = 464.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 5
+follow_focus = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Panel" parent="Tripane/VBox" instance=ExtResource( 2 )]
+[node name="Manifest" type="VBoxContainer" parent="Tripane/Left/ScrollContainer"]
+margin_right = 410.0
+margin_bottom = 437.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Selected" parent="Tripane/Left" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 471.0
-margin_right = 407.0
-margin_bottom = 727.0
-
-[node name="Left" type="ScrollContainer" parent="Tripane"]
-margin_left = 415.0
-margin_right = 415.0
-margin_bottom = 727.0
+margin_top = 472.0
+margin_right = 410.0
+margin_bottom = 728.0
 
 [node name="Center" type="VBoxContainer" parent="Tripane"]
-margin_left = 423.0
-margin_right = 830.0
-margin_bottom = 727.0
+margin_left = 418.0
+margin_right = 828.0
+margin_bottom = 728.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Tripane/Center"]
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 5 )
 text = "CAPTAIN"
@@ -77,7 +88,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="Tripane/Center"]
 self_modulate = Color( 0.113725, 0.498039, 0.831373, 1 )
 margin_top = 32.0
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 141.0
 size_flags_vertical = 3
 __meta__ = {
@@ -94,7 +105,7 @@ margin_bottom = 94.0
 
 [node name="AssignmentsLabel" type="Label" parent="Tripane/Center"]
 margin_top = 149.0
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 173.0
 custom_fonts/font = ExtResource( 5 )
 text = "Assignments"
@@ -106,8 +117,8 @@ __meta__ = {
 
 [node name="Assignments" type="GridContainer" parent="Tripane/Center"]
 margin_top = 181.0
-margin_right = 407.0
-margin_bottom = 727.0
+margin_right = 410.0
+margin_bottom = 728.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 __meta__ = {
@@ -115,13 +126,13 @@ __meta__ = {
 }
 
 [node name="Right" type="VBoxContainer" parent="Tripane"]
-margin_left = 838.0
-margin_right = 1245.0
-margin_bottom = 727.0
+margin_left = 836.0
+margin_right = 1246.0
+margin_bottom = 728.0
 size_flags_horizontal = 3
 
 [node name="TitleRow" type="HBoxContainer" parent="Tripane/Right"]
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 25.0
 
 [node name="Button" type="Button" parent="Tripane/Right/TitleRow"]
@@ -131,7 +142,7 @@ text = "Rename"
 
 [node name="Label" type="Label" parent="Tripane/Right/TitleRow"]
 margin_left = 82.0
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -144,7 +155,7 @@ valign = 1
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 33.0
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 63.0
 rect_min_size = Vector2( 96, 30 )
 
@@ -152,14 +163,14 @@ rect_min_size = Vector2( 96, 30 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 71.0
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 101.0
 rect_min_size = Vector2( 96, 30 )
 barType = 2
 
 [node name="Label2" type="Label" parent="Tripane/Right"]
 margin_top = 109.0
-margin_right = 407.0
+margin_right = 410.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -170,14 +181,199 @@ valign = 1
 
 [node name="Stats" type="VBoxContainer" parent="Tripane/Right"]
 margin_top = 136.0
-margin_right = 407.0
-margin_bottom = 322.0
+margin_right = 410.0
+margin_bottom = 323.0
 size_flags_vertical = 3
 
+[node name="HBox" type="HBoxContainer" parent="Tripane/Right/Stats"]
+margin_right = 410.0
+margin_bottom = 139.0
+
+[node name="Left" type="VBoxContainer" parent="Tripane/Right/Stats/HBox"]
+margin_right = 201.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left"]
+margin_right = 201.0
+margin_bottom = 13.0
+text = "Expertise"
+align = 1
+valign = 1
+
+[node name="doesLeadership" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
+margin_top = 21.0
+margin_right = 201.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesLeadership"]
+margin_right = 96.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Leadership"
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesLeadership"]
+margin_left = 104.0
+margin_right = 201.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="doesNavigation" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
+margin_top = 42.0
+margin_right = 201.0
+margin_bottom = 55.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesNavigation"]
+margin_right = 96.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Navigation"
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesNavigation"]
+margin_left = 104.0
+margin_right = 201.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="doesEngineering" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
+margin_top = 63.0
+margin_right = 201.0
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesEngineering"]
+margin_right = 96.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Engineering"
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesEngineering"]
+margin_left = 104.0
+margin_right = 201.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="doesScience" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
+margin_top = 84.0
+margin_right = 201.0
+margin_bottom = 97.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesScience"]
+margin_right = 96.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Science"
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesScience"]
+margin_left = 104.0
+margin_right = 201.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="doesComms" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
+margin_top = 105.0
+margin_right = 201.0
+margin_bottom = 118.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesComms"]
+margin_right = 108.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Communications"
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesComms"]
+margin_left = 116.0
+margin_right = 201.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="doesMedical" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
+margin_top = 126.0
+margin_right = 201.0
+margin_bottom = 139.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesMedical"]
+margin_right = 96.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Medical"
+valign = 1
+
+[node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesMedical"]
+margin_left = 104.0
+margin_right = 201.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="Right" type="VBoxContainer" parent="Tripane/Right/Stats/HBox"]
+margin_left = 209.0
+margin_right = 410.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Right"]
+margin_right = 201.0
+margin_bottom = 13.0
+text = "Performance"
+align = 1
+valign = 1
+
 [node name="OffDutyLabel" type="Label" parent="Tripane/Right"]
-margin_top = 330.0
-margin_right = 407.0
-margin_bottom = 349.0
+margin_top = 331.0
+margin_right = 410.0
+margin_bottom = 350.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -186,9 +382,9 @@ align = 1
 valign = 1
 
 [node name="OffDuty" type="HBoxContainer" parent="Tripane/Right"]
-margin_top = 357.0
-margin_right = 407.0
-margin_bottom = 457.0
+margin_top = 358.0
+margin_right = 410.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 10
 alignment = 1
@@ -196,26 +392,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
-margin_left = 8.0
-margin_right = 98.0
+[node name="MEDICAL_1" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 14.0
+margin_right = 102.0
+margin_bottom = 88.0
 
-[node name="Panel2" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
-margin_left = 108.0
-margin_right = 198.0
+[node name="MEDICAL_2" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 112.0
+margin_right = 200.0
+margin_bottom = 88.0
 
-[node name="Panel3" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
-margin_left = 208.0
+[node name="MEDICAL_3" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
 margin_right = 298.0
+margin_bottom = 88.0
 
-[node name="Panel4" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
+[node name="MEDICAL_4" parent="Tripane/Right/OffDuty" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 308.0
-margin_right = 398.0
+margin_right = 396.0
+margin_bottom = 88.0
 
 [node name="QRFLabel" type="Label" parent="Tripane/Right"]
-margin_top = 465.0
-margin_right = 407.0
-margin_bottom = 484.0
+margin_top = 466.0
+margin_right = 410.0
+margin_bottom = 485.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -224,9 +432,9 @@ align = 1
 valign = 1
 
 [node name="QRF" type="HBoxContainer" parent="Tripane/Right"]
-margin_top = 492.0
-margin_right = 407.0
-margin_bottom = 592.0
+margin_top = 493.0
+margin_right = 410.0
+margin_bottom = 593.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 10
 alignment = 1
@@ -234,26 +442,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel4" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
-margin_left = 8.0
-margin_right = 98.0
+[node name="QRF_1" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 14.0
+margin_right = 102.0
+margin_bottom = 88.0
 
-[node name="Panel5" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
-margin_left = 108.0
-margin_right = 198.0
+[node name="QRF_2" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 112.0
+margin_right = 200.0
+margin_bottom = 88.0
 
-[node name="Panel6" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
-margin_left = 208.0
+[node name="QRF_3" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
 margin_right = 298.0
+margin_bottom = 88.0
 
-[node name="Panel7" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
+[node name="QRF_4" parent="Tripane/Right/QRF" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 308.0
-margin_right = 398.0
+margin_right = 396.0
+margin_bottom = 88.0
 
 [node name="BrigLabel" type="Label" parent="Tripane/Right"]
-margin_top = 600.0
-margin_right = 407.0
-margin_bottom = 619.0
+margin_top = 601.0
+margin_right = 410.0
+margin_bottom = 620.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -261,10 +481,10 @@ text = "The Brig"
 align = 1
 valign = 1
 
-[node name="Brig" type="HBoxContainer" parent="Tripane/Right"]
-margin_top = 627.0
-margin_right = 407.0
-margin_bottom = 727.0
+[node name="BRIG" type="HBoxContainer" parent="Tripane/Right"]
+margin_top = 628.0
+margin_right = 410.0
+margin_bottom = 728.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 10
 alignment = 1
@@ -272,18 +492,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel7" parent="Tripane/Right/Brig" instance=ExtResource( 7 )]
-margin_left = 8.0
-margin_right = 98.0
+[node name="BRIG_1" parent="Tripane/Right/BRIG" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 14.0
+margin_right = 102.0
+margin_bottom = 88.0
 
-[node name="Panel8" parent="Tripane/Right/Brig" instance=ExtResource( 7 )]
-margin_left = 108.0
-margin_right = 198.0
+[node name="BRIG_2" parent="Tripane/Right/BRIG" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 112.0
+margin_right = 200.0
+margin_bottom = 88.0
 
-[node name="Panel9" parent="Tripane/Right/Brig" instance=ExtResource( 7 )]
-margin_left = 208.0
+[node name="BRIG_3" parent="Tripane/Right/BRIG" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
 margin_right = 298.0
+margin_bottom = 88.0
 
-[node name="Panel10" parent="Tripane/Right/Brig" instance=ExtResource( 7 )]
+[node name="BRIG_4" parent="Tripane/Right/BRIG" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 308.0
-margin_right = 398.0
+margin_right = 396.0
+margin_bottom = 88.0

@@ -29,24 +29,10 @@ onready var rightStationPanels = {
 }
 
 func setupScene( newCrew : Array , newStations : Dictionary ):
-	myCrew = newCrew
+	updateUI( newCrew, newStations )
+
+func updateUI( newCrew : Array , newStations : Dictionary ):
 	stations = newStations
-
-	for child in get_tree().get_nodes_in_group(NODE_GROUP_SHORT_PANEL):
-		child.queue_free()
-
-	var oneFocused = false
-
-	for oneCrew in myCrew:
-		var newPanel = charShortPanelScene.instance()
-		manifestBase.add_child( newPanel )
-		newPanel.setupScene( oneCrew )
-		newPanel.connect("focusEntered" , self , "_on_CharShortPanelFocusEntered")
-		
-		if( !oneFocused ):
-			newPanel.grab_focus()
-			newPanel._on_CPanel_focus_entered() # Firing first event manually
-			oneFocused = true
 
 	rightStationPanels.MEDICAL_1.setupScene( stations['MEDICAL_1'] )
 	rightStationPanels.MEDICAL_2.setupScene( stations['MEDICAL_2'] )
@@ -60,6 +46,25 @@ func setupScene( newCrew : Array , newStations : Dictionary ):
 	rightStationPanels.QRF_2.setupScene( stations['QRF_2'] )
 	rightStationPanels.QRF_3.setupScene( stations['QRF_3'] )
 	rightStationPanels.QRF_4.setupScene( stations['QRF_4'] )
+
+	updateCrew( newCrew , false )
+
+func updateCrew( newCrew : Array , oneFocused = true ):
+	myCrew = newCrew
+
+	for child in get_tree().get_nodes_in_group(NODE_GROUP_SHORT_PANEL):
+		child.queue_free()
+
+	for oneCrew in myCrew:
+		var newPanel = charShortPanelScene.instance()
+		manifestBase.add_child( newPanel )
+		newPanel.setupScene( oneCrew )
+		newPanel.connect("focusEntered" , self , "_on_CharShortPanelFocusEntered")
+		
+		if( !oneFocused ):
+			newPanel.grab_focus()
+			newPanel._on_CPanel_focus_entered() # Firing first event manually
+			oneFocused = true
 
 func _on_CharShortPanelFocusEntered( character : CharacterResource ):
 	selected.updateUI( character )	

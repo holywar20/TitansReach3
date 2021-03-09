@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Orders/Orders.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=5]
 [ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ReusableUI/CharDock/CharDock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=8]
 
 [node name="Orders" type="Panel" groups=[
 "MAIN_MENU",
@@ -40,7 +41,7 @@ margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
-text = "Crew Manifest"
+text = "Off Duty MAnifest"
 align = 1
 valign = 1
 
@@ -187,172 +188,186 @@ size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="Tripane/Right/Stats"]
 margin_right = 410.0
-margin_bottom = 139.0
+margin_bottom = 160.0
 
 [node name="Left" type="VBoxContainer" parent="Tripane/Right/Stats/HBox"]
 margin_right = 201.0
-margin_bottom = 139.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left"]
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Expertise"
 align = 1
 valign = 1
 
 [node name="doesLeadership" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
-margin_top = 21.0
+margin_top = 24.0
 margin_right = 201.0
-margin_bottom = 34.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesLeadership"]
 margin_right = 96.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Leadership"
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesLeadership"]
 margin_left = 104.0
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 valign = 1
 
 [node name="doesNavigation" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
-margin_top = 42.0
+margin_top = 48.0
 margin_right = 201.0
-margin_bottom = 55.0
+margin_bottom = 64.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesNavigation"]
-margin_right = 96.0
-margin_bottom = 13.0
+margin_right = 99.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Navigation"
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesNavigation"]
-margin_left = 104.0
+margin_left = 107.0
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 valign = 1
 
 [node name="doesEngineering" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
-margin_top = 63.0
+margin_top = 72.0
 margin_right = 201.0
-margin_bottom = 76.0
+margin_bottom = 88.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesEngineering"]
-margin_right = 96.0
-margin_bottom = 13.0
+margin_right = 101.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Engineering"
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesEngineering"]
-margin_left = 104.0
+margin_left = 109.0
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 valign = 1
 
 [node name="doesScience" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
-margin_top = 84.0
+margin_top = 96.0
 margin_right = 201.0
-margin_bottom = 97.0
+margin_bottom = 112.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesScience"]
 margin_right = 96.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Science"
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesScience"]
 margin_left = 104.0
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 valign = 1
 
 [node name="doesComms" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
-margin_top = 105.0
+margin_top = 120.0
 margin_right = 201.0
-margin_bottom = 118.0
+margin_bottom = 136.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesComms"]
-margin_right = 108.0
-margin_bottom = 13.0
+margin_right = 96.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Communications"
+custom_fonts/font = ExtResource( 8 )
+text = "Comms"
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesComms"]
-margin_left = 116.0
+margin_left = 104.0
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 valign = 1
 
 [node name="doesMedical" type="HBoxContainer" parent="Tripane/Right/Stats/HBox/Left"]
-margin_top = 126.0
+margin_top = 144.0
 margin_right = 201.0
-margin_bottom = 139.0
+margin_bottom = 160.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesMedical"]
 margin_right = 96.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Medical"
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Right/Stats/HBox/Left/doesMedical"]
 margin_left = 104.0
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 valign = 1
@@ -360,12 +375,14 @@ valign = 1
 [node name="Right" type="VBoxContainer" parent="Tripane/Right/Stats/HBox"]
 margin_left = 209.0
 margin_right = 410.0
-margin_bottom = 139.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Right"]
 margin_right = 201.0
-margin_bottom = 13.0
+margin_bottom = 16.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 8 )
 text = "Performance"
 align = 1
 valign = 1
@@ -377,7 +394,7 @@ margin_bottom = 350.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
-text = "Off Duty"
+text = "Medical Bay"
 align = 1
 valign = 1
 

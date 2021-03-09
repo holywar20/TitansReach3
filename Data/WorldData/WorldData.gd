@@ -8,17 +8,15 @@ var db
 
 # DATA 
 onready var Inventory : Node = $Inventory
-onready var Ability : Node = $Ability
+onready var AbilityStore : Node = $AbilityStore
 onready var Crew : Node = $Crew
 
 func _ready():
 	db = SQLite.new()
 	db.path = CORE_DB_PATH
-	db.verbose_mode = true
+	db.verbose_mode = false
+	db.open_db()
 	
 	Inventory.setupData( db )
-	Ability.setupData( db )
+	AbilityStore.setupData( db )
 	Crew.setupData( db )
-
-func generateCharacters():
-	pass

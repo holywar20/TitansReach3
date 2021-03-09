@@ -31,6 +31,8 @@ const HUMAN_SECTS = ["Meridian" , "Novan" , "Terran" ]
 var dummyCrewman
 var db
 
+onready var AbilityStore : Node = get_node("../AbilityStore")
+
 func setupData( newDb ):
 	db = newDb
 
@@ -58,11 +60,17 @@ func generateNewCrew( cp = 30 , isPlayer : bool = false ):
 	crewman = _rollTraits( crewman , cp )
 	crewman = _rollCosmetics( crewman )
 	
-	crewman.setDefaultAbilityTree( AbilityTreeResource.TREE.DEFAULT )
-	crewman.setNewPrimaryAbilityTree( AbilityTreeResource.TREE.MEDIC )
-	crewman.setNewSecondaryAbilityTree( AbilityTreeResource.TREE.COMMANDO )
+	var defaultTree : AbilityTreeResource = AbilityStore.getAbilityTree( AbilityTreeResource.TREE.DEFAULT , crewman )
+	crewman.setDefaultAbilityTree( defaultTree )
+	
+	var secondaryTree : AbilityTreeResource = AbilityStore.getAbilityTree( AbilityTreeResource.TREE.MEDIC , crewman )
+	crewman.setSecondaryAbilityTree( secondaryTree )
+	
+	var primaryTree : AbilityTreeResource = AbilityStore.getAbilityTree( AbilityTreeResource.TREE.COMMANDO , crewman )
+	crewman.setPrimaryAbilityTree( primaryTree )
 
 	crewman.calculateSelf( true )
+	print( crewman.actions )
 
 	return crewman
 

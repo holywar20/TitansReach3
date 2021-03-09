@@ -10,12 +10,9 @@ var db
 
 func setupData( newDb ):
 	db = newDb
-	db.open_db()
 
 	# Load intially owned items based on the current save
 	_loadOwnedItems()
-
-	db.close_db()
 
 func _loadOwnedItems():
 	# Blank out current item list, as we are using DB as source of truth now.

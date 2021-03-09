@@ -21,8 +21,12 @@ func setState( state : int , newBattler ):
 	for child in abilityGrid.get_children():
 		child.queue_free()
 
+
+	print( newBattler )
 	if( currentBattler ):
 		var isAbilityFocused = false
+
+		print( currentBattler.actions )
 
 		for action in currentBattler.actions:
 			var abilityInstance = abilityIconScene.instance()

@@ -114,10 +114,11 @@ func findKeyInJsonFile( key, filePath : String ):
 func calculateSpecialProperties( props: Dictionary , object ):
 	return object
 
-func makeArrayIntegers( anArray : Array ) -> Array:
+func makeStringIntoArrayIntegers( stringArray : String ) -> Array:
 	var newArray = []
-	
-	for elem in anArray:
-		newArray.append( int(elem) )
+	var anArray = stringArray.split(",")
 
-	return anArray
+	for elem in anArray:
+		newArray.append( int(elem) ) # Intifying should also trim any white space
+
+	return newArray

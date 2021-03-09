@@ -98,31 +98,19 @@ func get_class():
 func is_class( name : String ): 
 	return name == "CharacterResource"
 
-func setDefaultAbilityTree( treeIndex : int ):
-	defaultTree = AbilityTreeResource.new( treeIndex , self )
+func setDefaultAbilityTree( abilityTree : AbilityTreeResource ):
+	defaultTree = abilityTree
 
-func setNewPrimaryAbilityTree( treeIndex : int ):
-	primaryTree = AbilityTreeResource.new( treeIndex , self )
+func setPrimaryAbilityTree(  abilityTree : AbilityTreeResource ):
+	primaryTree = abilityTree
 	
-func setNewSecondaryAbilityTree( treeIndex : int ):
-	secondaryTree = AbilityTreeResource.new( treeIndex , self )
-
-# Accepts an AbilityResource
-func addAction( action ):
-	actions.append( action ) 
-
-# Accepts an AbilityResource
-func addStance( stance ):
-	stances.append( stance )
-
-# Accepts an AbilityResource
-func addInstant( instant ):
-	instants.append( instant )
+func setSecondaryAbilityTree(  abilityTree : AbilityTreeResource ):
+	secondaryTree = abilityTree
 
 func calculateSelf( newCharacter = false ):
 
 	#_getAbilityKeysFromGear()
-	#_getAbilityKeysFromTalents()
+	_getAbilityKeysFromTalents()
 
 	#_loadPassiveAbilitiesFromSavedKeys()
 	# Load passive abilities
@@ -130,10 +118,22 @@ func calculateSelf( newCharacter = false ):
 	_calculateTraits()
 	_calculateResists()
 	_calculateCarryWeight()
-	#_loadAbilitiesFromSavedKeys()
 
 	_calculateResists()
 	_calculateDerivedStats( newCharacter )
+
+func _getAbilityKeysFromTalents():
+	for tree in [ defaultTree , primaryTree , secondaryTree ]:
+		for ability in tree.abilityStore:
+			if( ability ):
+				match ability.abilityType:
+					AbilityResource.ABILITY_TYPE.ACTION:
+						actions.append( ability )
+					AbilityResource.ABILITY_TYPE.STANCE:
+						stances.append( ability )
+					AbilityResource.ABILITY_TYPE.INSTANT:
+						instants.append( ability )
+	
 
 func _calculateTraits():
 	for key in traits:

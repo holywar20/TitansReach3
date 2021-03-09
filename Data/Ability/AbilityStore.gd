@@ -27,39 +27,37 @@ func setupData( newDb ):
 	db = newDb
 
 func getAbility( key : String , character : CharacterResource ):
-	db.open_db()
 	
-	var queryString : String = """
-		SELECT * FROM AbilityResource WHERE abilityKey = '?'
+	var fString : String = """
+		SELECT * FROM AbilityResource
 		LEFT JOIN AbilityEffectGroups ON ( AbilityResource.abilityKey = AbilityEffectGroups.abilityKey )
+		WHERE AbilityResource.abilityKey = '%s'
 	"""
-	var paramBinds : Array = [ key ]
-	var success = db.query_with_bindings( queryString, paramBinds )
+	var queryString = fString % key
+	var success = db.query( queryString  )
 	
 	var abilityDictionary = null
-	var effectGroupsArray = null
+	var effectGroupsArray = []
 	
 	for abilityData in db.query_result:
-		if( !abilityDictionary ):
+		if( abilityDictionary == null ):
 			abilityDictionary = abilityData
-			effectGroupsArray.append( {
-				'targetArea' : abilityData.targetArea,
-				'targetType' : abilityData.targetType,
-				'effectKeys' : abilityData.effectKeys.split(",")
-			} )
-			
-	abilityDictionary.effectGroups = effectGroupsArray
+		effectGroupsArray.append( {
+			'targetArea' : abilityData.targetArea,
+			'targetType' : abilityData.targetType,
+			'effectKeys' : abilityData.effectKeys.split(",")
+		} )
 	
-	db.close()
-	
-	if( success ):
+	if( db.query_result.size() >= 1 ):
+		abilityDictionary['effectGroups'] = effectGroupsArray
 		return AbilityResource.new( key, abilityDictionary, character )
 	else:
+		print("Dev Error: Can't find ability of key " + key )
 		return null
 
 func getAbilityTree( treePath : int , character ):
 	var abilityTree = AbilityTreeResource.new( ABILITY_TREE_METADATA[treePath], character )
-
+	# TODO Filter on ability = learned record
 	# Open the file, just to get the name.
 	# Bit stupid, but not worth refactoring ability _init, which knows how to build itself.
 	var abilityFile = File.new()

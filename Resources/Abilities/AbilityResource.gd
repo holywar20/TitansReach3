@@ -139,9 +139,8 @@ func _init( newKey : String , abilityTable : Dictionary , character , startLearn
 	key = newKey
 	fillableProps = [
 		"fullName" , 
+		"abilityType",
 		"shortName" , 
-		"validTargets" , 
-		"validFrom" , 
 		"iconPath",
 		"toHitTrait",
 		"toHitBase",
@@ -157,14 +156,11 @@ func _init( newKey : String , abilityTable : Dictionary , character , startLearn
 		isLearned = true
 
 	flushAndFillProperties(abilityTable , self)
-	#_makeEffects( abilityTable['effectGroups'] )
+	_makeEffects( abilityTable['effectGroups'] )
 
-	# Do any type casting to fix json, which comes in as strings
-	#validTargets = makeArrayIntegers( validTargets )
-	#validFrom = makeArrayIntegers( validFrom )
-
-	# Now make stuff into integers
-	#toHitBase = 
+	# Do any type casting to fix any data which might be strings
+	validTargets = makeStringIntoArrayIntegers( abilityTable.validTargets )
+	validFrom = makeStringIntoArrayIntegers( abilityTable.validFrom )
 
 func _makeEffects( newEffectGroups : Array ):
 	for effectGroupData in newEffectGroups:

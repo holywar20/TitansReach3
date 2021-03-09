@@ -33,14 +33,15 @@ onready var minimap : PanelContainer = $UI/Minimap
 const NODE_GROUP_MAIN_MENU = "MAIN_MENU"
 
 enum MB {
-	CREW_ASSIGNMENT, CREW_MANAGEMENT, ENGINEERING, CARGOHOLD , STARMAP, SYSTEM, MARKETS 
+	ORDERS, TRAINING, EQUIPMENT, ENGINEERING, CARGOHOLD , STARMAP, SYSTEM, MARKETS 
 }
 
-var buttonQue = [MB.CREW_ASSIGNMENT, MB.CREW_MANAGEMENT , MB.ENGINEERING , MB.CARGOHOLD, MB.STARMAP , MB.SYSTEM , MB.MARKETS]
+var buttonQue = [MB.ORDERS, MB.TRAINING, MB.EQUIPMENT , MB.ENGINEERING , MB.CARGOHOLD, MB.STARMAP , MB.SYSTEM , MB.MARKETS]
 
 onready var buttons = {
-	MB.CREW_ASSIGNMENT : $UI/TopPanel/ButtonBar/CrewAssignment,
-	MB.CREW_MANAGEMENT : $UI/TopPanel/ButtonBar/CrewManagement,
+	MB.ORDERS : $UI/TopPanel/ButtonBar/Orders,
+	MB.TRAINING : $UI/TopPanel/ButtonBar/Training,
+	MB.EQUIPMENT : $UI/TopPanel/ButtonBar/Equipment,
 	MB.ENGINEERING : $UI/TopPanel/ButtonBar/Engineering,
 	MB.CARGOHOLD : $UI/TopPanel/ButtonBar/Cargohold,
 	MB.STARMAP : $UI/TopPanel/ButtonBar/Starmap,
@@ -49,13 +50,17 @@ onready var buttons = {
 }
 
 const MENUS = {
-	MB.CREW_ASSIGNMENT : { 
-		"scene" : "res://ModeExplore/Menus/CrewAssignments/CrewAssignments.tscn",
-		"title" : "Crew Assignment"
+	MB.ORDERS : {
+		"scene" : "res://ModeExplore/Menus/Orders/Orders.tscn",
+		"title" : "Orders"
 	},
-	MB.CREW_MANAGEMENT : {
-		"scene" : "res://ModeExplore/Menus/CrewManagement/CrewManagement.tscn",
-		"title" : "Crew Management"
+	MB.TRAINING : { 
+		"scene" : "res://ModeExplore/Menus/Training/Training.tscn",
+		"title" : "Training"
+	},
+	MB.EQUIPMENT : {
+		"scene" : "res://ModeExplore/Menus/Equipment/Equipment.tscn",
+		"title" : "Equipment"
 	},
 	MB.ENGINEERING : {
 		"scene" : "res://ModeExplore/Menus/Engineering/Engineering.tscn",
@@ -86,7 +91,7 @@ const SCALE_2DTO3D_FACTOR = 1000
 const PARTICLE_SPEED_FACTOR = .1
 const BASE_PARTICLE_SPEED = 5
 
-var thisSystem : SystemResource = null
+var thisSystem = null
 
 # Need to hoist this to a neutral place at some point
 var myCrew : Array = [] # An array of Character Resources
@@ -186,15 +191,18 @@ func loadMenu( buttonIdx : int ):
 	mainContainer.add_child( sceneInstance )
 	
 	return sceneInstance
-
-func _on_CrewAssignment_toggled(button_pressed):	
+func _on_Orders_toggled( button_pressed ):
 	if( button_pressed == true ):
-		var menuInstance = loadMenu( MB.CREW_ASSIGNMENT )
+		var menuInstance = loadMenu( MB.ORDERS )
+
+func _on_Training_toggled(button_pressed):
+	if( button_pressed == true ):
+		var menuInstance = loadMenu( MB.TRAINING )
 		menuInstance.setupScene( myCrew )
 
-func _on_CrewManagement_toggled(button_pressed):
+func _on_Equipment_toggled(button_pressed):
 	if( button_pressed == true ):
-		var menuInstance = loadMenu( MB.CREW_MANAGEMENT )
+		var menuInstance = loadMenu( MB.EQUIPMENT )
 		menuInstance.setupScene( myCrew )
 
 func _on_Engineering_toggled(button_pressed):

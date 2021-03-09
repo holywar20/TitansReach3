@@ -38,12 +38,12 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
-margin_right = 407.0
+margin_right = 406.0
 margin_bottom = 30.0
 
 [node name="ResistLabel" type="Label" parent="VBox/HBoxContainer"]
 margin_top = 5.0
-margin_right = 299.0
+margin_right = 298.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
@@ -51,8 +51,8 @@ text = "Character Details"
 align = 1
 
 [node name="Button" type="Panel" parent="VBox/HBoxContainer"]
-margin_left = 307.0
-margin_right = 407.0
+margin_left = 306.0
+margin_right = 406.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 100, 30 )
 
@@ -76,8 +76,8 @@ __meta__ = {
 
 [node name="ResistancePanel" type="Panel" parent="VBox"]
 margin_top = 38.0
-margin_right = 407.0
-margin_bottom = 312.0
+margin_right = 406.0
+margin_bottom = 311.0
 size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="VBox/ResistancePanel"]

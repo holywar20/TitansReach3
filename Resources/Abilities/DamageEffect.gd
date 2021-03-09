@@ -50,7 +50,7 @@ func rollEffect():
 	else :
 		var traitVal : int = 0
 		if( parentAbility.toHitTrait != "NONE"):
-			traitVal = parentAbility.parentCharacter.getCurrentTrait( parentAbility.toPowerTrait )
+			traitVal = parentAbility.parentCharacter.getCurrentTrait( parentAbility.toHitTrait )
 		
 		var roll : int = int( randi() % 100 )
 		var bonus = int( parentAbility.toHitBase + ( traitVal * TO_HIT_TRAIT_MULTIPLE ) * toHitMod )

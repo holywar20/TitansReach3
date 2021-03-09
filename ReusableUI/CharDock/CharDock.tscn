@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="Panel" type="Panel"]
+self_modulate = Color( 0.337255, 0.960784, 0.152941, 1 )
+margin_left = 163.0
+margin_right = 253.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+size_flags_horizontal = 0
+size_flags_vertical = 0

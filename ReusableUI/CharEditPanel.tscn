@@ -15,9 +15,9 @@
 
 [node name="CharEditPanel" type="Panel"]
 anchor_right = 0.233
-anchor_bottom = 0.393
+anchor_bottom = 0.378
 margin_right = 0.639984
-margin_bottom = -0.440002
+margin_bottom = -0.240021
 size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
@@ -28,8 +28,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
+margin_right = -7.99997
 margin_bottom = -8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -39,19 +38,20 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBox"]
-margin_top = -1.0
 margin_right = 432.0
-margin_bottom = 53.0
-rect_min_size = Vector2( 0, 54 )
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = ExtResource( 9 )
-text = "{CHARACTER NAME}"
+text = "CHARACTER NAME"
 align = 1
 valign = 1
+autowrap = true
+clip_text = true
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
-margin_top = 54.0
+margin_top = 40.0
 margin_right = 432.0
-margin_bottom = 118.0
+margin_bottom = 104.0
 
 [node name="CPoints" type="VBoxContainer" parent="VBox/HBox"]
 margin_right = 140.0
@@ -104,9 +104,9 @@ rect_min_size = Vector2( 96, 32 )
 barType = 2
 
 [node name="TraitsBox" type="VBoxContainer" parent="VBox"]
-margin_top = 118.0
+margin_top = 104.0
 margin_right = 432.0
-margin_bottom = 377.0
+margin_bottom = 363.0
 
 [node name="TitleRow" type="HBoxContainer" parent="VBox/TraitsBox"]
 margin_right = 432.0
@@ -599,20 +599,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="HBoxContainer" parent="VBox"]
-margin_top = 377.0
+margin_top = 363.0
 margin_right = 432.0
-margin_bottom = 408.0
+margin_bottom = 400.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="VBox/VBoxContainer"]
 margin_right = 58.0
-margin_bottom = 31.0
+margin_bottom = 37.0
 text = "SAVE"
 
 [node name="Container" type="Container" parent="VBox/VBoxContainer"]
 margin_left = 66.0
 margin_right = 362.0
-margin_bottom = 31.0
+margin_bottom = 37.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -622,7 +622,7 @@ __meta__ = {
 [node name="Button2" type="Button" parent="VBox/VBoxContainer"]
 margin_left = 370.0
 margin_right = 432.0
-margin_bottom = 31.0
+margin_bottom = 37.0
 text = "RESET"
 [connection signal="pressed" from="VBox/TraitsBox/STR/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
 [connection signal="pressed" from="VBox/TraitsBox/STR/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]

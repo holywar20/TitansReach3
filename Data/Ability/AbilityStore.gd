@@ -8,19 +8,13 @@ const ABILITY_TREE_METADATA = {
 		"isTitanTree" : false
 	},
 	AbilityTreeResource.TREE.MEDIC : {
-		"treeName" : "TEST_MEDIC_TREE",
+		"treeName" : "MEDIC",
 		"isTitanTree" : false
 	},
 	AbilityTreeResource.TREE.COMMANDO : {
-		"treeName" : "TEST_COMMANDO_TREE",
+		"treeName" : "COMMANDO",
 		"isTitanTree" : false
 	}
-}
-
-const ABILITY_FILES = {
-	AbilityTreeResource.TREE.DEFAULT : "res://Generators/Data/Abilities/default.json",
-	AbilityTreeResource.TREE.MEDIC : "res://Generators/Data/Abilities/testmedic.json",
-	AbilityTreeResource.TREE.COMMANDO : "res://Generators/Data/Abilities/testcommando.json"
 }
 
 func setupData( newDb ):
@@ -34,12 +28,13 @@ func getAbility( key : String , character : CharacterResource ):
 		WHERE AbilityResource.abilityKey = '%s'
 	"""
 	var queryString = fString % key
-	var success = db.query( queryString  )
+	db.query( queryString  )
 	
 	var abilityDictionary = null
 	var effectGroupsArray = []
-	
+
 	for abilityData in db.query_result:
+		print(abilityData)
 		if( abilityDictionary == null ):
 			abilityDictionary = abilityData
 		effectGroupsArray.append( {
@@ -55,19 +50,22 @@ func getAbility( key : String , character : CharacterResource ):
 		print("Dev Error: Can't find ability of key " + key )
 		return null
 
-func getAbilityTree( treePath : int , character ):
-	var abilityTree = AbilityTreeResource.new( ABILITY_TREE_METADATA[treePath], character )
-	# TODO Filter on ability = learned record
-	# Open the file, just to get the name.
-	# Bit stupid, but not worth refactoring ability _init, which knows how to build itself.
-	var abilityFile = File.new()
-	abilityFile.open( ABILITY_FILES[treePath] , File.READ)
-	var abilityTable = parse_json( abilityFile.get_as_text() )
-	abilityFile.close()
+func getAbilityTree( tree : String , character ):
+	var abilityTree = AbilityTreeResource.new( ABILITY_TREE_METADATA[tree], character )
+	
+	var fString : String = """
+		SELECT abilityKey FROM abilityTreeItems WHERE abilityTreeItems.abilityTreeKey = '%s'
+	"""
+	var queryString = fString % tree
+	db.query(queryString)
 
-	# TODO Remove 'start learned' . Learning all for now for testing.
-	for ability in abilityTable:
-		abilityTree.abilityStore.append( getAbility( ability , character ) )
+	# Need to duplicate results here, because further queries need to make use of the query_result buffer before we are done with this.
+	var allResults = db.query_result.duplicate()
+
+	for result in allResults:
+		var ability = getAbility( result.abilityKey , character )
+		if( ability ):
+			abilityTree.abilityStore.append( ability )
 		
 	return abilityTree
 

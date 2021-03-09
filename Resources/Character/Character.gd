@@ -81,14 +81,14 @@ const RESISTS = {
 	"MOVE" : "MOVE" , "SILENCE" : "SILENCE" , "CHARM" : "CHARM" , "STUN" : "STUN" , "OPPRESS": "OPPRESS" ,"BLEED" : "BLEED" , "MARKED" : "MARKED","SLOW" : "SLOW"
 }
 var resists = {
-	RESISTS.MOVE : { "value" : 0, "total" : 0 , "mod" : 0 } ,
-	RESISTS.SILENCE : { "value" : 0, "total" : 0 , "mod" : 0 },
-	RESISTS.CHARM : { "value" : 0, "total" : 0 , "mod" : 0 } ,
-	RESISTS.STUN :  { "value" : 0, "total" : 0 , "mod" : 0 },
-	RESISTS.OPPRESS : { "value" : 0, "total" : 0 , "mod" : 0 },
-	RESISTS.BLEED : { "value" : 0, "total" : 0 , "mod" : 0 },
-	RESISTS.MARKED : { "value" : 0, "total" : 0 , "mod" : 0 },
-	RESISTS.SLOW : { "value" : 0, "total" : 0 , "mod" : 0 }
+	RESISTS.MOVE : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 } ,
+	RESISTS.SILENCE : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 },
+	RESISTS.CHARM : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 } ,
+	RESISTS.STUN :  { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 },
+	RESISTS.OPPRESS : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 },
+	RESISTS.BLEED : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 },
+	RESISTS.MARKED : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 },
+	RESISTS.SLOW : { "trait" : 0, "total" : 0 , "mod" : 0 , "talent": 0 , "equip" : 0 }
 }
 
 # Overrides
@@ -118,8 +118,6 @@ func calculateSelf( newCharacter = false ):
 	_calculateTraits()
 	_calculateResists()
 	_calculateCarryWeight()
-
-	_calculateResists()
 	_calculateDerivedStats( newCharacter )
 
 func _getAbilityKeysFromTalents():
@@ -166,7 +164,29 @@ func _calculateDerivedStats( newCharacter = false ):
 
 
 func _calculateResists():
-	pass
+	resists.MOVE.trait = traits.STR.total
+	resists.MOVE.total = resists.MOVE.trait + resists.MOVE.mod + resists.MOVE.talent + resists.MOVE.equip
+	
+	resists.STUN.trait = traits.STR.total
+	resists.STUN.total = resists.STUN.trait + resists.STUN.mod + resists.STUN.talent + resists.STUN.equip
+
+	resists.BLEED.trait = traits.STR.total
+	resists.BLEED.total = resists.BLEED.trait + resists.BLEED.mod + resists.BLEED.talent + resists.BLEED.equip
+
+	resists.SILENCE.trait = traits.PER.total
+	resists.SILENCE.total = resists.SILENCE.trait + resists.SILENCE.mod + resists.SILENCE.talent + resists.SILENCE.equip
+	
+	resists.MARKED.trait = traits.DEX.total
+	resists.MARKED.total = resists.MARKED.trait + resists.MARKED.mod + resists.MARKED.talent + resists.MARKED.equip
+
+	resists.SLOW.trait = traits.DEX.total
+	resists.SLOW.total = resists.SLOW.trait + resists.SLOW.mod + resists.SLOW.talent + resists.SLOW.equip
+
+	resists.OPPRESS.trait = traits.INT.total
+	resists.OPPRESS.total = resists.OPPRESS.trait + resists.OPPRESS.mod + resists.OPPRESS.talent + resists.OPPRESS.equip
+
+	resists.CHARM.trait = traits.INT.total
+	resists.CHARM.total = resists.CHARM.trait + resists.CHARM.mod + resists.CHARM.talent + resists.CHARM.equip
 
 func getNickName():
 	return fullname[1]

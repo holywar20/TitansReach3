@@ -9,23 +9,23 @@ enum BAR_TYPE {
 var barData = {
 	BAR_TYPE.HEALTH : {
 		"fillColor": Color( 1 , 0 , 0 , 1 ),
-		"barColor" : Color( .65, 0 , 0 , 1 )
+		"barColor" : Color( .35, 0 , 0 , 1 )
 	} ,
 	BAR_TYPE.CHARGE : {
 		"fillColor": Color( 0 , 1 , 0 , 1 ),
-		"barColor" : Color(0 , .65, 0 , 1 ) 
+		"barColor" : Color(0 , .35, 0 , 1 ) 
 	} ,
 	BAR_TYPE.MORALE : {
 		"fillColor": Color( 1 ,  1 ,  0 , 1 ),
-		"barColor" : Color(.65 , .65 , 0 , 1 )
+		"barColor" : Color(.35 , .35 , 0 , 1 )
 	} ,
 	BAR_TYPE.MASS : {
 		"fillColor" : Color( 1, 0, 1, 1 ),
-		"barColor" : Color( .65, 0, .65, 1 )
+		"barColor" : Color( .35, 0, .35, 1 )
 	},
 	BAR_TYPE.VOLUME: {
 		"fillColor" : Color( 0, 1, 1, 1 ),
-		"barColor" : Color( 0, .65, .65, 1 )
+		"barColor" : Color( 0, .35, .35, 1 )
 	}
 }
 
@@ -38,5 +38,5 @@ func setBarValues( total : int , current : int ):
 	set_max( total )
 	set_value( current )
 
-	valueDisplay.set_text( str(total) + " / " + str(current) )
+	valueDisplay.set_text( str(current) + "/" + str(total) )
 

@@ -11,6 +11,7 @@ onready var unassignedBase = $Tripane/VBox/UnassignedList/Crew
 
 # Center Pain
 onready var traitDetails = $Tripane/Details/Traits
+onready var otherDetails = $Tripane/Details/Other
 
 # Right Pane
 onready var abilityDetail = $Tripane/Abilities/AbilityDetail
@@ -39,6 +40,7 @@ func setupScene( myCrew : Array ):
 # Signal responses
 func _on_CharShortPanelFocusEntered( character ):
 	traitDetails.updateUI( character )
+	otherDetails.updateUI( character )
 	primaryAbilityList.updateUI( character.primaryTree )
 	secondaryAbilityList.updateUI( character.secondaryTree )
 

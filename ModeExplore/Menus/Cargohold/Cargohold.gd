@@ -32,6 +32,17 @@ var treeItems = {
 	ItemResource.ITEM_CATEGORY.EQUIPMENT: null
 }
 
+func setupScene( newInventory : Node ):
+	resetInventory()
+	inventory = newInventory
+
+	itemTree.grab_focus()
+	
+	for itemKey in inventory.allItems:
+		_createTreeItem( inventory.allItems[itemKey] )
+		
+	populateMetadata( inventory )
+
 func resetInventory():
 	itemTree.clear()
 	
@@ -60,16 +71,6 @@ func resetInventory():
 	var equipment = itemTree.create_item( root )
 	equipment.set_text( COL.NAME , "Equipment" )
 	treeItems[ItemResource.ITEM_CATEGORY.EQUIPMENT] = equipment
-
-# Arrays of Commodity items, and mixed equipment, frames and weapons in arms
-func setupScene( newInventory : Node ):
-	resetInventory()
-	inventory = newInventory
-
-	itemTree.grab_focus()
-	
-	for itemKey in inventory.allItems:
-		_createTreeItem( inventory.allItems[itemKey] )
 	
 func _createTreeItem( item : ItemResource ):
 	var target : TreeItem = treeItems[item.itemCategory]
@@ -85,16 +86,20 @@ func _createTreeItem( item : ItemResource ):
 	newItem.set_text( COL.QUANTITY, str(item.itemAmount) )
 	newItem.set_metadata( COL.ICON , item.itemKey )
 
-func populateMetadata( inventory ):
-	massBar.setBarValues(  inventory.massCapacity , inventory.getTotalMass() )
-	volumeBar.setBarValues( inventory.volumeCapacity , inventory.getTotalVolume() )
+func populateMetadata( myInventory ):
+	massBar.setBarValues(  myInventory.massCapacity , myInventory.getTotalMass() )
+	volumeBar.setBarValues( myInventory.volumeCapacity , myInventory.getTotalVolume() )
 	valueBox.set_text( inventory.getTotalValueAsString() ) 
 
 func _on_Tree_item_selected():
 	var data = itemTree.get_selected()
 	if( data ):
-		var myItem = inventory.getItem( data.get_metadata( COL.ICON ) )
-		equipmentDetail.updateUI( myItem )
+		var itemKey = data.get_metadata( COL.ICON )
+		if( itemKey ):
+			var myItem = inventory.getItem( data.get_metadata( COL.ICON ) )
+			equipmentDetail.updateUI( myItem )
+		else:
+			equipmentDetail.updateUI( null )
 	else:
 		equipmentDetail.updateUI( null )
 

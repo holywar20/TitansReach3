@@ -1,11 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://ModeExplore/Menus/CrewManagement/CrewManagement.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/Menus/Equipment/Equipment.gd" type="Script" id=1]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ReusableUI/ArmsRoom/ArmsRoom.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ReusableUI/EquipmentPane/EquipmentPane.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=6]
+
+
 
 [node name="CrewAssignments" type="Panel" groups=[
 "MAIN_MENU",

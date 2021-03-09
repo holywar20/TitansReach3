@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Cargohold/Cargohold.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=5]
 [ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=8]
-
-
 
 [node name="Cargo" type="Panel" groups=[
 "MAIN_MENU",
@@ -121,9 +119,9 @@ align = 1
 valign = 1
 
 [node name="Data" type="Label" parent="Tripane/Commodities/HBox/Value"]
-margin_top = 26.0
+margin_top = 27.0
 margin_right = 276.0
-margin_bottom = 51.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 8 )
 text = "XXXXXX INK"
@@ -144,6 +142,7 @@ text = "Item Detail"
 align = 1
 
 [node name="EquipmentDetail" parent="Tripane/ItemDetails" instance=ExtResource( 2 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 27.0
@@ -153,6 +152,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 2
 
 [node name="AbilityDetail" parent="Tripane/ItemDetails" instance=ExtResource( 3 )]
+visible = false
 margin_top = 361.0
 margin_right = 422.0
 margin_bottom = 617.0
@@ -160,7 +160,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 2
 
 [node name="InnerSpacer" type="Container" parent="Tripane/ItemDetails"]
-margin_top = 625.0
+margin_top = 27.0
 margin_right = 422.0
 margin_bottom = 679.0
 size_flags_vertical = 3

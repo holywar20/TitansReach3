@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://ModeExplore/Menus/CrewAssignments/CrewAssignments.gd" type="Script" id=1]
+[ext_resource path="res://ModeExplore/Menus/Training/Training.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/CharEditPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ReusableUI/CharacterDetail/CharacterDetail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
@@ -65,17 +65,18 @@ margin_right = 847.0
 margin_bottom = 755.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
+custom_constants/separation = 0
 
 [node name="Traits" parent="Tripane/Details" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 420.0
-margin_bottom = 415.0
+margin_bottom = 419.0
 
 [node name="Other" parent="Tripane/Details" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 423.0
+margin_top = 419.0
 margin_right = 420.0
 margin_bottom = 755.0
 
@@ -98,22 +99,22 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 27.0
 margin_right = 420.0
-margin_bottom = 264.0
-rect_min_size = Vector2( 0, 237 )
+margin_bottom = 247.0
+rect_min_size = Vector2( 0, 220 )
 size_flags_vertical = 1
 
 [node name="Secondary" parent="Tripane/Abilities" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 272.0
+margin_top = 255.0
 margin_right = 420.0
-margin_bottom = 509.0
-rect_min_size = Vector2( 0, 237 )
+margin_bottom = 475.0
+rect_min_size = Vector2( 0, 220 )
 size_flags_vertical = 1
 
 [node name="AbilityDetail" parent="Tripane/Abilities" instance=ExtResource( 6 )]
 visible = false
-margin_top = 517.0
+margin_top = 483.0
 margin_right = 420.0
 margin_bottom = 755.0
 size_flags_vertical = 3

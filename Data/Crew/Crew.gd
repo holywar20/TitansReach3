@@ -70,7 +70,6 @@ func generateNewCrew( cp = 30 , isPlayer : bool = false ):
 	crewman.setPrimaryAbilityTree( primaryTree )
 
 	crewman.calculateSelf( true )
-	print( crewman.actions )
 
 	return crewman
 

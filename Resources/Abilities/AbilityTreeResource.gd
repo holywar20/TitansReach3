@@ -7,8 +7,10 @@ var isTitanTree = false
 
 var abilityStore = []
 
-enum TREE {
-	DEFAULT, MEDIC, COMMANDO
+const TREE = {
+	"DEFAULT" : "DEFAULT" , 
+	"MEDIC" : "MEDIC" , 
+	"COMMANDO" : "COMMANDO" 
 }
 
 func get_class(): 
@@ -23,3 +25,5 @@ func _init( props, character ):
 	fillableProps = [
 		"treeName" , "isTitanTree"
 	]
+
+	flushAndFillProperties( props, self )

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://ReusableUI/CharEditPanel.gd" type="Script" id=1]
+[ext_resource path="res://ReusableUI/CharEditPanel/CharEditPanel.gd" type="Script" id=1]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/plus_d.png" type="Texture" id=3]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/plus_a.png" type="Texture" id=4]
@@ -10,9 +10,11 @@
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/plus_h.png" type="Texture" id=8]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assetts3.0/OtherUI/ExoItalicBoldBlue14px.tres" type="DynamicFont" id=10]
-[ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ReusableUI/Bar/Bar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/minus_h.png" type="Texture" id=12]
 [ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=13]
+
+
 
 [node name="CharEditPanel" type="Panel"]
 anchor_right = 0.233

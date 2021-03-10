@@ -1,48 +1,58 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Orders/Orders.gd" type="Script" id=1]
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ReusableUI/CharacterShortPanel/CharacterShortPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=5]
-[ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ReusableUI/Bar/Bar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ReusableUI/CharDock/CharDock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Assetts3.0/OtherUI/ExoItalicBoldBlue14px.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assetts3.0/Panels/ExploreMenu.png" type="Texture" id=10]
 
-[sub_resource type="StyleBoxTexture" id=1]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 1220, 800 )
+
+[sub_resource type="StyleBoxTexture" id=2]
 
 [node name="Orders" type="Panel" groups=[
 "MAIN_MENU",
 ]]
+anchor_left = -0.005
+anchor_top = -0.009
 anchor_right = 0.664
 anchor_bottom = 0.7
-margin_right = -0.880005
+margin_left = 9.6
+margin_top = 10.72
+margin_right = 44.12
+margin_bottom = 10.0
 rect_min_size = Vector2( 1274, 756 )
+custom_styles/panel = SubResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tripane" type="HBoxContainer" parent="."]
-anchor_right = 0.998
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -7.45203
-margin_bottom = -12.0
+margin_left = 32.0
+margin_right = 1291.0
+margin_bottom = 740.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Left" type="VBoxContainer" parent="Tripane"]
-margin_right = 413.0
-margin_bottom = 736.0
+margin_right = 414.0
+margin_bottom = 740.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Tripane/Left"]
-margin_right = 413.0
-margin_bottom = 19.0
+margin_right = 414.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -51,20 +61,20 @@ align = 1
 valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Tripane/Left"]
-margin_top = 27.0
-margin_right = 413.0
-margin_bottom = 472.0
+margin_top = 43.0
+margin_right = 414.0
+margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/bg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 follow_focus = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Manifest" type="VBoxContainer" parent="Tripane/Left/ScrollContainer"]
-margin_right = 413.0
-margin_bottom = 445.0
+margin_right = 414.0
+margin_bottom = 433.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 4
@@ -72,19 +82,20 @@ custom_constants/separation = 4
 [node name="Selected" parent="Tripane/Left" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 480.0
-margin_right = 413.0
-margin_bottom = 736.0
+margin_top = 484.0
+margin_right = 414.0
+margin_bottom = 740.0
 
 [node name="Center" type="VBoxContainer" parent="Tripane"]
-margin_left = 421.0
-margin_right = 834.0
-margin_bottom = 736.0
+margin_left = 422.0
+margin_right = 836.0
+margin_bottom = 740.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Tripane/Center"]
-margin_right = 413.0
-margin_bottom = 24.0
+margin_right = 414.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
 custom_fonts/font = ExtResource( 5 )
 text = "CAPTAIN"
 align = 1
@@ -95,9 +106,9 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="Tripane/Center"]
 self_modulate = Color( 0.113725, 0.498039, 0.831373, 1 )
-margin_top = 32.0
-margin_right = 413.0
-margin_bottom = 142.0
+margin_top = 43.0
+margin_right = 414.0
+margin_bottom = 152.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,9 +125,9 @@ margin_right = 0.171997
 margin_bottom = -0.0300064
 
 [node name="AssignmentsLabel" type="Label" parent="Tripane/Center"]
-margin_top = 150.0
-margin_right = 413.0
-margin_bottom = 174.0
+margin_top = 160.0
+margin_right = 414.0
+margin_bottom = 184.0
 custom_fonts/font = ExtResource( 5 )
 text = "Assignments"
 align = 1
@@ -126,9 +137,9 @@ __meta__ = {
 }
 
 [node name="Assignments" type="GridContainer" parent="Tripane/Center"]
-margin_top = 182.0
-margin_right = 413.0
-margin_bottom = 736.0
+margin_top = 192.0
+margin_right = 414.0
+margin_bottom = 740.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 __meta__ = {
@@ -136,14 +147,14 @@ __meta__ = {
 }
 
 [node name="Right" type="VBoxContainer" parent="Tripane"]
-margin_left = 842.0
-margin_right = 1256.0
-margin_bottom = 736.0
+margin_left = 844.0
+margin_right = 1259.0
+margin_bottom = 740.0
 size_flags_horizontal = 3
 
 [node name="TitleRow" type="HBoxContainer" parent="Tripane/Right"]
-margin_right = 414.0
-margin_bottom = 19.0
+margin_right = 415.0
+margin_bottom = 35.0
 
 [node name="Button" type="Button" parent="Tripane/Right/TitleRow"]
 visible = false
@@ -152,8 +163,9 @@ margin_bottom = 25.0
 text = "Rename"
 
 [node name="Label" type="Label" parent="Tripane/Right/TitleRow"]
-margin_right = 414.0
-margin_bottom = 19.0
+margin_right = 415.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -164,24 +176,24 @@ valign = 1
 [node name="Bar" parent="Tripane/Right" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 27.0
-margin_right = 414.0
-margin_bottom = 57.0
+margin_top = 43.0
+margin_right = 415.0
+margin_bottom = 73.0
 rect_min_size = Vector2( 96, 30 )
 
 [node name="Bar2" parent="Tripane/Right" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 65.0
-margin_right = 414.0
-margin_bottom = 95.0
+margin_top = 81.0
+margin_right = 415.0
+margin_bottom = 111.0
 rect_min_size = Vector2( 96, 30 )
 barType = 2
 
 [node name="Label2" type="Label" parent="Tripane/Right"]
-margin_top = 103.0
-margin_right = 414.0
-margin_bottom = 122.0
+margin_top = 119.0
+margin_right = 415.0
+margin_bottom = 138.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -190,13 +202,13 @@ align = 1
 valign = 1
 
 [node name="Stats" type="VBoxContainer" parent="Tripane/Right"]
-margin_top = 130.0
-margin_right = 414.0
-margin_bottom = 331.0
+margin_top = 146.0
+margin_right = 415.0
+margin_bottom = 335.0
 size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="Tripane/Right/Stats"]
-margin_right = 414.0
+margin_right = 415.0
 margin_bottom = 159.0
 
 [node name="Left" type="VBoxContainer" parent="Tripane/Right/Stats/HBox"]
@@ -383,12 +395,12 @@ valign = 1
 
 [node name="Right" type="VBoxContainer" parent="Tripane/Right/Stats/HBox"]
 margin_left = 211.0
-margin_right = 414.0
+margin_right = 415.0
 margin_bottom = 159.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Tripane/Right/Stats/HBox/Right"]
-margin_right = 203.0
+margin_right = 204.0
 margin_bottom = 15.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 9 )
@@ -397,9 +409,9 @@ align = 1
 valign = 1
 
 [node name="OffDutyLabel" type="Label" parent="Tripane/Right"]
-margin_top = 339.0
-margin_right = 414.0
-margin_bottom = 358.0
+margin_top = 343.0
+margin_right = 415.0
+margin_bottom = 362.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -408,9 +420,9 @@ align = 1
 valign = 1
 
 [node name="OffDuty" type="HBoxContainer" parent="Tripane/Right"]
-margin_top = 366.0
-margin_right = 414.0
-margin_bottom = 466.0
+margin_top = 370.0
+margin_right = 415.0
+margin_bottom = 470.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 10
 alignment = 1
@@ -447,9 +459,9 @@ margin_right = 398.0
 margin_bottom = 88.0
 
 [node name="QRFLabel" type="Label" parent="Tripane/Right"]
-margin_top = 474.0
-margin_right = 414.0
-margin_bottom = 493.0
+margin_top = 478.0
+margin_right = 415.0
+margin_bottom = 497.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -458,9 +470,9 @@ align = 1
 valign = 1
 
 [node name="QRF" type="HBoxContainer" parent="Tripane/Right"]
-margin_top = 501.0
-margin_right = 414.0
-margin_bottom = 601.0
+margin_top = 505.0
+margin_right = 415.0
+margin_bottom = 605.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 10
 alignment = 1
@@ -497,9 +509,9 @@ margin_right = 398.0
 margin_bottom = 88.0
 
 [node name="BrigLabel" type="Label" parent="Tripane/Right"]
-margin_top = 609.0
-margin_right = 414.0
-margin_bottom = 628.0
+margin_top = 613.0
+margin_right = 415.0
+margin_bottom = 632.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
@@ -508,9 +520,9 @@ align = 1
 valign = 1
 
 [node name="BRIG" type="HBoxContainer" parent="Tripane/Right"]
-margin_top = 636.0
-margin_right = 414.0
-margin_bottom = 736.0
+margin_top = 640.0
+margin_right = 415.0
+margin_bottom = 740.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 10
 alignment = 1

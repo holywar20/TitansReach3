@@ -35,3 +35,5 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="focus_entered" from="." to="." method="_on_EquipmentLock_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_EquipmentLock_focus_exited"]

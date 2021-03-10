@@ -7,7 +7,7 @@
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=6]
 
-[node name="CrewAssignments" type="Panel" groups=[
+[node name="Equipment" type="Panel" groups=[
 "MAIN_MENU",
 ]]
 margin_right = 1274.0
@@ -33,14 +33,15 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Tripane/Crewlist"]
 margin_right = 419.0
-margin_bottom = 19.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = ExtResource( 2 )
 text = "Crew"
 align = 1
 valign = 1
 
 [node name="CrewList" type="ScrollContainer" parent="Tripane/Crewlist"]
-margin_top = 27.0
+margin_top = 48.0
 margin_right = 419.0
 margin_bottom = 492.0
 size_flags_vertical = 3
@@ -74,22 +75,18 @@ size_flags_vertical = 3
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 419.0
-margin_bottom = 492.0
+margin_bottom = 480.0
 
-[node name="Panel" parent="Tripane/Detail" instance=ExtResource( 6 )]
+[node name="ItemPanel" parent="Tripane/Detail" instance=ExtResource( 6 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 500.0
+margin_top = 488.0
 margin_right = 419.0
 margin_bottom = 756.0
 rect_min_size = Vector2( 0, 256 )
 
-[node name="Label" type="Label" parent="Tripane/Detail/Panel"]
-margin_right = 40.0
-margin_bottom = 13.0
-text = "Equipment Detail"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ArmsRoom" parent="Tripane" instance=ExtResource( 3 )]
+[connection signal="itemFocused" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_itemFocused"]
+[connection signal="itemNotFocused" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_itemNotFocused"]
+[connection signal="itemSelected" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_itemSelected"]

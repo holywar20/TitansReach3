@@ -39,7 +39,6 @@ func _loadOwnedItems():
 		for itemType in keyDictionary:
 			retreiveItemsByType( itemType , keyDictionary[itemType] )		
 
-
 func retreiveItemsByType( itemType : String , keyFilter : Array ,  propFilter : Dictionary = {} ):
 	var joinFragment = ""
 	var selectFragment = "SELECT * FROM CommodityResource "
@@ -74,6 +73,16 @@ func retreiveItemsByType( itemType : String , keyFilter : Array ,  propFilter : 
 func destroyItems():
 	pass
 
+func getItemsByType( itemType : String , _onlyEquippedItems = false ):
+	var itemArray : Array = []
+
+	for key in allItems:
+		if( allItems[key].itemType == itemType ):
+			itemArray.append( allItems[key] )
+			# TODO add flag for filtering only equipped items
+	
+	return itemArray
+		
 func getItem( itemKey : String ):
 	if( allItems.has(itemKey) ):
 		return allItems[itemKey]
@@ -89,7 +98,7 @@ func getTotalValue():
 	return value
 
 func getTotalValueAsString():
-	return str(getTotalValue()) + " iNk"
+	return str( getTotalValue() ) + " ink"
 	
 func getTotalMass():
 	var value : float = 0

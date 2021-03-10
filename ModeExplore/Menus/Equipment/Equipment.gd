@@ -1,6 +1,7 @@
 extends Panel
 
 var crew : Array
+var inventory : Node
 
 var charShortPanelScene = preload("res://ReusableUI/CharacterShortPanel/CharacterShortPanel.tscn")
 
@@ -12,11 +13,14 @@ onready var charPanel = $Tripane/Crewlist/CharacterPanel
 
 # Center Panel
 onready var equipmentPanel = $Tripane/Detail/EquipmentPane
+onready var itemPanel = $Tripane/Detail/ItemPanel
 
 # Right Panel
 onready var armsRoom = $Tripane/ArmsRoom
 
-func setupScene( myCrew : Array ):
+var currentItem : ItemResource
+
+func setupScene( myCrew : Array , newInventory ):
 	crew = myCrew
 	
 	for child in get_tree().get_nodes_in_group(NODE_GROUP_SHORT_PANEL):
@@ -34,7 +38,20 @@ func setupScene( myCrew : Array ):
 			newPanel.grab_focus()
 			newPanel._on_CPanel_focus_entered() # Firing first event manuallyp
 			oneFocused = true
+	
+	armsRoom.setupScene( newInventory )
+
 		
 func _on_CharShortPanelFocusEntered( character : CharacterResource ):
 	charPanel.updateUI( character )
 	equipmentPanel.updateUI( character )
+
+func _on_ArmsRoom_itemFocused(item):
+	itemPanel.updateUI( item )
+
+func _on_ArmsRoom_itemNotFocused( _item ):
+	itemPanel.updateUI( null )
+
+func _on_ArmsRoom_itemSelected(item):
+	itemPanel.updateUI( item )
+	currentItem = item

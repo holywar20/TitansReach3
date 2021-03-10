@@ -35,6 +35,15 @@ export(LOCK_TYPE) var lockType = LOCK_TYPE.EQUIPMENT
 
 var item = null
 
+enum STATE {
+	FOCUS, NOT_FOCUS
+}
+
+const STATE_VARS = {
+	STATE.FOCUS : Color( 0 , 1 , 0 , 1),
+	STATE.NOT_FOCUS : Color( 1 , 1, 1 , 1)
+}
+
 func _ready():
 	texture.rect_min_size = LOCK_PROPS[lockType].size
 	texture.set_texture( LOCK_PROPS[lockType].placeholderIcon )
@@ -47,4 +56,9 @@ func setItem():
 	# If Valid set label to short name
 	# Else bubble an error message with sigals
 
+func _on_EquipmentLock_focus_entered():
+	set_self_modulate( STATE_VARS[STATE.FOCUS] )
 
+
+func _on_EquipmentLock_focus_exited():
+	set_self_modulate( STATE_VARS[STATE.NOT_FOCUS] )

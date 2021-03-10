@@ -7,8 +7,7 @@
 [ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=5]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Data/WorldData/WorldData.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=10]
-[ext_resource path="res://ReusableUI/Minimap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ReusableUI/Minimap/Minimap.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assetts3.0/Controllers/XB1_LB.png" type="Texture" id=12]
 [ext_resource path="res://Assetts3.0/Controllers/XB1_RB.png" type="Texture" id=13]
 
@@ -19,6 +18,8 @@ colors = PoolColorArray( 0.0392157, 0.839216, 0.133333, 1, 0.905882, 0.215686, 0
 [sub_resource type="Environment" id=2]
 background_energy = 0.0
 ambient_light_energy = 0.0
+
+[sub_resource type="ButtonGroup" id=3]
 
 [node name="Explore" type="Node2D"]
 script = ExtResource( 1 )
@@ -166,12 +167,12 @@ margin_right = 1467.0
 margin_bottom = 67.0
 alignment = 1
 
-[node name="Container" type="Container" parent="UI/TopPanel/ButtonBar"]
+[node name="LSpacer" type="Control" parent="UI/TopPanel/ButtonBar"]
 margin_right = 80.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 80, 0 )
 
-[node name="LB" type="Sprite" parent="UI/TopPanel/ButtonBar/Container"]
+[node name="LB" type="Sprite" parent="UI/TopPanel/ButtonBar/LSpacer"]
 position = Vector2( 40, 30 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
@@ -186,6 +187,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "Orders"
 
 [node name="Training" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -198,6 +200,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "Training"
 
 [node name="Equipment" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -210,6 +213,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "Equipment"
 
 [node name="Engineering" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -222,6 +226,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "Engineering"
 
 [node name="Cargohold" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -234,6 +239,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "Cargo"
 
 [node name="Starmap" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -246,6 +252,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "Starmap"
 
 [node name="System" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -258,6 +265,7 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "System"
 
 [node name="Markets" type="Button" parent="UI/TopPanel/ButtonBar"]
@@ -270,34 +278,31 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
 toggle_mode = true
 enabled_focus_mode = 1
+group = SubResource( 3 )
 text = "MARKETS"
 
-[node name="Container2" type="Container" parent="UI/TopPanel/ButtonBar"]
+[node name="RSpacer" type="Control" parent="UI/TopPanel/ButtonBar"]
 margin_left = 1373.0
 margin_right = 1453.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 80, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RB" type="Sprite" parent="UI/TopPanel/ButtonBar/Container2"]
+[node name="RB" type="Sprite" parent="UI/TopPanel/ButtonBar/RSpacer"]
 position = Vector2( 40, 30 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
 
 [node name="Dropdown" type="Panel" parent="UI"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.784314 )
+self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.002
 anchor_top = 0.071
-anchor_right = 0.665
+anchor_right = 0.698
 anchor_bottom = 0.812
-margin_left = -0.84
+margin_left = -2.84
 margin_top = 0.32
-margin_right = 0.199951
-margin_bottom = 0.039978
-rect_min_size = Vector2( 1274, 800 )
+margin_right = 0.840088
+margin_bottom = 0.0400391
+rect_min_size = Vector2( 1340, 800 )
 theme = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true,
@@ -310,22 +315,6 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TitleRow" type="HBoxContainer" parent="UI/Dropdown/Main"]
-margin_right = 1274.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 0, 30 )
-alignment = 1
-
-[node name="Label" type="Label" parent="UI/Dropdown/Main/TitleRow"]
-margin_right = 1274.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 0, 30 )
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 10 )
-text = "{ TITLE }"
-align = 1
-valign = 1
 
 [node name="Anoms" type="Node2D" parent="."]
 position = Vector2( 959.851, 554.04 )

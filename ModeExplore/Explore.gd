@@ -25,7 +25,6 @@ onready var farParticles : CPUParticles2D = $Background/StarfieldUnder/CPUPartic
 onready var startFocusButton : Button = $UI/TopPanel/ButtonBar/CrewButton
 onready var mainContainer : VBoxContainer = $UI/Dropdown/Main
 onready var dropdown : Panel = $UI/Dropdown
-onready var title : Label = $UI/Dropdown/Main/TitleRow/Label
 
 # Other UI
 onready var minimap : PanelContainer = $UI/Minimap
@@ -184,7 +183,6 @@ func loadMenu( buttonIdx : int ):
 	
 	var menuScene = load( MENUS[buttonIdx].scene )
 	var sceneInstance : Panel = menuScene.instance()
-	title.set_text( MENUS[buttonIdx].title )
 	dropdown.show()
 	mainContainer.add_child( sceneInstance )
 	
@@ -202,7 +200,7 @@ func _on_Training_toggled(button_pressed):
 func _on_Equipment_toggled(button_pressed):
 	if( button_pressed == true ):
 		var menuInstance = loadMenu( MB.EQUIPMENT )
-		menuInstance.setupScene( myCrew )
+		menuInstance.setupScene( myCrew , WorldData.Inventory )
 
 func _on_Engineering_toggled(button_pressed):
 	if( button_pressed == true ):

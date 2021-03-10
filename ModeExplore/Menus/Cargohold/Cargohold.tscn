@@ -5,8 +5,9 @@
 [ext_resource path="res://ReusableUI/AbilityDetail/AbilityDetail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=5]
-[ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ReusableUI/Bar/Bar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox12Px.tres" type="DynamicFont" id=8]
+
 
 [node name="Cargo" type="Panel" groups=[
 "MAIN_MENU",

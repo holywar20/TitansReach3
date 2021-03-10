@@ -34,7 +34,7 @@ export(PLANET_CLASS) var planetClass = PLANET_CLASS.TERRAN
 
 var planetClassName : String = ""
 var codex : String = ""
-var color : Color = Color(1 , 1 , 1 , 1 )
+var pColor : String = "crimson"
 
 var texturePath : String = ""
 var textureIconPath : String = ""
@@ -71,7 +71,7 @@ func _init( aSeed : int , starResource , newOrbit : int ):
 	mySeed = genRandomSeed()
 
 	fillableProps = [
-		'planetClassName','codex' , 'texturePath' , 'textureIconPath' , 'textureSmallPath', 'color'
+		'planetClassName','codex' , 'texturePath' , 'textureIconPath' , 'textureSmallPath', 'pColor'
 	]
 	hiLoDiffProps = [
 		'temp' , 'mass'

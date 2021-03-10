@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ReusableUI/CharEditPanel.gd" type="Script" id=1]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=2]
@@ -9,16 +9,18 @@
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/minus_a.png" type="Texture" id=7]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/plus_h.png" type="Texture" id=8]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=9]
-[ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Assetts3.0/OtherUI/ExoItalicBoldBlue14px.tres" type="DynamicFont" id=10]
 [ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assetts3.0/UI/Armatech/Buttons/minus_h.png" type="Texture" id=12]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=13]
 
 [node name="CharEditPanel" type="Panel"]
 anchor_right = 0.233
-anchor_bottom = 0.378
+anchor_bottom = 0.363
 margin_right = 0.639984
-margin_bottom = -0.240021
+margin_bottom = -0.0400085
 size_flags_vertical = 3
+theme = ExtResource( 13 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -188,11 +190,11 @@ custom_constants/separation = 0
 [node name="Label" type="Label" parent="VBox/TraitsBox/STR"]
 margin_top = 12.0
 margin_right = 140.0
-margin_bottom = 28.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_fonts/font = ExtResource( 10 )
-text = "STRength"
+text = "Strength"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -272,7 +274,7 @@ custom_constants/separation = 0
 [node name="Label" type="Label" parent="VBox/TraitsBox/DEX"]
 margin_top = 12.0
 margin_right = 140.0
-margin_bottom = 28.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_fonts/font = ExtResource( 10 )
@@ -356,7 +358,7 @@ custom_constants/separation = 0
 [node name="Label" type="Label" parent="VBox/TraitsBox/PER"]
 margin_top = 12.0
 margin_right = 140.0
-margin_bottom = 28.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_fonts/font = ExtResource( 10 )
@@ -440,7 +442,7 @@ custom_constants/separation = 0
 [node name="Label" type="Label" parent="VBox/TraitsBox/INT"]
 margin_top = 12.0
 margin_right = 140.0
-margin_bottom = 28.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_fonts/font = ExtResource( 10 )
@@ -524,11 +526,11 @@ custom_constants/separation = 0
 [node name="Label" type="Label" parent="VBox/TraitsBox/CHA"]
 margin_top = 12.0
 margin_right = 140.0
-margin_bottom = 28.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_fonts/font = ExtResource( 10 )
-text = "CHARISMA"
+text = "Charisma"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -601,18 +603,18 @@ __meta__ = {
 [node name="VBoxContainer" type="HBoxContainer" parent="VBox"]
 margin_top = 363.0
 margin_right = 432.0
-margin_bottom = 400.0
+margin_bottom = 388.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="VBox/VBoxContainer"]
-margin_right = 58.0
-margin_bottom = 37.0
-text = "SAVE"
+margin_right = 49.0
+margin_bottom = 25.0
+text = "Save"
 
 [node name="Container" type="Container" parent="VBox/VBoxContainer"]
-margin_left = 66.0
-margin_right = 362.0
-margin_bottom = 37.0
+margin_left = 57.0
+margin_right = 370.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -620,10 +622,10 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="VBox/VBoxContainer"]
-margin_left = 370.0
+margin_left = 378.0
 margin_right = 432.0
-margin_bottom = 37.0
-text = "RESET"
+margin_bottom = 25.0
+text = "Reset"
 [connection signal="pressed" from="VBox/TraitsBox/STR/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]
 [connection signal="pressed" from="VBox/TraitsBox/STR/MinusButton" to="." method="_on_MinusButton_pressed" binds= [ "STR" ]]
 [connection signal="pressed" from="VBox/TraitsBox/DEX/PlusButton" to="." method="_on_PlusButton_pressed" binds= [ "STR" ]]

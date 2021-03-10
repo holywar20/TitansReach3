@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://AssettsImage/Faces/BorrowedMen/man-1-small.jpg" type="Texture" id=1]
 [ext_resource path="res://ReusableUI/CharacterShortPanel/CharacterShortPanel.gd" type="Script" id=2]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ReusableUI/Bar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=5]
+[ext_resource path="res://Assetts3.0/OtherUI/ExoItalicBoldBlue14px.tres" type="DynamicFont" id=6]
 
 [node name="CPanel" type="Panel"]
-anchor_right = 0.208
+anchor_right = 0.2
 anchor_bottom = 0.074
-margin_right = 0.639984
 margin_bottom = 0.0800018
 rect_min_size = Vector2( 0, 80 )
 focus_mode = 2
+theme = ExtResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,47 +33,48 @@ __meta__ = {
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 80.0
 margin_top = 8.0
-margin_right = 392.0
-margin_bottom = 74.0
+margin_right = 376.0
+margin_bottom = 72.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="VBox"]
-margin_right = 312.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 3 )
-text = "CHARACTER NAME"
+margin_right = 296.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 6 )
+text = "Character Name"
 align = 1
 valign = 1
+clip_text = true
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
-margin_top = 16.0
-margin_right = 312.0
-margin_bottom = 64.0
+margin_top = 15.0
+margin_right = 296.0
+margin_bottom = 63.0
 
 [node name="Profile" type="VBoxContainer" parent="VBox/HBox"]
-margin_right = 208.0
+margin_right = 192.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 3
 
 [node name="HomeworldRow" type="HBoxContainer" parent="VBox/HBox/Profile"]
-margin_right = 208.0
+margin_right = 192.0
 margin_bottom = 14.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBox/HBox/Profile/HomeworldRow"]
-margin_right = 100.0
+margin_right = 92.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
-text = "HOMEWORLD"
+text = "Homeworld"
 
 [node name="Value" type="Label" parent="VBox/HBox/Profile/HomeworldRow"]
-margin_left = 108.0
-margin_right = 208.0
+margin_left = 100.0
+margin_right = 192.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "xx"
@@ -79,19 +82,19 @@ align = 1
 
 [node name="RaceRow" type="HBoxContainer" parent="VBox/HBox/Profile"]
 margin_top = 17.0
-margin_right = 208.0
+margin_right = 192.0
 margin_bottom = 31.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBox/HBox/Profile/RaceRow"]
-margin_right = 100.0
+margin_right = 92.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "Species"
 
 [node name="Value" type="Label" parent="VBox/HBox/Profile/RaceRow"]
-margin_left = 108.0
-margin_right = 208.0
+margin_left = 100.0
+margin_right = 192.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "xx"
@@ -99,48 +102,53 @@ align = 1
 
 [node name="Title" type="HBoxContainer" parent="VBox/HBox/Profile"]
 margin_top = 34.0
-margin_right = 208.0
+margin_right = 192.0
 margin_bottom = 48.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBox/HBox/Profile/Title"]
-margin_right = 100.0
+margin_right = 92.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "Title"
 
 [node name="Value" type="Label" parent="VBox/HBox/Profile/Title"]
-margin_left = 108.0
-margin_right = 208.0
+margin_left = 100.0
+margin_right = 192.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "In progress"
 align = 1
 
 [node name="Stats" type="VBoxContainer" parent="VBox/HBox"]
-margin_left = 216.0
-margin_right = 312.0
+margin_left = 200.0
+margin_right = 296.0
 margin_bottom = 48.0
 custom_constants/separation = 0
 
 [node name="CP" type="HBoxContainer" parent="VBox/HBox/Stats"]
 margin_right = 96.0
 margin_bottom = 16.0
+custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="VBox/HBox/Stats/CP"]
-margin_top = 1.0
-margin_right = 53.0
-margin_bottom = 14.0
+margin_right = 48.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
 text = "Free CP"
+valign = 1
 
 [node name="Points" type="Label" parent="VBox/HBox/Stats/CP"]
-margin_left = 61.0
+margin_left = 48.0
 margin_right = 96.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
+size_flags_vertical = 5
 custom_fonts/font = ExtResource( 3 )
 text = "xx"
 align = 2
+valign = 1
 
 [node name="HealthBar" parent="VBox/HBox/Stats" instance=ExtResource( 4 )]
 anchor_right = 0.0

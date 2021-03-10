@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://AssettsImage/Interface/SmallConverganceTarget.png" type="Texture" id=1]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=1]
 [ext_resource path="res://ReusableUI/Minimap.gd" type="Script" id=2]
 [ext_resource path="res://Assetts3.0/UI/Radar.png" type="Texture" id=3]
 [ext_resource path="res://ReusableUI/Minimap/Star.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assetts3.0/OtherUI/Exo-Regular.tres" type="DynamicFont" id=5]
 
 [node name="Minimap" type="PanelContainer"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -437.0
-margin_bottom = 580.0
+margin_bottom = 537.0
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -19,57 +21,50 @@ __meta__ = {
 margin_left = 14.0
 margin_top = 14.0
 margin_right = 423.0
-margin_bottom = 566.0
+margin_bottom = 523.0
 
 [node name="TopRow" type="HBoxContainer" parent="VBox"]
 margin_right = 409.0
-margin_bottom = 30.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="System" type="Label" parent="VBox/TopRow"]
-margin_right = 118.0
-margin_bottom = 30.0
+margin_right = 131.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "STAR SYSTEM"
+custom_fonts/font = ExtResource( 5 )
+text = "Star System"
 valign = 1
 
 [node name="Security" type="Label" parent="VBox/TopRow"]
-margin_left = 126.0
-margin_right = 244.0
-margin_bottom = 30.0
+margin_left = 139.0
+margin_right = 270.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
 text = "Low Security"
 align = 1
 valign = 1
 
 [node name="Sector" type="Label" parent="VBox/TopRow"]
-margin_left = 252.0
-margin_right = 371.0
-margin_bottom = 30.0
+margin_left = 278.0
+margin_right = 409.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "SECTOR 1-1"
+custom_fonts/font = ExtResource( 5 )
+text = "Sector 1-1"
 align = 2
 valign = 1
 
-[node name="TextureRect" type="TextureButton" parent="VBox/TopRow"]
-margin_left = 379.0
-margin_right = 409.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
-size_flags_vertical = 3
-texture_normal = ExtResource( 1 )
-expand = true
-stretch_mode = 3
-
 [node name="Map" type="Panel" parent="VBox"]
-margin_top = 38.0
+margin_top = 37.0
 margin_right = 409.0
-margin_bottom = 447.0
+margin_bottom = 446.0
 rect_min_size = Vector2( 409, 409 )
 
 [node name="Replacables" type="TextureRect" parent="VBox/Map"]
@@ -90,25 +85,24 @@ margin_left = -8.0
 margin_top = -8.0
 margin_right = 8.0
 margin_bottom = 8.0
-expand = true
 
 [node name="PlanetBase" type="Control" parent="VBox/Map"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+anchor_left = 0.447
+anchor_top = 0.443
+anchor_right = 0.55
+anchor_bottom = 0.56
+margin_left = 0.176987
+margin_top = -0.187012
+margin_right = 0.0499878
+margin_bottom = -0.0400085
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBox" type="VBoxContainer" parent="VBox"]
-margin_top = 455.0
+margin_top = 454.0
 margin_right = 409.0
-margin_bottom = 552.0
+margin_bottom = 509.0
 
 [node name="Date" type="HBoxContainer" parent="VBox/VBox"]
 margin_right = 409.0
@@ -118,6 +112,7 @@ margin_bottom = 13.0
 margin_right = 200.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
 text = "Date"
 
 [node name="Data" type="Label" parent="VBox/VBox/Date"]
@@ -128,76 +123,72 @@ size_flags_horizontal = 3
 text = "5773,11,01 : 20:00"
 align = 2
 
-[node name="Fuel" type="HBoxContainer" parent="VBox/VBox"]
+[node name="FRow" type="HBoxContainer" parent="VBox/VBox"]
 margin_top = 21.0
 margin_right = 409.0
 margin_bottom = 34.0
 
-[node name="Label" type="Label" parent="VBox/VBox/Fuel"]
-margin_right = 200.0
+[node name="FuelLabel" type="Label" parent="VBox/VBox/FRow"]
+margin_right = 96.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
 text = "Fuel"
 
-[node name="Data" type="Label" parent="VBox/VBox/Fuel"]
-margin_left = 208.0
-margin_right = 409.0
+[node name="Fuel" type="Label" parent="VBox/VBox/FRow"]
+margin_left = 104.0
+margin_right = 200.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "19.7 Tons"
 align = 2
 
-[node name="Food" type="HBoxContainer" parent="VBox/VBox"]
-margin_top = 42.0
-margin_right = 409.0
-margin_bottom = 55.0
-
-[node name="Label" type="Label" parent="VBox/VBox/Food"]
-margin_right = 200.0
+[node name="FoodLabel" type="Label" parent="VBox/VBox/FRow"]
+margin_left = 208.0
+margin_right = 304.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
 text = "Food"
 
-[node name="Data" type="Label" parent="VBox/VBox/Food"]
-margin_left = 208.0
+[node name="FoodAmount" type="Label" parent="VBox/VBox/FRow"]
+margin_left = 312.0
 margin_right = 409.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "122 Days"
 align = 2
 
-[node name="Ink" type="HBoxContainer" parent="VBox/VBox"]
-margin_top = 63.0
+[node name="SRow" type="HBoxContainer" parent="VBox/VBox"]
+margin_top = 42.0
 margin_right = 409.0
-margin_bottom = 76.0
+margin_bottom = 55.0
 
-[node name="Label" type="Label" parent="VBox/VBox/Ink"]
-margin_right = 200.0
+[node name="InkLabel" type="Label" parent="VBox/VBox/SRow"]
+margin_right = 96.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
 text = "Ink"
 
-[node name="Data" type="Label" parent="VBox/VBox/Ink"]
-margin_left = 208.0
-margin_right = 409.0
+[node name="Ink" type="Label" parent="VBox/VBox/SRow"]
+margin_left = 104.0
+margin_right = 200.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "11.002.123"
 align = 2
 
-[node name="Morale" type="HBoxContainer" parent="VBox/VBox"]
-margin_top = 84.0
-margin_right = 409.0
-margin_bottom = 97.0
-
-[node name="Label" type="Label" parent="VBox/VBox/Morale"]
-margin_right = 200.0
+[node name="MoraleLabel" type="Label" parent="VBox/VBox/SRow"]
+margin_left = 208.0
+margin_right = 304.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
 text = "Morale"
 
-[node name="Data" type="Label" parent="VBox/VBox/Morale"]
-margin_left = 208.0
+[node name="Morale" type="Label" parent="VBox/VBox/SRow"]
+margin_left = 312.0
 margin_right = 409.0
 margin_bottom = 13.0
 size_flags_horizontal = 3

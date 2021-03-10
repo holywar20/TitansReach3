@@ -7,8 +7,6 @@
 [ext_resource path="res://ReusableUI/CharacterPanel/CharacterPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=6]
 
-
-
 [node name="CrewAssignments" type="Panel" groups=[
 "MAIN_MENU",
 ]]

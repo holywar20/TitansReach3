@@ -22,7 +22,14 @@ func updateUI( newItem ):
 		show()
 		myItem = newItem
 
-		title.set_text( myItem.itemDisplayName )
+		title.set_text( myItem.itemDisplayName  + "  ( " + str(myItem.itemAmount) + " ) " )
 		desc.set_text( myItem.itemDescription )
 		icon.set_texture( load(myItem.itemTexturePath ) )
+		
+		data.TValue.set_text( myItem.getAllItemValueDisplay() )
+		data.Value.set_text( myItem.getItemValueDisplay() )
+		data.TVolume.set_text( myItem.getAllVolumeDisplay() )
+		data.Volume.set_text( myItem.getVolumeDisplay() )
+		data.Mass.set_text( myItem.getMassDisplay() )
+		data.TMass.set_text( myItem.getAllMassDisplay() )
 

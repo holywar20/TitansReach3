@@ -2,7 +2,7 @@
 	"L" : {
 		"planetClassName" : "Lava",
 		"codex" : "Lava Planet",
-		"color" : "crimson",
+		"pColor" : "crimson",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6
@@ -33,7 +33,7 @@
 	"M" : {
 		"planetClassName" : "Mesoplanet",
 		"codex" : "Mesoplanets are extremely small planets",
-		"color" : "sandybrown",
+		"pColor" : "sandybrown",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6
@@ -64,7 +64,7 @@
 	"G" : {
 		"planetClassName" : "Gas Giant",
 		"codex" : "Gas Giants are planets made up mostly of hyrogen & Helium",
-		"color" : "violet",
+		"pColor" : "violet",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6
@@ -95,7 +95,7 @@
 	"IG" : {
 		"planetClassName" : "Ice Giants",
 		"codex" : "Smaller than true Gas Giants, ice Giants are often extremely cold worlds with large amounts of complex hydrocarbons, methanes and water and ice crystals in their atmospheres",
-		"color" : "lightcyan",
+		"pColor" : "lightcyan",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6
@@ -126,7 +126,7 @@
 	"T" : {
 		"planetClassName" : "Terran",
 		"codex" : "Terran planets are classified as such because they are possible to live on the surface for at least a short while without any special protection. They are most likely to have pre-colonization biospheres, though most will eventually require some terraforming to become truely habitable.",
-		"color" : "lawngreen",
+		"pColor" : "lawngreen",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6
@@ -157,7 +157,7 @@
 	"B" : {
 		"planetClassName" : "Barren",
 		"codex" : "Barren Planets are completely airless worlds. They are best utilized for mining operations, as the lack of air makes it easy to land & launch payload bearing shuttles.",
-		"color" : "orangered",
+		"pColor" : "orangered",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6
@@ -188,7 +188,7 @@
 	"I" : {
 		"planetClassName" : "Ice",
 		"codex" : "Icy Planets are essentially extremely cold versions of Terran worlds. Breathing the air is sometimes possible without special equipment but the incredibly low tempatures make it nearly impossible to survive without special equipment.",
-		"color" : "antiquewhite",
+		"pColor" : "antiquewhite",
 		"mass" : {
 			"hi" : 1.4 , 
 			"lo" : 0.6

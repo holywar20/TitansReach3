@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ReusableUI/CharacterDetail/CharacterDetail.gd" type="Script" id=2]
 [ext_resource path="res://Assetts3.0/Controllers/XB1_X.png" type="Texture" id=3]
-[ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assetts3.0/OtherUI/ExoItalicBoldBlue14px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assetts3.0/UI/Icons/move.png" type="Texture" id=5]
 [ext_resource path="res://Assetts3.0/UI/Icons/stun.png" type="Texture" id=6]
 [ext_resource path="res://Assetts3.0/UI/Icons/slow.png" type="Texture" id=7]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assetts3.0/UI/Icons/bleed.png" type="Texture" id=10]
 [ext_resource path="res://Assetts3.0/UI/Icons/marked.png" type="Texture" id=11]
 [ext_resource path="res://Assetts3.0/UI/Icons/oppression.png" type="Texture" id=12]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=13]
 
 [node name="Other" type="Panel"]
 anchor_right = 0.217
@@ -21,6 +22,7 @@ margin_bottom = -0.320007
 rect_min_size = Vector2( 0, 240 )
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
+theme = ExtResource( 13 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,7 +71,7 @@ margin_left = 45.0
 margin_top = 8.0
 margin_right = 85.0
 margin_bottom = 21.0
-text = "SWAP"
+text = "Swap"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -97,15 +99,15 @@ custom_constants/separation = -2
 
 [node name="Label" type="Label" parent="VBox/ResistancePanel/VBox/Left"]
 margin_right = 408.0
-margin_bottom = 16.0
+margin_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
-text = "STATUS EFFECT Resistance"
+text = "Status Effect Resistance"
 align = 1
 
 [node name="TitleRow" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 14.0
+margin_top = 13.0
 margin_right = 408.0
-margin_bottom = 34.0
+margin_bottom = 33.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -165,14 +167,14 @@ margin_top = 3.0
 margin_right = 408.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
-text = "TOTAL"
+text = "Total"
 align = 1
 valign = 1
 
 [node name="MOVE" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 32.0
+margin_top = 31.0
 margin_right = 408.0
-margin_bottom = 64.0
+margin_bottom = 63.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -191,7 +193,7 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Move"
@@ -238,9 +240,9 @@ align = 1
 valign = 1
 
 [node name="STUN" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 62.0
+margin_top = 61.0
 margin_right = 408.0
-margin_bottom = 94.0
+margin_bottom = 93.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -259,10 +261,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "STUN"
+text = "Stun"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/STUN"]
@@ -306,9 +308,9 @@ align = 1
 valign = 1
 
 [node name="CHARM" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 92.0
+margin_top = 91.0
 margin_right = 408.0
-margin_bottom = 124.0
+margin_bottom = 123.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -327,10 +329,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "CHARM"
+text = "Charm"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/CHARM"]
@@ -374,9 +376,9 @@ align = 1
 valign = 1
 
 [node name="SILENCE" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 122.0
+margin_top = 121.0
 margin_right = 408.0
-margin_bottom = 154.0
+margin_bottom = 153.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -395,10 +397,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "SILENCE"
+text = "Silence"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/SILENCE"]
@@ -442,9 +444,9 @@ align = 1
 valign = 1
 
 [node name="SLOW" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 152.0
+margin_top = 151.0
 margin_right = 408.0
-margin_bottom = 184.0
+margin_bottom = 183.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -463,10 +465,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "SLOW"
+text = "Slow"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/SLOW"]
@@ -510,9 +512,9 @@ align = 1
 valign = 1
 
 [node name="BLEED" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 182.0
+margin_top = 181.0
 margin_right = 408.0
-margin_bottom = 214.0
+margin_bottom = 213.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -531,10 +533,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "BLEED"
+text = "Bleed"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/BLEED"]
@@ -578,9 +580,9 @@ align = 1
 valign = 1
 
 [node name="MARKED" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 212.0
+margin_top = 211.0
 margin_right = 408.0
-margin_bottom = 244.0
+margin_bottom = 243.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -599,10 +601,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "MARKED"
+text = "Marked"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/MARKED"]
@@ -646,9 +648,9 @@ align = 1
 valign = 1
 
 [node name="OPPRESS" type="HBoxContainer" parent="VBox/ResistancePanel/VBox/Left"]
-margin_top = 242.0
+margin_top = 241.0
 margin_right = 408.0
-margin_bottom = 274.0
+margin_bottom = 273.0
 custom_constants/separation = 0
 alignment = 1
 __meta__ = {
@@ -667,10 +669,10 @@ __meta__ = {
 margin_left = 32.0
 margin_top = 8.0
 margin_right = 107.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
-text = "OPPRESS"
+text = "Oppress"
 valign = 1
 
 [node name="Trait" type="Label" parent="VBox/ResistancePanel/VBox/Left/OPPRESS"]

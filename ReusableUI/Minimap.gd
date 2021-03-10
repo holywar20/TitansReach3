@@ -8,7 +8,8 @@ const STAR_SPACER = 40
 const PLANET_ORBIT_FACTOR = 20
 const ORBIT_SEGMENT_COUNT = 25
 const ORBIT_CENTER = Vector2( 0 , 0 )
-const ORBIT_LINE_WIDTH = 10
+const ORBIT_COLOR = Color( 1 ,1 ,1 , 1 )
+const ORBIT_LINE_WIDTH = 5
 
 onready var planetIconScene = preload("res://ReusableUI/Minimap/Planet.tscn")
 
@@ -27,13 +28,10 @@ onready var planetIconBase = $VBox/Map/PlanetBase
 
 # TODO : Allow for navigation input
 func _draw():
-	pass
-	#for planetData in myPlanets:
-	#	if( planetData ):
-	#		print( starIcon.get_position() ,  PLANET_ORBIT_FACTOR * planetData.orbit )
-	#		replaceAbles.draw_circle( Vector2( 200, 150 ) , PLANET_ORBIT_FACTOR * planetData.orbit , Color( 1, 1, 1 ,1) )
-
-	#update()
+	for planetData in myPlanets:
+		if( planetData ):
+			pass
+			#drawCircle( planetData.orbit , starIcon )
 
 func setupScene( newSystem : SystemResource ):
 	system = newSystem
@@ -51,7 +49,18 @@ func setupScene( newSystem : SystemResource ):
 			planetIconBase.add_child( planetIconInstance )
 			# TODO : Wire up the icons so that 'selection is possible'
 
-	update()
+	starIcon.update()
 
 func updateVolitileReadout( fuel , food , ink , morale ):
 	pass
+
+func drawCircle( radius, drawNode ):
+	var points_arc = PoolVector2Array()
+	
+	for segment in range( ORBIT_SEGMENT_COUNT+1):
+		var angle_point = ( segment * 360 ) / ORBIT_SEGMENT_COUNT - 90
+		var point = ORBIT_CENTER + Vector2(cos(deg2rad(angle_point)), sin(deg2rad(angle_point))) * radius
+		points_arc.push_back(point)
+	
+	for index_point in range( ORBIT_SEGMENT_COUNT ):
+		drawNode.draw_line( points_arc[index_point], points_arc[index_point + 1], ORBIT_COLOR , ORBIT_LINE_WIDTH )

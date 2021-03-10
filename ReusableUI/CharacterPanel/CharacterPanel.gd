@@ -54,11 +54,11 @@ func _loadStatBlockIntoRow( traitName ):
 
 func _loadDamageBlockIntoRow( dmgType ):
 	var myStatBlock = character.getDmgResistStatBlock( dmgType )
-	get_node(BASE_NODE_DMG_PATH + dmgType + "/Cur").set_text( str(myStatBlock.total ) + "%" )
+	get_node(BASE_NODE_DMG_PATH + dmgType + "/Cur").set_text( str(myStatBlock.total ) )
 
 func _loadResistBlockIntoRow( resist ):
 	var myStatBlock = character.getResistStatBlock( resist )
-	get_node(BASE_NODE_RESIST_PATH + resist + "/Cur").set_text( str(myStatBlock.total ) + "%" )
+	get_node(BASE_NODE_RESIST_PATH + resist + "/Cur").set_text( str(myStatBlock.total ) )
 
 func setState( newState : int ):
 	currentState = newState

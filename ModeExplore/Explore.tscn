@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ModeExplore/Explore.gd" type="Script" id=1]
 [ext_resource path="res://ModeExplore/Starship/Starship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://AssettsImage/Backgrounds/Space001.png" type="Texture" id=3]
 [ext_resource path="res://Generators/SystemGenerator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assetts3.0/OtherUI/RootTheme.tres" type="Theme" id=5]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Data/WorldData/WorldData.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=10]
@@ -146,6 +147,7 @@ anchor_bottom = 1.0
 margin_left = -0.900024
 margin_top = 0.159973
 margin_right = 0.900024
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -285,6 +287,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
 
 [node name="Dropdown" type="Panel" parent="UI"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.002
 anchor_top = 0.071
@@ -294,6 +297,8 @@ margin_left = -0.84
 margin_top = 0.32
 margin_right = 0.199951
 margin_bottom = 0.039978
+rect_min_size = Vector2( 1274, 800 )
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -309,6 +314,7 @@ __meta__ = {
 [node name="TitleRow" type="HBoxContainer" parent="UI/Dropdown/Main"]
 margin_right = 1274.0
 margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
 alignment = 1
 
 [node name="Label" type="Label" parent="UI/Dropdown/Main/TitleRow"]
@@ -325,7 +331,7 @@ valign = 1
 position = Vector2( 959.851, 554.04 )
 
 [node name="PlayerShip" parent="." instance=ExtResource( 2 )]
-position = Vector2( 990, 540 )
+position = Vector2( 959.796, 540.034 )
 rotation = 0.0
 gravity_scale = 0.0
 velocityMaxForward = 1000

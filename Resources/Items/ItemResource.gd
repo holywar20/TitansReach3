@@ -97,13 +97,13 @@ func getVolumeDisplay():
 	return str( itemVolume ) + " m3"
 
 func getAllVolumeDisplay():
-	return str( itemVolume * itemAmount )
+	return str( itemVolume * itemAmount ) + " m3"
 
 func getItemValueDisplay():
 	return str( itemValue ) + " Ink"
 
 func getAllItemValueDisplay():
-	return str( itemValue * itemAmount )
+	return str( itemValue * itemAmount ) + " Ink"
 
 # meant to be overridden. Should return an array of strings.
 func getAbilities():

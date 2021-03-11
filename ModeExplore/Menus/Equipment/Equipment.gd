@@ -20,6 +20,11 @@ onready var armsRoom = $Tripane/ArmsRoom
 
 var currentItem : ItemResource
 
+const STATE = {}
+
+func _input( event ):
+	pass
+
 func setupScene( myCrew : Array , newInventory ):
 	crew = myCrew
 	
@@ -41,7 +46,7 @@ func setupScene( myCrew : Array , newInventory ):
 	
 	armsRoom.setupScene( newInventory )
 
-		
+# Responses to signals
 func _on_CharShortPanelFocusEntered( character : CharacterResource ):
 	charPanel.updateUI( character )
 	equipmentPanel.updateUI( character )
@@ -55,3 +60,8 @@ func _on_ArmsRoom_itemNotFocused( _item ):
 func _on_ArmsRoom_itemSelected(item):
 	itemPanel.updateUI( item )
 	currentItem = item
+
+	equipmentPanel.delegateFocus( currentItem.itemType )
+
+func _on_EquipmentPane_equipmentAssignCancelled():
+	armsRoom.backToSelection()

@@ -12,6 +12,8 @@
 ]]
 margin_right = 1274.0
 margin_bottom = 756.0
+focus_mode = 2
+mouse_filter = 1
 size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
@@ -87,6 +89,9 @@ margin_bottom = 756.0
 rect_min_size = Vector2( 0, 256 )
 
 [node name="ArmsRoom" parent="Tripane" instance=ExtResource( 3 )]
+focus_mode = 2
+[connection signal="equipmentAssignCancelled" from="Tripane/Detail/EquipmentPane" to="." method="_on_EquipmentPane_equipmentAssignCancelled"]
+[connection signal="focus_entered" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_focus_entered"]
 [connection signal="itemFocused" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_itemFocused"]
 [connection signal="itemNotFocused" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_itemNotFocused"]
 [connection signal="itemSelected" from="Tripane/ArmsRoom" to="." method="_on_ArmsRoom_itemSelected"]

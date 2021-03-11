@@ -77,24 +77,25 @@ __meta__ = {
 }
 
 [node name="Star" parent="VBox/Map/Replacables" instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
+anchor_left = 0.415
+anchor_top = 0.415
+anchor_right = 0.583
+anchor_bottom = 0.586
+margin_left = -0.15152
+margin_top = -0.132507
+margin_right = 0.13649
+margin_bottom = -0.0715027
+stretch_mode = 4
 
 [node name="PlanetBase" type="Control" parent="VBox/Map"]
 anchor_left = 0.447
 anchor_top = 0.443
 anchor_right = 0.55
 anchor_bottom = 0.56
-margin_left = 0.176987
-margin_top = -0.187012
-margin_right = 0.0499878
-margin_bottom = -0.0400085
+margin_left = 1.46692
+margin_top = -0.981995
+margin_right = 1.33992
+margin_bottom = -0.834991
 __meta__ = {
 "_edit_use_anchors_": false
 }

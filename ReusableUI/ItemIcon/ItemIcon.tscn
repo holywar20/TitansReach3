@@ -5,8 +5,10 @@
 [ext_resource path="res://Assetts3.0/OtherUI/ExoItalicBoldBlue14px.tres" type="DynamicFont" id=3]
 
 [node name="Item" type="TextureButton"]
-margin_right = 64.0
-margin_bottom = 64.0
+anchor_right = 0.033
+anchor_bottom = 0.059
+margin_right = 0.639999
+margin_bottom = 0.279995
 texture_normal = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -31,3 +33,4 @@ __meta__ = {
 }
 [connection signal="focus_entered" from="." to="." method="_on_Item_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_Item_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_Item_pressed"]

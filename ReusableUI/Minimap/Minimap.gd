@@ -16,10 +16,10 @@ onready var planetIconScene = preload("res://ReusableUI/Minimap/Planet.tscn")
 onready var sectorSystemName = $VBox/TopRow/System
 
 onready var date = $VBox/VBox/Date/Data
-onready var fuel = $VBox/VBox/Fuel/Data
-onready var food = $VBox/VBox/Food/Data
-onready var ink = $VBox/VBox/Ink/Data
-onready var morale = $VBox/VBox/Ink/Data
+onready var fuel = $VBox/VBox/FRow/Fuel
+onready var food = $VBox/VBox/FRow/FoodAmount
+onready var ink = $VBox/VBox/SRow/Ink
+onready var morale = $VBox/VBox/SRow/Morale
 
 onready var map = $VBox/Map
 onready var replaceAbles = $VBox/Map/Replacables

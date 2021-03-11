@@ -22,7 +22,6 @@ const ITEM_DISPLAY_PROPS = {
 	}
 }
 
-
 func setupScene( newInventory  ):
 	inventory = newInventory
 	updateUI( ItemResource.ITEM_TYPE.WEAPON ) # Weapons are pressed by default
@@ -42,11 +41,24 @@ func updateUI( itemType ):
 		iconInstance.setupScene( item )
 		
 		iconInstance.connect( "pressed" , self , "_on_ItemIcon_pressed" , [iconInstance.myItem] )
-		iconInstance.connect( "focus_entered" , self , "_on_ItemIcon_itemNotFocused", [iconInstance.myItem] )
-		iconInstance.connect( "focus_exited" , self , "_on_ItemIcon_itemFocused", [iconInstance.myItem] )
+		iconInstance.connect( "focus_entered" , self , "_on_ItemIcon_itemFocused", [iconInstance.myItem] )
+		iconInstance.connect( "focus_exited" , self , "_on_ItemIcon_itemNotFocused", [iconInstance.myItem] )
+
+# Called by parent something goes wrong and we need to go back to previous state
+func backToSelection():
+	for child in itemBase.get_children():
+		if( child.state == child.STATE.SELECTED ):
+			child.grab_focus()
+			child.setState( child.STATE.FOCUS )
 
 
-# Signals 
+
+# Called whenenever we need to clear a selection
+func _resetItemIcons():
+	for child in itemBase.get_children():
+		child.setState( child.STATE.NOT_FOCUS )
+
+# Signals
 func _on_Weapons_toggled( _button_pressed ):
 	updateUI( ItemResource.ITEM_TYPE.WEAPON )
 

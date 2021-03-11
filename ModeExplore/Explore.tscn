@@ -156,6 +156,8 @@ __meta__ = {
 [node name="TopPanel" type="PanelContainer" parent="UI"]
 margin_right = 1481.0
 margin_bottom = 81.0
+focus_mode = 2
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -303,6 +305,8 @@ margin_top = 0.32
 margin_right = 0.840088
 margin_bottom = 0.0400391
 rect_min_size = Vector2( 1340, 800 )
+focus_mode = 2
+mouse_filter = 1
 theme = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true,

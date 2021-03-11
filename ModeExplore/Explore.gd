@@ -9,7 +9,6 @@ onready var WorldData : Node = $WorldData
 # TODO put into some kind of wallet resource. Will need this for trade & markets to work
 onready var ink = 200000
 
-
 # Bases
 onready var anoms : Node2D = $Anoms
 onready var starBase : Spatial = $Background/ViewportContainer/Viewport/Stars
@@ -98,8 +97,10 @@ var myCrew : Array = [] # An array of Character Resources
 func _ready() -> void:
 	setupScene( mySeed )
 
-func _input(event):
+func _unhandled_input(event):
 	if( event.is_action_pressed("CUSTUI_LEFT_MENU") ):
+		get_tree().set_input_as_handled()
+		
 		if( currentButton == null ):
 			currentButton = buttonQue[0]
 			buttons[currentButton].set_pressed(true)
@@ -109,6 +110,8 @@ func _input(event):
 			buttons[currentButton].set_pressed(true)
 			
 	elif( event.is_action_pressed("CUSTUI_RIGHT_MENU") ):
+		get_tree().set_input_as_handled()
+		
 		if( currentButton == null ):
 			currentButton = buttonQue[buttonQue.size() - 1]
 			buttons[currentButton].set_pressed(true)
@@ -117,8 +120,8 @@ func _input(event):
 			currentButton = posmod( currentButton + 1 , buttonQue.size() )
 			buttons[currentButton].set_pressed(true)
 			
-			
 	if( event.is_action_pressed("ui_cancel") ):
+		get_tree().set_input_as_handled()
 		if(currentButton):
 			dropdown.hide()
 			

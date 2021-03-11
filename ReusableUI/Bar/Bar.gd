@@ -38,5 +38,5 @@ func setBarValues( total : int , current : int ):
 	set_max( total )
 	set_value( current )
 
-	valueDisplay.set_text( str(current) + "/" + str(total) )
+	valueDisplay.set_text( str(current) + " / " + str(total) )
 

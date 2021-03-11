@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ModeExplore/Menus/Engineering/Engineering.gd" type="Script" id=1]
-
-
-
+[ext_resource path="res://AssettsImage/Ships/Default.png" type="Texture" id=2]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox16Px.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ReusableUI/Bar/Bar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ReusableUI/EquipmentDetail/EquipmentDetail.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox24pt.tres" type="DynamicFont" id=6]
+[ext_resource path="res://AssettsImage/Items/Equipment/TerranShieldGen.jpg" type="Texture" id=7]
+[ext_resource path="res://Assetts3.0/OtherUI/Equinox14px.tres" type="DynamicFont" id=8]
 
 [node name="Starship" type="Panel" groups=[
 "MAIN_MENU",
@@ -17,17 +21,517 @@ __meta__ = {
 }
 
 [node name="Tripane" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tripane"]
-margin_right = 61.0
-margin_bottom = 40.0
+[node name="Left" type="VBoxContainer" parent="Tripane"]
+margin_right = 419.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Tripane/VBoxContainer"]
-margin_right = 61.0
-margin_bottom = 14.0
-text = "STARSHIP"
+[node name="Label" type="Label" parent="Tripane/Left"]
+margin_right = 419.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = ExtResource( 3 )
+text = "Statistics"
+align = 1
+valign = 1
+
+[node name="Armor" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 48.0
+margin_right = 419.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Armor"]
+margin_right = 100.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+text = "Armor"
+align = 1
+valign = 1
+
+[node name="Bar" parent="Tripane/Left/Armor" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 108.0
+margin_right = 419.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Power" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 76.0
+margin_right = 419.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Power"]
+margin_right = 100.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+text = "Power"
+align = 1
+valign = 1
+
+[node name="Bar" parent="Tripane/Left/Power" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 108.0
+margin_right = 419.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Cargo" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 104.0
+margin_right = 419.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Cargo"]
+margin_right = 100.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+text = "Cargo"
+align = 1
+valign = 1
+
+[node name="Bar" parent="Tripane/Left/Cargo" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 108.0
+margin_right = 419.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Volume" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 132.0
+margin_right = 419.0
+margin_bottom = 152.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Volume"]
+margin_right = 100.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+text = "Volume"
+align = 1
+valign = 1
+
+[node name="Bar" parent="Tripane/Left/Volume" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 108.0
+margin_right = 419.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 160.0
+margin_right = 419.0
+margin_bottom = 190.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/HBoxContainer"]
+margin_top = -1.0
+margin_right = 98.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Tripane/Left/HBoxContainer"]
+margin_left = 106.0
+margin_top = -1.0
+margin_right = 205.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Tripane/Left/HBoxContainer"]
+margin_left = 213.0
+margin_top = -1.0
+margin_right = 312.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Tripane/Left/HBoxContainer"]
+margin_left = 320.0
+margin_top = -1.0
+margin_right = 419.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 1
+valign = 1
+
+[node name="NavigationLabel" type="Label" parent="Tripane/Left"]
+margin_top = 197.0
+margin_right = 419.0
+margin_bottom = 227.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = ExtResource( 8 )
+text = "Navigation"
+align = 1
+valign = 1
+
+[node name="Agility" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 236.0
+margin_right = 419.0
+margin_bottom = 261.0
+rect_min_size = Vector2( 0, 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Agility"]
+margin_top = -1.0
+margin_right = 98.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Agility"
+valign = 1
+
+[node name="Label2" type="Label" parent="Tripane/Left/Agility"]
+margin_left = 106.0
+margin_top = -1.0
+margin_right = 205.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Tripane/Left/Agility"]
+margin_left = 213.0
+margin_top = -1.0
+margin_right = 312.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Tripane/Left/Agility"]
+margin_left = 320.0
+margin_top = -1.0
+margin_right = 419.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Thrust" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 269.0
+margin_right = 419.0
+margin_bottom = 294.0
+rect_min_size = Vector2( 0, 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Thrust"]
+margin_top = -1.0
+margin_right = 98.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Agility"
+valign = 1
+
+[node name="Label2" type="Label" parent="Tripane/Left/Thrust"]
+margin_left = 106.0
+margin_top = -1.0
+margin_right = 205.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Tripane/Left/Thrust"]
+margin_left = 213.0
+margin_top = -1.0
+margin_right = 312.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Tripane/Left/Thrust"]
+margin_left = 320.0
+margin_top = -1.0
+margin_right = 419.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Efficiency" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 302.0
+margin_right = 419.0
+margin_bottom = 327.0
+rect_min_size = Vector2( 0, 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/Efficiency"]
+margin_top = -1.0
+margin_right = 98.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Agility"
+valign = 1
+
+[node name="Label2" type="Label" parent="Tripane/Left/Efficiency"]
+margin_left = 106.0
+margin_top = -1.0
+margin_right = 205.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Tripane/Left/Efficiency"]
+margin_left = 213.0
+margin_top = -1.0
+margin_right = 312.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Tripane/Left/Efficiency"]
+margin_left = 320.0
+margin_top = -1.0
+margin_right = 419.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="JumpRange" type="HBoxContainer" parent="Tripane/Left"]
+margin_top = 335.0
+margin_right = 419.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 0, 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tripane/Left/JumpRange"]
+margin_top = -1.0
+margin_right = 98.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Agility"
+valign = 1
+
+[node name="Label2" type="Label" parent="Tripane/Left/JumpRange"]
+margin_left = 106.0
+margin_top = -1.0
+margin_right = 205.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Tripane/Left/JumpRange"]
+margin_left = 213.0
+margin_top = -1.0
+margin_right = 312.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Tripane/Left/JumpRange"]
+margin_left = 320.0
+margin_top = -1.0
+margin_right = 419.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "xx"
+align = 1
+valign = 1
+
+[node name="Center" type="VBoxContainer" parent="Tripane"]
+margin_left = 427.0
+margin_right = 846.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Tripane/Center"]
+margin_right = 419.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = ExtResource( 6 )
+text = "STARSHIP NAME"
+align = 1
+valign = 1
+
+[node name="ShipPaperDoll" type="Panel" parent="Tripane/Center"]
+margin_top = 48.0
+margin_right = 419.0
+margin_bottom = 422.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.8
+
+[node name="TextureRect" type="TextureRect" parent="Tripane/Center/ShipPaperDoll"]
+anchor_left = 0.252
+anchor_top = 0.05
+anchor_right = 0.702
+anchor_bottom = 0.913
+margin_left = 0.0918655
+margin_top = -0.0994759
+margin_right = 6.54187
+margin_bottom = 0.138519
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" parent="Tripane/Center" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 430.0
+margin_right = 419.0
+margin_bottom = 756.0
+
+[node name="Right" type="VBoxContainer" parent="Tripane"]
+margin_left = 854.0
+margin_right = 1274.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Tripane/Right"]
+margin_right = 420.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = ExtResource( 3 )
+text = "Modules"
+align = 1
+valign = 1
+
+[node name="GridContainer" type="GridContainer" parent="Tripane/Right"]
+margin_top = 48.0
+margin_right = 420.0
+margin_bottom = 756.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 15
+custom_constants/hseparation = 15
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Tripane/Right/GridContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 7 )
+
+[node name="TextureRect2" type="TextureRect" parent="Tripane/Right/GridContainer"]
+margin_left = 79.0
+margin_right = 143.0
+margin_bottom = 64.0
+texture = ExtResource( 7 )
+
+[node name="TextureRect3" type="TextureRect" parent="Tripane/Right/GridContainer"]
+margin_left = 158.0
+margin_right = 222.0
+margin_bottom = 64.0
+texture = ExtResource( 7 )
+
+[node name="TextureRect4" type="TextureRect" parent="Tripane/Right/GridContainer"]
+margin_top = 79.0
+margin_right = 64.0
+margin_bottom = 143.0
+texture = ExtResource( 7 )
+
+[node name="TextureRect5" type="TextureRect" parent="Tripane/Right/GridContainer"]
+margin_left = 79.0
+margin_top = 79.0
+margin_right = 143.0
+margin_bottom = 143.0
+texture = ExtResource( 7 )
+
+[node name="TextureRect6" type="TextureRect" parent="Tripane/Right/GridContainer"]
+margin_left = 158.0
+margin_top = 79.0
+margin_right = 222.0
+margin_bottom = 143.0
+texture = ExtResource( 7 )

@@ -22,9 +22,6 @@ var currentItem : ItemResource
 
 const STATE = {}
 
-func _input( event ):
-	pass
-
 func setupScene( myCrew : Array , newInventory ):
 	crew = myCrew
 	

@@ -35,8 +35,8 @@ func _updateStatRow( stat : String ):
 	get_node( TRAIT_TABLE_PATH + stat + "/Total").set_text( str(myStatBlock.total) )
 
 
-func _on_PlusButton_pressed( trait : String ):
+func _on_PlusButton_pressed( _trait : String ):
 	pass
 
-func _on_MinusButton_pressed( trait : String ):
+func _on_MinusButton_pressed( _trait : String ):
 	pass # Replace with function body.

@@ -33,16 +33,22 @@ var isPlayer = false
 # Other State
 var station = null
 var currentStanceKey = null
+
+
+enum GEAR {
+	WEAPON , ARMOR , EQUIP
+}
+
 var gear = {
-	"Frame" : null, "LWeapon" : null,  "RWeapon" : null , "CEquip" : null , "LEquip" : null , "REquip" : null
+	GEAR.ARMOR : [ false ],
+	GEAR.WEAPON : [ false , false ],
+	GEAR.EQUIP : [ false , false , false ]
 }
 
 # abilityTrees
 var defaultTree = null
 var primaryTree = null
-var secondaryTree = null
-
-# 
+var secondaryTree = null 
 var equipmentAbilities = null
 
 # store off all this users abilities
@@ -106,6 +112,15 @@ func setPrimaryAbilityTree(  abilityTree : AbilityTreeResource ):
 	
 func setSecondaryAbilityTree(  abilityTree : AbilityTreeResource ):
 	secondaryTree = abilityTree
+
+func canEquip( slotType , slot, item ):
+	pass
+	# Test Carry weight
+
+func equipItem( slotType, slot , item ):
+	var oldItem = gear[slotType][slot]
+	gear[slotType][slot] = item
+	return oldItem
 
 func calculateSelf( newCharacter = false ):
 

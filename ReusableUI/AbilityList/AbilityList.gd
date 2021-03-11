@@ -68,5 +68,5 @@ func _on_AbilityButton_focus_entered( ability: AbilityResource ):
 	emit_signal("abilityChanged" , ability )
 
 # Can potentially deprecate this
-func _on_AbilityButton_focus_exited( ability : AbilityResource ):
+func _on_AbilityButton_focus_exited( _ability : AbilityResource ):
 	pass

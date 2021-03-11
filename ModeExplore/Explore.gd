@@ -21,7 +21,7 @@ onready var midParticles : CPUParticles2D = $Background/StarfieldMid/CPUParticle
 onready var farParticles : CPUParticles2D = $Background/StarfieldUnder/CPUParticles2D
 
 # Menu Management 
-onready var startFocusButton : Button = $UI/TopPanel/ButtonBar/CrewButton
+# onready var startFocusButton : Button = $UI/TopPanel/ButtonBar/CrewButton
 onready var mainContainer : VBoxContainer = $UI/Dropdown/Main
 onready var dropdown : Panel = $UI/Dropdown
 

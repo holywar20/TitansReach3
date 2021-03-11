@@ -111,7 +111,7 @@ func playerSelectingAbility():
 	# activeDisplay.activateLabel( activeDisplay.LABELS.ATTACKER , currentCharacter.getNickName() )
 	
 
-func playerSelectingAbilityInputs( ev : InputEvent ):
+func playerSelectingAbilityInputs( _ev : InputEvent ):
 	# Handle B for cancel, to allow for 'free roam of page'
 	pass # Many of these are handled by UI natively
 
@@ -127,7 +127,7 @@ func playerSelectingTargetInputs( ev: InputEvent ):
 func playerExecutingAbility():
 	battleMap.setState( battleMap.STATE.EXECUTING , currentAbility, currentCharacter )
 
-func playerExecutingAbilityInputs( ev : InputEvent ):
+func playerExecutingAbilityInputs( _ev : InputEvent ):
 	# Allow opportunity for certain kinds of instants.
 	pass
 
@@ -136,7 +136,7 @@ func enemySelectingAbility():
 	# enemyUI.setState( enemyUI.STATE.SHOW )
 	enemyActionTimer.start()
 
-func enemySelectingAbilityInputs( ev : InputEvent ):
+func enemySelectingAbilityInputs( _ev : InputEvent ):
 	# Pass Allow for instants button
 	# Also allow for viewing enemy stats
 	pass
@@ -162,7 +162,7 @@ func _on_AbilityList_abilityActivated( ability ):
 func _on_AbilityList_abilityChanged( ability ):
 	abilityDetailUI.setupScene( ability )
 
-func _on_SelectionMap_selection_change( loc : Vector2 , targetString ):
+func _on_SelectionMap_selection_change( _loc : Vector2 , _targetString ):
 	pass
 	#targetUI.updateUI( character )
 	#targetUI.setState( casterUI.STATE.SHOW )

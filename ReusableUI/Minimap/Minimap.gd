@@ -51,14 +51,14 @@ func setupScene( newSystem : SystemResource ):
 
 	starIcon.update()
 
-func updateVolitileReadout( fuel , food , ink , morale ):
+func updateVolitileReadout( _fuel , _food , _ink , _morale ):
 	pass
 
 func drawCircle( radius, drawNode ):
 	var points_arc = PoolVector2Array()
 	
 	for segment in range( ORBIT_SEGMENT_COUNT+1):
-		var angle_point = ( segment * 360 ) / ORBIT_SEGMENT_COUNT - 90
+		var angle_point = int( ( segment * 360 ) / ORBIT_SEGMENT_COUNT - 90 )
 		var point = ORBIT_CENTER + Vector2(cos(deg2rad(angle_point)), sin(deg2rad(angle_point))) * radius
 		points_arc.push_back(point)
 	

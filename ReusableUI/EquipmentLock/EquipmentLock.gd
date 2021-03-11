@@ -3,6 +3,7 @@ extends PanelContainer
 enum LOCK_TYPE{
 	WEAPON , ARMOR , EQUIPMENT , SHIP_MODULE
 }
+# Charactor.GEAR and LOCK_TYPE should be the same value
 const LOCK_PROPS = {
 	LOCK_TYPE.WEAPON : {
 		"size" : Vector2( 128 , 64 ),
@@ -32,8 +33,13 @@ onready var texture : TextureRect = $VBox/TextureRect
 onready var label : Label = $VBox/Label
 
 export(LOCK_TYPE) var lockType = LOCK_TYPE.EQUIPMENT
+export var lockSlot : int = 0
 
 var item = null
+
+signal userEquippedItem(lockType, slot)
+signal userUnequippedItem(lockType, slot)
+signal userCancelled()
 
 enum STATE {
 	FOCUS, NOT_FOCUS
@@ -44,6 +50,20 @@ const STATE_VARS = {
 	STATE.NOT_FOCUS : Color( 1 , 1, 1 , 1)
 }
 
+func _input( event ):
+	if( has_focus() ):
+		if( event.is_action_pressed("ui_accept") ):
+			emit_signal( "userEquippedItem" , LOCK_TYPE.WEAPON , lockSlot )
+			get_tree().set_input_as_handled()
+
+		if( event.is_action_pressed("ui_cancel") ):
+			if( hasItem() ):
+				emit_signal("userUnequippedItem" , LOCK_TYPE.WEAPON , lockSlot )
+			else:
+				emit_signal("userCancelled")
+
+			get_tree().set_input_as_handled()
+
 func _ready():
 	texture.rect_min_size = LOCK_PROPS[lockType].size
 	texture.set_texture( LOCK_PROPS[lockType].placeholderIcon )
@@ -52,13 +72,16 @@ func _ready():
 
 func setItem():
 	pass
-	# Confirm item is valid.
-	# If Valid set label to short name
-	# Else bubble an error message with sigals
 
+func hasItem():
+	return true if item else false
+
+
+# Signal responses
 func _on_EquipmentLock_focus_entered():
 	set_self_modulate( STATE_VARS[STATE.FOCUS] )
 
-
 func _on_EquipmentLock_focus_exited():
 	set_self_modulate( STATE_VARS[STATE.NOT_FOCUS] )
+
+

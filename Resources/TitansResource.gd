@@ -111,7 +111,7 @@ func findKeyInJsonFile( key, filePath : String ):
 		print("Dev Error : Can't find key of " + key + " in path " + filePath )
 
 # plugin meant for override
-func calculateSpecialProperties( props: Dictionary , object ):
+func calculateSpecialProperties( _props: Dictionary , object ):
 	return object
 
 func makeStringIntoArrayIntegers( stringArray : String ) -> Array:

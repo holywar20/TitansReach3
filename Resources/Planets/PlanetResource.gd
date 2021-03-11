@@ -132,7 +132,7 @@ func _generateProps() -> void:
 	flushAndFillProperties( planetData, self )
 
 # Overrides
-func calculateSpecialProperties( props: Dictionary, object):
+func calculateSpecialProperties( props: Dictionary, _object):
 	
 	var bioRoll = randi() % 100
 	if( bioRoll < props['biosphereChance'] ):

@@ -186,7 +186,7 @@ func _makeEffects( newEffectGroups : Array ):
 			newEffectGroup.effects.append(newEffect)
 		effectGroups.append(newEffectGroup)
 
-func calculateSpecialProperties( props: Dictionary , object ):
+func calculateSpecialProperties( _props: Dictionary , _object ):
 	pass
 
 

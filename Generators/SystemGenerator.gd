@@ -25,6 +25,6 @@ func buildStarMesh( star: StarResource ) -> Spatial:
 
 func buildPlanetMesh( planet : PlanetResource ) -> Spatial:
 	var planetInstance = planetScene.instance()
-	planetInstance.setupScene( planetInstance )
+	planetInstance.setupScene( planet )
 
 	return planetInstance

@@ -38,6 +38,7 @@ margin_bottom = 25.0
 margin_left = 8.0
 margin_right = 137.0
 margin_bottom = 25.0
+mouse_filter = 1
 size_flags_horizontal = 3
 toggle_mode = true
 pressed = true
@@ -48,6 +49,7 @@ text = "Weapons"
 margin_left = 145.0
 margin_right = 274.0
 margin_bottom = 25.0
+mouse_filter = 1
 size_flags_horizontal = 3
 toggle_mode = true
 group = SubResource( 1 )
@@ -57,6 +59,7 @@ text = "Armor"
 margin_left = 282.0
 margin_right = 411.0
 margin_bottom = 25.0
+mouse_filter = 1
 size_flags_horizontal = 3
 toggle_mode = true
 group = SubResource( 1 )
@@ -102,6 +105,10 @@ __meta__ = {
 }
 
 [node name="Item" parent="Container/Panel/Grid" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 64.0
+margin_bottom = 64.0
 [connection signal="toggled" from="Buttons/Weapons" to="." method="_on_Weapons_toggled"]
 [connection signal="toggled" from="Buttons/Armor" to="." method="_on_Armor_toggled"]
 [connection signal="toggled" from="Buttons/Equipment" to="." method="_on_Equipment_toggled"]

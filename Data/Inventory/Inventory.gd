@@ -39,7 +39,7 @@ func _loadOwnedItems():
 		for itemType in keyDictionary:
 			retreiveItemsByType( itemType , keyDictionary[itemType] )		
 
-func retreiveItemsByType( itemType : String , keyFilter : Array ,  propFilter : Dictionary = {} ):
+func retreiveItemsByType( itemType : String , keyFilter : Array ,  _propFilter : Dictionary = {} ):
 	var joinFragment = ""
 	var selectFragment = "SELECT * FROM CommodityResource "
 	var bigString = PoolStringArray(keyFilter).join(" , ")
@@ -56,7 +56,7 @@ func retreiveItemsByType( itemType : String , keyFilter : Array ,  propFilter : 
 			pass
 	
 	var query = selectFragment + joinFragment + whereFragment
-	var success = db.query( query )
+	var _success = db.query( query )
 
 	for result in db.query_result:
 		match itemType:

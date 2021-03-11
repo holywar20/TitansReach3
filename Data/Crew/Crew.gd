@@ -45,7 +45,7 @@ func getDummyCrewman():
 func generateManyCrew( cp : int  , numOfCrew : int , isPlayer : bool = false ):
 	var crewArray = []
 
-	for x in range(0 , numOfCrew ):
+	for _x in range(0 , numOfCrew ):
 		crewArray.append( generateNewCrew( cp , isPlayer ) )
 
 	return crewArray
